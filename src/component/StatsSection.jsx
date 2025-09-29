@@ -1,79 +1,116 @@
 import React from "react";
 
 const StatsSection = () => {
-  const stats = [
-    {
-      value: "95%",
-      text: "Students got clarity after Mentorship",
-    },
-    {
-      value: "1K+",
-      text: "Doubts Solved Live",
-    },
-    {
-      value: "80%",
-      text: "Interview Confidence Boosted",
-    },
-  ];
-
-  const stats2 = [
-    {
-      value: "500+",
-      text: "Resume Reviewed & Improved",
-    },
-    {
-      value: "500+",
-      text: "Resume Reviewed & Improved",
-    },
-
-  ];
-
-  const points = [
-    "Get Industry-focused Training Programs.",
-    "Real-world Projects & Case Studies.",
-    "Career support & Placement assistance.",
-  ];
-
   return (
-    <div className="py-8 px-4 -mr-6">
-      <div className="flex justify-end">
-        <div className="flex flex-col md:flex-row gap-6">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-sm border border-red-100 rounded-xl px-6 py-6 w-55 text-center"
-            >
-              <h2 className="text-5xl font-bold text-red-500 font-nunito">{stat.value}</h2>
-              <p className="text-black font-semibold text-sm mt-2 font-nunito">{stat.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col md:flex-row justify-between items-start mt-6 p-6 rounded-lg">
-        {/* Left Side - Bullet Points */}
-        <div className="space-y-3 text-black text-base md:text-xl lg:text-2xl font-nunito">
-          {points.map((point, index) => (
-            <p key={index} className="flex items-start">
-              <span className="text-black mr-2">›</span>
-              {point}
+    <div className="p-8 w-[1100px] max-w-full mx-auto mt-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        {/* Left Side: Text Section */}
+        <div className="order-2 md:order-1 flex flex-col justify-end">
+          <div className="space-y-4 text-[#1B1718] text-lg">
+            <p className="flex items-start">
+              <span className="mr-2">›</span> Get Industry-focused Training Programs.
             </p>
-          ))}
+            <p className="flex items-start">
+              <span className="mr-2">›</span> Real-world Projects & Case Studies.
+            </p>
+            <p className="flex items-start">
+              <span className="mr-2">›</span> Career support & Placement assistance.
+            </p>
+          </div>
         </div>
 
+        {/* Right Side: Cards Section */}
+        <div className="order-1 md:order-2 flex flex-col space-y-8 items-end w-full">
+          
+          {/* Mobile Layout (Grid 2x2 + 1 center) */}
+          <div className="md:hidden">
+            {/* First 4 cards */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg shadow text-center p-6">
+                <h2 className="text-3xl font-bold text-red-600">95%</h2>
+                <p className="text-sm mt-2">
+                  Students got clarity after <br /> Mentorship
+                </p>
+              </div>
 
-        {/* Right Side - Stats */}
-        <div className="flex flex-col md:flex-row gap-6 mt-6 md:mt-0">
-          {stats2.map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-sm border border-red-100 rounded-xl px-6 py-6 w-55 text-center"
-            >
-              <h2 className="text-5xl font-bold text-red-500 font-nunito">{stat.value}</h2>
-              <p className="text-black font-semibold text-sm mt-2 font-nunito">{stat.text}</p>
+              <div className="bg-white rounded-lg shadow text-center p-6">
+                <h2 className="text-3xl font-bold text-red-600">1K+</h2>
+                <p className="text-sm mt-2">
+                  Doubts Solved <br /> Live
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg shadow text-center p-6">
+                <h2 className="text-3xl font-bold text-red-600">80%</h2>
+                <p className="text-sm mt-2">
+                  Interview Confidence <br /> Boosted
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg shadow text-center p-6">
+                <h2 className="text-3xl font-bold text-red-600">500+</h2>
+                <p className="text-sm mt-2">
+                  Resume Reviewed & <br /> Improved
+                </p>
+              </div>
             </div>
-          ))}
+
+            {/* Last card centered */}
+            <div className="flex justify-center mt-4">
+              <div className="bg-white rounded-lg shadow text-center p-6 w-[250px]">
+                <h2 className="text-3xl font-bold text-red-600">500+</h2>
+                <p className="text-sm mt-2">
+                  Resume Reviewed & <br /> Improved
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout (Original) */}
+          <div className="hidden md:flex flex-wrap md:flex-nowrap space-x-8 justify-end">
+            <div className="bg-white rounded-lg shadow text-center p-6 w-[250px]">
+              <h2 className="text-3xl font-bold text-red-600">95%</h2>
+              <p className="text-sm mt-2">
+                Students got clarity after <br /> Mentorship
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow text-center p-6 w-[250px]">
+              <h2 className="text-3xl font-bold text-red-600">1K+</h2>
+              <p className="text-sm mt-2">
+                Doubts Solved <br /> Live
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow text-center p-6 w-[250px]">
+              <h2 className="text-3xl font-bold text-red-600">80%</h2>
+              <p className="text-sm mt-2">
+                Interview Confidence <br /> Boosted
+              </p>
+            </div>
+          </div>
+
+          <div className="hidden md:flex flex-wrap md:flex-nowrap space-x-8 justify-end">
+            <div className="bg-white rounded-lg shadow text-center p-6 w-[250px]">
+              <h2 className="text-3xl font-bold text-red-600">500+</h2>
+              <p className="text-sm mt-2">
+                Resume Reviewed & <br /> Improved
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow text-center p-6 w-[250px]">
+              <h2 className="text-3xl font-bold text-red-600">500+</h2>
+              <p className="text-sm mt-2">
+                Resume Reviewed & <br /> Improved
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Full-width horizontal line */}
+      <div className="border-t border-black w-full mt-8"></div>
     </div>
   );
 };

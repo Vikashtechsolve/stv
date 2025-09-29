@@ -6,7 +6,7 @@ const Membership = () => {
     return (
         <div className="mt-6">
             {/* Title */}
-            <h1 className="text-center text-5xl font-semibold font-playfair mb-12 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-[1.2] overflow-visible">
+            <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
                 Power of Mentorship
             </h1>
 

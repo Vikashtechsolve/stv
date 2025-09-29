@@ -1,55 +1,62 @@
-import React from 'react'
+import React from "react";
+import mainImage from "../assets/card.png"; // Adjust path as needed
+import smallImage from "../assets/small.png"; // Adjust path as needed
 
 const Hero = () => {
     return (
-        <div className="mt-12 w-full">
-            <div className="grid md:grid-cols-2 gap-8 items-center p-3 rounded-lg">
-                {/* Left Section */}
-                <div>
-                    <h2 className="text-[48px] font-bold mb-4 font-playfair">
-                        Build Your <span className="text-red-500">Skills</span> <br />
-                        with Vikas Tech Solutions.
-                    </h2>
+        <div className="mt-12">
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-20 p-6 md:p-8 mt-20 md:mt-40">
+                {/* Left Side Text */}
+                <div className="w-full md:flex-[1.2] text-center md:text-left">
+                    <h1 className="text-3xl sm:text-4xl lg:text-[45px] font-bold text-gray-900 leading-snug font-playfair">
+                        Build Your <span className="text-red-600">Skills</span><br />
+                        with Vikash Tech Solution.
+                    </h1>
 
-                    <p className="text-red-600 text-[30px] font-semibold mb-4 font-nunito">
-                        From guidance to career outcomes, <br /> We’ve got you covered
+                    <p className="text-red-600 font-nunito font-semibold mt-4 text-sm sm:text-base">
+                        From guidance to career outcomes,<br />
+                        We’ve got you covered
                     </p>
-                    <p className="text-[#1B1718] mb-6 font-nunito font-semibold text-[22px]">
+                    <p className="text-gray-600 mt-4 text-sm sm:text-base md:text-lg">
                         Learn from our expert mentors, gain hands-on project experience & take the right step toward a successful career!
                     </p>
-                    <button className="bg-red-600 text-white px-5 py-3 rounded-lg shadow hover:bg-red-700 transition font-playfair">
-                        Explore our Programs &gt;
+
+                    <button
+                        className="mt-6 sm:mt-8 md:mt-10 text-white px-6 py-3 rounded-md font-semibold shadow hover:opacity-90 transition text-sm sm:text-base"
+                        style={{
+                            background: "linear-gradient(90deg, #ED0331, #87021C)"
+                        }}
+                    >
+                        Explore our Programs »
                     </button>
                 </div>
 
-                {/* Right Section (Exact Card Layout) */}
-                <div
-                    className="text-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center font-playfair"
-                    style={{
-                        width: "640px",
-                        height: "350px",
-                        marginRight: "349.95px",
-                        background: "linear-gradient(135deg, #0D2764, #456FD2)",
-                    }}
-                >
-                    <p className="text-lg font-semibold mb-4 text-center">
-                        Doubts fade when <br /> guidance is strong!
-                    </p>
-                    <button className="bg-white text-gray-800 px-5 py-2 rounded-full font-medium hover:bg-gray-100 transition">
-                        Get 1:1 guidance &gt;
-                    </button>
+                {/* Right Side Image with Overlays */}
+                <div className="w-full md:flex-[1.5] flex justify-center items-center">
+                    <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
+                        {/* Main Image */}
+                        <img
+                            src={mainImage}
+                            alt="Guidance Illustration"
+                            className="w-full rounded-lg shadow-lg object-cover"
+                        />
 
-                    {/* Illustration */}
-                    <div className="mt-6 flex items-end space-x-2">
-                        <div className="w-6 h-6 bg-green-500 rounded-sm"></div>
-                        <div className="w-6 h-10 bg-blue-500 rounded-sm"></div>
-                        <div className="w-6 h-14 bg-yellow-400 rounded-sm"></div>
-                        <div className="flex flex-col items-center">
-                            <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
-                                👨‍🎓
-                            </div>
-                            <span className="text-sm mt-2">Climb Up</span>
+                        {/* Top-Left Text */}
+                        <div className="absolute top-3 left-3 sm:top-6 sm:left-6 text-white max-w-[75%]">
+                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold leading-snug">
+                                Doubts fade when<br />guidance is <br /> strong!
+                            </p>
+                            <button className="mt-4 sm:mt-6 md:mt-8 bg-white text-gray-900 px-3 sm:px-5 py-2 sm:py-3 rounded-md font-medium shadow hover:bg-gray-200 transition text-xs sm:text-sm md:text-base">
+                                Get 1:1 guidance →
+                            </button>
                         </div>
+
+                        {/* Bottom-Right Small Image */}
+                        <img
+                            src={smallImage}
+                            alt="Extra Illustration"
+                            className="absolute bottom-2 right-2 w-14 h-14 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 object-cover"
+                        />
                     </div>
                 </div>
             </div>
@@ -57,4 +64,4 @@ const Hero = () => {
     )
 }
 
-export default Hero
+export default Hero;

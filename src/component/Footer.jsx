@@ -9,6 +9,7 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
+import logo from "../assets/logo.png"; // <-- Import your logo
 
 const Footer = () => {
   return (
@@ -16,12 +17,20 @@ const Footer = () => {
       <div className="grid md:grid-cols-4 gap-10 border-b border-gray-300 pb-10">
         {/* ABOUT SECTION */}
         <div>
-          <div className="flex items-center space-x-2 mb-3">
-            <span className="text-2xl font-extrabold text-black">VTS</span>
-            <span className="text-red-600 text-sm font-semibold">
+          {/* Logo Section */}
+          <div className="flex items-center space-x-3 mb-3">
+            <div className="h-14 w-14 bg-[#E2E2E2] rounded-full flex items-center justify-center overflow-hidden">
+              <img
+                src={logo}
+                alt="VTS Logo"
+                className="h-10 w-auto object-contain"
+              />
+            </div>
+            <span className="text-red-600 text-sm font-semibold leading-tight">
               VIKAS TECH SOLUTIONS
             </span>
           </div>
+
           <h3 className="text-red-600 font-semibold text-sm mb-3">
             ABOUT VIKAS TECH SOLUTIONS
           </h3>

@@ -11,16 +11,20 @@ import TrustedInstitutions from '../component/TrustedInstitutions'
 import HowWeWork from '../component/HowWeWork'
 import Hero from '../component/Hero'
 import StatsSection from '../component/StatsSection'
+import WhatWeOffer from '../component/WhatWeOffer'
+import MasterClass from '../component/MasterClass'
 
 const Home = () => {
     return (
         <Layout>
-            {/* <Hero/> */}
+            <Hero/>
             <StatsSection/>
             <TrustedInstitutions/>
+            <WhatWeOffer/>
+            <MasterClass/>
             <HowWeWork/>
             <ShapeYourJourney/>
-            {/* <SuccessStories/> */}
+            <SuccessStories/>
             <WhyTrustUs/>
             <Mentors/>
             <Menebership/>

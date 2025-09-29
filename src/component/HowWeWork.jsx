@@ -21,12 +21,13 @@ const HowWeWork = () => {
   return (
     <section className="py-12 mt-6">
       {/* Heading */}
-      <h1 className="text-center text-5xl font-semibold font-playfair mb-5 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
         How We Work
       </h1>
-      <p className="text-center text-2xl text-black mb-12 font-nunito">
+      <p className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl text-black mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-nunito">
         Simple steps to learn, practise and land your dream job!
       </p>
+
 
       {/* Steps */}
       <div className="flex flex-col md:flex-row justify-center items-stretch gap-6 max-w-6xl mx-auto px-6">

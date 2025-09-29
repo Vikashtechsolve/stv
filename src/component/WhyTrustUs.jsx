@@ -1,79 +1,88 @@
+// import React from "react";
+// import trust from "../assets/trust.png";
+// import diff from "../assets/diff.png";
+// import career from "../assets/career.png";
+// import growth from "../assets/growth.png";
+
 import React from "react";
 import trust from "../assets/trust.png";
 import diff from "../assets/diff.png";
 import career from "../assets/career.png";
 import growth from "../assets/growth.png";
 
-const trustData = [
-  {
-    title: "Trust & Credibility",
-    description:
-      "At Vikas Tech Solutions, trust is our foundation. With certified mentors, 5,000+ successful sessions, and a 95% satisfaction rate, we ensure expert guidance. Our transparent process, secure data policies, and clear pricing make learning safe and reliable.",
-    image: trust,
-  },
-  {
-    title: "What makes us Different",
-    description:
-      "At Vikas Tech Solutions, learners enjoy personalized 1:1 mentorship, instant doubt-solving, and career-focused guidance. With skill-based contests and flexible, affordable plans, we make quality learning engaging and accessible.",
-    image: diff,
-  },
-  {
-    title: "Focused on Career Growth",
-    description:
-      "We provide clear roadmaps for every learner—whether school students, BTech aspirants, or professionals. Through resume reviews, mock interviews, and structured 30–60–90 day plans, we ensure measurable career growth.",
-    image: career,
-  },
-  {
-    title: "We care about your Growth",
-    description:
-      "Our mentors offer genuine care beyond sessions with WhatsApp and email support. Learners also gain access to a supportive community, where feedback and connections make growth a shared journey.",
-    image: growth,
-  },
-];
+const CardsSection = () => {
+  const cards = [
+    {
+      img: trust,
+      alt: "Trust & Credibility",
+      title: "Trust & Credibility",
+      desc: `At Vikas Tech Solutions, trust is our foundation. With certified mentors,
+        5,000+ successful sessions, and a 95% satisfaction rate, we ensure expert guidance.
+        Our transparent process, safe policies, and clear pricing make learning safe and reliable.`,
+    },
+    {
+      img: diff,
+      alt: "What makes us Different",
+      title: "What makes us Different",
+      desc: `At Vikas Tech Solutions, learners enjoy personalized 1:1 mentorship, instant doubt-solving,
+        and career-focused guidance. With skill-based contests and flexible, affordable plans,
+        we make quality learning engaging and accessible.`,
+    },
+    {
+      img: career,
+      alt: "Focused on Career Growth",
+      title: "Focused on Career Growth",
+      desc: `We provide clear roadmaps for every learner—whether school students, BTech aspirants,
+        or professionals. Through resume reviews, mock interviews, and structured 30–60–90 day plans,
+        we ensure measurable career growth.`,
+    },
+    {
+      img: growth,
+      alt: "We care about your Growth",
+      title: "We care about your Growth",
+      desc: `Our mentors offer genuine care beyond sessions with WhatsApp and email support.
+        Learners also join peer communities where valuable feedback and connections
+        make growth a shared journey.`,
+    },
+  ];
 
-const WhyTrustUs = () => {
   return (
     <section className="py-12 mt-6">
-      <div className="max-w-7xl mx-auto text-center px-6">
-        {/* Section Heading */}
-        <h1 className="text-center text-5xl font-semibold font-playfair mb-12 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
-          Why Learners Trust Us?
-        </h1>
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+        Why Learners Trust Us?
+      </h1>
+      <div className="flex items-center justify-center min-h-screen">
 
-        {/* Grid Section */}
-        {/* Grid Section */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {trustData.map((item, index) => (
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+          {cards.map((card, idx) => (
             <div
-              key={index}
-              className="w-full max-w-md h-[460px] rounded-2xl shadow-md 
-         bg-gradient-to-r from-[#E2E2E2] to-[#C2C2C2] 
-         border border-gray-300 hover:shadow-xl 
-         transition flex flex-col overflow-hidden mx-auto"
+              key={idx}
+              className="bg-gradient-to-b from-[#F0F0F0] to-[#C2C2C2] shadow-lg rounded-md overflow-hidden max-w-sm mx-auto"
             >
-              {/* Image */}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-40 h-40 mx-auto mt-6 mb-2 object-contain"
-              />
-              {/* Title */}
-              <h3 className="text-xl font-semibold mb-3 text-center bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
-                {item.title}
-              </h3>
-              {/* Description */}
-              <div className="bg-[#F7F7F7] text-gray-800 p-5 flex-grow flex items-center justify-center rounded-b-2xl">
-                <p className="text-sm leading-relaxed text-center">
-                  {item.description}
+              <div className="text-center">
+                {/* Image Section */}
+                <div className="h-[200px] flex items-center justify-center">
+                  <img src={card.img} alt={card.alt} className="w-[150px]" />
+                </div>
+
+                {/* Title Section */}
+                <div className="bg-[#BDBDBD66] py-2">
+                  <h2 className="font-playfair text-2xl font-bold bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+                    {card.title}
+                  </h2>
+                </div>
+
+                {/* Description */}
+                <p className="text-black font-nunito text-sm leading-relaxed px-4 py-4">
+                  {card.desc}
                 </p>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
 };
 
-export default WhyTrustUs;
+export default CardsSection;
