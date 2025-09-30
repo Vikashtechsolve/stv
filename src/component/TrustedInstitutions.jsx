@@ -20,34 +20,27 @@ const institutions = [
 ];
 
 const TrustedInstitutions = () => {
- const settings = {
-  dots: false,
-  infinite: true,
-  speed: 1500,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
-  cssEase: "linear",
-  responsive: [
-    { breakpoint: 1280, settings: { slidesToShow: 4 } },
-    { breakpoint: 1024, settings: { slidesToShow: 3 } },
-    { breakpoint: 768, settings: { slidesToShow: 2 } },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,   // ✅ show 2 logos
-        slidesToScroll: 2, // ✅ move 2 at a time
-      },
-    },
-  ],
-};
-
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    responsive: [
+      { breakpoint: 1280, settings: { slidesToShow: 4 } },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 2, slidesToScroll: 2 } },
+    ],
+  };
 
   return (
-    <section className="py-12 mt-6">
+    <section className="py-16 mt-12">
       {/* Heading */}
-      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-playfair mb-12 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.1] lg:leading-[1.1]">
         Trusted by Leading Institutions
       </h1>
 
@@ -55,17 +48,12 @@ const TrustedInstitutions = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Slider {...settings}>
           {institutions.map((inst, index) => (
-            <div
-              key={index}
-              className="flex justify-center items-center"
-            >
-              <div className="p-6 rounded-lg flex justify-center items-center">
-                <img
-                  src={inst.logo}
-                  alt={inst.name}
-                  className="h-20 sm:h-24 md:h-28 object-contain"
-                />
-              </div>
+            <div key={index} className="flex justify-center items-center px-4">
+              <img
+                src={inst.logo}
+                alt={inst.name}
+                className="h-28 sm:h-32 md:h-36 lg:h-40 object-contain"
+              />
             </div>
           ))}
         </Slider>
