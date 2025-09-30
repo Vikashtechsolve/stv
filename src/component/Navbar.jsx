@@ -45,11 +45,11 @@ const Navbar = () => {
 
   return (
     <nav className="w-full z-50">
-      <div className="flex items-center justify-between px-3 py-5 md:px-6 md:py-5">
+      <div className="flex items-center justify-between px-3 py-3 md:px-6 md:py-3">
         {/* ================= MOBILE NAVBAR ================= */}
         <div className="md:hidden flex items-center justify-between w-full bg-black rounded-full px-4 py-3 relative">
-          <div className="relative h-20 w-44 flex items-center justify-center overflow-visible bg-[#E2E2E2] rounded-full">
-            <img src={logo} alt="VTS Logo" className="h-45 w-auto" />
+          <div className="relative h-16 w-44 flex items-center justify-center overflow-visible bg-[#E2E2E2] rounded-full">
+            <img src={logo} alt="VTS Logo" className="h-55 w-auto" />
           </div>
           <button onClick={() => setIsOpen(!isOpen)} className="text-white z-10">
             {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
@@ -58,12 +58,12 @@ const Navbar = () => {
 
         {/* ================= DESKTOP NAVBAR ================= */}
         <div className="hidden md:flex items-center justify-between w-full relative">
-          <div className="relative h-32 w-72 flex items-center justify-center overflow-visible rounded-full">
-            <img src={logo} alt="VTS Logo" className="h-45 w-auto" />
+          <div className="relative h-16 w-72 flex items-center justify-center overflow-visible rounded-full">
+            <img src={logo} alt="VTS Logo" className="h-55 w-auto" />
           </div>
 
-          <div className="flex items-center justify-end px-8 py-5 w-[80%] ml-auto rounded-l-full bg-black">
-            <div className="flex space-x-10 text-xl font-medium text-white mr-6">
+          <div className="flex items-center justify-end px-6 py-3 w-[80%] ml-auto rounded-l-full bg-black">
+            <div className="flex space-x-10 text-lg font-medium text-white mr-6">
               {links.map((link) => (
                 <div
                   key={link.name}

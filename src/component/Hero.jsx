@@ -32,45 +32,61 @@ const Hero = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      // Sequential loop: 0 → 1 → 2 → 0 → 1 → 2 ...
       setCurrentIndex((prev) => (prev + 1) % dynamicContent.length);
-    }, 3000); // change every 3 seconds
+    }, 2000); // change every 2 seconds
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 bg-gray-50">
-  {/* Left Side Text */}
-  <div className="flex-1 flex flex-col justify-center">
-    <h1
-      className="text-[52px] sm:text-[50px] md:text-[50px] font-semibold text-gray-900 leading-tight font-playfair"
-      style={{ letterSpacing: "-1px" }}
-    >
-      Build Your{" "}
-      <span className="text-red-700 font-semibold">
-        {dynamicContent[currentIndex].word}
-      </span>
-      <br />
-      with Vikash Tech Solution.
-    </h1>
+      {/* Left Side Text */}
+      <div className="flex-1 flex flex-col justify-center">
+        <h1
+          className="text-[52px] sm:text-[50px] md:text-[50px] font-semibold text-gray-900 leading-tight font-playfair"
+          style={{ letterSpacing: "-1px" }}
+        >
+          Build Your{" "}
+          {/* Smooth vertical swap animation */}
+          <span className="relative inline-block overflow-hidden align-middle h-[60px]">
+            <div
+              className="transition-transform duration-1000 ease-in-out"
+              style={{
+                transform: `translateY(-${currentIndex * 60}px)`,
+              }}
+            >
+              {dynamicContent.map((item, i) => (
+                <div
+                  key={i}
+                  className="h-[60px] flex items-center text-red-700 font-semibold"
+                >
+                  {item.word}
+                </div>
+              ))}
+            </div>
+          </span>
+          <br />
+          with Vikash Tech Solution.
+        </h1>
 
-    <p className="text-red-700 text-2xl sm:text-[28px] md:text-[32px] font-semibold mt-4">
-      From guidance to career outcomes, <br />
-      We’ve got you covered
-    </p>
+        <p className="text-red-700 text-2xl sm:text-[28px] md:text-[32px] font-semibold mt-4">
+          From guidance to career outcomes, <br />
+          We’ve got you covered
+        </p>
 
-    <p className="text-gray-700 mt-4 text-lg sm:text-xl md:text-2xl font-normal leading-relaxed">
-      Learn from our expert mentors, gain hands-on project experience & take
-      the right step toward a successful career!
-    </p>
+        <p className="text-gray-700 mt-4 text-lg sm:text-xl md:text-2xl font-normal leading-relaxed">
+          Learn from our expert mentors, gain hands-on project experience & take
+          the right step toward a successful career!
+        </p>
+
         <button
           className="mt-8 px-6 mb-4 py-2 rounded-[20px] w-80 h-20 font-semibold shadow text-white text-lg sm:text-xl md:text-2xl transition hover:opacity-90 self-start"
           style={{ background: "linear-gradient(90deg, #ED0331, #87021C)" }}
         >
           Explore our Programs »
         </button>
-
       </div>
- 
+
       {/* Right Side Horizontal Slide */}
       <div className="flex-1 flex justify-center items-center overflow-hidden relative">
         <div
@@ -81,7 +97,10 @@ const Hero = () => {
           }}
         >
           {dynamicContent.map((item, i) => (
-            <div key={i} className="w-full flex-shrink-0 relative rounded-lg shadow-lg px-2">
+            <div
+              key={i}
+              className="w-full flex-shrink-0 relative rounded-lg shadow-lg px-2"
+            >
               {/* Main Image */}
               <img
                 src={item.image}
@@ -115,4 +134,5 @@ const Hero = () => {
     </div>
   );
 };
+
 export default Hero;
