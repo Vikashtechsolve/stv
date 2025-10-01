@@ -1,0 +1,85 @@
+import React from "react";
+
+const StatsSection = () => {
+  return (
+    <div className="p-12 w-[1200px] max-w-full mx-auto mt-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        {/* Left Side: Text Section */}
+        <div className="order-2 md:order-1 flex flex-col justify-end">
+          <div className="space-y-6 text-[#1B1718] text-xl md:text-2xl">
+            <p className="flex items-start">
+              <span className="mr-3 text-red-600 text-2xl">›</span> Get Industry-focused Training Programs.
+            </p>
+            <p className="flex items-start">
+              <span className="mr-3 text-red-600 text-2xl">›</span> Real-world Projects & Case Studies.
+            </p>
+            <p className="flex items-start">
+              <span className="mr-3 text-red-600 text-2xl">›</span> Career support & Placement assistance.
+            </p>
+          </div>
+        </div>
+
+        {/* Right Side: Cards Section */}
+        <div className="order-1 md:order-2 flex flex-col space-y-10 items-end w-full">
+          
+          {/* Mobile Layout (Grid 2x2 + 1 center) */}
+          <div className="md:hidden">
+            <div className="grid grid-cols-2 gap-6">
+              {[
+                { title: "95%", subtitle: "Students got clarity after Mentorship" },
+                { title: "1K+", subtitle: "Doubts Solved Live" },
+                { title: "80%", subtitle: "Interview Confidence Boosted" },
+                { title: "500+", subtitle: "Resume Reviewed & Improved" },
+              ].map((card, idx) => (
+                <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8">
+                  <h2 className="text-4xl md:text-5xl font-bold text-red-600">{card.title}</h2>
+                  <p className="text-base md:text-lg mt-3">{card.subtitle}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Last card centered */}
+            <div className="flex justify-center mt-6">
+              <div className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
+                <h2 className="text-4xl md:text-5xl font-bold text-red-600">500+</h2>
+                <p className="text-base md:text-lg mt-3">Resume Reviewed & Improved</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden md:flex flex-wrap md:flex-nowrap space-x-10 justify-end">
+            {[
+              { title: "95%", subtitle: "Students got clarity after Mentorship" },
+              { title: "1K+", subtitle: "Doubts Solved Live" },
+              { title: "80%", subtitle: "Interview Confidence Boosted" },
+            ].map((card, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
+                <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>
+                <p className="text-lg mt-3">{card.subtitle}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden md:flex flex-wrap md:flex-nowrap space-x-10 justify-end">
+            {[
+              { title: "500+", subtitle: "Resume Reviewed & Improved" },
+              { title: "500+", subtitle: "Resume Reviewed & Improved" },
+            ].map((card, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
+                <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>
+                <p className="text-lg mt-3">{card.subtitle}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Full-width horizontal line */}
+      <div className="border-t border-black w-full mt-10"></div>
+    </div>
+  );
+};
+
+export default StatsSection;
