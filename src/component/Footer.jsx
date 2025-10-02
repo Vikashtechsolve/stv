@@ -13,28 +13,25 @@ import logo from "../assets/logo.png"; // <-- Import your logo
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-800 py-10 px-6 md:px-16 mt-6">
-      <div className="grid md:grid-cols-4 gap-10 border-b border-gray-300 pb-10">
+    <footer className="bg-#FFFFFF33 text-gray-800 py-10 px-6 md:px-16 mt-6 pt-50">
+      <div className=" grid md:grid-cols-4 gap-10 border-b border-t pt-18 border-gray-300 pb-10 ">
         {/* ABOUT SECTION */}
-        <div>
+        <div className="-mt-62">
           {/* Logo Section */}
-          <div className="flex items-center space-x-3 mb-3">
-            <div className="h-14 w-14 bg-[#E2E2E2] rounded-full flex items-center justify-center overflow-hidden">
-              <img
+          <div className="flex items-start space-x-3  ">
+            <div className="   w-60 -mb-15  -ml-12 flex items-end justify-center overflow-hidden">
+              <img 
                 src={logo}
                 alt="VTS Logo"
-                className="h-10 w-auto object-contain"
+                className="w-auto object-contain "
               />
             </div>
-            <span className="text-red-600 text-sm font-semibold leading-tight">
-              VIKAS TECH SOLUTIONS
-            </span>
           </div>
 
-          <h3 className="text-red-600 font-semibold text-sm mb-3">
+          <h3 className=" font-playfair font-bold text-md red-gradient leading-[21.33px] tracking-[0.02em] gap-[7.11px] pt-[10.67px] pb-6 uppercase">
             ABOUT VIKAS TECH SOLUTIONS
           </h3>
-          <p className="text-sm leading-6 text-gray-600">
+          <p className="text-md leading-6 .font-nunito text-gray-600">
             We provide personalized mentorship, live doubt-solving, coding
             contests, and career guidance to help students and professionals
             achieve their goals.
@@ -43,8 +40,8 @@ const Footer = () => {
 
         {/* EXPLORE SECTION */}
         <div>
-          <h3 className="text-red-600 font-semibold mb-3">EXPLORE</h3>
-          <ul className="space-y-2 text-sm text-gray-600">
+          <h3 className="font-semibold text-2xl red-gradient font-playfair">EXPLORE</h3>
+          <ul className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
             <li>Home</li>
             <li>Trusting by leading institutions</li>
             <li>What we offer</li>
@@ -59,29 +56,32 @@ const Footer = () => {
 
         {/* CONTACT SECTION */}
         <div>
-          <h3 className="text-red-600 font-semibold mb-3">CONTACT</h3>
-          <div className="flex items-start space-x-2 mb-3 text-sm text-gray-600">
-            <FaMapMarkerAlt className="text-red-600 mt-1" />
-            <p>
-              Vikas Tech Solutions, <br />
-              3rd Floor, ABC Tower, <br />
-              Sector-15, Noida, Uttar Pradesh, India
-            </p>
+          <h3 className="font-semibold text-2xl red-gradient font-playfair">CONTACT</h3>
+          <div className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4" >
+
           </div>
-          <div className="flex items-center space-x-2 mb-3 text-sm text-gray-600">
-            <FaEnvelope className="text-red-600" />
-            <p>support@vikastechsolutions.com</p>
-          </div>
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <FaPhoneAlt className="text-red-600" />
-            <p>+91 98765 43210</p>
-          </div>
+            <div className="flex items-start space-y-1 text-xl font-nunito text-[#A2A1A1] mt-4">
+              <FaMapMarkerAlt className="text-red-600 mr-3 text-xl" />
+              <p>
+                Vikas Tech Solutions, <br />
+                3rd Floor, ABC Tower, <br />
+                Sector-15, Noida, Uttar Pradesh, India
+              </p>
+            </div>
+            <div className="flex items-center space-x-2 mb-3  pace-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
+              <FaEnvelope className="text-red-600" />
+              <p>support@vikastechsolutions.com</p>
+            </div>
+            <div className="flex items-center space-x-2 mb-3  pace-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
+              <FaPhoneAlt className="text-red-600" />
+              <p>+91 98765 43210</p>
+            </div>
         </div>
 
         {/* SOCIAL MEDIA SECTION */}
         <div>
-          <h3 className="text-red-600 font-semibold mb-3">GET IN TOUCH</h3>
-          <div className="flex space-x-4 text-gray-600 text-lg">
+          <h3 className="font-semibold text-2xl red-gradient font-playfair">GET IN TOUCH</h3>
+          <div className="flex space-x-4 text-gray-600 text-lg mt-2">
             <FaYoutube className="hover:text-red-600 cursor-pointer" />
             <FaFacebookF className="hover:text-red-600 cursor-pointer" />
             <FaTwitter className="hover:text-red-600 cursor-pointer" />
