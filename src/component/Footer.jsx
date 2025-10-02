@@ -14,7 +14,7 @@ import logo from "../assets/logo.png"; // <-- Import your logo
 const Footer = () => {
   return (
     <footer className="bg-#FFFFFF33 text-gray-800 py-10 px-6 md:px-16 mt-6 pt-50">
-      <div className=" grid md:grid-cols-4 gap-10 border-b border-t pt-18 border-gray-300 pb-10">
+      <div className=" grid md:grid-cols-4 gap-10 border-b border-t pt-18 border-gray-300 pb-10 ">
         {/* ABOUT SECTION */}
         <div className="-mt-62">
           {/* Logo Section */}
