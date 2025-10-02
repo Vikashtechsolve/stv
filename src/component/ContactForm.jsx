@@ -60,22 +60,22 @@ const ContactForm = () => {
           Have Questions? We’re Here to Help
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-10 md:gap-6 items-center">
-          <div className="flex flex-col items-center space-y-4">
+        <div className=" grid md:grid-cols-2 gap-10 md:gap-7 items-center">
+          <div className="gap-2 flex flex-col items-center justify-center space-y-4">
             <img
               src={formImg}
               alt="Support Illustration"
-              className="w-[80%] sm:w-[70%] md:w-[75%] lg:w-[65%]"
+              className="w-[90%] sm:w-[70%] md:w-[75%] lg:w-[65%]"
             />
             <p className="text-base sm:text-lg font-medium text-center mb-6 sm:mb-10">
               Let’s solve your doubts together!
             </p>
-            <div className="self-center md:self-start">
+            <div  className=" self-center ">
               <a
                 href="https://wa.me/919876543210"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-5 py-2 rounded-md transition text-sm sm:text-base"
+                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-md transition text-sm sm:text-base"
               >
                 <FaWhatsapp className="text-lg sm:text-xl" /> Chat with us
               </a>
@@ -90,7 +90,7 @@ const ContactForm = () => {
               type="text"
               name="name"
               placeholder="Enter your Full Name"
-              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black text-center placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
               value={formData.name}
               onChange={handleChange}
             />
@@ -98,7 +98,7 @@ const ContactForm = () => {
               type="email"
               name="email"
               placeholder="Enter your Email Address"
-              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black text-center placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
               value={formData.email}
               onChange={handleChange}
             />
@@ -106,7 +106,7 @@ const ContactForm = () => {
               type="tel"
               name="phone"
               placeholder="Enter your 10-digit mobile number"
-              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black text-center placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
               value={formData.phone}
               onChange={handleChange}
             />
@@ -114,7 +114,7 @@ const ContactForm = () => {
               name="query"
               rows="4"
               placeholder="Type your Query Here..."
-              className="w-full sm:w-[85%] px-4 py-3 rounded-xl border border-black text-center placeholder:text-center placeholder:text-base sm:placeholder:text-lg resize-none focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
               value={formData.query}
               onChange={handleChange}
             />

@@ -12,16 +12,16 @@ const Membership = () => {
 
             {/* Desktop/Tablet Version (with background) */}
             <section
-                className="relative w-full h-[400px] bg-cover bg-center items-center hidden md:flex"
+                className="relative w-full h-[627px] bg-cover bg-center items-center hidden md:flex"
                 style={{ backgroundImage: `url(${bgImage})` }}
             >
                 {/* Overlay (only for desktop) */}
                 <div className="absolute inset-0 hidden md:block bg-black/40"></div>
 
                 {/* Content */}
-                <div className="relative w-full max-w-6xl mx-auto flex items-center justify-between px-6">
+                <div className="relative gap-35 w-full max-w-6xl mx-auto flex items-center justify-between px-6">
                     {/* Left: Video Thumbnail with Play Icon */}
-                    <div className="w-1/2 flex justify-center">
+                    <div  className="w-9/10 border  flex justify-center">
                         <div className="relative">
                             <img
                                 src={videoThumbnail}
@@ -45,13 +45,13 @@ const Membership = () => {
                     </div>
 
                     {/* Right: Text */}
-                    <div className="w-1/2 text-white space-y-6 px-6 text-center flex flex-col items-center">
-                        <p className="text-lg px-[38px] py-[20px]">
+                    <div className=" font-nunito  text-white w-1/2 space-y-6 px-2 text-center flex flex-col items-center ">
+                        <p className="font-nunito  text-[26px] leading-[158%] tracking-[-0.02em] text-center">
                             See how our mentors simplify concepts and guide learners step by
                             step!
                         </p>
                         <hr className="border-gray-300/50 w-3/4 mx-auto" />
-                        <p className="text-lg px-[38px] py-[20px]">
+                        <p className="font-nunito  text-[26px] leading-[158%] tracking-[-0.02em] text-center">
                             Get a glimpse of how our mentors guide students toward success!
                         </p>
                     </div>
@@ -98,7 +98,7 @@ const Membership = () => {
 
             {/* Book Button OUTSIDE background */}
             <div className="flex justify-center mt-10">
-                <button className="px-6 py-3 bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white rounded-lg shadow hover:opacity-90 transition">
+                <button className="px-8 py-5 bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white rounded-2xl shadow hover:opacity-90 transition text-2xl ">
                     Book a Session
                 </button>
             </div>
