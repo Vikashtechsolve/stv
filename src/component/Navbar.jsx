@@ -12,22 +12,57 @@ const Navbar = () => {
   const navRefs = useRef({});
 
   const links = [
+   {
+    name: "Our Products",
+    dropdown: [
+      {
+        name: "Master Class",
+        description: "Join expert-led sessions covering trending topics, real-world case studies, and practical learning",
+        href: "/master-class",
+      },
+      {
+        name: "Mentorship",
+        description: "Get personalized career guidance and skill development with direct mentor support.",
+        href: "/mentorship",
+      },
+      {
+        name: "Online Contests",
+        description: "Participate in coding, quizzes, and competitions to test and showcase your abilities.",
+        href: "/online-contests",
+      },
+      {
+        name: "Resume Review & Road Map",
+        description: "Improve your resume and receive a step-by-step roadmap to achieve your career goals.",
+        href: "/resume-review",
+      },
+      {
+        name: "Live Doubt Solving",
+        description: "Ask questions anytime and clear concepts instantly with live mentor support.",
+        href: "/live-doubt-solving",
+      },
+    ],
+  },
     {
-      name: "Our Products",
-      dropdown: [
-        { name: "Program 1", description: "Short description 1", href: "/program-1" },
-        { name: "Program 2", description: "Short description 2", href: "/program-2" },
-        { name: "Program 3", description: "Short description 3", href: "/program-3" },
-      ],
+  name: "Our Programs",
+  dropdown: [
+    { 
+      name: "LMS Portal", 
+      description: "We provide a comprehensive online learning platform where users can access courses, training materials, and assessments anytime, anywhere. Track your progress, enhance your skills, and stay ahead with our interactive learning tools.", 
+      href: "/lms-portal" 
     },
-    {
-      name: "Our Programs",
-      dropdown: [
-        { name: "Product 1", description: "Short description A", href: "/product-1" },
-        { name: "Product 2", description: "Short description B", href: "/product-2" },
-        { name: "Product 3", description: "Short description C", href: "/product-3" },
-      ],
+    { 
+      name: "Interview Portal", 
+      description: "Our platform offers a seamless recruitment experience with online test scheduling, video interviews, and candidate evaluation. Simplify your hiring process and find the right talent efficiently.", 
+      href: "/interview-portal" 
     },
+    { 
+      name: "Manpower Management", 
+      description: "We help businesses manage their workforce effectively by tracking employee allocation, attendance, and tasks. Optimize your operations and ensure smooth team management with ease.", 
+      href: "/manpower-management" 
+    },
+  ],
+}
+,
     { name: "About us", href: "/aboutus" },
     { name: "Blogs", href: "/blog" },
   ];
@@ -100,33 +135,34 @@ const Navbar = () => {
 
                       {/* Dropdown floating on page */}
                       {openDropdown === link.name &&
-                        createPortal(
-                          <div
-                            className="absolute bg-white text-black rounded-lg shadow-lg py-2 w-60 z-[2000] transition-all duration-300"
-                            style={{
-                              top: dropdownPosition.top,
-                              left: dropdownPosition.left,
-                            }}
-                            onMouseEnter={() => setOpenDropdown(link.name)}
-                            onMouseLeave={() => handleMouseLeave()}
-                          >
-                            {link.dropdown.map((item) => (
-                              <Link
-                                key={item.name}
-                                to={item.href}
-                                className="block px-4 py-2 hover:bg-red-100 transition-all duration-300"
-                              >
-                                <div className="flex flex-col">
-                                  <span className="font-semibold text-black">{item.name}</span>
-                                  <span className="text-gray-600 hover:text-red-600 transition-colors duration-300">
-                                    {item.description}
-                                  </span>
-                                </div>
-                              </Link>
-                            ))}
-                          </div>,
-                          document.body
-                        )}
+  createPortal(
+    <div
+      className="absolute bg-white text-black rounded-lg shadow-lg py-3 px-5 w-64 z-[2000] transition-all duration-300"
+      style={{
+        top: dropdownPosition.top,
+        left: dropdownPosition.left,
+      }}
+      onMouseEnter={() => setOpenDropdown(link.name)}
+      onMouseLeave={() => handleMouseLeave()}
+    >
+      {link.dropdown.map((item) => (
+        <Link
+          key={item.name}
+          to={item.href}
+          className="block mb-2 last:mb-0 hover:bg-gray-50 transition-all duration-300 rounded-md px-2 py-2"
+        >
+          <div className="flex flex-col">
+            <span className="font-semibold text-black text-lg">{item.name}</span>
+            <span className="text-gray-600 hover:text-red-600 transition-colors duration-300 text-sm">
+              {item.description}
+            </span>
+          </div>
+        </Link>
+      ))}
+    </div>,
+    document.body
+  )}
+
                     </>
                   )}
                 </div>
@@ -153,68 +189,66 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE MENU */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-start space-y-4 bg-black text-white mx-auto my-4 px-6 py-4 rounded-xl shadow-lg transition-all duration-500 ease-in-out w-80 max-w-full">
-          {links.map((link) =>
-            !link.dropdown ? (
+{isOpen && (
+  <div className="md:hidden flex flex-col items-start space-y-4 bg-black text-white mx-auto my-4 px-4 py-4 rounded-xl shadow-lg transition-all duration-500 ease-in-out w-80 max-w-full">
+    {links.map((link) =>
+      !link.dropdown ? (
+        <Link
+          key={link.name}
+          to={link.href}
+          className="block text-lg font-semibold border-b-2 border-transparent hover:border-red-500 w-full transition-all duration-300 px-3 py-3 rounded-md"
+        >
+          {link.name}
+        </Link>
+      ) : (
+        <div key={link.name} className="w-full">
+          <button
+            onClick={() => toggleDropdown(link.name)}
+            className="flex items-center justify-between w-full text-lg font-semibold border-b-2 border-transparent hover:border-red-500 transition-all duration-300 px-3 py-3 rounded-md"
+          >
+            {link.name}
+            <FiChevronDown
+              className={`ml-2 transform transition-transform duration-300 ${
+                openDropdown === link.name ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          <div
+            className={`pl-3 mt-2 space-y-3 overflow-hidden transition-all duration-300 ${
+              openDropdown === link.name ? "max-h-96" : "max-h-0"
+            }`}
+          >
+            {link.dropdown.map((item) => (
               <Link
-                key={link.name}
-                to={link.href}
-                className="block text-lg border-b-2 border-transparent hover:border-red-500 w-full transition-all duration-300"
+                key={item.name}
+                to={item.href}
+                className="block w-full bg-gray-900 hover:bg-gray-800 rounded-md px-3 py-3 transition-all duration-300"
               >
-                {link.name}
+                <span className="font-semibold text-white">{item.name}</span>
+                <span className="block text-gray-400 hover:text-red-600 text-sm mt-1">
+                  {item.description}
+                </span>
               </Link>
-            ) : (
-              <div key={link.name} className="w-full">
-                <button
-                  onClick={() => toggleDropdown(link.name)}
-                  className="flex items-center justify-between w-full text-lg border-b-2 border-transparent hover:border-red-500 transition-all duration-300"
-                >
-                  {link.name}
-                  <FiChevronDown
-                    className={`ml-2 transform transition-transform duration-300 ${
-                      openDropdown === link.name ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                <div
-                  className={`pl-4 mt-2 space-y-2 overflow-hidden transition-all duration-300 ${
-                    openDropdown === link.name ? "max-h-60" : "max-h-0"
-                  }`}
-                >
-                  {link.dropdown.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="block text-lg border-b-2 border-transparent hover:border-red-500 w-full transition-all duration-300"
-                    >
-                      <div className="flex flex-col">
-                        <span className="font-semibold text-black">{item.name}</span>
-                        <span className="text-gray-400 hover:text-red-600 transition-colors duration-300">
-                          {item.description}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )
-          )}
-
-          <Link
-            to="/contact"
-            className="w-full text-center bg-red-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-red-700"
-          >
-            Contact Us
-          </Link>
-          <Link
-            to="/login"
-            className="w-full text-center bg-white text-black px-5 py-3 rounded-full font-semibold hover:bg-gray-200"
-          >
-            Login
-          </Link>
+            ))}
+          </div>
         </div>
-      )}
+      )
+    )}
+
+    <Link
+      to="/contact"
+      className="w-full text-center bg-red-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-red-700 transition-all duration-300"
+    >
+      Contact Us
+    </Link>
+    <Link
+      to="/login"
+      className="w-full text-center bg-white text-black px-5 py-3 rounded-full font-semibold hover:bg-gray-200 transition-all duration-300"
+    >
+      Login
+    </Link>
+  </div>
+)}
     </nav>
   );
 };
