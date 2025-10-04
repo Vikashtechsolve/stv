@@ -53,7 +53,7 @@ const mentors = [
 function Mentors() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState(0);
+  const [direction, setDirection] = useState( 0 );
 
   useEffect(() => {
     const interval = setInterval(() => {
