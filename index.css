@@ -1,0 +1,9 @@
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* slide half width for duplicate */
+}
+
+.animate-slide {
+  display: flex;
+  animation: slide 12s linear infinite;
+}

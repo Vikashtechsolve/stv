@@ -50,9 +50,8 @@ const Hero = () => {
   }, []);
 
   return (
-    // <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 bg-gray-50">
-      <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 pt-24 bg-gray-50">
-  
+      <div className="w-full flex flex-col md:flex-row p-6 md:p-12 bg-gray-50">
+
       {/* Left Side Text */}
       <div className="flex-1 flex flex-col justify-center">
         <h1
