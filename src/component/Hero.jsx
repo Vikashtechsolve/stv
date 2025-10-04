@@ -1,29 +1,41 @@
 import React, { useState, useEffect } from "react";
-import mainImage1 from "../assets/card.png";
-import mainImage2 from "../assets/card.png";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import different images for the right-side slider
+import image1 from "../assets/card1.png";
+import image2 from "../assets/card2.png";
+import image3 from "../assets/card3.png";
+import image4 from "../assets/card4.png";
 import smallImage from "../assets/small.png";
 
 const dynamicContent = [
   {
     word: "Skills",
-    image: mainImage2,
+    image: image1,
     heading: "Master Your Skills",
-    description: "Learn from our expert mentors and gain hands-on experience.",
-    buttonText: "Get 1:1 guidance →",
+    description: "",
+    buttonText: "",
   },
   {
     word: "Confidence",
-    image: mainImage1,
+    image: image2,
     heading: "Build Confidence",
-    description: "Solve doubts live and strengthen your knowledge.",
-    buttonText: "Connect to Mentor →",
+    description: "",
+    buttonText: "",
   },
   {
     word: "Career",
-    image: mainImage1,
+    image: image3,
     heading: "Advance Your Career",
-    description: "Unlock new skills and achieve your professional goals.",
-    buttonText: "Level Up →",
+    description: "",
+    buttonText: "",
+  },
+  {
+    word: "Success",
+    image: image4,
+    heading: "Achieve Success",
+    description: "",
+    buttonText: "",
   },
 ];
 
@@ -32,14 +44,15 @@ const Hero = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Sequential loop: 0 → 1 → 2 → 0 → 1 → 2 ...
       setCurrentIndex((prev) => (prev + 1) % dynamicContent.length);
-    }, 2000); // change every 2 seconds
+    }, 2500); // rotates every 2.5s
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 bg-gray-50">
+    // <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 bg-gray-50">
+      <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 pt-24 bg-gray-50">
+  
       {/* Left Side Text */}
       <div className="flex-1 flex flex-col justify-center">
         <h1
@@ -47,7 +60,6 @@ const Hero = () => {
           style={{ letterSpacing: "-1px" }}
         >
           Build Your{" "}
-          {/* Smooth vertical swap animation */}
           <span className="relative inline-block overflow-hidden align-middle h-[60px]">
             <div
               className="transition-transform duration-1000 ease-in-out"
@@ -87,38 +99,36 @@ const Hero = () => {
         </button>
       </div>
 
-      {/* Right Side Horizontal Slide */}
-      <div className="flex-1 flex justify-center items-center overflow-hidden relative">
-        <div
-          className="flex transition-transform duration-[1500ms] ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * 100}%)`,
-            width: `${dynamicContent.length * 100}%`,
-          }}
-        >
-          {dynamicContent.map((item, i) => (
-            <div
-              key={i}
-              className="w-full flex-shrink-0 relative rounded-lg shadow-lg px-2"
+      {/* Right Side Animated Image with Overlay */}
+      <div className="flex-1 flex justify-center items-center relative">
+        <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              className="relative w-full"
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -80 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
             >
               {/* Main Image */}
               <img
-                src={item.image}
-                alt={item.heading}
-                className="w-full object-cover rounded-lg"
+                src={dynamicContent[currentIndex].image}
+                alt={dynamicContent[currentIndex].heading}
+                className="w-full object-cover rounded-lg shadow-lg"
               />
 
               {/* Overlay Text */}
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6 text-white max-w-[75%]">
                 <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">
-                  {item.heading}
+                  {dynamicContent[currentIndex].heading}
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg mb-3">
-                  {item.description}
+                  {dynamicContent[currentIndex].description}
                 </p>
-                <button className="bg-white text-gray-900 px-3 sm:px-5 py-1.5 sm:py-2 rounded-md font-medium shadow hover:bg-gray-200 transition text-xs sm:text-sm md:text-base">
-                  {item.buttonText}
-                </button>
+                {/* <button className="bg-white text-gray-900 px-3 sm:px-5 py-1.5 sm:py-2 rounded-md font-medium shadow hover:bg-gray-200 transition text-xs sm:text-sm md:text-base">
+                  {dynamicContent[currentIndex].buttonText}
+                </button> */}
               </div>
 
               {/* Bottom Right Small Image */}
@@ -127,8 +137,8 @@ const Hero = () => {
                 alt="Extra Illustration"
                 className="absolute bottom-2 right-2 w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-cover"
               />
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>

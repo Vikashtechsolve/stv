@@ -38,9 +38,9 @@ const TrustedInstitutions = () => {
   };
 
   return (
-    <section className="py-16 mt-12">
+    <section className="py-20 mt-12"> {/* slightly more vertical padding */}
       {/* Heading */}
-      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-playfair mb-12 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.1] lg:leading-[1.1]">
+      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-playfair mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.1] lg:leading-[1.1]">
         Trusted by Leading Institutions
       </h1>
 
@@ -48,11 +48,11 @@ const TrustedInstitutions = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Slider {...settings}>
           {institutions.map((inst, index) => (
-            <div key={index} className="flex justify-center items-center px-4">
+            <div key={index} className="flex justify-center items-center px-6"> {/* more horizontal spacing */}
               <img
                 src={inst.logo}
                 alt={inst.name}
-                className="h-28 sm:h-32 md:h-36 lg:h-40 object-contain"
+                className="h-32 sm:h-36 md:h-40 lg:h-44 w-auto object-contain transition-transform duration-300 hover:scale-105"
               />
             </div>
           ))}
