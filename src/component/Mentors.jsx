@@ -1,272 +1,289 @@
-//import React, { useState, useEffect, useRef } from 'react';
-
-// import ankit from '../assets/ankit.png';
-// import priya from '../assets/priya.png';
-// import neha from '../assets/neha.png'
-// import { motion } from "framer-motion";
-
-// const mentors = [
-//   { name: 'Priya Nair', role: 'Mathematics & Core CS', description: 'Provides personalized sessions...', image: 'priya' },
-//   { name: 'Ankit Verma', role: 'Competitive Programming & Contests', description: 'Trains students in coding challenges...', image: 'priya' },
-//   { name: 'Neha Sharma', role: 'Career & Resume Specialist', description: 'Helps learners with resume building...', image: 'neha' },
-// ];
-// const carouselItems = [...mentors, ...mentors]; // Total 6 cards
-// const uniqueCardCount = mentors.length;
-// const totalCards = carouselItems.length;
-
-
-
-
-// const Mentors = () => {
-
-//      const [centerIndex, setCenterIndex] = useState(1); 
-//   const trackRef = useRef(null);
-  
-//   // The duration for one card to visually slide into the center position
-//   // 40% of 10s (4s) is the slide time for 3 cards. 4s / 3 cards ≈ 1.33s
-//   const CARD_SLIDE_DURATION_MS = 1333; 
-
-//   useEffect(() => {
-//     // Timer to update the centerIndex to follow the sliding animation
-//     const slideInterval = setInterval(() => {
-//       setCenterIndex(prevIndex => {
-//         // Increment the index, wrapping around when it hits the last card
-//         return (prevIndex + 1) % totalCards;
-//       });
-//     }, CARD_SLIDE_DURATION_MS);
-    
-//     return () => clearInterval(slideInterval);
-//   }, []);
-
-
-
-
-
-
-
-//   return (
-//     <section className="py-12">
-//       <div className=" mx-auto text-center">
-//         {/* Section Title */}
-//         <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair   mb-3 sm:mb-5 md:mb-7 lg:mb-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
-//           Meet Our Mentors
-//         </h1>
-//         <p className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl text-black  sm:mb-4 md:mb-6 lg:mb-8 font-nunito">
-//           Experienced professionals guiding you every step of the way
-//         </p>
-
-//         <div className=" flex h-100 items-center justify-center ">
-                  
-
-//   <div className="border mt-15 flex justify-center w-full py-">
-      
-//       {/* 2. Fixed-width window to only show 3 cards */}
-//       <div className="carousel-window overflow-hidden">
-        
-//         {/* 3. The sliding track (total width of all 6 cards) */}
-//         <div 
-//           ref={trackRef}
-//           className="carousel-track flex justify-start items-center" 
-//           // Total width: 6 cards * (320px width + 2*4px margin) = 6 * 328px = 1968px
-//           style={{ width: `${totalCards * 328}px` }} 
-//         >
-//           {carouselItems.map((mentor, index) => (
-//             <MentorCard 
-//               key={index} 
-//               mentor={mentor} 
-//               // Set the center state
-//               isCenter={index === centerIndex} 
-//             />
-//           ))}
-//         </div>
-//       </div>
-
-//     </div>
-
-
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Mentors;
-
-
-// const MentorCard = ({ mentor, isCenter }) => {
-//     // Card styling logic from the previous answer
-//     const scaleClass = isCenter ? 'scale-105' : 'scale-100 opacity-[0.89]';
-//     const hSize = isCenter ? 'h-72' : 'h-64';
-//     const pSize = isCenter ? 'p-6' : 'p-4';
-//     const textH2 = isCenter ? 'text-2xl' : 'text-lg';
-//     const textP = isCenter ? 'text-base' : 'text-sm';
-
-    
-  
-//     return (
-//       // w-[320px] and mx-4 give a total width of 328px per card
-//       <div
-//         className={`flex-shrink-0 w-[320px] mx-4 rounded-lg shadow-xl text-center transition-all duration-300 ease-in-out transform ${scaleClass} bg-gradient-to-b from-[#E2E2E2] to-[#C0C0C0]`}
-//       >
-//         {/* Card Content... */}
-//         <img
-//           src={mentor.image} // Replace with your image logic
-//           alt={mentor.name}
-//           className={`w-full ${hSize} object-cover rounded-t-lg`}
-//         />
-//         <div className={pSize}>
-//           <h2 className={`font-playfair font-bold bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent ${textH2}`}>
-//             {mentor.name}
-//           </h2>
-//           <p className="font-playfair text-gray-900 text-md mt-1">
-//             {mentor.role}
-//           </p>
-//           <p className={`text-gray-800 ${textP} mt-2 leading-relaxed`}>
-//             {mentor.description}
-//           </p>
-//         </div>
-//       </div>
-//     );
-// };
-// //
-
-
-
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ankit from '../assets/ankit.png';
+import priya from '../assets/priya.png';
+import neha from '../assets/neha.png'
 
 const mentors = [
-  { name: 'Priya Nair', role: 'Mathematics & Core CS', description: 'Provides personalized sessions...', image: 'priya' },
-  { name: 'Ankit Verma', role: 'Competitive Programming & Contests', description: 'Trains students in coding challenges...', image: 'priya' },
-  { name: 'Neha Sharma', role: 'Career & Resume Specialist', description: 'Helps learners with resume building...', image: 'neha' },
-];
-const carouselItems = [...mentors, ...mentors]; 
-const totalCards = carouselItems.length;
-
-// Card dimensions (320px width + 2*4px margin)
-const CARD_WIDTH_WITH_MARGIN = 328; 
-
-// 1. UPDATED: Time for one card to slide (2 seconds transition)
-const SLIDE_DURATION_MS = 2000; 
-// 2. UPDATED: Pause after 3 cards slide (3 seconds pause)
-const PAUSE_DURATION_MS = 3000; 
-
-// --- MentorCard Component (Styling remains the same) ---
-const MentorCard = ({ mentor, isCenter }) => {
-    const scaleClass = isCenter ? 'scale-105' : 'scale-100 opacity-[0.89]';
-    const hSize = isCenter ? 'h-72' : 'h-64';
-    const pSize = isCenter ? 'p-6' : 'p-4';
-    const textH2 = isCenter ? 'text-2xl' : 'text-lg';
-    const textP = isCenter ? 'text-base' : 'text-sm';
+  {
+    id: 1,
+    name: 'Priya Nair',
+    title: 'Academic Mentor - Mathematics & Statistics',
+    description: 'Guides students through complex concepts in math, physics, and core CS subjects, ensuring they grasp crystal-clear with step-by-step guidance.',
+    image: priya
+  },
+  {
+    id: 2,
+    name: 'Ankit Verma',
+    title: 'Mentor - Competitive Programming & Contests',
+    description: 'Trains students in coding challenges, hackathons and contests, building problem-solving speed, accuracy, and confidence in competitive exams.',
+    image: ankit
+  },
+  {
+    id: 3,
+    name: 'Neha Sharma',
+    title: 'Career & Resume Specialist',
+    description: 'Helps learners with resume building, LinkedIn optimization, and interview preparation, ensuring they stand out in the job market.',
+    image: neha
+  },
+  {
+    id: 4,
+    name: 'Rahul Kumar',
+    title: 'Full-Stack Development Mentor',
+    description: 'Specializes in modern web technologies, guiding students through React, Node.js, and database design with real-world projects.',
+    image: ankit
+  },
+  {
+    id: 5,
+    name: 'Sanjana Patel',
+    title: 'UI/UX Design Mentor',
+    description: 'Empowers students to create beautiful, user-centric designs with expertise in Figma, design systems, and modern UI principles.',
+    image: neha
+  },
+  {
+    id: 6,
+    name: 'Sanjana Patel',
+    title: 'UI/UX Design Mentor',
+    description: 'Empowers students to create beautiful, user-centric designs with expertise in Figma, design systems, and modern UI principles.',
+    image: priya
+  },
   
-    return (
-      <div
-        className={`flex-shrink-0 w-[320px] mx-4 rounded-lg shadow-xl text-center transition-all duration-300 ease-in-out transform ${scaleClass} bg-gradient-to-b from-[#E2E2E2] to-[#C0C0C0]`}
-      >
-        <img
-          src={mentor.image} // Use your image logic
-          alt={mentor.name}
-          className={`w-full ${hSize} object-cover rounded-t-lg`}
-        />
-        <div className={pSize}>
-          <h2 className={`font-playfair font-bold bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent ${textH2}`}>
-            {mentor.name}
-          </h2>
-          <p className="font-playfair text-gray-900 text-md mt-1">
-            {mentor.role}
-          </p>
-          <p className={`text-gray-800 ${textP} mt-2 leading-relaxed`}>
-            {mentor.description}
-          </p>
-        </div>
-      </div>
-    );
-};
+];
 
-// --- MentorsCarousel Component ---
-const Mentors = () => {
-  const [slideOffset, setSlideOffset] = useState(0); 
-  const [centerIndex, setCenterIndex] = useState(1); 
-  const [isSliding, setIsSliding] = useState(true); 
+function Mentors() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    let slideTimer;
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000);
 
-    const startSlide = () => {
-      // Set the timeout to the SLIDE_DURATION_MS (2000ms)
-      slideTimer = setTimeout(() => {
-        
-        // Check if 3 cards have been slid (i.e., we are at the end of the first set)
-        if (slideOffset <= -(CARD_WIDTH_WITH_MARGIN * 3)) {
-          
-          // Trigger the 3-second pause and then the loop jump
-          clearTimeout(slideTimer); // Stop the slide timer
-          
-          setTimeout(() => {
-            // A. Instantly remove the transition for the loop jump
-            setIsSliding(false); 
-            // B. Reset the track position to 0 (the jump back)
-            setSlideOffset(0); 
-            // C. Reset the center index to the second card of the first set (index 1)
-            setCenterIndex(1); 
-            
-            // D. After a small delay (50ms) to allow transition reset to apply, re-enable sliding and start the next slide
-            setTimeout(() => {
-              setIsSliding(true);
-              startSlide();
-            }, 50); 
-            
-          }, PAUSE_DURATION_MS); // PAUSE (3000ms)
-          
-        } else {
-            // Continue sliding: Update position and center index
-            setSlideOffset(prevOffset => prevOffset - CARD_WIDTH_WITH_MARGIN);
-            setCenterIndex(prevIndex => (prevIndex + 1) % totalCards);
-            startSlide();
-        }
-      }, SLIDE_DURATION_MS); // SLIDE (2000ms)
-    };
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
-    // Initial start
-    startSlide();
+  const handleNext = () => {
+    if (!isAnimating) {
+      setDirection(1);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % mentors.length);
+        setIsAnimating(false);
+      }, 800);
+    }
+  };
 
-    // Cleanup on unmount
-    return () => clearTimeout(slideTimer);
-  }, [slideOffset]); 
+  const handlePrev = () => {
+    if (!isAnimating) {
+      setDirection(-1);
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev - 1 + mentors.length) % mentors.length);
+        setIsAnimating(false);
+      }, 800);
+    }
+  };
 
-  
-  // Dynamically set the transition duration based on the constant
-  const transitionDuration = isSliding ? `transition-transform duration-[${SLIDE_DURATION_MS}ms] ease-in-out` : '';
-  const trackClasses = `flex justify-start items-center ${transitionDuration}`;
-  
+  const getVisibleMentors = () => {
+    const prev = (currentIndex - 1 + mentors.length) % mentors.length;
+    const next = (currentIndex + 1) % mentors.length;
+    return [
+      { ...mentors[prev], position: 'left' },
+      { ...mentors[currentIndex], position: 'center' },
+      { ...mentors[next], position: 'right' }
+    ];
+  };
+
+  const visibleMentors = getVisibleMentors();
+
   return (
-    <div className="border mt-15 flex justify-center w-full py-">
-      
-      {/* Fixed-width window to only show 3 cards */}
-      <div 
-        className="overflow-hidden" 
-        style={{ width: `${CARD_WIDTH_WITH_MARGIN * 3}px`}}
-      >
-        
-        {/* The sliding track */}
-        <div 
-          className={trackClasses}
-          style={{ 
-            width: `${totalCards * CARD_WIDTH_WITH_MARGIN}px`,
-            transform: `translateX(${slideOffset}px)`,
-          }} 
-        >
-          {carouselItems.map((mentor, index) => (
-            <MentorCard 
-              key={index} 
-              mentor={mentor} 
-              isCenter={index === centerIndex} 
+    <div className="min-h-screen  py-16 px-2">
+      <style>{`
+        @keyframes slideAndScaleLeft {
+          0% {
+            transform: translateX(0) scale(1.1);
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(-120%) scale(0.9);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes slideAndScaleCenter {
+          0% {
+            transform: translateX(0) scale(0.9);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateX(-120%) scale(1.1);
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideAndScaleRight {
+          0% {
+            transform: translateX(0) scale(0.9);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateX(-120%) scale(0.9);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes slideAndScaleLeftReverse {
+          0% {
+            transform: translateX(0) scale(0.9);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateX(120%) scale(0.9);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes slideAndScaleCenterReverse {
+          0% {
+            transform: translateX(0) scale(1.1);
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(120%) scale(0.9);
+            opacity: 0.6;
+          }
+        }
+
+        @keyframes slideAndScaleRightReverse {
+          0% {
+            transform: translateX(0) scale(0.9);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateX(120%) scale(1.1);
+            opacity: 1;
+          }
+        }
+
+        .animate-slide-left {
+          animation: slideAndScaleLeft 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+
+        .animate-slide-center {
+          animation: slideAndScaleCenter 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+
+        .animate-slide-right {
+          animation: slideAndScaleRight 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+
+        .animate-slide-left-reverse {
+          animation: slideAndScaleLeftReverse 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+
+        .animate-slide-center-reverse {
+          animation: slideAndScaleCenterReverse 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+
+        .animate-slide-right-reverse {
+          animation: slideAndScaleRightReverse 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        }
+      `}</style>
+
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold red-gradient mb-4">Meet Our Mentors</h1>
+          <p className="text-3xl font-nunito text-gray-700">Experienced professionals guiding you every step of the way</p>
+        </div>
+
+        <div className="relative overflow-hidden px-20">
+          <div className="flex items-center justify-center gap-8">
+            {visibleMentors.map((mentor, index) => {
+              const isCenter = mentor.position === 'center';
+
+              let animationClass = '';
+              if (isAnimating && direction === 1) {
+                if (mentor.position === 'left') animationClass = 'animate-slide-left';
+                else if (mentor.position === 'center') animationClass = 'animate-slide-center';
+                else if (mentor.position === 'right') animationClass = 'animate-slide-right';
+              } else if (isAnimating && direction === -1) {
+                if (mentor.position === 'left') animationClass = 'animate-slide-left-reverse';
+                else if (mentor.position === 'center') animationClass = 'animate-slide-center-reverse';
+                else if (mentor.position === 'right') animationClass = 'animate-slide-right-reverse';
+              }
+
+              return (
+                <div
+                  key={`${mentor.id}-${mentor.position}`}
+                  className={`
+                    transition-all duration-700 ease-out flex-shrink-0 
+                    ${isCenter ? 'scale-110 z-20    shadow-sm  ' : 'scale-90 z-10 opacity-60'}
+                    ${animationClass}
+                  `}
+                >
+                  <div className="bg-white rounded-2xl shadow-xl overflow-hidden w-80">
+                    <div className="relative h-64 bg-gray-200 overflow-hidden">
+                      <img
+                        src={mentor.image}
+                        alt={mentor.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-2xl font-playfair font-bold red-gradient font-nunito mb-2">{mentor.name}</h3>
+                      <p className="text-sm font-playfair  font-semibold text-gray-800 mb-3">{mentor.title}</p>
+                      <p className=" text-gray-600 font-nunito leading-relaxed">{mentor.description}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <button
+            onClick={handlePrev}
+            disabled={isAnimating}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 text-gray-800 p-3 rounded-full shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed z-30"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            onClick={handleNext}
+            disabled={isAnimating}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 text-gray-800 p-3 rounded-full shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed z-30"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        <div className="flex justify-center gap-2 mt-12">
+          {mentors.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                if (!isAnimating && index !== currentIndex) {
+                  const diff = index - currentIndex;
+                  setDirection(diff > 0 ? 1 : -1);
+                  setIsAnimating(true);
+                  setTimeout(() => {
+                    setCurrentIndex(index);
+                    setIsAnimating(false);
+                  }, 800);
+                }
+              }}
+              className={`
+                h-2 rounded-full transition-all duration-300
+                ${index === currentIndex ? 'w-8 bg-red-700' : 'w-2 bg-gray-300 hover:bg-gray-400'}
+              `}
             />
           ))}
         </div>
       </div>
-
     </div>
   );
-};
+}
 
 export default Mentors;

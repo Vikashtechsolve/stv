@@ -5,34 +5,35 @@ import p2 from "../assets/p2.jpg";
 import p3 from "../assets/p3.jpg";
 import p4 from "../assets/p4.jpg";
 import p5 from "../assets/p5.jpg";
+import vector from "../assets/Vector.svg";
 
 const testimonials = [
   {
-    text: "The 1:1 mentorship sessions really cleared my doubts about career choices. My mentor gave me a clear roadmap that matched my goals.",
+    text: "The 1:1 mentorship sessions really cleared my doubts about career choices. My mentor gave me a clear roadmap that matched my goals, and it felt like having a guide who truly understands the challenges students face. I now feel more confident about my next steps and the direction my career is heading in.",
     name: "Priya Sharma",
     role: "(B.Tech Student)",
     img: p1,
   },
   {
-    text: "I used the live doubt sessions which helped me in my exam prep and it was extremely effective.",
+    text: "I used the live doubt solving feature during exam prep and it was a lifesaver. The mentors not only answered my questions but also explained concepts in depth, which made everything so much clearer. The practice notes after each session helped me revise quickly and saved me hours of confusion, ultimately improving my scores.",
     name: "Arjun Mehta",
     role: "(Class 12, PCM)",
     img: p2,
   },
   {
-    text: "Mentors helped me revise quickly and clear all my doubts before exams.",
+    text: "The resume review service was a game-changer for me. I got detailed feedback with AI plus human suggestions that made my resume stand out in the job market. The reviewers highlighted mistakes I never noticed and rewrote my key points in a stronger way. Thanks to this, I cracked my first internship interview easily.",
     name: "Neha Verma",
     role: "(Engineering Student)",
     img: p3,
   },
   {
-    text: "The mentorship gave me real insights into my career path and boosted my confidence.",
+    text: "The platform has given me exactly what I needed — personal guidance and real growth. The mentors explain concepts so clearly and the doubt-solving sessions save a lot of time. I enjoy participating in the coding contests, which keep me motivated to practice regularly. The resume review session was the best part — it made my profile industry-ready and boosted my confidence.",
     name: "Rahul Singh",
     role: "(MBA Student)",
     img: p4,
   },
   {
-    text: "I feel more confident about my career direction after these mentorship sessions.",
+    text: "The one-on-one mentorship really changed the way I studied. Earlier, I used to get stuck for hours, but now my doubts are solved instantly through the live doubt-solving sessions. The coding contests have boosted my confidence and improved my problem-solving speed. The resume review was also super helpful — it gave my CV a professional touch that will help me in placements.",
     name: "Sneha Kapoor",
     role: "(College Student)",
     img: p5,
@@ -149,15 +150,23 @@ const SuccessStories = () => {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="card flex-none bg-white rounded-2xl shadow h-auto overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+              // className="card flex-none bg-white rounded-2xl shadow h-auto overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+             className={`card flex-none bg-white h-auto overflow-hidden flex flex-col md:flex-row items-center md:items-stretch transition-all duration-500 ease-out rounded-2xl ${
+    i === index 
+      ? "scale-105 shadow-xl z-10" 
+      : "scale-95 opacity-80"
+  }`}
+  style={{
+    transformOrigin: "center",
+  }}
             >
               {/* Text Content (Desktop left, Mobile below image) */}
               <div className="order-2 md:order-1 px-6 py-6 md:px-10 md:py-8 w-full md:w-2/3 flex flex-col justify-center text-center md:text-left">
-                <div className="text-red-600 text-4xl mb-4">&#10077;</div>
-                <p className="text-gray-700 mb-6 text-base leading-relaxed">
+                <img src={vector} className="w-7 mb-10 " alt="not found" />
+                <p className="text-gray-700 mb-6 text-base  leading-relaxed">
                   {t.text}
                 </p>
-                <h3 className="text-lg font-semibold">{t.name}</h3>
+                <h3 className="text-2xl font-nunito  font-semibold">{t.name}</h3>
                 <p className="text-gray-500 text-sm">{t.role}</p>
               </div>
 
@@ -166,7 +175,10 @@ const SuccessStories = () => {
                 <img
                   src={t.img}
                   alt={t.name}
-                  className="w-32 h-32 md:w-full md:h-full object-cover rounded-full md:rounded-none mt-6 md:mt-0"
+                //  className="w-32 h-32 md:w-full md:h-full object-cover rounded-full md:rounded-none mt-6 md:mt-0"
+                className={`w-32 h-32 md:w-full md:h-full object-cover rounded-full md:rounded-none mt-6 md:mt-0 transition-all duration-500 ${
+    i === index ? "scale-105" : "scale-100"
+  }`}
                 />
               </div>
             </div>
