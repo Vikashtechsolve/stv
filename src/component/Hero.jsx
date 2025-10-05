@@ -131,11 +131,11 @@ const Hero = () => {
               </div>
 
               {/* Bottom Right Small Image */}
-              <img
+              {/* <img
                 src={smallImage}
                 alt="Extra Illustration"
                 className="absolute bottom-2 right-2 w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-cover"
-              />
+              /> */}
             </motion.div>
           </AnimatePresence>
         </div>
