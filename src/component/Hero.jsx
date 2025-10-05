@@ -12,28 +12,28 @@ const dynamicContent = [
   {
     word: "Skills",
     image: image1,
-    heading: "Master Your Skills",
+    heading: "",
     description: "",
     buttonText: "",
   },
   {
     word: "Confidence",
     image: image2,
-    heading: "Build Confidence",
+    heading: "",
     description: "",
     buttonText: "",
   },
   {
     word: "Career",
     image: image3,
-    heading: "Advance Your Career",
+    heading: "",
     description: "",
     buttonText: "",
   },
   {
     word: "Success",
     image: image4,
-    heading: "Achieve Success",
+    heading: "",
     description: "",
     buttonText: "",
   },
@@ -50,7 +50,7 @@ const Hero = () => {
   }, []);
 
   return (
-      <div className="w-full flex flex-col md:flex-row p-6 md:p-12 bg-gray-50">
+      <div className="w-full flex flex-col md:flex-row p-6 md:p-12 bg-gray-1">
 
       {/* Left Side Text */}
       <div className="flex-1 flex flex-col justify-center">

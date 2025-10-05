@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import priya from '../assets/priya.png';
-import ankit from '../assets/ankit.png';
-import neha from '../assets/neha.png';
+import priya from "../assets/priya.png";
+import ankit from "../assets/ankit.png";
+import neha from "../assets/neha.png";
 
 const MentorsSmoothCarousel = () => {
   const mentors = [
@@ -28,11 +28,11 @@ const MentorsSmoothCarousel = () => {
     },
   ];
 
+  // repeat mentors MANY times to avoid empty space
+  const sliderMentors = Array(20).fill(mentors).flat();
+
   const sliderRef = useRef();
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  // Duplicate for seamless continuous scroll
-  const sliderMentors = [...mentors, ...mentors];
 
   useEffect(() => {
     let position = 0;
@@ -42,8 +42,10 @@ const MentorsSmoothCarousel = () => {
       position += speed;
       const slider = sliderRef.current;
       if (slider) {
-        const totalWidth = slider.scrollWidth / 2;
-        if (position >= totalWidth) position = 0; // loop seamlessly
+        const totalWidth = slider.scrollWidth / 2; // half width is enough for reset
+        if (position >= totalWidth) {
+          position = 0; // reset instantly for seamless loop
+        }
         setScrollPosition(position);
       }
       requestAnimationFrame(step);
@@ -51,8 +53,8 @@ const MentorsSmoothCarousel = () => {
     step();
   }, []);
 
-  const cardWidth = 280; // card width
-  const cardHeight = 500; // increased card height
+  const cardWidth = 280;
+  const cardHeight = 500;
   const gap = 150;
 
   return (
@@ -68,10 +70,11 @@ const MentorsSmoothCarousel = () => {
           style={{ transform: `translateX(-${scrollPosition}px)` }}
         >
           {sliderMentors.map((mentor, idx) => {
-            const cardCenter = idx * (cardWidth + gap) - scrollPosition + cardWidth / 2;
+            const cardCenter =
+              idx * (cardWidth + gap) - scrollPosition + cardWidth / 2;
             const screenCenter = window.innerWidth / 2;
             const distance = Math.abs(screenCenter - cardCenter);
-            const scale = Math.max(0.9, 1.5 - distance / 800); // center zoom
+            const scale = Math.max(0.9, 1.5 - distance / 800); // zoom center
 
             return (
               <div
@@ -79,7 +82,7 @@ const MentorsSmoothCarousel = () => {
                 className="flex-shrink-0 rounded-lg shadow-lg bg-gradient-to-b from-[#E2E2E2] to-[#C0C0C0] text-center transition-transform duration-300"
                 style={{
                   width: `${cardWidth}px`,
-                  height: `${cardHeight}px`, // increased height
+                  height: `${cardHeight}px`,
                   marginRight: `${gap}px`,
                   transform: `scale(${scale})`,
                 }}
@@ -93,8 +96,12 @@ const MentorsSmoothCarousel = () => {
                   <h2 className="text-lg font-playfair font-bold bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
                     {mentor.name}
                   </h2>
-                  <p className="text-gray-700 italic text-sm mt-1">{mentor.role}</p>
-                  <p className="text-gray-800 text-sm mt-2 leading-relaxed">{mentor.description}</p>
+                  <p className="text-gray-700 italic text-sm mt-1">
+                    {mentor.role}
+                  </p>
+                  <p className="text-gray-800 text-sm mt-2 leading-relaxed">
+                    {mentor.description}
+                  </p>
                 </div>
               </div>
             );
