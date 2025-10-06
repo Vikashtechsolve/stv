@@ -7,3 +7,18 @@
   display: flex;
   animation: slide 12s linear infinite;
 }
+
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+.font-nunito {
+  font-family: 'Nunito Sans', serif;
+}
+.red-gradient{
+   background: linear-gradient(to right, #ED0331, #87021C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.375; /* leading-snug = ~1.375 */
+}
+

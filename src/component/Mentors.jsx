@@ -59,8 +59,8 @@ const MentorsSmoothCarousel = () => {
   const gap = 150;
 
   return (
-    <section className="w-full h-screen bg-gray-100 flex flex-col items-center justify-center overflow-hidden">
-      <h1 className="text-4xl font-bold mb-8 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+    <section className="w-full h-screen  flex flex-col items-center justify-center overflow-hidden">
+      <h1 className="text-5xl font-bold font-playfair mb-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
         Meet Our Mentors
       </h1>
 
