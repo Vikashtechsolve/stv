@@ -40,7 +40,7 @@ const TrustedInstitutions = () => {
   return (
     <section className="py-20 mt-12"> {/* slightly more vertical padding */}
       {/* Heading */}
-      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-playfair mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.1] lg:leading-[1.1]">
+      <h1 className="text-center text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-semibold font-playfair mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.1] lg:leading-[1.1]">
         Trusted by Leading Institutions
       </h1>
 
