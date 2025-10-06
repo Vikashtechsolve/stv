@@ -81,12 +81,12 @@ const Footer = () => {
         {/* SOCIAL MEDIA SECTION */}
         <div>
           <h3 className="font-semibold text-2xl red-gradient font-playfair">GET IN TOUCH</h3>
-          <div className="flex space-x-4 text-gray-600 text-lg mt-2">
-            <FaYoutube className="hover:text-red-600 cursor-pointer" />
-            <FaFacebookF className="hover:text-red-600 cursor-pointer" />
-            <FaTwitter className="hover:text-red-600 cursor-pointer" />
-            <FaInstagram className="hover:text-red-600 cursor-pointer" />
-            <FaLinkedinIn className="hover:text-red-600 cursor-pointer" />
+          <div className="flex space-x-4 text-gray-600 text-lg mt-3">
+            <a target="_blank" href="https://www.youtube.com/@fixWithvikas"> <FaYoutube className="hover:text-red-600 cursor-pointer" /> </a>
+            <a target="_blank" href="https://www.facebook.com/profile.php?id=61575266311355"> <FaFacebookF className="hover:text-red-600 cursor-pointer" />  </a> 
+            <a target="_blank" href="https://x.com/VikashDube9198"><FaTwitter className="hover:text-red-600 cursor-pointer" /></a> 
+            <a target="_blank" href="https://www.instagram.com/vikash_tech_solution/"><FaInstagram className="hover:text-red-600 cursor-pointer" /></a> 
+            <a target="_blank" href="https://www.linkedin.com/in/vikash-tech-solution/"><FaLinkedinIn className="hover:text-red-600 cursor-pointer" /> </a> 
           </div>
         </div>
       </div>
@@ -114,5 +114,6 @@ const Footer = () => {
     </footer>
   );
 };
+
 
 export default Footer;

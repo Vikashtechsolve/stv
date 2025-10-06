@@ -12,28 +12,28 @@ const dynamicContent = [
   {
     word: "Skills",
     image: image1,
-    heading: "Master Your Skills",
+    heading: "",
     description: "",
     buttonText: "",
   },
   {
     word: "Confidence",
     image: image2,
-    heading: "Build Confidence",
+    heading: "",
     description: "",
     buttonText: "",
   },
   {
     word: "Career",
     image: image3,
-    heading: "Advance Your Career",
+    heading: "",
     description: "",
     buttonText: "",
   },
   {
     word: "Success",
     image: image4,
-    heading: "Achieve Success",
+    heading: "",
     description: "",
     buttonText: "",
   },
@@ -50,9 +50,8 @@ const Hero = () => {
   }, []);
 
   return (
-    // <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 bg-gray-50">
-      <div className="w-full min-h-screen flex flex-col md:flex-row p-6 md:p-12 pt-24 bg-gray-50">
-  
+      <div className="w-full flex flex-col md:flex-row p-6 md:p-12 bg-gray-1">
+
       {/* Left Side Text */}
       <div className="flex-1 flex flex-col justify-center">
         <h1
@@ -132,11 +131,11 @@ const Hero = () => {
               </div>
 
               {/* Bottom Right Small Image */}
-              <img
+              {/* <img
                 src={smallImage}
                 alt="Extra Illustration"
                 className="absolute bottom-2 right-2 w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 object-cover"
-              />
+              /> */}
             </motion.div>
           </AnimatePresence>
         </div>

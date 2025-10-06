@@ -14,11 +14,8 @@ const Dashboard = () => {
   // Check login
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) {
-      navigate("/login");
-    } else {
-      setRole(user.role);
-    }
+    if (!user) navigate("/login");
+    else setRole(user.role);
   }, [navigate]);
 
   // Fetch submissions from backend
@@ -38,28 +35,28 @@ const Dashboard = () => {
   }, []);
 
   // Handle dropdown change (sales user)
-  const handleDropdownChange = (index, value) => {
-    setStatusChanges((prev) => ({ ...prev, [index]: value }));
+  const handleDropdownChange = (id, value) => {
+    setStatusChanges((prev) => ({ ...prev, [id]: value }));
   };
 
   // Update status on button click
-  const handleUpdateStatus = async (index) => {
-    try {
-      const newStatus = statusChanges[index];
-      if (!newStatus) return;
+  const handleUpdateStatus = async (id) => {
+    const newStatus = statusChanges[id];
+    if (!newStatus) return;
 
-      const res = await fetch(`${API_URL}/api/sales-response/${index}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ role: "sales", status: newStatus }),
-      });
+    try {
+      const res = await fetch(`${API_URL}/api/sales-response/${id}`, {
+          method: "PATCH",   // must be PATCH
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: newStatus }),
+        });
 
       const data = await res.json();
       if (data.success) {
-        fetchSubmissions();
+        fetchSubmissions(); // Refresh table
         setStatusChanges((prev) => {
           const copy = { ...prev };
-          delete copy[index];
+          delete copy[id];
           return copy;
         });
       }
@@ -80,7 +77,6 @@ const Dashboard = () => {
             </p>
           </div>
         )}
-
         {(role === "admin" || role === "sales") && (
           <div className="bg-white shadow rounded-lg p-4 sm:p-6 flex flex-col items-center justify-center">
             <h3 className="text-lg font-semibold text-gray-700">Sales Response</h3>
@@ -91,12 +87,10 @@ const Dashboard = () => {
         )}
       </div>
 
-      {/* Responses Table - Admin only */}
+      {/* Admin Responses Table */}
       {role === "admin" && (
         <div className="bg-white p-4 sm:p-6 rounded-xl shadow mb-6 overflow-x-auto">
-          <h2 className="text-xl font-semibold mb-4 text-gray-700">
-            Responses Table
-          </h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-700">Responses Table</h2>
           <table className="min-w-full divide-y divide-gray-200 text-sm sm:text-base">
             <thead>
               <tr className="bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white text-xs sm:text-sm uppercase">
@@ -107,10 +101,10 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {responses.map((res, index) => (
+              {responses.map((res) => (
                 <tr
-                  key={index}
-                  className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition`}
+                  key={res.id}
+                  className={`${responses.indexOf(res) % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition`}
                 >
                   <td className="p-2 sm:p-3 border-b">{res.name}</td>
                   <td className="p-2 sm:p-3 border-b">{res.email}</td>
@@ -126,9 +120,7 @@ const Dashboard = () => {
       {/* Sales Responses Table */}
       {(role === "admin" || role === "sales") && (
         <div className="bg-white p-4 sm:p-6 rounded-xl shadow overflow-x-auto">
-          <h2 className="text-xl font-semibold mb-4 text-gray-700">
-            Sales Response Table
-          </h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-700">Sales Response Table</h2>
           <table className="min-w-full divide-y divide-gray-200 text-sm sm:text-base">
             <thead>
               <tr className="bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white text-xs sm:text-sm uppercase">
@@ -141,10 +133,10 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {salesResponses.map((res, index) => (
+              {salesResponses.map((res) => (
                 <tr
-                  key={index}
-                  className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition`}
+                  key={res.id}
+                  className={`${salesResponses.indexOf(res) % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100 transition`}
                 >
                   <td className="p-2 sm:p-3 border-b">{res.name}</td>
                   <td className="p-2 sm:p-3 border-b">{res.email}</td>
@@ -153,8 +145,8 @@ const Dashboard = () => {
                   <td className="p-2 sm:p-3 border-b">
                     {role === "sales" ? (
                       <select
-                        value={statusChanges[index] || res.status}
-                        onChange={(e) => handleDropdownChange(index, e.target.value)}
+                        value={statusChanges[res.id] || res.status}
+                        onChange={(e) => handleDropdownChange(res.id, e.target.value)}
                         className="border px-2 py-1 rounded w-full sm:w-auto"
                       >
                         <option value="pending">Pending</option>
@@ -163,9 +155,7 @@ const Dashboard = () => {
                     ) : (
                       <span
                         className={`px-2 py-1 rounded text-xs sm:text-sm font-semibold ${
-                          res.status === "pending"
-                            ? "bg-yellow-100 text-yellow-700"
-                            : "bg-green-100 text-green-700"
+                          res.status === "pending" ? "bg-yellow-100 text-yellow-700" : "bg-green-100 text-green-700"
                         }`}
                       >
                         {res.status}
@@ -175,7 +165,7 @@ const Dashboard = () => {
                   {role === "sales" && (
                     <td className="p-2 sm:p-3 border-b">
                       <button
-                        onClick={() => handleUpdateStatus(index)}
+                        onClick={() => handleUpdateStatus(res.id)}
                         className="px-3 py-1 sm:px-4 sm:py-2 rounded bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white w-full sm:w-auto hover:opacity-90 transition"
                       >
                         Update

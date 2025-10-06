@@ -1,8 +1,4 @@
-// import React from "react";
-// import trust from "../assets/trust.png";
-// import diff from "../assets/diff.png";
-// import career from "../assets/career.png";
-// import growth from "../assets/growth.png";
+
 
 import React from "react";
 import trust from "../assets/trust.png";
@@ -51,18 +47,18 @@ const CardsSection = () => {
       <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
         Why Learners Trust Us?
       </h1>
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex  items-center justify-center min-h-screen">
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+        <div className=" max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 p-6">
           {cards.map((card, idx) => (
             <div
               key={idx}
-              className="bg-gradient-to-b from-[#F0F0F0] to-[#C2C2C2] shadow-lg rounded-md overflow-hidden max-w-sm mx-auto"
+              className="bg-gradient-to-b from-[#F0F0F0] to-[#C2C2C2] shadow-lg rounded-md overflow-hidden max-w-md mx-auto"
             >
               <div className="text-center">
                 {/* Image Section */}
-                <div className="h-[200px] flex items-center justify-center">
-                  <img src={card.img} alt={card.alt} className="w-[150px]" />
+                <div className="h-[300px] flex items-center justify-center">
+                  <img src={card.img} alt={card.alt} className="w-[300px]" />
                 </div>
 
                 {/* Title Section */}
@@ -73,7 +69,7 @@ const CardsSection = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-black font-nunito text-sm leading-relaxed px-4 py-4">
+                <p className="text-black font-nunito text-md leading-relaxed px-4 py-4">
                   {card.desc}
                 </p>
               </div>

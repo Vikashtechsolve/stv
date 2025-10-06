@@ -1,8 +1,9 @@
+
 import React from "react";
 
 const StatsSection = () => {
   return (
-    <div className="p-12 w-[1200px] max-w-full mx-auto mt-24">
+    <div className=" w-[1200px] max-w-full mx-auto ">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         
         {/* Left Side: Text Section */}
