@@ -36,7 +36,7 @@ const MentorsSmoothCarousel = () => {
 
   useEffect(() => {
     let position = 0;
-    const speed = 0.7;
+    const speed = 2.0;
 
     const step = () => {
       position += speed;
