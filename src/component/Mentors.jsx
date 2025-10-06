@@ -36,7 +36,8 @@ const MentorsSmoothCarousel = () => {
 
   useEffect(() => {
     let position = 0;
-    const speed = 0.7;
+
+    const speed = 2.0;
 
     const step = () => {
       position += speed;
@@ -58,8 +59,8 @@ const MentorsSmoothCarousel = () => {
   const gap = 150;
 
   return (
-    <section className="w-full h-screen flex flex-col items-center justify-center overflow-hidden">
-      <h1 className="text-5xl font-playfair font-bold mb-10 mt-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+    <section className="w-full h-screen bg-gray-100 flex flex-col items-center justify-center overflow-hidden">
+      <h1 className="text-4xl font-bold mb-8 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
         Meet Our Mentors
       </h1>
 
