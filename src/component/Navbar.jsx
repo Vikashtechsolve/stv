@@ -16,7 +16,12 @@ const Navbar = () => {
     {
       name: "Our Products",
       dropdown: [
-        { name: "Master Class", description: "Join expert-led sessions covering trending topics, real-world case studies, and practical learning", href: "/master-class" },
+        { 
+          name: "Master Class", 
+          description: "Join expert-led sessions covering trending topics, real-world case studies, and practical learning", 
+          href: "/masterClass" // Match the Route path
+        },
+
         { name: "Mentorship", description: "Get personalized career guidance and skill development with direct mentor support.", href: "/mentorship" },
         { name: "Online Contests", description: "Participate in coding, quizzes, and competitions to test and showcase your abilities.", href: "/online-contests" },
         { name: "Resume Review & Road Map", description: "Improve your resume and receive a step-by-step roadmap to achieve your career goals.", href: "/resume-review" },

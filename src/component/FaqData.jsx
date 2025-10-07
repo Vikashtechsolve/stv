@@ -9,7 +9,7 @@ const faqData = [
   },
   {
     question: "How much does it cost to join a masterclass?",
-    options: ["Free", "$49", "$99"],
+    options: ["Free", "49 rs", "99 rs"],
   },
   {
     question: "Will I get recordings or notes after the class?",
@@ -41,7 +41,7 @@ const FAQItem = ({ faq }) => {
           padding: "12px 16px",
           fontSize: "26px",
           fontFamily: "Nunito Sans, sans-serif",
-          fontWeight: 600,
+          fontWeight: 500,
           lineHeight: "57.6px",
           color: "black",
           borderBottom: "2px solid #BCBCBC", // Light black underline for the question
@@ -69,10 +69,10 @@ const FAQItem = ({ faq }) => {
               style={{
                 width: "100%",
                 padding: "8px 0",
-                borderBottom: "1px solid #BCBCBC", // lighter underline for dropdown items
+                borderBottom: "1px solid #BCBCBC",
                 fontSize: "22px",
                 fontFamily: "Nunito Sans, sans-serif",
-                color: "#1B1718",
+                color: "#ED0331", // changed description color to red
               }}
             >
               {opt}
@@ -83,6 +83,7 @@ const FAQItem = ({ faq }) => {
     </div>
   );
 };
+
 
 const FAQFullScreen = () => {
   return (
