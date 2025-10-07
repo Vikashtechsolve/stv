@@ -1,40 +1,21 @@
 import React from "react";
-import AnanyaImg from "../assets/anayasharma.png"; // ✅ import at top
+import AnanyaImg from "../assets/anayasharma.png";
 
-// ✅ Sample dynamic data (you can fetch this later from API or JSON)
 const masterClassData = {
   mainTitle: "Why Choose Our “Master Class”",
   subTitle: "Meet Our Master Class Mentors",
   mentor: {
     name: "Ananya Sharma",
     role: "Data Science Mentor, Ex-Amazon",
-    image: AnanyaImg, // Correctly required
+    image: AnanyaImg,
   },
   points: [
-    {
-      title: "Affordable Learning",
-      description: "Start your journey with live masterclasses at affordable prices.",
-    },
-    {
-      title: "Focused Learning",
-      description: "Deep dive into one topic with practical, easy-to-understand examples.",
-    },
-    {
-      title: "Expert Mentors",
-      description: "Learn directly from industry professionals and experienced teachers.",
-    },
-    {
-      title: "Practical Insights",
-      description: "Gain real-world knowledge through hands-on exercises.",
-    },
-    {
-      title: "Flexible Schedule",
-      description: "Attend classes at your convenience and pace.",
-    },
-    {
-      title: "Lifetime Access",
-      description: "Revisit class recordings and resources anytime.",
-    },
+    { title: "Affordable Learning", description: "Start your journey with live masterclasses at affordable prices." },
+    { title: "Focused Learning", description: "Deep dive into one topic with practical, easy-to-understand examples." },
+    { title: "Expert Mentors", description: "Learn directly from industry professionals and experienced teachers." },
+    { title: "Practical Insights", description: "Gain real-world knowledge through hands-on exercises." },
+    { title: "Flexible Schedule", description: "Attend classes at your convenience and pace." },
+    { title: "Lifetime Access", description: "Revisit class recordings and resources anytime." },
   ],
 };
 
@@ -42,147 +23,43 @@ const WhyChooseMasterClass = ({ data = masterClassData }) => {
   const { mainTitle, subTitle, mentor, points } = data;
 
   return (
-    <div className="w-full bg-white py-20 px-6 flex flex-col items-center">
+    <div className="w-full bg-white py-12 px-4 flex flex-col items-center">
       {/* Main Title */}
       <h2
-  style={{
-    fontSize: "48px",
-    fontFamily: "Playfair Display, serif",
-    fontWeight: 600,
-    lineHeight: "64.05px",
-    textAlign: "center",
-    marginBottom: "40px",
-    wordWrap: "break-word",
-    background: "linear-gradient(90deg, #ED0331, #87021C)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-  }}
->
+        className="text-4xl md:text-5xl font-semibold text-center mb-10 bg-clip-text text-transparent"
+        style={{ background: "linear-gradient(90deg, #ED0331, #87021C)" }}
+      >
         {mainTitle}
       </h2>
 
-      {/* Card + Content */}
-      <div className="flex flex-col md:flex-row items-start justify-center gap-12 max-w-7xl w-full">
-        {/* Left side: Card + Subtitle */}
-        <div className="flex flex-col items-center gap-6">
-          <h3
-            style={{
-              color: "black",
-              fontSize: "32px",
-              fontFamily: "Playfair Display, serif",
-              fontWeight: 600,
-              lineHeight: "67.84px",
-              textAlign: "center",
-            }}
-          >
-            {subTitle}
-          </h3>
-
-          <div
-            style={{
-              width: "519px",
-              height: "570px",
-              position: "relative",
-              borderRadius: "24px",
-              overflow: "hidden",
-              background: "linear-gradient(180deg, white 0%, #999999 100%)",
-              marginTop: "100px",
-            }}
-          >
+      {/* Card + Points */}
+      <div className="flex flex-col md:flex-row items-start justify-center gap-8 w-full max-w-7xl">
+        {/* Left: Mentor Card */}
+        <div className="flex flex-col items-center gap-6 w-full md:w-auto">
+          <h3 className="text-2xl md:text-3xl font-semibold text-center">{subTitle}</h3>
+          <div className="relative w-full max-w-sm md:max-w-[520px] aspect-[519/570] rounded-2xl overflow-hidden bg-gradient-to-b from-white to-gray-400 mt-10 md:mt-20">
             <img
               src={mentor.image}
               alt={mentor.name}
-              style={{
-                width: "465px",
-                height: "396px",
-                position: "absolute",
-                left: "27px",
-                top: "92px",
-              }}
+              className="w-[90%] max-w-[465px] h-auto absolute left-1/2 transform -translate-x-1/2 top-[16%] md:top-[16%]"
             />
-            <div
-              style={{
-                width: "519px",
-                height: "82px",
-                position: "absolute",
-                left: 0,
-                top: "488px",
-                background: "rgba(254.75,254.75,254.75,0.4)",
-                borderRadius: "24px",
-              }}
-            ></div>
-
-            <div
-              style={{
-                width: "288px",
-                position: "absolute",
-                left: "115px",
-                top: "496px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                alignItems: "center",
-                gap: "6px",
-              }}
-            >
-              <div
-                style={{
-                  color: "#ED0331",
-                  fontSize: "26px",
-                  fontFamily: "Playfair Display, serif",
-                  fontWeight: 700,
-                  textAlign: "center",
-                }}
-              >
-                {mentor.name}
-              </div>
-              <div
-                style={{
-                  color: "#2E2E2E",
-                  fontSize: "18px",
-                  fontFamily: "Playfair Display, serif",
-                  fontWeight: 600,
-                  textAlign: "center",
-                }}
-              >
-                {mentor.role}
-              </div>
+            <div className="absolute bottom-0 w-full h-20 bg-white/40 rounded-t-2xl"></div>
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+              <div className="text-red-600 text-lg md:text-xl font-bold">{mentor.name}</div>
+              <div className="text-gray-800 text-sm md:text-base font-semibold">{mentor.role}</div>
             </div>
           </div>
         </div>
 
-        {/* Right side: Points */}
-<div className="flex flex-col gap-6 max-w-lg">
-  {points.map((point, index) => (
-    <div key={index}>
-      <h4
-        style={{
-          color: "#ED0331",
-          fontSize: "28px",
-          fontFamily: "Playfair Display, serif",
-          fontWeight: 600,
-          lineHeight: "48px", // reduced
-          marginBottom: "0px", // removed gap
-        }}
-      >
-        {point.title}
-      </h4>
-      <p
-        style={{
-          color: "#6C6C6C",
-          fontSize: "24px",
-          fontFamily: "Nunito Sans, sans-serif",
-          fontWeight: 600,
-          lineHeight: "28px", // tighter text block
-          marginTop: "2px",
-        }}
-      >
-        {point.description}
-      </p>
-    </div>
-  ))}
-</div>
-
+        {/* Right: Points */}
+        <div className="flex flex-col gap-6 w-full md:max-w-lg">
+          {points.map((point, index) => (
+            <div key={index}>
+              <h4 className="text-red-600 text-xl md:text-2xl font-semibold mb-1">{point.title}</h4>
+              <p className="text-gray-600 text-base md:text-lg font-medium">{point.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
