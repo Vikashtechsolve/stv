@@ -2,7 +2,7 @@ import React from "react";
 import AnanyaImg from "../assets/anayasharma.png";
 
 const masterClassData = {
-  mainTitle: "Why Choose Our “Master Class”",
+  mainTitle: "Why Choose Our “Master Class",
   subTitle: "Meet Our Master Class Mentors",
   mentor: {
     name: "Ananya Sharma",
@@ -25,12 +25,12 @@ const WhyChooseMasterClass = ({ data = masterClassData }) => {
   return (
     <div className="w-full bg-white py-12 px-4 flex flex-col items-center">
       {/* Main Title */}
-      <h2
-        className="text-3xl md:text-5xl font-semibold text-center mb-10 bg-clip-text text-transparent"
-        style={{ background: "linear-gradient(90deg, #ED0331, #87021C)" }}
-      >
-        {mainTitle}
-      </h2>
+     <h2
+      className="text-3xl md:text-5xl font-semibold text-center mb-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent"
+        >
+          {mainTitle}
+        </h2>
+
 
       <div className="flex flex-col md:flex-row items-start justify-center gap-10 w-full max-w-7xl">
         {/* Mentor Card */}
