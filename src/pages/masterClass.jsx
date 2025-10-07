@@ -12,8 +12,8 @@ import FAQ from '../component/FaqData'
 const MasterClasspages = () => {
     return (
         <Layout>
-       <MasterClassHero/>
-      <WhyChooseMasterClass/>
+        <MasterClassHero/>
+        <WhyChooseMasterClass/>
         <UpcomingEvents/>
         <PastEventsPage/>
         <WhatStudentsSay/>
