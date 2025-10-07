@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import dropdownArrow from "/Users/mustakimshaikh/Downloads/New_Version/VTS_UI/src/assets/dropdownarrow.png";
+import dropdownArrow from "../assets/dropdownArrow.png";
 
 // FAQ data with dropdown options
 const faqData = [
