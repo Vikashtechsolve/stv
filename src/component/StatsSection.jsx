@@ -29,7 +29,7 @@ const StatsSection = () => {
               {[
                 { title: "95%", subtitle: "Students got clarity after Mentorship" },
                 { title: "1K+", subtitle: "Doubts Solved Live" },
-                { title: "80%", subtitle: "Interview Confidence Boosted" },
+                { title: "90%", subtitle: "Interview Confidence Boosted" },
                 { title: "500+", subtitle: "Resume Reviewed & Improved" },
               ].map((card, idx) => (
                 <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8">
@@ -53,7 +53,7 @@ const StatsSection = () => {
             {[
               { title: "95%", subtitle: "Students got clarity after Mentorship" },
               { title: "1K+", subtitle: "Doubts Solved Live" },
-              { title: "80%", subtitle: "Interview Confidence Boosted" },
+              { title: "90%", subtitle: "Interview Confidence Boosted" },
             ].map((card, idx) => (
               <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
                 <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>
@@ -65,7 +65,7 @@ const StatsSection = () => {
           <div className="hidden md:flex flex-wrap md:flex-nowrap space-x-10 justify-end">
             {[
               { title: "500+", subtitle: "Resume Reviewed & Improved" },
-              { title: "500+", subtitle: "Resume Reviewed & Improved" },
+              { title: "50+", subtitle: "Online Master class deleverd" },
             ].map((card, idx) => (
               <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
                 <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>

@@ -1,7 +1,10 @@
 import React from 'react'
 import masterImg from '../assets/masterclass.jpg';
+import { useNavigate } from "react-router-dom";
 
 const MasterClass = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="w-full py-12">
             {/* Title */}
@@ -52,7 +55,7 @@ const MasterClass = () => {
 
             {/* CTA Button */}
             <div className="flex justify-center pb-6 sm:pb-8">
-                <button className="text-white text-[16px] sm:text-[18px] md:text-[20px] px-6 sm:px-8 py-3 sm:py-4 rounded-md font-semibold shadow bg-gradient-to-r from-[#ED0331] to-[#87021C] hover:opacity-90 transition">
+                <button className="cursor-pointer text-white text-[16px] sm:text-[18px] md:text-[20px] px-6 sm:px-8 py-3 sm:py-4 rounded-md font-semibold shadow bg-gradient-to-r from-[#ED0331] to-[#87021C] hover:opacity-90 transition" onClick={() => navigate("/masterClass")}>
                      Master Class Only ₹9 
                 </button>
             </div>
