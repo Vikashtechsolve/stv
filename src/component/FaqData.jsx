@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import dropdownArrow from "../assets/dropdownArrow.png";
+import dropdownArrow from './../assets/dropdownarrow.png'
 
 // FAQ data with dropdown options
 const faqData = [
