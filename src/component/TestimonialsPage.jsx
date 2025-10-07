@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import testimonialImg from "/Users/mustakimshaikh/Downloads/New_Version/VTS_UI/src/assets/Testimonials.png"; // Local image
+import testimonialImg from "../assets/Testimonials.png"; // Local image
 
 // Example JSON data
 const testimonialData = {
