@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./component/LoginPage";
 import Dashboard from "./pages/Dashboard";
-
+import MasterClasspages from "./pages/masterClass";  // Ensure correct case
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Home Route */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
-         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/masterClass" element={<MasterClasspages />} />  {/* Updated path */}
       </Routes>
     </Router>
   );
