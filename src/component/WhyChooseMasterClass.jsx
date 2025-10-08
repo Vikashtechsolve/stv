@@ -23,20 +23,25 @@ const WhyChooseMasterClass = ({ data = masterClassData }) => {
   const { mainTitle, subTitle, mentor, points } = data;
 
   return (
-    <div className="w-full bg-white py-12 px-4 flex flex-col items-center">
+    <div className="   w-full bg-[#E2E2E2] py-12  sm:py-1 px-4 flex flex-col items-center">
       {/* Main Title */}
       <h2
-        className="text-3xl md:text-5xl font-semibold text-center mb-10 bg-clip-text text-transparent"
-        style={{ background: "linear-gradient(90deg, #ED0331, #87021C)" }}
+        className="font-playfair text-3xl md:text-5xl font-semibold text-center mb-10 bg-clip-text text-transparent"
+        style={{
+          background: "linear-gradient(90deg, #ED0331, #87021C)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
       >
         {mainTitle}
       </h2>
+      
 
-      <div className="flex flex-col md:flex-row items-start justify-center gap-10 w-full max-w-7xl">
+      <div className="  flex flex-col md:flex-row items-start justify-center gap-20 md:gap-30 sm:gap-10 w-full max-w-7xl">
         {/* Mentor Card */}
         <div className="flex flex-col items-center gap-6 w-full md:w-auto">
-          <h3 className="text-2xl md:text-3xl font-semibold text-center">{subTitle}</h3>
-          <div className="relative w-full max-w-sm md:max-w-[520px] aspect-[519/570] rounded-2xl overflow-hidden bg-gradient-to-b from-white to-gray-300 mt-10 md:mt-20">
+          <h3 className="text-2xl md:text-3xl font-semibold text-center font-playfair">{subTitle}</h3>
+          <div className="relative w-full max-w-sm md:max-w-[520px] aspect-[519/570] rounded-2xl overflow-hidden bg-gradient-to-b from-white to-gray-300 mt-5 md:mt-10">
             {/* Mentor Image */}
             <img
               src={mentor.image}
@@ -56,8 +61,8 @@ const WhyChooseMasterClass = ({ data = masterClassData }) => {
         <div className="flex flex-col gap-6 w-full md:max-w-lg">
           {points.map((point, index) => (
             <div key={index}>
-              <h4 className="text-red-600 text-xl md:text-2xl font-semibold mb-1">{point.title}</h4>
-              <p className="text-gray-600 text-base md:text-lg font-medium">{point.description}</p>
+              <h4 className="text-red-600 text-xl md:text-2xl font-semibold mb-1 font-playfair">{point.title}</h4>
+              <p className="text-gray-600 text-base md:text-xl font-medium font-nunito">{point.description}</p>
             </div>
           ))}
         </div>

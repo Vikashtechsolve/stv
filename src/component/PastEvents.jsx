@@ -144,7 +144,7 @@ const PastEventCard = ({ event }) => {
 
 const PastEventsPage = () => {
   return (
-    <div className="w-full min-h-screen bg-white py-20 px-6 flex flex-col items-center">
+    <div className="w-full min-h-screen bg-[#E2E2E2] py-20 px-6 flex flex-col items-center">
       {/* Page Header */}
       <h1
         style={{

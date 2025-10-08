@@ -3,12 +3,12 @@ import masterclassImage from "../assets/masterclasshead.png";
 
 const MasterClassPage = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center py-12 px-4 bg-white">
+    <div className=" w-full flex flex-col items-center py-12 sm:py:3 justify-center px-4 bg-[#E2E2E2]">
       {/* Text Section */}
-      <div className="text-center max-w-4xl mb-8 px-2">
+      <div className="w-[95%] md:w-[90%] lg:w-[80%] mt-4 sm:mt-1 text-center  mb-8 px-2">
         {/* Heading */}
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-snug"
+          className=" text-2xl  sm:text-3xl md:text-4xl mt-7 font-semibold leading-snug"
           style={{
             fontFamily: "Playfair Display, serif",
             background: "linear-gradient(90deg, #ED0331, #87021C)",
@@ -20,7 +20,7 @@ const MasterClassPage = () => {
         </h1>
 
         {/* Subheading */}
-        <p className="mt-4 text-base sm:text-lg md:text-xl font-medium text-gray-800">
+        <p className="mt-4 font-nunito text-base sm:text-xl md:text-3xl font-medium text-black">
           Affordable, focused, and live masterclasses designed for school students,
           B.Tech learners, and professionals.
         </p>
@@ -36,7 +36,7 @@ const MasterClassPage = () => {
       </div>
 
       {/* Optional bottom spacing */}
-      <div className="h-8 md:h-12" />
+      <div className="h-1 md:h-7" />
     </div>
   );
 };

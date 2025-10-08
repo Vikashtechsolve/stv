@@ -69,10 +69,11 @@ const Testimonials = () => {
   }, [testimonials.length]);
 
   const containerStyle = {
+   
     width: "100%",
     minHeight: "100vh",
     padding: "60px 20px",
-    background: "#f9f9f9",
+    background: "#E2E2E2",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

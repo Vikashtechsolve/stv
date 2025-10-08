@@ -97,7 +97,7 @@ const FAQFullScreen = () => {
         flexDirection: "column",
         alignItems: "center",
         gap: "18px",
-        backgroundColor: "#f0f0f0", // light gray background
+        backgroundColor: "#E2E2E2", // light gray background
       }}
     >
       {/* Frequently Asked Questions Title */}

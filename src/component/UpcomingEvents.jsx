@@ -192,7 +192,7 @@ const EventCard = ({ event }) => {
 
 const UpcomingEvents = () => {
   return (
-    <div className="w-full py-20 px-6 bg-white flex flex-col items-center">
+    <div className="w-full py-20 px-6 bg-[#E2E2E2] flex flex-col items-center">
       {/* Header */}
       <h2
         style={{
