@@ -2,7 +2,7 @@ import React from "react";
 import AnanyaImg from "../assets/anayasharma.png";
 
 const masterClassData = {
-  mainTitle: "Why Choose Our “Master Class”",
+  mainTitle: "Why Choose Our “Master Class",
   subTitle: "Meet Our Master Class Mentors",
   mentor: {
     name: "Ananya Sharma",
