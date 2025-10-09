@@ -96,9 +96,9 @@ const EventCard = ({ event }) => {
       </div>
 
       {/* Content */}
-      <div className="p-5 flex flex-col gap-3 font-playfair">
+      <div className="p-5 flex flex-col gap-3  font-playfair">
         {/* Category */}
-        <div className="text-center text-lg font-semibold underline bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+        <div className="text-center text-xl font-semibold underline bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
           {event.category}
         </div>
 
@@ -146,9 +146,10 @@ const EventCard = ({ event }) => {
         </div>
 
         {/* Registered Students & Button */}
-        <div className="mt-3 flex justify-between items-center">
+        <div className="  mt-3 flex justify-between gap-0 items-center">
           <span
             style={{
+              
               color: "black",
               fontSize: "14.76px",
               fontFamily: "Playfair Display",
@@ -162,6 +163,7 @@ const EventCard = ({ event }) => {
 
           <span
             style={{
+             
               color: "red",
               fontFamily: "Playfair Display",
               fontSize: "14.76px",

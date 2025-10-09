@@ -132,8 +132,8 @@ const PastEventCard = ({ event }) => {
         </div>
 
         {/* Watch Now Button */}
-        <div className="w-full flex justify-center">
-          <button className="bg-gray-200 border border-gray-400 rounded-xl px-6 py-2 font-playfair font-medium text-black text-base hover:bg-gray-300 transition">
+        <div className=" w-full flex justify-center">
+          <button className="bg-gray-200 border w-[70%] border-gray-400 rounded-xl px-6 py-2 font-playfair font-medium text-black text-base hover:bg-gray-300 transition">
             Watch Now
           </button>
         </div>
