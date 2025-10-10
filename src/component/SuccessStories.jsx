@@ -1,43 +1,63 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import p1 from "../assets/p1.jpg";
 import p2 from "../assets/p2.jpg";
-import p3 from "../assets/p3.jpg";
-import p4 from "../assets/p4.jpg";
-import p5 from "../assets/p5.jpg";
 import vector from "../assets/Vector.svg";
 
 const testimonials = [
-  {
-    text: "The 1:1 mentorship sessions really cleared my doubts about career choices. My mentor gave me a clear roadmap that matched my goals, and it felt like having a guide who truly understands the challenges students face. I now feel more confident about my next steps and the direction my career is heading in.",
-    name: "Priya Sharma",
-    role: "(B.Tech Student)",
-    img: p1,
-  },
   {
     text: "I used the live doubt solving feature during exam prep and it was a lifesaver. The mentors not only answered my questions but also explained concepts in depth, which made everything so much clearer. The practice notes after each session helped me revise quickly and saved me hours of confusion, ultimately improving my scores.",
     name: "Arjun Mehta",
     role: "(Class 12, PCM)",
     img: p2,
   },
+
+  {
+    text: "The 1:1 mentorship sessions really cleared my doubts about career choices. My mentor gave me a clear roadmap that matched my goals, and it felt like having a guide who truly understands the challenges students face. I now feel more confident about my next steps and the direction my career is heading in.",
+    name: "Akshit Kumar",
+    role: "(Engineering Student)",
+    img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842659/Akshit_bc5spo.jpg",
+  },
+ 
   {
     text: "The resume review service was a game-changer for me. I got detailed feedback with AI plus human suggestions that made my resume stand out in the job market. The reviewers highlighted mistakes I never noticed and rewrote my key points in a stronger way. Thanks to this, I cracked my first internship interview easily.",
-    name: "Neha Verma",
+    name: "Akshit Adroja",
     role: "(Engineering Student)",
-    img: p3,
+    img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842657/Adroja_Akshit_opn25p.jpg",
   },
+  
   {
     text: "The platform has given me exactly what I needed — personal guidance and real growth. The mentors explain concepts so clearly and the doubt-solving sessions save a lot of time. I enjoy participating in the coding contests, which keep me motivated to practice regularly. The resume review session was the best part — it made my profile industry-ready and boosted my confidence.",
-    name: "Rahul Singh",
+    name: "Yug Dobariya",
     role: "(MBA Student)",
-    img: p4,
+    img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842750/Yug_Dobariya_hpnrvx.jpg",
   },
   {
-    text: "The one-on-one mentorship really changed the way I studied. Earlier, I used to get stuck for hours, but now my doubts are solved instantly through the live doubt-solving sessions. The coding contests have boosted my confidence and improved my problem-solving speed. The resume review was also super helpful — it gave my CV a professional touch that will help me in placements.",
-    name: "Sneha Kapoor",
-    role: "(College Student)",
-    img: p5,
+    text: "The online coding contests helped me test my skills under real conditions. The leaderboard and feedback pushed me to improve every time. I even got recognition for top performance, which boosted my confidence for interviews and campus placements. A fun and practical way to learn!",
+    name: "Dev Kardani",
+    role: "(BE Student)",
+    img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842662/Dev_Kardani_u6l6uq.jpg",
   },
+    {
+    text: "I uploaded my resume and got detailed feedback from an industry expert. They highlighted exactly what to improve, suggested projects to add, and gave me a clear roadmap for applying to companies. The process was simple, affordable, and extremely helpful in boosting my chances of getting interviews.",
+    name: "Meet Bhuva",
+    role: "(IT Student)",
+    img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842666/Meet_Bhuva_vafq1d.jpg",
+  },
+
+  {
+    text: "I used the live doubt-solving feature for my Math and Web Development queries. The mentor explained everything clearly, shared notes, and even suggested exercises for practice. I could ask questions in real time, and the session felt personalized. It’s like having a teacher right at home!",
+    name: "Harpal Modasiya",
+    role: "(MBA Student)",
+    img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842663/Harpal_Modasiya_km895u.jpg",
+  },
+ 
+  {
+    text: "The one-on-one mentorship really changed the way I studied. Earlier, I used to get stuck for hours, but now my doubts are solved instantly through the live doubt-solving sessions. The coding contests have boosted my confidence and improved my problem-solving speed. The resume review was also super helpful — it gave my CV a professional touch that will help me in placements.",
+    name: "Swatee Singh",
+    role: "(B.Tech Student)",
+    img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842668/swatee_ulkfwf.jpg",
+  },
+  
 ];
 
 const SuccessStories = () => {

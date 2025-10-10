@@ -10,6 +10,8 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import logo from "../assets/logo.png"; // <-- Import your logo
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
   return (
@@ -42,7 +44,7 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold text-2xl red-gradient font-playfair">EXPLORE</h3>
           <ul className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
-            <li>Home</li>
+            <Link to="/">Home</Link>
             <li>Trusting by leading institutions</li>
             <li>What we offer</li>
             <li>How we work</li>
@@ -51,6 +53,7 @@ const Footer = () => {
             <li>Meet our Mentors</li>
             <li>Power of Mentorship</li>
             <li>Submit Query</li>
+            <Link className="hover:underline" to="/privacy-policy">Privacy Policy</Link>
           </ul>
         </div>
 
