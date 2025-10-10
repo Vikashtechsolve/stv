@@ -178,16 +178,22 @@ const EventCard = ({ event, onRegister }) => (
   </div>
 );
 
-// ---------------------------
-// Registration Popup (Centered + Animated)
+/// ---------------------------
+// Registration Popup (Fully Responsive)
 // ---------------------------
 const RegistrationPopup = ({ event, onClose }) => {
   if (!event) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 px-4 sm:px-6">
       <div
-        className="relative bg-white rounded-3xl shadow-2xl p-8 w-[640px] max-h-[85vh] overflow-y-auto transform transition-all duration-300 scale-100 animate-fadeIn"
+        className="
+          relative bg-white rounded-3xl shadow-2xl 
+          p-6 sm:p-8 
+          w-full max-w-[95vw] sm:max-w-[500px] md:max-w-[640px] 
+          max-h-[90vh] overflow-y-auto 
+          transform transition-all duration-300 scale-100 animate-fadeIn
+        "
         style={{
           border: "1px solid #E0E0E0",
           boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
@@ -203,23 +209,19 @@ const RegistrationPopup = ({ event, onClose }) => {
 
         {/* Header */}
         <h2
-          className="text-center mb-2"
+          className="text-center mb-2 text-xl sm:text-2xl font-semibold"
           style={{
             color: "black",
-            fontSize: "24px",
             fontFamily: "Poppins",
-            fontWeight: 600,
           }}
         >
           Register for Your Masterclass
         </h2>
         <p
-          className="text-center mb-6"
+          className="text-center mb-6 text-base sm:text-lg font-medium"
           style={{
             color: "black",
-            fontSize: "18px",
             fontFamily: "Poppins",
-            fontWeight: 500,
           }}
         >
           Fill in your details below and reserve your seat for the live session
@@ -235,11 +237,10 @@ const RegistrationPopup = ({ event, onClose }) => {
           ].map((field, idx) => (
             <div key={idx} className="flex flex-col gap-2">
               <label
+                className="text-base sm:text-lg font-medium"
                 style={{
                   color: "black",
-                  fontSize: "20px",
                   fontFamily: "Poppins",
-                  fontWeight: 500,
                 }}
               >
                 {field.label} <span className="text-[#ED0331]">*</span>
@@ -247,11 +248,15 @@ const RegistrationPopup = ({ event, onClose }) => {
               <input
                 type="text"
                 placeholder={field.placeholder}
-                className="w-full bg-[#FAFBFC] text-gray-700 px-4 py-4 rounded-xl border-2 border-[#ECF0F3] outline-none focus:ring-2 focus:ring-red-500"
+                className="
+                  w-full bg-[#FAFBFC] text-gray-700 
+                  px-3 sm:px-4 py-3 sm:py-4 
+                  rounded-xl border-2 border-[#ECF0F3] 
+                  outline-none focus:ring-2 focus:ring-red-500
+                  text-sm sm:text-base
+                "
                 style={{
-                  fontSize: "16px",
                   fontFamily: "Poppins",
-                  fontWeight: 400,
                 }}
               />
             </div>
@@ -260,11 +265,14 @@ const RegistrationPopup = ({ event, onClose }) => {
           {/* Submit Button */}
           <button
             type="button"
-            className="mt-4 bg-[#ED0331] text-white py-4 rounded-xl font-medium hover:bg-[#c20228] transition-all"
+            className="
+              mt-4 bg-[#ED0331] text-white 
+              py-3 sm:py-4 rounded-xl font-medium 
+              hover:bg-[#c20228] transition-all 
+              text-base sm:text-lg
+            "
             style={{
-              fontSize: "20px",
               fontFamily: "Poppins",
-              fontWeight: 500,
             }}
           >
             Confirm your Registration
@@ -274,6 +282,7 @@ const RegistrationPopup = ({ event, onClose }) => {
     </div>
   );
 };
+
 
 // ---------------------------
 // Main Component
