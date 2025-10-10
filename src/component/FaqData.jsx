@@ -1,36 +1,61 @@
-import React, { useState } from "react";
+import React, { useState ,useRef,useEffect} from "react";
 import dropdownArrow from './../assets/dropdownarrow.png'
 
 // FAQ data with dropdown options
 const faqData = [
   {
-    question: "What is the duration of each masterclass?",
-    options: ["60 minutes", "90 minutes", "120 minutes"],
+    question: "How do I register?",
+    options: ["Click the Register/Join button on the Masterclass card, complete the quick payment, and you will receive confirmation with the joining link."],
   },
   {
-    question: "How much does it cost to join a masterclass?",
-    options: ["Free", "49 rs", "99 rs"],
+    question: "Who can join these Masterclasses?",
+    options: ["Anyone who wants to improve their skills, whether you are a beginner, student, or working professional. All you need is a phone/laptop and an internet connection."],
   },
+  {
+    question: "What is the duration of each masterclass?",
+    options: ["Most Masterclasses last between 90 to 120 minutes, depending on the topic."],
+  },
+  
   {
     question: "Will I get recordings or notes after the class?",
-    options: ["Yes, recordings provided", "Yes, notes included"],
+    options: ["Yes, recordings will be available for registered students for a limited time after the session."],
   },
   {
-    question: "Who are the mentors?",
-    options: ["Ankit Verma", "Priya Sharma", "Rohan Mehta"],
+    question: "Do I need any special software to join?",
+    options: ["No, you can join directly through a Zoom meeting link. No complicated setup is required."],
   },
   {
-    question: "How do I register?",
-    options: ["Online registration link", "Contact support"],
+    question: "Can I interact with the mentor during the session?",
+    options: ["Yes! Masterclasses are interactive. You can ask questions during Q&A and get your doubts cleared directly by the mentor."],
+  },
+  {
+    question: "Is there any refund policy?",
+    options: ["Since Masterclasses are low-cost and easily accessible, we do not provide refunds once registered. However, you will still get access to session recordings if you cannot attend live."],
   },
 ];
 
 const FAQItem = ({ faq }) => {
-  const [isOpen, setIsOpen] = useState(false);
+ const [isOpen, setIsOpen] = useState(false);
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState("0px");
+
+  useEffect(() => {
+    setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : "0px");
+  }, [isOpen]);
 
   return (
-    <div style={{ width: "100%", maxWidth: "1260px", display: "flex", flexDirection: "column" }}>
-      {/* Question Row with underline */}
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "1260px",
+        borderRadius: "8px",
+        padding: "8px 16px",
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+        transition: "all 0.3s ease",
+        fontFamily: "Nunito Sans, sans-serif",
+      }}
+    >
+      {/* Question */}
       <div
         onClick={() => setIsOpen(!isOpen)}
         style={{
@@ -38,13 +63,10 @@ const FAQItem = ({ faq }) => {
           alignItems: "center",
           justifyContent: "space-between",
           cursor: "pointer",
-          padding: "12px 16px",
+          padding: "8px 0",
           fontSize: "26px",
-          fontFamily: "Nunito Sans, sans-serif",
           fontWeight: 500,
-          lineHeight: "57.6px",
           color: "black",
-          borderBottom: "2px solid #BCBCBC", // Light black underline for the question
         }}
       >
         <div style={{ flex: 1 }}>{faq.question}</div>
@@ -53,33 +75,38 @@ const FAQItem = ({ faq }) => {
           alt="Arrow"
           style={{
             width: "25px",
-            height: "20px",
             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.3s",
+            transition: "transform 0.3s ease",
           }}
         />
       </div>
 
-      {/* Dropdown Array */}
-      {isOpen && (
-        <div style={{ display: "flex", flexDirection: "column", paddingLeft: "16px" }}>
-          {faq.options.map((opt, idx) => (
-            <div
-              key={idx}
-              style={{
-                width: "100%",
-                padding: "8px 0",
-                borderBottom: "1px solid #BCBCBC",
-                fontSize: "22px",
-                fontFamily: "Nunito Sans, sans-serif",
-                color: "#ED0331", // changed description color to red
-              }}
-            >
-              {opt}
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Dropdown */}
+      <div
+        ref={contentRef}
+        style={{
+          maxHeight: height,
+          overflow: "hidden",
+          transition: "max-height 0.4s ease",
+          borderTop: isOpen ? "2px solid #BCBCBC" : "none",
+          marginTop: isOpen ? "8px" : "0",
+        }}
+      >
+        {faq.options.map((opt, idx) => (
+          <div
+            key={idx}
+            style={{
+              padding: "10px",
+              fontSize: "22px",
+              background: "linear-gradient(90deg, #ED0331, #87021C)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            {opt}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -97,7 +124,7 @@ const FAQFullScreen = () => {
         flexDirection: "column",
         alignItems: "center",
         gap: "18px",
-        backgroundColor: "#f0f0f0", // light gray background
+        backgroundColor: "#E2E2E2", // light gray background
       }}
     >
       {/* Frequently Asked Questions Title */}

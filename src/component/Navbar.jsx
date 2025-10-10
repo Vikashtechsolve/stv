@@ -3,6 +3,8 @@ import { createPortal } from "react-dom";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // Hamburger menu
@@ -11,6 +13,7 @@ const Navbar = () => {
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const timeoutRef = useRef(null);
   const navRefs = useRef({});
+  const navigate = useNavigate();
 
   const links = [
     {
@@ -100,8 +103,8 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 left-0 z-[1000] w-full">
       {/* MOBILE NAVBAR */}
-      <div className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] rounded-full">
-        <div className="relative h-16 w-44 flex items-center justify-center bg-[#E2E2E2] rounded-full">
+      <div  className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] rounded-full">
+        <div  className="relative h-16 w-44 flex items-center justify-center bg-[#E2E2E2] rounded-full">
           <img src={logo} alt="VTS Logo" className="h-30 w-auto" />
         </div>
 

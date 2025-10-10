@@ -16,7 +16,6 @@ const TestimonialsPage = () => {
     <div
       style={{
         width: "100%",
-        minHeight: "700px",
         padding: "40px 20px",
         boxSizing: "border-box",
         display: "flex",
@@ -29,7 +28,7 @@ const TestimonialsPage = () => {
       {/* Header */}
    <h2
   style={{
-    fontSize: "48px",
+    fontSize: "45px",
     fontFamily: "Playfair Display, serif",
     fontWeight: 600,
     lineHeight: "64.05px",

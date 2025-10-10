@@ -69,10 +69,11 @@ const Testimonials = () => {
   }, [testimonials.length]);
 
   const containerStyle = {
+  
     width: "100%",
     minHeight: "100vh",
     padding: "60px 20px",
-    background: "#f9f9f9",
+    background: "#E2E2E2",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -146,18 +147,17 @@ const Testimonials = () => {
     position: "absolute",
     bottom: "0",
     width: "100%",
-    height: "110px",
-    background: "#ED0331",
+    height: "20%",
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-start",
   };
 
   const imgStyle = {
-    width: "75px",
-    height: "75px",
+    
+    height: "100%",
     borderRadius: "50%",
-    marginTop: "-55px",
+    marginTop: "-80px",
     border: "2px solid #fff",
   };
 
@@ -166,8 +166,8 @@ const Testimonials = () => {
     bottom: "12px",
     width: "100%",
     textAlign: "center",
-    color: "#fff",
-    fontSize: "16px",
+    color: "#D8D8D8",
+    fontSize: "21px",
     fontFamily: "Playfair Display, serif",
     fontWeight: 600,
     textTransform: "uppercase",
@@ -176,23 +176,24 @@ const Testimonials = () => {
   };
 
   const arrowStyle = {
-    width: "50px",
-    height: "50px",
-    borderRadius: "50%",
-    backgroundColor: "#EFEFEF",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    top: "50%",
-    transform: "translateY(-50%)",
-    cursor: "pointer",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
-    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-    fontSize: "30px",
-    fontWeight: "bold",
-    color: "#333",
-    zIndex: 2,
+  width: "55px",
+  height: "55px",
+  borderRadius: "50%",
+  backgroundColor: "rgba(255, 255, 255, 0.65)", // light transparent look
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  cursor: "pointer",
+  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+  fontSize: "30px",
+  fontWeight: "bold",
+  color: "#333",
+  zIndex: 5,
+  transition: "all 0.3s ease",
+  backdropFilter: "blur(4px)",
   };
 
   const dotsContainerStyle = {
@@ -209,6 +210,24 @@ const Testimonials = () => {
     background: active ? "#ED0331" : "#434343",
     transition: "all 0.3s",
   });
+const handleArrowHover = (e, isHover) => {
+  e.currentTarget.style.transform = isHover
+    ? "translateY(-50%) scale(1.15)"
+    : "translateY(-50%) scale(1)";
+  e.currentTarget.style.boxShadow = isHover
+    ? "0 6px 14px rgba(237, 3, 49, 0.3)"
+    : "0 4px 10px rgba(0, 0, 0, 0.2)";
+};
+
+const handleArrowClick = (e) => {
+  const arrow = e.currentTarget;
+  arrow.style.backgroundColor = "#ED0331";
+  arrow.style.color = "#fff";
+  setTimeout(() => {
+    arrow.style.backgroundColor = "rgba(255, 255, 255, 0.65)";
+    arrow.style.color = "#333";
+  }, 200);
+};
 
   return (
     <div style={containerStyle}>
@@ -231,18 +250,17 @@ const Testimonials = () => {
 
       <div style={carouselWrapperStyle}>
         {/* Left Arrow */}
-        <div
-          style={{ ...arrowStyle, left: "-20px" }}
-          onClick={() => scroll("prev")}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.transform = "translateY(-50%) scale(1.1)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.transform = "translateY(-50%) scale(1)")
-          }
-        >
-          &#60; {/* Vector "<" */}
-        </div>
+       <div
+            style={{ ...arrowStyle, left: "10px" }}
+            onClick={(e) => {
+              handleArrowClick(e);
+              scroll("prev");
+            }}
+            onMouseEnter={(e) => handleArrowHover(e, true)}
+            onMouseLeave={(e) => handleArrowHover(e, false)}
+          >
+        &#60;
+      </div>
 
         {/* Carousel */}
         <div ref={carouselRef} style={carouselStyle}>
@@ -267,16 +285,15 @@ const Testimonials = () => {
 
         {/* Right Arrow */}
         <div
-          style={{ ...arrowStyle, right: "-20px" }}
-          onClick={() => scroll("next")}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.transform = "translateY(-50%) scale(1.1)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.transform = "translateY(-50%) scale(1)")
-          }
+          style={{ ...arrowStyle, right: "10px" }}
+          onClick={(e) => {
+            handleArrowClick(e);
+            scroll("next");
+          }}
+          onMouseEnter={(e) => handleArrowHover(e, true)}
+          onMouseLeave={(e) => handleArrowHover(e, false)}
         >
-          &#62; {/* Vector ">" */}
+          &#62;
         </div>
       </div>
 
