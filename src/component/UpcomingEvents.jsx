@@ -7,145 +7,175 @@ import AnanyaImg from "../assets/anayasharma.png";
 const eventsData = [
   {
     id: 1,
-    category: "Mathematics Masterclass",
-    topic: "Crack Algebra Concepts in Just 1 Hour",
-    mentor: "Arjun Singh",
-    date: "30th September, 2025",
-    time: "5:00 PM - 6:00 PM",
-    registered: 56,
-    image: AnanyaImg,
-    leftText: "Mastering Core Maths Fundamentals for Competitive Exams",
-  },
-  {
-    id: 2,
-    category: "Physics Masterclass",
-    topic: "Master Newton's Laws in 2 Hours",
-    mentor: "Rahul Verma",
-    date: "1st October, 2025",
-    time: "6:00 PM - 8:00 PM",
-    registered: 42,
-    image: AnanyaImg,
-    leftText: "Understanding Newtonian Mechanics",
-  },
-  {
-    id: 3,
-    category: "Chemistry Masterclass",
-    topic: "Organic Chemistry Made Easy",
-    mentor: "Priya Nair",
-    date: "2nd October, 2025",
-    time: "4:00 PM - 5:30 PM",
-    registered: 47,
-    image: AnanyaImg,
-    leftText: "Organic Reactions Simplified",
-  },
-  {
-    id: 4,
-    category: "Biology Masterclass",
-    topic: "Human Anatomy Simplified",
-    mentor: "Rohan Mehta",
-    date: "3rd October, 2025",
-    time: "3:00 PM - 4:30 PM",
-    registered: 33,
-    image: AnanyaImg,
-    leftText: "Explore Human Anatomy Basics",
-  },
-  {
-    id: 5,
-    category: "Computer Science Masterclass",
-    topic: "Introduction to Python Programming",
-    mentor: "Sneha Kapoor",
-    date: "4th October, 2025",
-    time: "5:00 PM - 6:30 PM",
-    registered: 61,
-    image: AnanyaImg,
-    leftText: "Start Your Python Journey",
-  },
-  {
-    id: 6,
-    category: "Statistics Masterclass",
-    topic: "Probability Simplified",
-    mentor: "Karan Malhotra",
+    category: "Data Structures & Algorithms Masterclass",
+    topic: "Crack Coding Interviews with Data Structures & Algorithms",
+    mentor: "Rahul Mehta",
     date: "5th October, 2025",
-    time: "2:00 PM - 3:30 PM",
-    registered: 28,
+    time: "6:00 PM - 8:00 PM",
+    registered: 60,
     image: AnanyaImg,
-    leftText: "Master Probability Concepts",
+    leftText: "Unlock 2 Hours of Live Coding",
   },
+  {
+    id: 1,
+    category: "Data Structures & Algorithms Masterclass",
+    topic: "Crack Coding Interviews with Data Structures & Algorithms",
+    mentor: "Rahul Mehta",
+    date: "5th October, 2025",
+    time: "6:00 PM - 8:00 PM",
+    registered: 60,
+    image: AnanyaImg,
+    leftText: "Unlock 2 Hours of Live Coding",
+  },
+  {
+    id: 1,
+    category: "Data Structures & Algorithms Masterclass",
+    topic: "Crack Coding Interviews with Data Structures & Algorithms",
+    mentor: "Rahul Mehta",
+    date: "5th October, 2025",
+    time: "6:00 PM - 8:00 PM",
+    registered: 60,
+    image: AnanyaImg,
+    leftText: "Unlock 2 Hours of Live Coding",
+  },
+  {
+    id: 1,
+    category: "Data Structures & Algorithms Masterclass",
+    topic: "Crack Coding Interviews with Data Structures & Algorithms",
+    mentor: "Rahul Mehta",
+    date: "5th October, 2025",
+    time: "6:00 PM - 8:00 PM",
+    registered: 60,
+    image: AnanyaImg,
+    leftText: "Unlock 2 Hours of Live Coding",
+  },
+  {
+    id: 1,
+    category: "Data Structures & Algorithms Masterclass",
+    topic: "Crack Coding Interviews with Data Structures & Algorithms",
+    mentor: "Rahul Mehta",
+    date: "5th October, 2025",
+    time: "6:00 PM - 8:00 PM",
+    registered: 60,
+    image: AnanyaImg,
+    leftText: "Unlock 2 Hours of Live Coding",
+  },
+  {
+    id: 1,
+    category: "Data Structures & Algorithms Masterclass",
+    topic: "Crack Coding Interviews with Data Structures & Algorithms",
+    mentor: "Rahul Mehta",
+    date: "5th October, 2025",
+    time: "6:00 PM - 8:00 PM",
+    registered: 60,
+    image: AnanyaImg,
+    leftText: "Unlock 2 Hours of Live Coding",
+  },
+
 ];
 
 // ---------------------------
-// Individual Event Card
+// Event Card
 // ---------------------------
 const EventCard = ({ event, onRegister }) => (
-  <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
-    <div className="w-full h-52 bg-gray-200 relative">
+  <div className="relative bg-white rounded-[20px] shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
+    {/* Top Banner */}
+    <div className="relative w-full h-48 bg-[#EDEDED]">
       <div
-        className="absolute left-3 top-3 z-10"
+        className="absolute left-3 top-3 max-w-[60%] text-[#1B1718]"
         style={{
-          color: "#1B1718",
-          fontSize: "22.14px",
+          fontSize: "19.8px",
           fontFamily: "Playfair Display",
           fontWeight: 700,
-          lineHeight: "31.36px",
-          maxWidth: "60%",
+          lineHeight: "28px",
         }}
       >
-        {event.leftText}
+        {event.topic}
       </div>
       <img
         src={event.image}
         alt={event.topic}
-        className="absolute top-1/2 left-1/2 transform -translate-y-1/2 translate-x-6 w-52 h-48 object-cover rounded-lg"
+        className="absolute right-4 top-6 w-40 h-44 object-cover rounded-lg"
       />
     </div>
 
-    <div className="p-5 flex flex-col gap-3 font-playfair">
-      <div className="text-center text-lg font-semibold underline bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+    {/* Event Details */}
+    <div className="p-5">
+      <div
+        className="text-center underline bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent mb-2"
+        style={{
+          fontFamily: "Playfair Display",
+          fontSize: "16.1px",
+          fontWeight: 600,
+        }}
+      >
         {event.category}
       </div>
 
       <div
-        className="text-black font-semibold text-base text-center"
-        style={{ fontSize: "16.6px", lineHeight: "25.83px" }}
+        className="text-center text-black mb-2"
+        style={{
+          fontSize: "14.8px",
+          fontFamily: "Playfair Display",
+          fontWeight: 600,
+          lineHeight: "23px",
+        }}
       >
-        {event.topic}
+        Topic : {event.topic}
       </div>
 
       <div
-        className="text-black text-left"
+        className="flex flex-col items-start gap-1 mt-2 text-black"
         style={{
-          fontSize: "18.45px",
+          fontSize: "16.5px",
+          fontFamily: "Playfair Display",
           fontWeight: 500,
-          lineHeight: "25.83px",
-          fontFamily: "Playfair Display",
+          lineHeight: "35px",
         }}
       >
-        Mentor: {event.mentor}
+        Mentor : {event.mentor}
       </div>
 
       <div
-        className="text-black text-left mt-2"
-        style={{
-          fontSize: "16.6px",
-          lineHeight: "25.83px",
-          fontFamily: "Playfair Display",
-        }}
+        className="flex flex-col items-start gap-1 mt-2 text-black"
+        style={{ fontFamily: "Playfair Display" }}
       >
-        <div>
-          <span className="font-semibold">Date: </span>
-          <span className="font-normal">{event.date}</span>
+        <div className="flex items-center gap-1">
+          <span className="font-medium text-[14.8px]">Date:</span>
+          <span className="font-normal text-[13.2px]">{event.date}</span>
         </div>
-        <div>
-          <span className="font-semibold">Time: </span>
-          <span className="font-normal">{event.time}</span>
+        <div className="flex items-center gap-1">
+          <span className="font-medium text-[14.8px]">Time:</span>
+          <span className="font-normal text-[13.2px]">{event.time}</span>
         </div>
       </div>
 
-      <div className="mt-3 flex justify-between items-center">
+      {/* Unlock Section */}
+<div className="mt-4 flex justify-end px-2">
+  <div
+    className="bg-gray-200 rounded-lg px-3 py-2 flex justify-center items-center text-center"
+    style={{
+      color: "#ED0331",
+      fontFamily: "Playfair Display, serif",
+      fontSize: "11.5px",
+      fontWeight: 600,
+      lineHeight: "16.5px",
+    }}
+  >
+    {event.leftText}
+  </div>
+</div>
+
+
+      {/* Divider */}
+      <hr className="my-3 border-[#E0E0E0]" />
+
+      {/* Footer Row */}
+      <div className="flex justify-between items-center">
         <span
           style={{
-            color: "black",
-            fontSize: "14.76px",
+            color: "#1B1718",
+            fontSize: "13.2px",
             fontFamily: "Playfair Display",
             fontWeight: 600,
           }}
@@ -154,21 +184,21 @@ const EventCard = ({ event, onRegister }) => (
         </span>
         <span
           style={{
-            color: "red",
+            color: "rgba(0,0,0,0.6)",
+            fontSize: "13.2px",
             fontFamily: "Playfair Display",
-            fontSize: "14.76px",
             fontWeight: 600,
           }}
         >
           {event.registered} Students
         </span>
-
         <button
           onClick={() => onRegister(event)}
-          className="bg-gradient-to-r from-red-600 to-red-900 text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300"
+          className="bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white rounded-lg px-4 py-2 flex items-center gap-2 hover:opacity-90 transition"
           style={{
-            fontFamily: "Playfair Display",
-            fontSize: "19.06px",
+            fontFamily: "Nunito Sans",
+            fontSize: "17px",
+            fontWeight: 600,
           }}
         >
           Register Now
@@ -179,21 +209,22 @@ const EventCard = ({ event, onRegister }) => (
 );
 
 // ---------------------------
-// Registration Popup (Centered + Animated)
+// Registration Popup (Responsive)
 // ---------------------------
 const RegistrationPopup = ({ event, onClose }) => {
   if (!event) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 px-4 sm:px-6">
       <div
-        className="relative bg-white rounded-3xl shadow-2xl p-8 w-[640px] max-h-[85vh] overflow-y-auto transform transition-all duration-300 scale-100 animate-fadeIn"
-        style={{
-          border: "1px solid #E0E0E0",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-        }}
+        className="
+          relative bg-white rounded-3xl shadow-2xl 
+          p-6 sm:p-8 
+          w-full max-w-[95vw] sm:max-w-[500px] md:max-w-[640px]
+          max-h-[90vh] overflow-y-auto
+          transition-all duration-300
+        "
       >
-        {/* Close Button */}
         <button
           className="absolute right-5 top-5 text-gray-500 hover:text-black text-2xl font-bold"
           onClick={onClose}
@@ -201,31 +232,13 @@ const RegistrationPopup = ({ event, onClose }) => {
           ×
         </button>
 
-        {/* Header */}
-        <h2
-          className="text-center mb-2"
-          style={{
-            color: "black",
-            fontSize: "24px",
-            fontFamily: "Poppins",
-            fontWeight: 600,
-          }}
-        >
+        <h2 className="text-center text-xl sm:text-2xl font-semibold mb-2">
           Register for Your Masterclass
         </h2>
-        <p
-          className="text-center mb-6"
-          style={{
-            color: "black",
-            fontSize: "18px",
-            fontFamily: "Poppins",
-            fontWeight: 500,
-          }}
-        >
+        <p className="text-center text-base sm:text-lg mb-6">
           Fill in your details below and reserve your seat for the live session
         </p>
 
-        {/* Input Fields */}
         <form className="flex flex-col gap-5">
           {[
             { label: "Name", placeholder: "Enter your Full Name" },
@@ -234,38 +247,20 @@ const RegistrationPopup = ({ event, onClose }) => {
             { label: "Graduation Year", placeholder: "Year of Graduation" },
           ].map((field, idx) => (
             <div key={idx} className="flex flex-col gap-2">
-              <label
-                style={{
-                  color: "black",
-                  fontSize: "20px",
-                  fontFamily: "Poppins",
-                  fontWeight: 500,
-                }}
-              >
+              <label className="text-base sm:text-lg font-medium text-black">
                 {field.label} <span className="text-[#ED0331]">*</span>
               </label>
               <input
                 type="text"
                 placeholder={field.placeholder}
-                className="w-full bg-[#FAFBFC] text-gray-700 px-4 py-4 rounded-xl border-2 border-[#ECF0F3] outline-none focus:ring-2 focus:ring-red-500"
-                style={{
-                  fontSize: "16px",
-                  fontFamily: "Poppins",
-                  fontWeight: 400,
-                }}
+                className="bg-[#FAFBFC] text-gray-700 px-3 py-3 sm:px-4 sm:py-4 rounded-xl border-2 border-[#ECF0F3] outline-none focus:ring-2 focus:ring-red-500 text-sm sm:text-base"
               />
             </div>
           ))}
 
-          {/* Submit Button */}
           <button
             type="button"
-            className="mt-4 bg-[#ED0331] text-white py-4 rounded-xl font-medium hover:bg-[#c20228] transition-all"
-            style={{
-              fontSize: "20px",
-              fontFamily: "Poppins",
-              fontWeight: 500,
-            }}
+            className="mt-4 bg-[#ED0331] text-white py-3 sm:py-4 rounded-xl font-medium hover:bg-[#c20228] text-base sm:text-lg"
           >
             Confirm your Registration
           </button>
@@ -282,18 +277,14 @@ const UpcomingEvents = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   return (
-    <div className="w-full py-20 px-6 bg-white flex flex-col items-center relative">
+    <div className="w-full py-20 px-6 bg-white flex flex-col items-center">
       <h2
+        className="text-center mb-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent"
         style={{
           fontSize: "48px",
           fontFamily: "Playfair Display, serif",
           fontWeight: 600,
-          lineHeight: "64.05px",
-          textAlign: "center",
-          marginBottom: "40px",
-          background: "linear-gradient(90deg, #ED0331, #87021C)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          lineHeight: "64px",
         }}
       >
         Upcoming Events
@@ -305,7 +296,6 @@ const UpcomingEvents = () => {
         ))}
       </div>
 
-      {/* Centered Popup */}
       {selectedEvent && (
         <RegistrationPopup
           event={selectedEvent}
