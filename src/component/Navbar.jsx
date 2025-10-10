@@ -170,7 +170,7 @@ const Navbar = () => {
 
           <div className="flex space-x-4 bg-black px-2 py-2 rounded-lg">
             <Link
-              to="/contact"
+              to="contactUs"
               className="text-center border-2 border-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 text-[15px]"
             >
               Contact Us
