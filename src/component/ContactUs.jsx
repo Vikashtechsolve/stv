@@ -11,6 +11,7 @@ const ContactUs = () => {
         fontFamily: "Lato, sans-serif",
         width: "100%",
         overflowX: "hidden",
+        backgroundColor: "#E2E2E2",
       }}
     >
       {/* === Google Fonts === */}
@@ -23,17 +24,19 @@ const ContactUs = () => {
       <section style={{ textAlign: "center", marginTop: "60px" }}>
         <h1
           style={{
-            color: "#000",
             fontSize: "38px",
             fontFamily: "Playfair Display",
             fontWeight: 600,
+            background: "linear-gradient(90deg, #ED0331, #87021C)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
           }}
         >
           Get in Touch with Us
         </h1>
         <p
           style={{
-            color: "#ED0331",
+            color: "red-gradient (to right, #ED0331, #87021C)",
             fontSize: "26px",
             fontFamily: "Lato",
             fontWeight: 600,
