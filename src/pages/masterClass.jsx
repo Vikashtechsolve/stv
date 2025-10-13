@@ -8,6 +8,8 @@ import PastEventsPage from '../component/PastEvents';
 import WhatStudentsSay from '../component/WhatStudentsSay';
 import TestimonialsPage from '../component/TestimonialsPage';
 import FAQ from '../component/FaqData'
+import testimonialImg from "../assets/Testimonials.png"; // Local image
+
 
 const MasterClasspages = () => {
     return (
@@ -17,7 +19,7 @@ const MasterClasspages = () => {
         <UpcomingEvents/>
         <PastEventsPage/>
         <WhatStudentsSay/>
-        <TestimonialsPage/>
+        <TestimonialsPage videoUrl={"https://www.w3schools.com/html/mov_bbb.mp4"} testimonialImg={testimonialImg} title={"Testimonials"} />
         <FAQ/>
         </Layout>
     )

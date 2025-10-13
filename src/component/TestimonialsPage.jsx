@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import testimonialImg from "../assets/Testimonials.png"; // Local image
 
 // Example JSON data
-const testimonialData = {
-  videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-  title: "Testimonials",
-};
+// const testimonialData = {
+//   videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+//   title: "Testimonials",
+// };
 
-const TestimonialsPage = () => {
+const TestimonialsPage = ({videoUrl, title,testimonialImg}) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayClick = () => setIsPlaying(true);
@@ -40,7 +39,7 @@ const TestimonialsPage = () => {
     WebkitTextFillColor: "transparent",
   }}
 >
-  {testimonialData.title}
+  {title}
 </h2>
 
 
@@ -58,7 +57,7 @@ const TestimonialsPage = () => {
       >
         {isPlaying ? (
           <video
-            src={testimonialData.videoUrl}
+            src={videoUrl}
             style={{
               width: "100%",
               maxHeight: "525px",
