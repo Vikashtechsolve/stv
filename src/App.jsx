@@ -8,6 +8,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import About from "./pages/About";
 import ContactPage from "./pages/ContactPage";
 import ScrollToTop from "./component/ScrollToTop";
+import OnlineContests from "./pages/OnlineContests";
 const App = () => {
   return (
     <Router>
@@ -22,6 +23,10 @@ const App = () => {
           <Route path="*" element={<h1>404 Not Found</h1>} />
           <Route path="/aboutus" element={<About />} />
           <Route path="/contactus" element={<ContactPage />} />
+          <Route path="/online-contests" element={<OnlineContests />} />
+
+
+          
         </Routes>
       <ScrollToTop />
     </Router>
