@@ -29,7 +29,7 @@ const Navbar = () => {
           name: "Mentorship",
           description:
             "Get personalized career guidance and skill development with direct mentor support.",
-          href: "/mentorship",
+          href: "/oneToOneMentoring",
         },
         {
           name: "Online Contests",

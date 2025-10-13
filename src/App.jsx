@@ -8,6 +8,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import About from "./pages/About";
 import ContactPage from "./pages/ContactPage";
 import ScrollToTop from "./component/ScrollToTop";
+import OneToOneMentoring from "./pages/oneToOneMentoring";
 const App = () => {
   return (
     <Router>
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="*" element={<h1>404 Not Found</h1>} />
           <Route path="/aboutus" element={<About />} />
           <Route path="/contactus" element={<ContactPage />} />
+          <Route path="/oneToOneMentoring" element={ <OneToOneMentoring/> } />
         </Routes>
       <ScrollToTop />
     </Router>
