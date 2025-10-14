@@ -9,6 +9,7 @@ import About from "./pages/About";
 import ContactPage from "./pages/ContactPage";
 import ScrollToTop from "./component/ScrollToTop";
 import OneToOneMentoring from "./pages/oneToOneMentoring";
+import OnlineContests from "./pages/OnlineContests";
 const App = () => {
   return (
     <Router>
@@ -24,6 +25,10 @@ const App = () => {
           <Route path="/aboutus" element={<About />} />
           <Route path="/contactus" element={<ContactPage />} />
           <Route path="/oneToOneMentoring" element={ <OneToOneMentoring/> } />
+          <Route path="/online-contests" element={<OnlineContests />} />
+
+
+          
         </Routes>
       <ScrollToTop />
     </Router>

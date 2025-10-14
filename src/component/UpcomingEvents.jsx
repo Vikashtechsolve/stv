@@ -390,8 +390,8 @@ const eventsData = [
     topic: "Probability Simplified",
     mentor: "Karan Malhotra",
     date: "5th October, 2025",
-    time: "2:00 PM - 3:30 PM",
-    registered: 28,
+    time: "6:00 PM - 8:00 PM",
+    registered: 60,
     image: AnanyaImg,
     leftText: "Master Probability Concepts",
   }
@@ -656,7 +656,6 @@ const RegistrationPopup = ({ event, onClose }) => {
           boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
         }}
       >
-        {/* Close Button */}
         <button
           className="absolute right-5 top-5 text-gray-500 hover:text-black text-2xl font-bold"
           onClick={onClose}
@@ -688,7 +687,6 @@ const RegistrationPopup = ({ event, onClose }) => {
           Fill in your details below and reserve your seat for the live session
         </p>
 
-        {/* Input Fields */}
         <form className="flex flex-col gap-5">
           {formFields.map((field, idx) => (
             <div key={idx} className="flex flex-col gap-2">
@@ -722,7 +720,6 @@ const RegistrationPopup = ({ event, onClose }) => {
             </div>
           ))}
 
-          {/* Submit Button */}
           <button
             type="button"
             className="mt-4 bg-[#ED0331] text-white py-4 rounded-xl font-medium hover:bg-[#c20228] transition-all"
@@ -750,6 +747,7 @@ const UpcomingEvents = () => {
     <div className="w-full py-20 px-6 bg-[#E2E2E2] flex flex-col items-center">
       {/* Header */}
       <h2
+        className="text-center mb-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent"
         style={{
           fontSize: "48px",
           fontFamily: "Playfair Display, serif",

@@ -209,7 +209,7 @@ const Navbar = () => {
             )}
 
           <Link
-            to="/contact"
+            to="contact-us"
             className="w-full text-center bg-red-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-red-700 transition-all duration-300"
           >
             Contact Us
