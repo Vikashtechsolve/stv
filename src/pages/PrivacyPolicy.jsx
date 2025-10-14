@@ -221,7 +221,7 @@ export default function PrivacyPolicy() {
         {/* Section 7 */}
         <section className='mb-10'>
           <h2 className="text-2xl font-bold font-playfair red-gradient mb-4">
-            7. Refund Policy
+            7. Cancellation & Refund Policy
           </h2>
           <ul className="space-y-4">
              <div>
@@ -278,6 +278,107 @@ export default function PrivacyPolicy() {
         </section>
 
         {/* Section 8 */}
+         <section className="mb-12">
+          <h2 className="text-2xl  font-bold  red-gradient font-playfair mb-4">
+            8. Terms & Conditions
+          </h2>
+         
+          <ul className="space-y-4">
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">By using our platform, you agree to use it only for educational and learning purposes. </span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Users must be 13 years or older to register or participate.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Sharing, recording, or redistributing mentorship or class content is strictly prohibited.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Payments are handled through secure payment gateways.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">We aim to enhance your skills but do not guarantee placements.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Misuse of platform content or false information may lead to account suspension.</span>
+            </li>
+          </ul>
+        </section>
+
+
+         {/* Section 9 */}
+         <section className="mb-12">
+          <h2 className="text-2xl  font-bold  red-gradient font-playfair mb-4">
+            9. Shipping Policy
+          </h2>
+         
+          <ul className="space-y-4">
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">We provide digital products and services only — no physical shipping involved. </span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">All services (sessions, contests, and masterclasses) are delivered online through secure links or portals.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">After booking, confirmation and joining details are shared instantly via email or dashboard.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">If technical issues delay access, our support team will resolve it within 24 hours.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Users must ensure a stable internet connection and correct contact details during registration.</span>
+            </li>
+          </ul>
+        </section>
+
+
+         {/* Section 10 */}
+         <section className="mb-12">
+          <h2 className="text-2xl  font-bold  red-gradient font-playfair mb-4">
+            10. Privacy
+          </h2>
+         
+          <ul className="space-y-4">
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">We collect only essential user details like name, email, and contact number for mentorship and learning services. </span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">AAll personal information is securely stored and never shared with third parties.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Payment data is processed safely through trusted and encrypted gateways.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Users can request data or account deletion at any time.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">We use anonymized data only to improve user experience and platform performance.</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="text-gray-700">•</span>
+              <span className="text-gray-700">Your privacy, trust, and safety are our top priorities at <span className="font-bold text-red-700">Vikas Tech Solution.</span></span>
+            </li>
+          </ul>
+        </section>
+
+
+        {/* Section 8 */}
         <section className='mb-10'>
           <h2 className="text-2xl font-bold font-playfair red-gradient mb-4">
             8. Changes to This Policy
@@ -301,7 +402,7 @@ export default function PrivacyPolicy() {
               <span className="text-gray-700">If you have questions about this Privacy Policy, contact us at: </span>
             </li>
             <li className="flex gap-3">
-              <a href="mailto:support@vikastechsolutions.com" className="hover:underline">📩 support@vikastechsolutions.com</a>
+              <a href="mailto:support@vikastechsolutions.com" className="hover:underline">📩   hr@vikashtechsolution.com</a>
             </li>
           </ul>
         </section>
