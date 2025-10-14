@@ -1,3 +1,4 @@
+
 @keyframes slide {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); } /* slide half width for duplicate */
@@ -13,7 +14,7 @@
   font-family: 'Playfair Display', serif;
 }
 .font-nunito {
-  font-family: 'Nunito Sans', serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 .red-gradient{
    background: linear-gradient(to right, #ED0331, #87021C);
@@ -22,3 +23,7 @@
   line-height: 1.375; /* leading-snug = ~1.375 */
 }
 
+.vksbg{
+  background: "#E2E2E2";
+  background-color: "#E2E2E2";
+}

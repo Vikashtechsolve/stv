@@ -1,40 +1,8 @@
 import React, { useState ,useRef,useEffect} from "react";
 import dropdownArrow from './../assets/dropdownarrow.png'
 
-// FAQ data with dropdown options
-const faqData = [
-  {
-    question: "How do I register?",
-    options: ["Click the Register/Join button on the Masterclass card, complete the quick payment, and you will receive confirmation with the joining link."],
-  },
-  {
-    question: "Who can join these Masterclasses?",
-    options: ["Anyone who wants to improve their skills, whether you are a beginner, student, or working professional. All you need is a phone/laptop and an internet connection."],
-  },
-  {
-    question: "What is the duration of each masterclass?",
-    options: ["Most Masterclasses last between 90 to 120 minutes, depending on the topic."],
-  },
-  
-  {
-    question: "Will I get recordings or notes after the class?",
-    options: ["Yes, recordings will be available for registered students for a limited time after the session."],
-  },
-  {
-    question: "Do I need any special software to join?",
-    options: ["No, you can join directly through a Zoom meeting link. No complicated setup is required."],
-  },
-  {
-    question: "Can I interact with the mentor during the session?",
-    options: ["Yes! Masterclasses are interactive. You can ask questions during Q&A and get your doubts cleared directly by the mentor."],
-  },
-  {
-    question: "Is there any refund policy?",
-    options: ["Since Masterclasses are low-cost and easily accessible, we do not provide refunds once registered. However, you will still get access to session recordings if you cannot attend live."],
-  },
-];
 
-const FAQItem = ({ faq }) => {
+ const FAQItem = ({ faq }) => {
  const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef(null);
   const [height, setHeight] = useState("0px");
@@ -112,12 +80,12 @@ const FAQItem = ({ faq }) => {
 };
 
 
-const FAQFullScreen = () => {
+const Faqs = ({faqData}) => {
   return (
     <div
       style={{
         width: "100vw",
-        minHeight: "100vh",
+       
         padding: "20px",
         boxSizing: "border-box",
         display: "flex",
@@ -172,4 +140,4 @@ const FAQFullScreen = () => {
   );
 };
 
-export default FAQFullScreen;
+export default Faqs;
