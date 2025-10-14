@@ -381,7 +381,7 @@ export default function PrivacyPolicy() {
         {/* Section 8 */}
         <section className='mb-10'>
           <h2 className="text-2xl font-bold font-playfair red-gradient mb-4">
-            8. Changes to This Policy
+            11. Changes to This Policy
           </h2>
           <ul className="space-y-4">
             <li className="flex gap-3">
@@ -394,7 +394,7 @@ export default function PrivacyPolicy() {
         {/* Section 8 */}
         <section>
           <h2 className="text-2xl font-bold font-playfair red-gradient mb-4">
-            9. Contact Us
+            12. Contact Us
           </h2>
           <ul className="space-y-4">
             <li className="flex gap-3">
