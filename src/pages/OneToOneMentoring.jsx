@@ -14,7 +14,7 @@ export default function OneToOneMentoring() {
   const faqData=data.mentorshipFaq;
 
   return (
-    <Layout className="bg-[#E2E2E2]">
+    <Layout >
         <MentorshipHero/>
         <WhatIsMentorship />
         <MentorshipCards/>

@@ -8,8 +8,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import About from "./pages/About";
 import ContactPage from "./pages/ContactPage";
 import ScrollToTop from "./component/ScrollToTop";
-import OneToOneMentoring from "./pages/oneToOneMentoring";
+import OneToOneMentoring from "./pages/OneToOneMentoring";
 import OnlineContests from "./pages/OnlineContests";
+
 const App = () => {
   return (
     <Router>
