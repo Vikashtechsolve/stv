@@ -8,6 +8,8 @@ import WhyChooseUs from "../component/mentorshipPage/WhytoChooseUs";
 import StudentsFeedback from "../component/mentorshipPage/StudentsFeedback";
 import Faqs from "../component/Faqs";
 import data from "../../rawdata.json"
+import MentorSection from "../component/mentorshipPage/MentorSection";
+import StartJourney from "../component/mentorshipPage/StartJourney";
 
 export default function OneToOneMentoring() {
 
@@ -20,9 +22,11 @@ export default function OneToOneMentoring() {
         <MentorshipCards/>
         <MentorshipDomain/>
         <MentorshipSteps/>
+        <MentorSection/>
         <WhyChooseUs/>
         <StudentsFeedback/>
         <Faqs faqData={faqData} />
+        <StartJourney/>
     </Layout>
   );
 

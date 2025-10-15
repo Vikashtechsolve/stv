@@ -144,7 +144,7 @@ const MentorshipDomain = () => {
 
                 {/* Header Section */}
                 <header className="text-center mb-12 lg:mb-16">
-                    <h1 className="font-playfair text-3xl sm:text-4xl font-serif text-gray-800 mb-4 tracking-tight">
+                    <h1 className="font-playfair text-3xl sm:text-4xl  text-gray-800 mb-4 tracking-tight">
                         Choose Your Mentorship Domain
                     </h1>
                     <p className="text-xl text-gray-600 max-w-4xl mx-auto">

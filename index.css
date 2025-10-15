@@ -3,6 +3,13 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); } /* slide half width for duplicate */
 }
+/* index.css */
+
+
+/* hide scrollbar for smooth topic bar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 .animate-slide {
   display: flex;
@@ -26,4 +33,15 @@
 .vksbg{
   background: "#E2E2E2";
   background-color: "#E2E2E2";
+}
+
+
+/* Completely hide horizontal scrollbar for all browsers */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
