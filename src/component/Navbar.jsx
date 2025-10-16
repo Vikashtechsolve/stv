@@ -37,45 +37,45 @@ const Navbar = () => {
             "Participate in coding, quizzes, and competitions to test and showcase your abilities.",
           href: "/online-contests",
         },
-        {
-          name: "Resume Review & Road Map",
-          description:
-            "Improve your resume and receive a step-by-step roadmap to achieve your career goals.",
-          href: "/resume-review",
-        },
-        {
-          name: "Live Doubt Solving",
-          description:
-            "Ask questions anytime and clear concepts instantly with live mentor support.",
-          href: "/live-doubt-solving",
-        },
+        // {
+        //   name: "Resume Review & Road Map",
+        //   description:
+        //     "Improve your resume and receive a step-by-step roadmap to achieve your career goals.",
+        //   href: "/resume-review",
+        // },
+        // {
+        //   name: "Live Doubt Solving",
+        //   description:
+        //     "Ask questions anytime and clear concepts instantly with live mentor support.",
+        //   href: "/live-doubt-solving",
+        // },
       ],
     },
-    {
-      name: "Our Programs",
-      dropdown: [
-        {
-          name: "LMS Portal",
-          description:
-            "We provide a comprehensive online learning platform where users can access courses, training materials, and assessments anytime, anywhere.",
-          href: "/lms-portal",
-        },
-        {
-          name: "Interview Portal",
-          description:
-            "Our platform offers a seamless recruitment experience with online test scheduling, video interviews, and candidate evaluation.",
-          href: "/interview-portal",
-        },
-        {
-          name: "Manpower Management",
-          description:
-            "We help businesses manage their workforce effectively by tracking employee allocation, attendance, and tasks.",
-          href: "/manpower-management",
-        },
-      ],
-    },
+    // {
+    //   name: "Our Programs",
+    //   dropdown: [
+    //     {
+    //       name: "LMS Portal",
+    //       description:
+    //         "We provide a comprehensive online learning platform where users can access courses, training materials, and assessments anytime, anywhere.",
+    //       href: "/lms-portal",
+    //     },
+    //     {
+    //       name: "Interview Portal",
+    //       description:
+    //         "Our platform offers a seamless recruitment experience with online test scheduling, video interviews, and candidate evaluation.",
+    //       href: "/interview-portal",
+    //     },
+    //     {
+    //       name: "Manpower Management",
+    //       description:
+    //         "We help businesses manage their workforce effectively by tracking employee allocation, attendance, and tasks.",
+    //       href: "/manpower-management",
+    //     },
+    //   ],
+    // },
     { name: "About us", href: "/aboutus" },
-    { name: "Blogs", href: "/blog" },
+    // { name: "Blogs", href: "/blog" },
   ];
 
   // Desktop hover dropdown
