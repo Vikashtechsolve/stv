@@ -45,14 +45,14 @@ const Footer = () => {
           <h3 className="font-semibold text-2xl red-gradient font-playfair">EXPLORE</h3>
           <ul className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
             <Link to="/">Home</Link>
-            {/* <li>Trusting by leading institutions</li>
+            <li>Trusting by leading institutions</li>
             <li>What we offer</li>
             <li>How we work</li>
             <li>Our Success Stories</li>
             <li>Why learners trust us?</li>
             <li>Meet our Mentors</li>
             <li>Power of Mentorship</li>
-            <li>Submit Query</li> */}
+            <li>Submit Query</li>
             <Link className="hover:underline" to="/privacy-policy">Privacy Policy</Link>
           </ul>
         </div>

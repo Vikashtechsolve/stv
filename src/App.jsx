@@ -10,6 +10,7 @@ import ContactPage from "./pages/ContactPage";
 import ScrollToTop from "./component/ScrollToTop";
 import OneToOneMentoring from "./pages/OneToOneMentoring";
 import OnlineContests from "./pages/OnlineContests";
+import DoubtSolving from "./pages/DoubtSolving";
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
           <Route path="/contactus" element={<ContactPage />} />
           <Route path="/oneToOneMentoring" element={ <OneToOneMentoring/> } />
           <Route path="/online-contests" element={<OnlineContests />} />
-
+          <Route path="/doubt-solving" element={ <DoubtSolving/> } />
 
           
         </Routes>
