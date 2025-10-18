@@ -1,113 +1,130 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { Star } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Mock data for the testimonials, based on the image content
 const testimonials = [
   {
-    id: 1,
-    name: "Riya Sharma",
-    title: "Web Development Student",
-    quote: "I had been struggling with React props and state management for days. My mentor explained it live with real examples—now I can debug and build components confidently!",
-    rating: 5,
-    // Using placeholder images for the avatars
-    avatarUrl: "https://placehold.co/100x100/f0f8ff/4a5568?text=Riya",
+    name: "Tamana Kapoor",
+    role: "CS Fundamentals Student",
+    text: "Operating System and DBMS topics were confusing during my college exam prep. My mentor explained with real-world examples — I finally understood how systems work!",
+    img: "https://randomuser.me/api/portraits/women/1.jpg",
   },
   {
-    id: 2,
-    name: "Neha Singh",
-    title: "DSA Learner",
-    quote: "Recursion and binary trees used to scare me, but the 1:1 session made everything so simple. My mentor also shared practice questions to strengthen my logic.",
-    rating: 5,
-    avatarUrl: "https://placehold.co/100x100/f0f8ff/4a5568?text=Neha",
+    name: "Aarav Mehta",
+    role: "Science Student",
+    text: "I couldn’t understand a tricky Physics numericals chapter before my test. My mentor solved each problem step-by-step — it felt like having a personal teacher at home!",
+    img: "https://randomuser.me/api/portraits/men/3.jpg",
   },
   {
-    id: 3,
-    name: "Kritika Joshi",
-    title: "Programming Languages",
-    quote: "My Python loops and OOPs concepts were a mess. In just one 30-min session, I understood how everything connects. It's so much better than watching random YouTube videos!",
-    rating: 4,
-    avatarUrl: "https://placehold.co/100x100/f0f8ff/4a5568?text=Kritika",
+    name: "Anika Verma",
+    role: "AI & ML Enthusiast",
+    text: "I joined to clear one ML model doubt but ended up learning so much about optimization and deployment. The mentor’s live explanation made tough topics super easy!",
+    img: "https://randomuser.me/api/portraits/women/44.jpg",
+  },
+  {
+    name: "Rohan Gupta",
+    role: "Data Science Student",
+    text: "My mentor explained complex algorithms in such a simple way that I could finally implement them confidently in my projects.",
+    img: "https://randomuser.me/api/portraits/men/40.jpg",
+  },
+  {
+    name: "Sanya Patel",
+    role: "Engineering Student",
+    text: "I loved how interactive the sessions were! My mentor made even the toughest topics feel approachable.",
+    img: "https://randomuser.me/api/portraits/women/68.jpg",
+  },
+  {
+    name: "Karan Singh",
+    role: "Programming Enthusiast",
+    text: "Thanks to my mentor, I not only understood recursion but also developed the confidence to solve new problems easily.",
+    img: "https://randomuser.me/api/portraits/men/12.jpg",
   },
 ];
 
-// Helper component to render the stars
-const StarRating = ({ count }) => {
-  const stars = Array(5).fill(0).map((_, i) => (
-    <svg
-      key={i}
-      className={`w-5 h-5 ${i < count ? 'text-yellow-500' : 'text-gray-300'} inline-block`}
-      fill="currentColor"
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-    </svg>
-  ));
-  return <div className="mt-4">{stars}</div>;
-};
-
-// Testimonial Card Component
-const TestimonialCard = ({ testimonial }) => (
-  <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg flex flex-col items-center text-center h-full transition duration-300 hover:shadow-2xl">
-    {/* Avatar */}
-    <div className="relative w-24 h-24 mb-6">
-      <img
-        src={testimonial.avatarUrl}
-        alt={`${testimonial.name}'s avatar`}
-        className="w-full h-full object-cover rounded-full border-4 border-white shadow-md"
-        // Fallback for image loading issues
-        onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/100x100/e0e0e0/555?text=User"; }}
-      />
-    </div>
-
-    {/* Quote */}
-    <p className="text-gray-700 text-sm md:text-base italic mb-4 flex-grow">
-      "{testimonial.quote}"
-    </p>
-
-    {/* Rating */}
-    <StarRating count={testimonial.rating} />
-
-    {/* Name and Title */}
-    <div className="mt-4 pt-4 border-t border-gray-100 w-full">
-      <p className="text-base md:text-lg font-semibold text-red-600">
-        {testimonial.name}
-      </p>
-      <p className="text-xs md:text-sm text-gray-500 mt-0.5">
-        {testimonial.title}
-      </p>
-    </div>
-  </div>
-);
-
-
-// Main App Component
 const StudentTestimonials = () => {
-  return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 font-inter">
-      {/* Header Section */}
-      <header className="max-w-4xl mx-auto text-center mb-12">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-          Student Testimonials
-        </h1>
-        {/* Subheader 1 - Red Text */}
-        <p className="text-lg sm:text-xl font-medium text-red-600 mb-2">
-          Every doubt solved here turns into a success story.
-        </p>
-        {/* Subheader 2 - Red Text, slightly smaller */}
-        <p className="text-base sm:text-lg text-red-600 max-w-2xl mx-auto leading-relaxed">
-          Students share how Live Doubt Solving sessions helped them understand faster, build confidence, and truly learn — not just memorize.
-        </p>
-      </header>
+  const [index, setIndex] = useState(0);
+  const [cardsPerView, setCardsPerView] = useState(3);
 
-      {/* Testimonials Grid Section */}
-      <section className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-          ))}
+  // ✅ Adjust cards per view based on screen width
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      if (window.innerWidth < 640) setCardsPerView(1);
+      else if (window.innerWidth < 1024) setCardsPerView(2);
+      else setCardsPerView(3);
+    };
+    updateCardsPerView();
+    window.addEventListener("resize", updateCardsPerView);
+    return () => window.removeEventListener("resize", updateCardsPerView);
+  }, []);
+
+  // ✅ Auto slide every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + cardsPerView) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [cardsPerView]);
+
+  // ✅ Visible testimonials
+  const visible = [];
+  for (let i = 0; i < cardsPerView; i++) {
+    visible.push(testimonials[(index + i) % testimonials.length]);
+  }
+
+  return (
+    <section className="bg-[#E2E2E2] py-16 px-4 md:px-10 text-center overflow-hidden">
+      <h2 className="text-3xl sm:text-4xl font-playfair mb-3">
+        Student Testimonials
+      </h2>
+      <p className="text-xl md:text-xl font-nunito  red-gradient mt-5 mb-2">
+        Every doubt solved here turns into a success story.
+      </p>
+      <p className="text-xl md:text-xl font-nunito  red-gradient mb-10 w-[95%] md:w-[70%] mx-auto">
+        Students share how Live Doubt Solving sessions helped them understand
+        faster, build confidence, and truly learn — not just memorize.
+      </p>
+
+      {/* ✅ Slider container */}
+      <div className="relative w-full overflow-hidden">
+        <div className="flex justify-center items-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "-100%", opacity: 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className={`flex gap-6 justify-center flex-wrap md:flex-nowrap`}
+            >
+              {visible.map((t, i) => (
+                <div
+                  key={i}
+                  className="bg-gradient-to-b from-[#EAF0FF] to-[#F5EFFF] shadow-md rounded-2xl p-6 flex flex-col items-center w-[90%] sm:w-[45%] lg:w-[30%] mx-auto transition-all duration-500 hover:shadow-xl"
+                >
+                  <img
+                    src={t.img}
+                    alt={t.name}
+                    className="w-24 h-24 rounded-full mb-4 object-cover"
+                  />
+                  <p className="text-gray-800 font-nunito  mb-4 text-sm md:text-base">
+                    “{t.text}”
+                  </p>
+                  <div className="flex text-yellow-500 mb-2">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={18} fill="#fbbf24" />
+                    ))}
+                  </div>
+                  <h3 className="font-playfair  red-gradient mt-2 text-lg font-semibold">
+                    {t.name} —{" "}
+                    <span className="text-gray-800">{t.role}</span>
+                  </h3>
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
