@@ -6,8 +6,14 @@ import SubjectDetails from "../component/doubtSolvingPage/SubjectDetails";
 import Mentors from "../component/doubtSolvingPage/Mentors";
 import PricingPlans from "../component/doubtSolvingPage/PricingPlans";
 import WhyChooseUs from "../component/doubtSolvingPage/WhyChooseUs";
+import data from "../../rawdata.json"
+import Faqs from "../component/Faqs";
+
 
 export default function DoubtSolving() {
+
+    const faqData=data.doubtSolvingFaq;
+
 
   return (
     <Layout >
@@ -18,6 +24,7 @@ export default function DoubtSolving() {
         <Mentors/>
         <PricingPlans />
         <WhyChooseUs/>
+        <Faqs faqData={faqData} />
     </Layout>
   );
 

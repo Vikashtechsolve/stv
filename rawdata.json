@@ -56,5 +56,25 @@
                 "Students, recent graduates, and professionals looking to enhance their skills, navigate career transitions, or gain clarity on their learning paths can all benefit from 1:1 Mentorship."
             ]
         }
+    ],
+    "doubtSolvingFaq": [
+        {
+            "question": "How does the 1:1 live doubt-solving session work?",
+            "options": [
+                "Once you book a session, you'll be instantly connected to a subject expert who will guide you live via video or chat. You can share your screen, ask step-by-step questions, and get your doubts cleared in real time."
+            ]
+        },
+        {
+            "question": "Can I choose my preferred mentor?",
+            "options": [
+                "Yes! You can either select from our list of available mentors or let our smart match system connect you to the best-suited mentor for your subject and topic."
+            ]
+        },
+        {
+            "question": "What if my doubt isn't solved completely in one session??",
+            "options": [
+                "No worries! You can easily extend your session or book a follow-up at a discounted rate. Our goal is to ensure every student leaves with complete clarity and confidence."
+            ]
+        }
     ]
 }
