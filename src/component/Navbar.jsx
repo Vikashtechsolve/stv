@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // Hamburger menu
@@ -22,7 +20,7 @@ const Navbar = () => {
         {
           name: "Master Class",
           description:
-            "Join expert-led sessions covering trending topics, real-world case studies, and practical learning",
+            "Join expert-led sessions covering trending topics, real-world case studies, and practical learning.",
           href: "/masterClass",
         },
         {
@@ -57,19 +55,19 @@ const Navbar = () => {
         {
           name: "LMS Portal",
           description:
-            "We provide a comprehensive online learning platform where users can access courses, training materials, and assessments anytime, anywhere.",
+            "Access a complete online learning management system with courses and training materials.",
           href: "/lms-portal",
         },
         {
           name: "Interview Portal",
           description:
-            "Our platform offers a seamless recruitment experience with online test scheduling, video interviews, and candidate evaluation.",
+            "Experience an advanced interview platform with scheduling, evaluation, and feedback tools.",
           href: "/interview-portal",
         },
         {
           name: "Manpower Management",
           description:
-            "We help businesses manage their workforce effectively by tracking employee allocation, attendance, and tasks.",
+            "Streamline employee tracking, task allocation, and attendance management.",
           href: "/manpower-management",
         },
       ],
@@ -94,45 +92,34 @@ const Navbar = () => {
     timeoutRef.current = setTimeout(() => setOpenDropdown(null), 200);
   };
 
-  // Toggle mobile dropdowns (only one open at a time)
+  // Mobile dropdown toggle
   const toggleMobileDropdown = (name) => {
-    if (mobileDropdownOpen === name) setMobileDropdownOpen(null);
-    else setMobileDropdownOpen(name);
+    setMobileDropdownOpen(mobileDropdownOpen === name ? null : name);
   };
 
   return (
     <nav className="sticky top-0 left-0 z-[1000] w-full">
       {/* MOBILE NAVBAR */}
-      <div  className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] rounded-full">
-        <div  className="relative h-16 w-44 flex items-center justify-center bg-[#E2E2E2] rounded-full">
+      <div className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] rounded-full">
+        <div className="relative h-16 w-44 flex items-center justify-center bg-[#E2E2E2] rounded-full">
           <img src={logo} alt="VTS Logo" className="h-30 w-auto" />
         </div>
 
         <div className="flex items-center">
-          {/* Our Products button */}
-           <button
+          {/* ✅ Single “Our Products” button */}
+          <button
             onClick={() => toggleMobileDropdown("Our Products")}
-            className="ml-3 bg-red-600 text-white font-semibold px-4 py-2 rounded-full hover:bg-red-700 transition-all duration-300"
+            className="ml-3 bg-red-600 text-white font-semibold px-4 py-2 rounded-full hover:bg-red-700 transition-all duration-300 flex items-center"
           >
             Our Products
-          </button> 
-          {/* Our Products button */}
-        <button
-  onClick={() => toggleMobileDropdown("Our Products")}
-  className="ml-3 bg-red-600 text-white font-semibold px-4 py-2 rounded-full hover:bg-red-700 transition-all duration-300 flex items-center"
->
-  Our Products
-  <span
-    className={`ml-1 text-sm transform transition-transform duration-300 ${
-      mobileDropdownOpen === "Our Products" ? "rotate-90" : "rotate-0"
-    }`}
-  >
-    &gt;&gt;
-  </span>
-</button>
-
-
-
+            <span
+              className={`ml-1 text-sm transform transition-transform duration-300 ${
+                mobileDropdownOpen === "Our Products" ? "rotate-90" : "rotate-0"
+              }`}
+            >
+              &gt;&gt;
+            </span>
+          </button>
 
           {/* Hamburger */}
           <button
@@ -146,7 +133,7 @@ const Navbar = () => {
 
       {/* Mobile "Our Products" dropdown */}
       {mobileDropdownOpen === "Our Products" && (
-        <div className="md:hidden bg-white text-black w-full px-4 py-3 transition-all duration-300">
+        <div className="md:hidden bg-white text-black w-full px-4 py-3 transition-all duration-500 ease-in-out">
           {links.find((l) => l.name === "Our Products").dropdown.map((item) => (
             <Link
               key={item.name}
@@ -154,13 +141,15 @@ const Navbar = () => {
               className="block w-full mb-2 last:mb-0 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors duration-300"
             >
               <span className="font-semibold">{item.name}</span>
-              <span className="block text-gray-700 text-sm mt-1">{item.description}</span>
+              <span className="block text-gray-700 text-sm mt-1">
+                {item.description}
+              </span>
             </Link>
           ))}
         </div>
       )}
 
-      {/* Mobile hamburger menu (other links only) */}
+      {/* Mobile hamburger dropdown (other links) */}
       {isOpen && (
         <div className="md:hidden flex flex-col items-start space-y-4 bg-black text-white mx-auto px-4 py-4 rounded-xl shadow-lg transition-all duration-500 ease-in-out w-full max-w-full">
           {links
@@ -189,8 +178,10 @@ const Navbar = () => {
                   </button>
 
                   <div
-                    className={`pl-3 mt-2 space-y-3 overflow-hidden transition-all duration-300 ${
-                      mobileDropdownOpen === link.name ? "max-h-[80vh]" : "max-h-0"
+                    className={`pl-3 mt-2 space-y-3 overflow-hidden transition-all duration-500 ease-in-out ${
+                      mobileDropdownOpen === link.name
+                        ? "max-h-[80vh] opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
                   >
                     {link.dropdown.map((item) => (
@@ -200,7 +191,9 @@ const Navbar = () => {
                         className="block w-full bg-white hover:bg-gray-100 rounded-md px-3 py-3 transition-all duration-300 text-black"
                       >
                         <span className="font-semibold">{item.name}</span>
-                        <span className="block text-gray-700 text-sm mt-1">{item.description}</span>
+                        <span className="block text-gray-700 text-sm mt-1">
+                          {item.description}
+                        </span>
                       </Link>
                     ))}
                   </div>
@@ -208,8 +201,9 @@ const Navbar = () => {
               )
             )}
 
+          {/* CTA Buttons */}
           <Link
-            to="contact-us"
+            to="/contact-us"
             className="w-full text-center bg-red-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-red-700 transition-all duration-300"
           >
             Contact Us
@@ -242,8 +236,12 @@ const Navbar = () => {
                 key={link.name}
                 className="relative"
                 ref={(el) => (navRefs.current[link.name] = el)}
-                onMouseEnter={() => link.dropdown && handleMouseEnter(link.name)}
-                onMouseLeave={() => link.dropdown && handleMouseLeave()}
+                onMouseEnter={() =>
+                  link.dropdown && handleMouseEnter(link.name)
+                }
+                onMouseLeave={() =>
+                  link.dropdown && handleMouseLeave()
+                }
               >
                 {!link.dropdown ? (
                   <Link
@@ -271,7 +269,7 @@ const Navbar = () => {
                             minWidth: "280px",
                           }}
                           onMouseEnter={() => setOpenDropdown(link.name)}
-                          onMouseLeave={() => handleMouseLeave()}
+                          onMouseLeave={handleMouseLeave}
                         >
                           {link.dropdown.map((item) => (
                             <Link
@@ -280,8 +278,12 @@ const Navbar = () => {
                               className="block mb-2 last:mb-0 hover:bg-gray-50 transition-all duration-300 rounded-md px-2 py-2"
                             >
                               <div className="flex flex-col">
-                                <span className="font-semibold text-black text-lg">{item.name}</span>
-                                <span className="text-gray-600 hover:text-red-600 transition-colors duration-300 text-sm">{item.description}</span>
+                                <span className="font-semibold text-black text-lg">
+                                  {item.name}
+                                </span>
+                                <span className="text-gray-600 hover:text-red-600 transition-colors duration-300 text-sm">
+                                  {item.description}
+                                </span>
                               </div>
                             </Link>
                           ))}
