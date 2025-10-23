@@ -3,7 +3,6 @@ import React from 'react';
 // Tailwind is assumed to be available
 const ICON_SIZE = "w-12 h-12";
 
-// --- Icon Definitions (Lucide-inspired SVGs for Coloring) ---
 // Icon 1: Personalized Career Roadmap (Blue) - Flow/Process icon
 const RoadmapIcon = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
