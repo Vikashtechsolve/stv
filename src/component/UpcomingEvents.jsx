@@ -5,6 +5,7 @@ import React, { useState, useRef, useEffect } from "react";
 import AnanyaImg from "../assets/anayasharma.png"; // single image for all events
 import { ChevronDown } from 'lucide-react';
 import RazorpayPaymentComponent from "../utils/RazorpayPayment";
+import RazorpayPayment from "../utils/RazorpayPayment";
 
 // ✅ Dynamic events
 const eventsData = [
@@ -70,10 +71,10 @@ const eventsData = [
   }
 ];
 
-const EventCard = ({ event,onRegister }) => {
+const EventCard = ({ event, onRegister }) => {
   return (
     <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
-      
+
       {/* Top Image Section */}
       <div className="w-full h-52 bg-gray-200 relative">
         {/* Top-left dynamic text */}
@@ -154,7 +155,7 @@ const EventCard = ({ event,onRegister }) => {
         <div className="  mt-3 flex justify-between gap-0 items-center">
           <span
             style={{
-              
+
               color: "black",
               fontSize: "14.76px",
               fontFamily: "Playfair Display",
@@ -168,7 +169,7 @@ const EventCard = ({ event,onRegister }) => {
 
           <span
             style={{
-             
+
               color: "red",
               fontFamily: "Playfair Display",
               fontSize: "14.76px",
@@ -184,8 +185,8 @@ const EventCard = ({ event,onRegister }) => {
             onClick={() => onRegister(event)}
             className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-900 text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300"
             style={{
-              cursor:"pointer",
-              hover:"opacity-90",
+              cursor: "pointer",
+              hover: "opacity-90",
               color: "white",
               fontFamily: "Playfair Display",
               fontSize: "19.06px",
@@ -249,60 +250,59 @@ function MobileNumberInput({ initialCode = '+91', placeholder = "Enter your mobi
 
   // Note: For a real form, you'd pass onChange/value props to manage state externally.
   // For this example, we keep internal state management simple.
-  
+
   return (
     <div className="flex gap-3">
-        {/* Country Code Dropdown */}
-        <div className="relative w-24" ref={dropdownRef}>
-          <button
-            type="button" // Important for preventing form submission
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-full px-3 py-4 border-2 border-[#ECF0F3] rounded-xl bg-[#FAFBFC] flex items-center justify-between outline-none focus:ring-2 focus:ring-red-500 transition-colors"
-          >
-            <span className="flex items-center gap-2 text-lg">
-              <span>{selectedCountry.flag}</span>
-              <span className="font-medium text-base">{selectedCountry.code}</span>
-            </span>
-            <ChevronDown
-              size={18}
-              className={`text-gray-600 transition-transform ${
-                isOpen ? 'rotate-180' : ''
+      {/* Country Code Dropdown */}
+      <div className="relative w-24" ref={dropdownRef}>
+        <button
+          type="button" // Important for preventing form submission
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full px-3 py-4 border-2 border-[#ECF0F3] rounded-xl bg-[#FAFBFC] flex items-center justify-between outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+        >
+          <span className="flex items-center gap-2 text-lg">
+            <span>{selectedCountry.flag}</span>
+            <span className="font-medium text-base">{selectedCountry.code}</span>
+          </span>
+          <ChevronDown
+            size={18}
+            className={`text-gray-600 transition-transform ${isOpen ? 'rotate-180' : ''
               }`}
-            />
-          </button>
+          />
+        </button>
 
-          {/* Dropdown Menu */}
-          {isOpen && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto">
-              {countries.map((country, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => handleSelectCountry(country)}
-                  className="w-full px-3 py-3 text-left hover:bg-red-50 transition-colors flex items-center gap-2 border-b border-gray-100 last:border-b-0"
-                >
-                  <span className="text-lg">{country.flag}</span>
-                  <span className="font-medium">{country.code}</span>
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Mobile Number Input */}
-        <input
-          type="tel"
-          value={mobileNumber}
-          onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, ''))}
-          placeholder={placeholder}
-          className="flex-1 w-full bg-[#FAFBFC] text-gray-700 px-4 py-4 rounded-xl border-2 border-[#ECF0F3] outline-none focus:ring-2 focus:ring-red-500"
-          style={{
-            fontSize: "16px",
-            fontFamily: "Poppins",
-            fontWeight: 400,
-          }}
-        />
+        {/* Dropdown Menu */}
+        {isOpen && (
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10 max-h-48 overflow-y-auto">
+            {countries.map((country, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => handleSelectCountry(country)}
+                className="w-full px-3 py-3 text-left hover:bg-red-50 transition-colors flex items-center gap-2 border-b border-gray-100 last:border-b-0"
+              >
+                <span className="text-lg">{country.flag}</span>
+                <span className="font-medium">{country.code}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
+
+      {/* Mobile Number Input */}
+      <input
+        type="tel"
+        value={mobileNumber}
+        onChange={(e) => setMobileNumber(e.target.value.replace(/\D/g, ''))}
+        placeholder={placeholder}
+        className="flex-1 w-full bg-[#FAFBFC] text-gray-700 px-4 py-4 rounded-xl border-2 border-[#ECF0F3] outline-none focus:ring-2 focus:ring-red-500"
+        style={{
+          fontSize: "16px",
+          fontFamily: "Poppins",
+          fontWeight: 400,
+        }}
+      />
+    </div>
   );
 }
 
@@ -312,7 +312,7 @@ function MobileNumberInput({ initialCode = '+91', placeholder = "Enter your mobi
 // ---------------------------
 const RegistrationPopup = ({ event, onClose }) => {
 
-   const handleSuccess = (res) => {
+  const handleSuccess = (res) => {
     console.log("Payment successful:", res);
     alert("✅ Payment successful! ID: " + res.razorpay_payment_id);
   };
@@ -323,17 +323,17 @@ const RegistrationPopup = ({ event, onClose }) => {
   };
 
   const handlePayment = () => {
-      
-      
+
+
   }
 
   if (!event) return null;
 
   const formFields = [
-      { label: "Name", placeholder: "Enter your Full Name", type: "text" },
-      { label: "Email-Id", placeholder: "Enter your Email-Id", type: "email" },
-      { label: "Mobile Number", placeholder: "Enter your mobile number", type: "mobile" }, // Use 'mobile' type
-      { label: "Graduation Year", placeholder: "Year of Graduation", type: "text" },
+    { label: "Name", placeholder: "Enter your Full Name", type: "text" },
+    { label: "Email-Id", placeholder: "Enter your Email-Id", type: "email" },
+    { label: "Mobile Number", placeholder: "Enter your mobile number", type: "mobile" }, // Use 'mobile' type
+    { label: "Graduation Year", placeholder: "Year of Graduation", type: "text" },
   ];
 
   return (
@@ -409,18 +409,17 @@ const RegistrationPopup = ({ event, onClose }) => {
             </div>
           ))}
 
-          <button
-            type="button"
-            className="mt-4 bg-[#ED0331] text-white py-4 rounded-xl font-medium hover:bg-[#c20228] transition-all"
-            style={{
-              fontSize: "20px",
-              fontFamily: "Poppins",
-              fontWeight: 500,
-            }}
-            onClick={handlePayment}
-          >
-            Confirm your Registration
-          </button>
+
+          <RazorpayPayment amount={19} userId={"ffhrif"} buttonText="proceed to Pay 19" buttonStyle={{
+            marginTop: '1rem',          // mt-4
+            backgroundColor: '#ED0331', // bg-[#ED0331]
+            color: 'white',             // text-white
+            padding: '1rem 0',          // py-4
+            borderRadius: '0.75rem',    // rounded-xl
+            fontWeight: 500,            // font-medium
+            transition: 'all 0.2s',
+
+          }} />
         </form>
       </div>
     </div>
@@ -431,7 +430,7 @@ const RegistrationPopup = ({ event, onClose }) => {
 
 
 const UpcomingEvents = () => {
-    const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   return (
     <div className="w-full py-20 px-6 bg-[#E2E2E2] flex flex-col items-center">
@@ -459,7 +458,7 @@ const UpcomingEvents = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl">
         {eventsData.map((event, index) => (
           // Note: added index as key since event.id was missing
-          <EventCard key={index} event={event} onRegister={setSelectedEvent} /> 
+          <EventCard key={index} event={event} onRegister={setSelectedEvent} />
         ))}
       </div>
 
