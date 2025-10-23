@@ -12,6 +12,7 @@ import OneToOneMentoring from "./pages/OneToOneMentoring";
 import OnlineContests from "./pages/OnlineContests";
 import DoubtSolving from "./pages/DoubtSolving";
 import ResumeReview from "./pages/ResumeReview";
+import AutoPay from "./utils/AutoPay";
 
 const App = () => {
   return (
@@ -31,6 +32,8 @@ const App = () => {
           <Route path="/online-contests" element={<OnlineContests />} />
           <Route path="/doubt-solving" element={ <DoubtSolving/> } />
           <Route path="/resume-review" element={ <ResumeReview/> } />
+          <Route path="/pay" element={<AutoPay />} />
+
           
         </Routes>
       <ScrollToTop />
