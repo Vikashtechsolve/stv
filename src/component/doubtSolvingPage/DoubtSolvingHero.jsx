@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import masterclassImage from "/Volumes/Main/vikash trial/vikashtechsolution/src/assets/masterclass.jpg";
+const  hero ="https://res.cloudinary.com/dc4gqqd35/image/upload/v1761205222/Frame_748_akckfj.jpg"
 
-const images = [masterclassImage, masterclassImage, masterclassImage];
+const images = [hero, hero, hero];
 
 const DoubtSolvingHero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,8 +29,8 @@ const DoubtSolvingHero = () => {
               src={images[currentIndex]}
               alt={`slide-${currentIndex}`}
               className="
-                rounded-2xl object-cover shadow-lg 
-                w-[95%] sm:w-[90%] md:w-[95%] lg:w-[80%] 
+                rounded-2xl object-contain  
+                w-[95%] sm:w-[90%] md:w-[95%] lg:w-[90%] 
                 max-w-[1200px] md:h-[60vh] 
               "
               initial={{ opacity: 0, x: 80 }}
