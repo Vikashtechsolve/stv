@@ -4,18 +4,20 @@ const RazorpayPayment = ({
   amount, 
   userId = "6719b0c2f13e7b14eaa5b501", 
   buttonText="pay", 
-  buttonStyle
+  buttonStyle,
+  onSuccess,
+  onFailure
 }) => {
  // const baseUrl =   `${process.env.REACT_APP_API_URL}/payments`;
   const baseUrl =   "https://vts-backend-ms7k.onrender.com/payments"
 
-  const onSuccess = (res) => {
-   alert("✅ Payment successful! ID: " + res.razorpay_payment_id);
-  };
+  // const onSuccess = (res) => {
+  //  alert("✅ Payment successful! ID: " + res.razorpay_payment_id);
+  // };
 
-  const onFailure = (err) => {
-    alert("❌ Payment failed! " + (err.description || err.error || err));
-  };
+  // const onFailure = (err) => {
+  //   alert("❌ Payment failed! " + (err.description || err.error || err));
+  // };
 
   const startPayment = async () => {
     if (!amount || amount <= 0) {

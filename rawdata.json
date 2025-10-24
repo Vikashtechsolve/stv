@@ -71,9 +71,35 @@
             ]
         },
         {
-            "question": "What if my doubt isn't solved completely in one session??",
+            "question": "What if my doubt isn't solved completely in one session?",
             "options": [
                 "No worries! You can easily extend your session or book a follow-up at a discounted rate. Our goal is to ensure every student leaves with complete clarity and confidence."
+            ]
+        }
+    ],
+    "resumeFaq":[
+         {
+            "question": "What formats of resume do you accept?",
+            "options": [
+                "We accept PDF and DOCX formats to ensure your resume remains clean, accessible, and easy to review by our experts."
+            ]
+        },
+         {
+            "question": "How long does it take to schedule a session?",
+            "options": [
+                "Once you upload your resume and complete the booking, your session is usually scheduled within 24 hours with one of our available experts."
+            ]
+        },
+         {
+            "question": "Will I get written feedback after the session?",
+            "options": [
+                "Yes! You’ll receive a detailed written feedback summary and personalized improvement points via email after your live 1:1 session."
+            ]
+        },
+         {
+            "question": "Is this fee refundable?",
+            "options": [
+                "The fee is refundable only if our team cancels the session due to unforeseen circumstances. In all other cases, the amount is non-refundable."
             ]
         }
     ]

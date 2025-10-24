@@ -68,7 +68,7 @@ const MentorshipSteps = () => (
                 <h2 className="text-3xl sm:text-4xl font-playfair text-gray-800 mb-4 tracking-tight">
                     How 1:1 Mentorship Works
                 </h2>
-                <p className="text-2xl font-nunito red-gradient text-gray-600 max-w-4xl mx-auto">
+                <p className="text-2xl font-nunito red-gradient max-w-4xl mx-auto">
                     
                         Your journey from registration to real growth
                     — simplified into four easy steps.
