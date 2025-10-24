@@ -45,9 +45,9 @@ const Home = () => {
 
       <StatsSection />
 
-      <div id="institutions">
+      {/* <div id="institutions">
         <TrustedInstitutions />
-      </div>
+      </div> */}
 
       <div id="offer">
         <WhatWeOffer />
@@ -84,3 +84,4 @@ const Home = () => {
 };
 
 export default Home;
+
