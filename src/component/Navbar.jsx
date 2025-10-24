@@ -1,14 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // Hamburger menu
-  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null); // Open mobile dropdown
+  const [isOpen, setIsOpen] = useState(false); // Mobile hamburger
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
   const [openDropdown, setOpenDropdown] = useState(null); // Desktop dropdown
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+  const [isScrolled, setIsScrolled] = useState(false); // Scroll blur state
+
   const timeoutRef = useRef(null);
   const navRefs = useRef({});
   const navigate = useNavigate();
@@ -76,15 +78,27 @@ const Navbar = () => {
     { name: "Blogs", href: "/blog" },
   ];
 
+  // ✅ Add scroll listener for blur effect on desktop
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // Desktop hover dropdown
   const handleMouseEnter = (name) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     const rect = navRefs.current[name]?.getBoundingClientRect();
-    if (rect)
+    if (rect) {
       setDropdownPosition({
         top: rect.bottom + window.scrollY,
         left: rect.left + window.scrollX,
       });
+    }
     setOpenDropdown(name);
   };
 
@@ -99,14 +113,14 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 left-0 z-[1000] w-full">
-      {/* MOBILE NAVBAR */}
-      <div className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] rounded-full">
-        <div className="relative h-16 w-44 flex items-center justify-center bg-[#E2E2E2] rounded-full">
-          <img src={logo} alt="VTS Logo" className="h-30 w-auto" />
+      {/* ✅ MOBILE NAVBAR */}
+      <div className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] shadow-lg">
+        <div className="relative h-12 w-36 flex items-center justify-center bg-white rounded-full">
+          <img src={logo} alt="VTS Logo" className="h-35 w-auto" />
         </div>
 
         <div className="flex items-center">
-          {/* ✅ Single “Our Products” button */}
+          {/* Mobile Our Products Button */}
           <button
             onClick={() => toggleMobileDropdown("Our Products")}
             className="ml-3 bg-red-600 text-white font-semibold px-4 py-2 rounded-full hover:bg-red-700 transition-all duration-300 flex items-center"
@@ -134,24 +148,26 @@ const Navbar = () => {
       {/* Mobile "Our Products" dropdown */}
       {mobileDropdownOpen === "Our Products" && (
         <div className="md:hidden bg-white text-black w-full px-4 py-3 transition-all duration-500 ease-in-out">
-          {links.find((l) => l.name === "Our Products").dropdown.map((item) => (
-            <Link
-              key={item.name}
-              to={item.href}
-              className="block w-full mb-2 last:mb-0 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors duration-300"
-            >
-              <span className="font-semibold">{item.name}</span>
-              <span className="block text-gray-700 text-sm mt-1">
-                {item.description}
-              </span>
-            </Link>
-          ))}
+          {links
+            .find((l) => l.name === "Our Products")
+            ?.dropdown?.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="block w-full mb-2 last:mb-0 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors duration-300"
+              >
+                <span className="font-semibold">{item.name}</span>
+                <span className="block text-gray-700 text-sm mt-1">
+                  {item.description}
+                </span>
+              </Link>
+            ))}
         </div>
       )}
 
-      {/* Mobile hamburger dropdown (other links) */}
+      {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden flex flex-col items-start space-y-4 bg-black text-white mx-auto px-4 py-4 rounded-xl shadow-lg transition-all duration-500 ease-in-out w-full max-w-full">
+        <div className="md:hidden flex flex-col items-start space-y-4 bg-black text-white px-4 py-4 rounded-xl shadow-lg transition-all duration-500 ease-in-out w-full">
           {links
             .filter((l) => l.name !== "Our Products")
             .map((link) =>
@@ -159,7 +175,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.href}
-                  className="block text-lg font-semibold border-b-2 border-transparent hover:border-red-500 w-full transition-all duration-300 px-3 py-3 rounded-md"
+                  className="block text-lg font-semibold border-b border-gray-600 w-full px-3 py-2 hover:text-red-500"
                 >
                   {link.name}
                 </Link>
@@ -167,7 +183,7 @@ const Navbar = () => {
                 <div key={link.name} className="w-full">
                   <button
                     onClick={() => toggleMobileDropdown(link.name)}
-                    className="flex items-center justify-between w-full text-lg font-semibold border-b-2 border-transparent hover:border-red-500 transition-all duration-300 px-3 py-3 rounded-md"
+                    className="flex items-center justify-between w-full text-lg font-semibold px-3 py-2"
                   >
                     {link.name}
                     <FiChevronDown
@@ -180,7 +196,7 @@ const Navbar = () => {
                   <div
                     className={`pl-3 mt-2 space-y-3 overflow-hidden transition-all duration-500 ease-in-out ${
                       mobileDropdownOpen === link.name
-                        ? "max-h-[80vh] opacity-100"
+                        ? "max-h-[500px] opacity-100"
                         : "max-h-0 opacity-0"
                     }`}
                   >
@@ -188,7 +204,7 @@ const Navbar = () => {
                       <Link
                         key={item.name}
                         to={item.href}
-                        className="block w-full bg-white hover:bg-gray-100 rounded-md px-3 py-3 transition-all duration-300 text-black"
+                        className="block w-full bg-white hover:bg-gray-100 rounded-md px-3 py-3 text-black"
                       >
                         <span className="font-semibold">{item.name}</span>
                         <span className="block text-gray-700 text-sm mt-1">
@@ -203,22 +219,26 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <Link
-            to="/contact-us"
-            className="w-full text-center bg-red-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-red-700 transition-all duration-300"
+            to="/contactUs"
+            className="w-full text-center bg-red-600 text-white px-5 py-3 rounded-full font-semibold hover:bg-red-700"
           >
             Contact Us
           </Link>
           <Link
             to="/login"
-            className="w-full text-center bg-white text-black px-5 py-3 rounded-full font-semibold hover:bg-gray-200 transition-all duration-300"
+            className="w-full text-center bg-white text-black px-5 py-3 rounded-full font-semibold hover:bg-gray-200"
           >
             Login
           </Link>
         </div>
       )}
 
-      {/* DESKTOP NAVBAR */}
-      <div className="hidden md:flex items-center justify-between w-full relative z-[1000]">
+      {/* ✅ DESKTOP NAVBAR WITH BLUR */}
+      <div
+        className={`hidden md:flex items-center justify-between w-full relative z-[1000] transition-all duration-300 ${
+          isScrolled ? "backdrop-blur-md bg-black/70 shadow-lg" : "bg-transparent"
+        }`}
+      >
         <div className="relative h-12 w-60 flex items-center justify-center">
           <img src={logo} alt="VTS Logo" className="h-45 w-auto" />
         </div>
@@ -236,12 +256,8 @@ const Navbar = () => {
                 key={link.name}
                 className="relative"
                 ref={(el) => (navRefs.current[link.name] = el)}
-                onMouseEnter={() =>
-                  link.dropdown && handleMouseEnter(link.name)
-                }
-                onMouseLeave={() =>
-                  link.dropdown && handleMouseLeave()
-                }
+                onMouseEnter={() => link.dropdown && handleMouseEnter(link.name)}
+                onMouseLeave={() => link.dropdown && handleMouseLeave()}
               >
                 {!link.dropdown ? (
                   <Link
@@ -256,7 +272,6 @@ const Navbar = () => {
                       {link.name} <FiChevronDown className="ml-1" />
                     </button>
 
-                    {/* Desktop dropdown */}
                     {openDropdown === link.name &&
                       createPortal(
                         <div
@@ -278,9 +293,7 @@ const Navbar = () => {
                               className="block mb-2 last:mb-0 hover:bg-gray-50 transition-all duration-300 rounded-md px-2 py-2"
                             >
                               <div className="flex flex-col">
-                                <span className="font-semibold text-black text-lg">
-                                  {item.name}
-                                </span>
+                                <span className="font-semibold text-black text-lg">{item.name}</span>
                                 <span className="text-gray-600 hover:text-red-600 transition-colors duration-300 text-sm">
                                   {item.description}
                                 </span>
@@ -297,7 +310,7 @@ const Navbar = () => {
           </div>
 
           {/* CONTACT & LOGIN */}
-          <div className="flex space-x-4 bg-black px-2 py-2 rounded-lg">
+          <div className="flex space-x-4 px-2 py-2 rounded-lg">
             <Link
               to="/contactUs"
               className="text-center border-2 border-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-600 hover:text-white transition-all duration-300 text-[15px]"
@@ -306,7 +319,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/login"
-              className="text-center border-2 border-white bg-transparent text-red-600 px-4 py-2 rounded-full font-bold hover:bg-red-600 hover:text-white transition-all duration-300"
+              className="text-center border-2 border-white text-red-600 px-4 py-2 rounded-full font-bold hover:bg-red-600 hover:text-white transition-all duration-300"
             >
               Login
             </Link>
