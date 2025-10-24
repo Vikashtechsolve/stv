@@ -3,18 +3,18 @@ import { Upload, ArrowRight, CheckCircle, Users, ClipboardCheck } from "lucide-r
 
 const ResumeReview = () => {
   return (
-    <section className="w-full bg-gray-100 py-12 px-6 md:px-16 flex flex-col lg:flex-row items-center justify-between gap-10">
+    <section className="w-full bg-[#E2E2E2] py-12 px-6 md:px-16 flex flex-col lg:flex-row items-center justify-between gap-10">
       {/* Left Section */}
       <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
         {/* Heading */}
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-snug text-center lg:text-left">
+        <h1 className=" font-playfair text-3xl md:text-4xl font-bold text-gray-900 leading-snug text-center lg:text-left">
           Get Your Resume Reviewed by <br />
           Industry Experts{" "}
-          <span className="text-red-700 font-extrabold">– in Just ₹149</span>
+          <span className="red-gradient font-extrabold">– in Just ₹149</span>
         </h1>
 
         {/* Description */}
-        <p className="mt-6 text-red-700 font-medium text-center lg:text-left">
+        <p className="mt-6 red-gradient font-nunito font-medium text-center lg:text-left">
           “Your resume is your first impression! <br />
           Let experts refine it, highlight your skills, and guide you <br />
           toward your dream job”
@@ -64,7 +64,7 @@ const ResumeReview = () => {
       {/* Right Section - Illustration */}
       <div className="w-full lg:w-1/2 flex justify-center">
         <img
-          src="/resume-illustration.svg"
+          src="https://res.cloudinary.com/dc4gqqd35/image/upload/v1761277698/Recruitment_agent_analyzing_candidates_resumes_qssst5.png"
           alt="Resume Illustration"
           className="max-w-xs md:max-w-md lg:max-w-lg"
         />
