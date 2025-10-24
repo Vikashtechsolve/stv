@@ -3,19 +3,43 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginPage from "./component/LoginPage";
 import Dashboard from "./pages/Dashboard";
-
+import MasterClasspages from "./pages/masterClass";  // Ensure correct case
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import About from "./pages/About";
+import ContactPage from "./pages/ContactPage";
+import ScrollToTop from "./component/ScrollToTop";
+import OneToOneMentoring from "./pages/OneToOneMentoring";
+import OnlineContests from "./pages/OnlineContests";
+import DoubtSolving from "./pages/DoubtSolving";
+import ResumeReview from "./pages/ResumeReview";
+import AutoPay from "./utils/AutoPay";
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        {/* Home Route */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginPage />} />
-         <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
+
+      <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/masterClass" element={<MasterClasspages />} />  {/* Updated path */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route path="/aboutus" element={<About />} />
+          <Route path="/contactus" element={<ContactPage />} />
+          <Route path="/oneToOneMentoring" element={ <OneToOneMentoring/> } />
+          <Route path="/online-contests" element={<OnlineContests />} />
+          <Route path="/doubt-solving" element={ <DoubtSolving/> } />
+          <Route path="/resume-review" element={ <ResumeReview/> } />
+          <Route path="/pay" element={<AutoPay />} />
+
+          
+        </Routes>
+      <ScrollToTop />
     </Router>
   );
 };
+
 
 export default App;

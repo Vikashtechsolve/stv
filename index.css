@@ -1,9 +1,47 @@
+
 @keyframes slide {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); } /* slide half width for duplicate */
+}
+/* index.css */
+
+
+/* hide scrollbar for smooth topic bar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 .animate-slide {
   display: flex;
   animation: slide 12s linear infinite;
+}
+
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+.font-nunito {
+  font-family: 'Nunito Sans', sans-serif;
+}
+.red-gradient{
+   background: linear-gradient(to right, #ED0331, #87021C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.375; /* leading-snug = ~1.375 */
+}
+
+.vksbg{
+  background: "#E2E2E2";
+  background-color: "#E2E2E2";
+}
+
+
+/* Completely hide horizontal scrollbar for all browsers */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

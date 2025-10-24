@@ -1,0 +1,106 @@
+{
+    "masterclassFaq": [
+        {
+            "question": "How do I register?",
+            "options": [
+                "Click the Register/Join button on the Masterclass card, complete the quick payment, and you will receive confirmation with the joining link."
+            ]
+        },
+        {
+            "question": "Who can join these Masterclasses?",
+            "options": [
+                "Anyone who wants to improve their skills, whether you are a beginner, student, or working professional. All you need is a phone/laptop and an internet connection."
+            ]
+        },
+        {
+            "question": "What is the duration of each masterclass?",
+            "options": [
+                "Most Masterclasses last between 90 to 120 minutes, depending on the topic."
+            ]
+        },
+        {
+            "question": "Will I get recordings or notes after the class?",
+            "options": [
+                "Yes, recordings will be available for registered students for a limited time after the session."
+            ]
+        },
+        {
+            "question": "Do I need any special software to join?",
+            "options": [
+                "No, you can join directly through a Zoom meeting link. No complicated setup is required."
+            ]
+        },
+        {
+            "question": "Can I interact with the mentor during the session?",
+            "options": [
+                "Yes! Masterclasses are interactive. You can ask questions during Q&A and get your doubts cleared directly by the mentor."
+            ]
+        },
+        {
+            "question": "Is there any refund policy?",
+            "options": [
+                "Since Masterclasses are low-cost and easily accessible, we do not provide refunds once registered. However, you will still get access to session recordings if you cannot attend live."
+            ]
+        }
+    ],
+    "mentorshipFaq": [
+        {
+            "question": "What is 1:1 Mentorship?",
+            "options": [
+                "1:1 Mentorship is a personalized learning program where you get direct access to experienced mentors who provide tailored guidance, support, and insights to help you achieve your specific learning and career goals."
+            ]
+        },
+        {
+            "question": "Who can benefit from 1:1 Mentorship?",
+            "options": [
+                "Students, recent graduates, and professionals looking to enhance their skills, navigate career transitions, or gain clarity on their learning paths can all benefit from 1:1 Mentorship."
+            ]
+        }
+    ],
+    "doubtSolvingFaq": [
+        {
+            "question": "How does the 1:1 live doubt-solving session work?",
+            "options": [
+                "Once you book a session, you'll be instantly connected to a subject expert who will guide you live via video or chat. You can share your screen, ask step-by-step questions, and get your doubts cleared in real time."
+            ]
+        },
+        {
+            "question": "Can I choose my preferred mentor?",
+            "options": [
+                "Yes! You can either select from our list of available mentors or let our smart match system connect you to the best-suited mentor for your subject and topic."
+            ]
+        },
+        {
+            "question": "What if my doubt isn't solved completely in one session?",
+            "options": [
+                "No worries! You can easily extend your session or book a follow-up at a discounted rate. Our goal is to ensure every student leaves with complete clarity and confidence."
+            ]
+        }
+    ],
+    "resumeFaq":[
+         {
+            "question": "What formats of resume do you accept?",
+            "options": [
+                "We accept PDF and DOCX formats to ensure your resume remains clean, accessible, and easy to review by our experts."
+            ]
+        },
+         {
+            "question": "How long does it take to schedule a session?",
+            "options": [
+                "Once you upload your resume and complete the booking, your session is usually scheduled within 24 hours with one of our available experts."
+            ]
+        },
+         {
+            "question": "Will I get written feedback after the session?",
+            "options": [
+                "Yes! You’ll receive a detailed written feedback summary and personalized improvement points via email after your live 1:1 session."
+            ]
+        },
+         {
+            "question": "Is this fee refundable?",
+            "options": [
+                "The fee is refundable only if our team cancels the session due to unforeseen circumstances. In all other cases, the amount is non-refundable."
+            ]
+        }
+    ]
+}

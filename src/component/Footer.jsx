@@ -10,10 +10,12 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import logo from "../assets/logo.png"; // <-- Import your logo
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
   return (
-    <footer className="bg-#FFFFFF33 text-gray-800 py-10 px-6 md:px-16 mt-6 pt-50">
+    <footer className="bg-[#E2E2E2] text-gray-800 py-10 px-6 md:px-16 mt-6 pt-50">
       <div className=" grid md:grid-cols-4 gap-10 border-b border-t pt-18 border-gray-300 pb-10 ">
         {/* ABOUT SECTION */}
         <div className="-mt-62">
@@ -42,7 +44,7 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold text-2xl red-gradient font-playfair">EXPLORE</h3>
           <ul className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
-            <li>Home</li>
+            <Link to="/">Home</Link>
             <li>Trusting by leading institutions</li>
             <li>What we offer</li>
             <li>How we work</li>
@@ -51,6 +53,7 @@ const Footer = () => {
             <li>Meet our Mentors</li>
             <li>Power of Mentorship</li>
             <li>Submit Query</li>
+            <Link className="hover:underline" to="/privacy-policy">Privacy Policy</Link>
           </ul>
         </div>
 
@@ -63,9 +66,8 @@ const Footer = () => {
             <div className="flex items-start space-y-1 text-xl font-nunito text-[#A2A1A1] mt-4">
               <FaMapMarkerAlt className="text-red-600 mr-3 text-xl" />
               <p>
-                Vikas Tech Solutions, <br />
-                3rd Floor, ABC Tower, <br />
-                Sector-15, Noida, Uttar Pradesh, India
+               Barki Bashouli, Near Barki Basauli Post Office,
+                Basauli, Buxar, Bihar – 802119
               </p>
             </div>
             <div className="flex items-center space-x-2 mb-3  pace-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
