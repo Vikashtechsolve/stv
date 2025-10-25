@@ -58,19 +58,19 @@ const Navbar = () => {
           name: "LMS Portal",
           description:
             "Access a complete online learning management system with courses and training materials.",
-          href: "/lms-portal",
+          href: "/login",
         },
         {
           name: "Interview Portal",
           description:
             "Experience an advanced interview platform with scheduling, evaluation, and feedback tools.",
-          href: "/interview-portal",
+          href: "/login",
         },
         {
           name: "Manpower Management",
           description:
             "Streamline employee tracking, task allocation, and attendance management.",
-          href: "/manpower-management",
+          href: "/login",
         },
       ],
     },
@@ -331,4 +331,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
