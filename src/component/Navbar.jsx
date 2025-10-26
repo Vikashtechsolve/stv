@@ -65,12 +65,14 @@ const Navbar = () => {
           description:
             "Experience an advanced interview platform with scheduling, evaluation, and feedback tools.",
           href: "/login",
+
         },
         {
           name: "Manpower Management",
           description:
             "Streamline employee tracking, task allocation, and attendance management.",
           href: "/login",
+
         },
       ],
     },
@@ -114,10 +116,21 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 left-0 z-[1000] w-full">
       {/* ✅ MOBILE NAVBAR */}
+     {/* ✅ MOBILE NAVBAR */}
       <div className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] shadow-lg">
-        <div className="relative h-12 w-36 flex items-center justify-center bg-white rounded-full">
+        
+        {/* ✅ Logo Click Redirect to Home */}
+        <Link
+          to="/"
+          className="relative h-12 w-36 flex items-center justify-center bg-white rounded-full"
+          onClick={() => {
+            setIsOpen(false);
+            setMobileDropdownOpen(null);
+          }}
+        >
           <img src={logo} alt="VTS Logo" className="h-35 w-auto" />
-        </div>
+        </Link>
+
 
         <div className="flex items-center">
           {/* Mobile Our Products Button */}
@@ -234,14 +247,21 @@ const Navbar = () => {
       )}
 
       {/* ✅ DESKTOP NAVBAR WITH BLUR */}
+     {/* ✅ DESKTOP NAVBAR WITH SCROLL BLUR */}
       <div
         className={`hidden md:flex items-center justify-between w-full relative z-[1000] transition-all duration-300 ${
           isScrolled ? "backdrop-blur-md bg-black/70 shadow-lg" : "bg-transparent"
         }`}
       >
-        <div className="relative h-12 w-60 flex items-center justify-center">
+        {/* ✅ Clickable Logo Links to Home */}
+        <Link
+          to="/"
+          className="relative h-12 w-60 flex items-center justify-center cursor-pointer"
+          onClick={() => setOpenDropdown(null)}
+        >
           <img src={logo} alt="VTS Logo" className="h-45 w-auto" />
-        </div>
+        </Link>
+
 
         <div
           className="flex items-center justify-end px-6 py-2 w-[80%] ml-auto bg-black"
@@ -331,5 +351,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
