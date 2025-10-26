@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import scrolledLogo from "../assets/vts.svg"; // ✅ Added for scroll logo
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile hamburger
@@ -65,14 +66,12 @@ const Navbar = () => {
           description:
             "Experience an advanced interview platform with scheduling, evaluation, and feedback tools.",
           href: "/login",
-
         },
         {
           name: "Manpower Management",
           description:
             "Streamline employee tracking, task allocation, and attendance management.",
           href: "/login",
-
         },
       ],
     },
@@ -115,10 +114,10 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 left-0 z-[1000] w-full">
+
       {/* ✅ MOBILE NAVBAR */}
-     {/* ✅ MOBILE NAVBAR */}
       <div className="md:hidden flex items-center justify-between w-full bg-black px-4 py-3 relative z-[1000] shadow-lg">
-        
+
         {/* ✅ Logo Click Redirect to Home */}
         <Link
           to="/"
@@ -128,9 +127,12 @@ const Navbar = () => {
             setMobileDropdownOpen(null);
           }}
         >
-          <img src={logo} alt="VTS Logo" className="h-35 w-auto" />
+          <img
+            src={isScrolled ? scrolledLogo : logo}
+            alt="VTS Logo"
+            className="h-45 w-auto transition-all duration-300"
+          />
         </Link>
-
 
         <div className="flex items-center">
           {/* Mobile Our Products Button */}
@@ -246,11 +248,12 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* ✅ DESKTOP NAVBAR WITH BLUR */}
-     {/* ✅ DESKTOP NAVBAR WITH SCROLL BLUR */}
+      {/* ✅ DESKTOP NAVBAR WITH FROSTED BLUR + LOGO CHANGE */}
       <div
         className={`hidden md:flex items-center justify-between w-full relative z-[1000] transition-all duration-300 ${
-          isScrolled ? "backdrop-blur-md bg-black/70 shadow-lg" : "bg-transparent"
+          isScrolled
+            ? "backdrop-blur-md bg-black/70 shadow-lg border-b border-white/20"
+            : "bg-transparent"
         }`}
       >
         {/* ✅ Clickable Logo Links to Home */}
@@ -259,9 +262,12 @@ const Navbar = () => {
           className="relative h-12 w-60 flex items-center justify-center cursor-pointer"
           onClick={() => setOpenDropdown(null)}
         >
-          <img src={logo} alt="VTS Logo" className="h-45 w-auto" />
+          <img
+            src={isScrolled ? scrolledLogo : logo}
+            alt="VTS Logo"
+            className="h-45 w-auto transition-all duration-300"
+          />
         </Link>
-
 
         <div
           className="flex items-center justify-end px-6 py-2 w-[80%] ml-auto bg-black"
