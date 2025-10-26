@@ -7,7 +7,7 @@ const RazorpayPayment = ({
   buttonStyle,
 }) => {
   // const baseUrl =   `${process.env.REACT_APP_API_URL}/payments`;
- const baseUrl = "https://vts-backend-ms7k.onrender.com"
+ const baseUrl = "http://localhost:8000"
 
   const onSuccess = (res) => {
    alert("✅ Payment successful! ID: " + res.razorpay_payment_id);

@@ -13,6 +13,8 @@ import OnlineContests from "./pages/OnlineContests";
 import DoubtSolving from "./pages/DoubtSolving";
 import ResumeReview from "./pages/ResumeReview";
 import AutoPay from "./utils/AutoPay";
+import BlogPage from "./pages/BlogPage";
+import BlogDetail from "./component/blogs/BlogDetail";
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
           <Route path="/doubt-solving" element={ <DoubtSolving/> } />
           <Route path="/resume-review" element={ <ResumeReview/> } />
           <Route path="/pay" element={<AutoPay />} />
+          <Route path="/blog" element={<BlogPage />} />
+           <Route path="/blog/:id" element={<BlogDetail />} />
 
           
         </Routes>
