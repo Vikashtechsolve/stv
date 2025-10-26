@@ -305,7 +305,7 @@ const RegistrationPopup = ({ event, onClose }) => {
     try {
       //ENV
       const baseUrl = "https://vts-backend-ms7k.onrender.com";
-      const masterClassAmount=29;
+      const masterClassAmount=1;
 
 
       const res = await fetch(`${baseUrl}/api/payments/create`, {
