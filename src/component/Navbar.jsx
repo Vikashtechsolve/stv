@@ -75,7 +75,7 @@ const Navbar = () => {
       ],
     },
     { name: "About us", href: "/aboutus" },
-    { name: "Blogs", href: "/blog" },
+    { name: "Blogs", href: "/blogs" },
   ];
 
   // ✅ Add scroll listener for blur effect on desktop
