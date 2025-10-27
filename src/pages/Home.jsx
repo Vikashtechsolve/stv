@@ -8,12 +8,12 @@ import Mentors from '../component/Mentors'
 import WhyTrustUs from '../component/WhyTrustUs'
 import SuccessStories from '../component/SuccessStories'
 import ShapeYourJourney from '../component/ShapeYourJourney'
-import TrustedInstitutions from '../component/TrustedInstitutions'
-import HowWeWork from '../component/HowWeWork'
-import Hero from '../component/Hero'
-import StatsSection from '../component/StatsSection'
-import WhatWeOffer from '../component/WhatWeOffer'
-import MasterClass from '../component/MasterClass'
+import TrustedInstitutions from '../component/TrustedInstitutions';
+import HowWeWork from '../component/HowWeWork';
+import Hero from '../component/Hero';
+import StatsSection from '../component/StatsSection';
+import WhatWeOffer from '../component/WhatWeOffer';
+import MasterClass from '../component/MasterClass';
 
 const Home = () => {
 

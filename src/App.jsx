@@ -38,7 +38,6 @@ const App = () => {
           <Route path="/blogs" element={<BlogPage />} />
            <Route path="/blog/:id" element={<BlogDetail />} />
 
-          
         </Routes>
       <ScrollToTop />
     </Router>
