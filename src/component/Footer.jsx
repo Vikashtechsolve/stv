@@ -55,13 +55,13 @@ const Footer = () => {
         <h3 className="font-semibold text-2xl red-gradient font-playfair">EXPLORE</h3>
         <ul className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
 
-          <li onClick={() => handleNavigate("home")} className="cursor-pointer">
+          {/* <li onClick={() => handleNavigate("home")} className="cursor-pointer">
             Home
           </li>
 
           <li onClick={() => handleNavigate("institutions")} className="cursor-pointer">
             Trusting by leading institutions
-          </li>
+          </li> */}
 
           <li onClick={() => handleNavigate("offer")} className="cursor-pointer">
             What we offer
@@ -139,10 +139,10 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-center mt-6 text-sm text-gray-600">
         <p className="text-red-600 font-semibold">VTS © 2025. All rights reserved.</p>
         <div className="flex space-x-6 mt-3 md:mt-0">
-          <a href="#" className="hover:text-red-600">Learning Paths</a>
-          <a href="#" className="hover:text-red-600">Skill Battles</a>
-          <a href="#" className="hover:text-red-600">Career Outcomes</a>
-          <a href="#" className="hover:text-red-600">Discover</a>
+          <a href="/masterClass" className="hover:text-red-600">Master Class</a>
+          <a href="oneToOneMentoring" className="hover:text-red-600">Mentorship</a>
+          <a href="resume-review" className="hover:text-red-600">Resume Review</a>
+          <a href="doubt-solving" className="hover:text-red-600">Live Doubt Solving</a>
         </div>
       </div>
     </footer>
