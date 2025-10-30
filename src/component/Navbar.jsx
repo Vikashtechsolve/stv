@@ -336,7 +336,7 @@ const Navbar = () => {
               Contact Us
             </Link>
             <Link
-              to="/joinus"
+              to="/join-us"
               className="text-center border-2 border-white text-red-600 px-4 py-2 rounded-full font-bold hover:bg-red-600 hover:text-white transition-all duration-300"
             >
               Join us

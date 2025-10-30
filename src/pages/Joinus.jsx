@@ -1,32 +1,28 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
 import Layout from "../component/Layout";
-import JoinusForm from "../component/joinus/JoinusForm"; // ✅ Corrected import path
+import JoinusForm from "../component/joinus/JoinusForm";
+import SEO from "../component/SEO";
 
 const Joinus = () => {
   const location = useLocation();
 
   useEffect(() => {
     if (location.state?.scrollTo) {
-      const sectionId = location.state.scrollTo;
-
-      // delay ensures layout is loaded before scrolling
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 200);
-
-      // Clear state to avoid repeated scrolling when navigating back
+      const el = document.getElementById(location.state.scrollTo);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 200);
       window.history.replaceState({}, document.title);
     }
   }, [location]);
 
   return (
     <Layout>
-      {/* ✅ Use capitalized component name here */}
+      <SEO
+        title="Join as a Trainer | VTS"
+        description="Apply to become a trainer at VTS. Teach Java, Spring Boot, or React and help shape the next generation of developers."
+        url="https://vikastechsolutions.com/joinus"
+        image="https://vikastechsolutions.com/images/join-us.png"
+      />
       <JoinusForm />
     </Layout>
   );

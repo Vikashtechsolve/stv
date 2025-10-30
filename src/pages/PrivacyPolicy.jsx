@@ -3,6 +3,11 @@ import Layout from '../component/Layout'
 export default function PrivacyPolicy() {
   return (
   <Layout>
+    <SEO
+        title="Privacy Policy | VTS"
+        description="Read Vikas Tech Solutions' privacy policy on how we protect and use your personal data securely."
+        url="https://vikastechsolutions.com/privacy-policy"
+      />
     <div className="min-h-screen bg-[#E2E2E2] ">
       {/* Header */}
       <div className=" px-6 py-16 text-center">
