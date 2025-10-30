@@ -15,6 +15,7 @@ import ResumeReview from "./pages/ResumeReview";
 import AutoPay from "./utils/AutoPay";
 import BlogPage from "./pages/BlogPage";
 import BlogDetail from "./component/blogs/BlogDetail";
+import JoinUs from "./pages/joinus";
 
 const App = () => {
   return (
@@ -24,6 +25,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/joinus" element={<JoinUs />} />
+
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/masterClass" element={<MasterClasspages />} />  {/* Updated path */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
