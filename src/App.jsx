@@ -15,7 +15,7 @@ import ResumeReview from "./pages/ResumeReview";
 import AutoPay from "./utils/AutoPay";
 import BlogPage from "./pages/BlogPage";
 import BlogDetail from "./component/blogs/BlogDetail";
-import JoinUs from "./pages/JoinUs";
+import JoinUs from "./pages/JoinUs.jsx";
 
 const App = () => {
   return (
@@ -49,3 +49,4 @@ const App = () => {
 
 
 export default App;
+
