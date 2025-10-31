@@ -4,7 +4,7 @@ import Layout from "../component/Layout";
 import JoinusForm from "../component/joinus/JoinusForm";
 import SEO from "../component/SEO";
 
-const Joinus = () => {
+const JoinUs = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -28,4 +28,4 @@ const Joinus = () => {
   );
 };
 
-export default Joinus;
+export default JoinUs;
