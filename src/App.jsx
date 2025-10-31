@@ -15,7 +15,7 @@ import ResumeReview from "./pages/ResumeReview";
 import AutoPay from "./utils/AutoPay";
 import BlogPage from "./pages/BlogPage";
 import BlogDetail from "./component/blogs/BlogDetail";
-import JoinUs from "./pages/JoinUs.jsx";
+import JoinUs from "./pages/JoinUs";
 
 const App = () => {
   return (
@@ -39,7 +39,7 @@ const App = () => {
           <Route path="/resume-review" element={ <ResumeReview/> } />
           <Route path="/pay" element={<AutoPay />} />
           <Route path="/blogs" element={<BlogPage />} />
-           <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
 
         </Routes>
       <ScrollToTop />
