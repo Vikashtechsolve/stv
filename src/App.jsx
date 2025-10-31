@@ -25,8 +25,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/join-us" element={<JoinUs />} />
-
+          <Route path="/join-us" element={<JoinUs />} /> 
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/masterClass" element={<MasterClasspages />} />  {/* Updated path */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -49,4 +48,5 @@ const App = () => {
 
 
 export default App;
+
 
