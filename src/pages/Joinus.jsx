@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import Layout from "../component/Layout";
 import JoinusForm from "../component/joinus/JoinusForm"; // ✅ Corrected import path
 
-const Joinus = () => {
+const JoinUs = () => {
   const location = useLocation();
 
   useEffect(() => {
@@ -32,4 +32,4 @@ const Joinus = () => {
   );
 };
 
-export default Joinus;
+export default JoinUs;

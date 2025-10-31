@@ -15,7 +15,7 @@ import ResumeReview from "./pages/ResumeReview";
 import AutoPay from "./utils/AutoPay";
 import BlogPage from "./pages/BlogPage";
 import BlogDetail from "./component/blogs/BlogDetail";
-import JoinUs from "./pages/joinus";
+import JoinUs from "./pages/JoinUs";
 
 const App = () => {
   return (
