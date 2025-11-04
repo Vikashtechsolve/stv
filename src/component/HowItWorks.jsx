@@ -5,7 +5,7 @@ import OneIcon from "../assets/one.svg";
 import TwoIcon from "../assets/two.svg";
 import ThreeIcon from "../assets/three.svg";
 import FourIcon from "../assets/four.svg";
-import DropdownIcon from "../assets/dropdown.svg"; // ✅ Added dropdown icon
+import DropdownIcon from "../assets/dropdown.svg"; 
 
 const categories = ["Coding", "Aptitude", "Quiz", "All"];
 
@@ -51,7 +51,7 @@ const steps = [
     icon: FourIcon,
     title: "Get Certificates & Rewards",
     description:
-      "Receive a digital participation certificate and win exciting prizes and badges for top performance.",
+      "Receive a digital participation certificate and win exciting prizes and verified achievement badges for top performance.",
   },
 ];
 
@@ -184,7 +184,7 @@ export default function LaunchPage() {
       lineHeight: "36px",
     }}
   >
-    Register now and get exclusive early access to our first contest and special rewards
+    DON'T MISS THE LAUNCH! Register now to get exclusive early access, a bonus preparation challenge, and special rewards reserved only for the first 1000 participants.
   </p>
 
   {/* Form */}
@@ -357,7 +357,7 @@ export default function LaunchPage() {
         display: "block",
       }}
     >
-      Register Now →
+      Pre Register →
     </button>
   </form>
 </section>

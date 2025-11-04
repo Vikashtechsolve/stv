@@ -42,8 +42,8 @@ const DoubtSolvingHero = () => {
         </div>
       </div>
 
-      <button className="mt-12 bg-gradient-to-r from-[#E70021] to-[#9B0014] text-white text-xl font-semibold px-8 py-5 rounded-xl shadow-lg hover:scale-105 transition-transform">
-        Book a Session Now →
+      <button className="mt-12 bg-gradient-to-r cursor-pointer from-[#E70021] to-[#9B0014] text-white text-xl font-semibold px-8 py-5 rounded-xl shadow-lg hover:scale-105 transition-transform">
+        Connect with a Mentor Now →
       </button>
     </div>
   );

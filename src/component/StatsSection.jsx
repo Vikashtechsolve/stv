@@ -28,9 +28,9 @@ const StatsSection = () => {
             <div className="grid grid-cols-2 gap-6">
               {[
                 { title: "95%", subtitle: "Students got clarity after Mentorship" },
-                { title: "1K+", subtitle: "Doubts Solved Live" },
-                { title: "90%", subtitle: "Interview Confidence Boosted" },
-                { title: "500+", subtitle: "Resume Reviewed & Improved" },
+                { title: "1K+", subtitle: "Live Doubts Solved " },
+                { title: "90%", subtitle: "Interview Confidence Boost" },
+                { title: "500+", subtitle: "Resumes Made Recruiter-Ready" },
               ].map((card, idx) => (
                 <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8">
                   <h2 className="text-4xl md:text-5xl font-bold text-red-600">{card.title}</h2>
@@ -42,8 +42,8 @@ const StatsSection = () => {
             {/* Last card centered */}
             <div className="flex justify-center mt-6">
               <div className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
-                <h2 className="text-4xl md:text-5xl font-bold text-red-600">500+</h2>
-                <p className="text-base md:text-lg mt-3">Resume Reviewed & Improved</p>
+                <h2 className="text-4xl md:text-5xl font-bold text-red-600">50+</h2>
+                <p className="text-base md:text-lg mt-3">High-Impact Masterclasses Delivered</p>
               </div>
             </div>
           </div>
@@ -52,8 +52,8 @@ const StatsSection = () => {
           <div className="hidden md:flex flex-wrap md:flex-nowrap space-x-10 justify-end">
             {[
               { title: "95%", subtitle: "Students got clarity after Mentorship" },
-              { title: "1K+", subtitle: "Doubts Solved Live" },
-              { title: "90%", subtitle: "Interview Confidence Boosted" },
+              { title: "1K+", subtitle: "Live Doubts Solved" },
+              { title: "90%", subtitle: "Interview Confidence Boost" },
             ].map((card, idx) => (
               <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
                 <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>
@@ -64,8 +64,8 @@ const StatsSection = () => {
 
           <div className="hidden md:flex flex-wrap md:flex-nowrap space-x-10 justify-end">
             {[
-              { title: "500+", subtitle: "Resume Reviewed & Improved" },
-              { title: "50+", subtitle: "Online Master class deleverd" },
+              { title: "500+", subtitle: "Resumes Made Recruiter Ready" },
+              { title: "50+", subtitle: "High-Impact Masterclasses Delivered" },
             ].map((card, idx) => (
               <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
                 <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>

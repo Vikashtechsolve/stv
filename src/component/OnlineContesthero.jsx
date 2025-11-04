@@ -52,8 +52,7 @@ export default function HeroSectionPage() {
           margin: "0 auto",
         }}
       >
-        A platform where students showcase their talent, sharpen their skills,
-        and win exciting prizes!
+       Ready to Prove It? Challenge your skills in Coding & Quizzes to earn recognition from top recruiters and build your competitive profile.
       </p>
 
       {/* Hero Section Card */}
@@ -110,7 +109,7 @@ export default function HeroSectionPage() {
                 width: "100%",
               }}
             >
-              Get Ready to Compete <br /> Coming Soon!
+              Get Ready to Compete <br /> The Battle is Coming!
             </h1>
 
             {/* Description (left aligned) */}
@@ -125,9 +124,7 @@ export default function HeroSectionPage() {
                 textAlign: "left",
               }}
             >
-              Join our upcoming Coding & Quiz Contests for Class 7–12 and B.Tech
-              students. Challenge your skills, climb the leaderboard, and win
-              exciting prizes!
+              Pre-register now for our high-stakes Coding & Quiz Contests (Open to Class 7-12 & B.Tech). Limited slots for early birds!
             </p>
 
             {/* Pre-Register Button (left aligned) */}

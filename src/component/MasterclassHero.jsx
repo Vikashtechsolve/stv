@@ -30,7 +30,7 @@ const MasterClassPage = () => {
             WebkitTextFillColor: "transparent",
           }}
         >
-          Learn Any Topic in Just 1 Hour – Starting at ₹9!
+          Learn Any Topic in Just 2 Hour – Starting at ₹49!
         </h1>
 
         <p className="mt-4 text-base sm:text-lg md:text-xl font-medium text-gray-800">

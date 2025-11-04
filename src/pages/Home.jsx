@@ -45,7 +45,9 @@ const Home = () => {
       <div id="howWeWork">
         <HowWeWork />
       </div>
-      <ShapeYourJourney />
+      <div id="shapeYourJourney">
+        <ShapeYourJourney />
+      </div>
       <div id="successStories">
         <SuccessStories />
       </div>

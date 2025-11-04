@@ -48,7 +48,7 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.error(err);
-      setError("Server error. Please try again later.");
+      setError("");
     } finally {
       setLoading(false);
     }

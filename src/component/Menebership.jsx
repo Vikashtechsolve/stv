@@ -113,8 +113,13 @@
 import React from "react";
 import bgImage from "../assets/membershipBG.jpg";
 import videoThumbnail from "../assets/video.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Membership = () => {
+    const navigate = useNavigate();
+    const handleBookSession = () => {
+        navigate("/oneToOneMentoring");
+    }
     return (
         <div className="mt-6">
             {/* Title */}
@@ -210,7 +215,9 @@ const Membership = () => {
 
             {/* Book Button OUTSIDE background */}
             <div className="flex justify-center mt-10">
-                <button className="px-8 py-5 bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white rounded-2xl shadow hover:opacity-90 transition text-2xl ">
+                <button
+                onClick={handleBookSession}
+                className="px-8 py-5 cursor-pointer bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white rounded-2xl shadow hover:opacity-90 transition text-2xl ">
                     Book a Session
                 </button>
             </div>

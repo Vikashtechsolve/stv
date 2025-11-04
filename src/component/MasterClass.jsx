@@ -16,7 +16,7 @@ const MasterClass = () => {
             <p className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl text-black mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-nunito">
                 Quick, affordable, and interactive classes starting at{" "}
                 <span className="bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
-                    just ₹9.
+                    just ₹49.
                 </span>
             </p>
 
@@ -56,7 +56,7 @@ const MasterClass = () => {
             {/* CTA Button */}
             <div className="flex justify-center pb-6 sm:pb-8">
                 <button className="cursor-pointer text-white text-[16px] sm:text-[18px] md:text-[20px] px-6 sm:px-8 py-3 sm:py-4 rounded-md font-semibold shadow bg-gradient-to-r from-[#ED0331] to-[#87021C] hover:opacity-90 transition" onClick={() => navigate("/masterClass")}>
-                     Master Class Only ₹9 
+                     Master Class Only ₹49 
                 </button>
             </div>
         </div>

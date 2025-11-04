@@ -73,7 +73,7 @@ const domains = [
     {
         icon: GemIcon,
         title: "Data Structures & Algorithms (DSA)",
-        description: "Master one of the most essential skills for every programmer—problem-solving through DSA. Learn how to approach technical challenges, structure efficient solutions, and prepare for coding interviews with personalized feedback from mentors. From arrays and linked lists to graphs and dynamic programming, our sessions help you gain deep conceptual clarity and the confidence to solve real-world challenges.",
+        description: "DSA: Crack the Interview Logic: Master Dynamic Programming & System Design basics with personalized feedback. Transform theoretical knowledge into the confident problem-solving ability needed to clear FAANG-level interviews.",
         cardBg: "bg-gradient-to-br from-purple-50 to-purple-100",
         iconContainerClasses: 'bg-[#70B99B] shadow-md shadow-green-200/50', // Green/Teal icon color
     },

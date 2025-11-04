@@ -1,7 +1,15 @@
 import React from "react";
 import { CheckCircle, Users, Star } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const MentorshipHero = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  const handleNavigate = (sectionId) => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section className="flex flex-col bg-[#E2E2E2] items-center justify-center vksbg text-center px-4 md:px-5 py-16">
       {/* Heading */}
@@ -58,7 +66,8 @@ const MentorshipHero = () => {
       </div>
 
       {/* CTA Button */}
-      <button className="mt-12 bg-gradient-to-r from-[#E70021] to-[#9B0014] text-white text-lg font-semibold px-8 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform">
+      <button className="mt-12 cursor-pointer bg-gradient-to-r from-[#E70021] to-[#9B0014] text-white text-lg font-semibold px-8 py-3 rounded-xl shadow-lg hover:scale-105 transition-transform"
+        onClick={() => handleNavigate("mentors-section")}>
         Book a Session Now →
       </button>
     </section>

@@ -12,17 +12,13 @@ const CardsSection = () => {
       img: trust,
       alt: "Trust & Credibility",
       title: "Trust & Credibility",
-      desc: `At Vikas Tech Solutions, trust is our foundation. With certified mentors,
-        5,000+ successful sessions, and a 95% satisfaction rate, we ensure expert guidance.
-        Our transparent process, safe policies, and clear pricing make learning safe and reliable.`,
+      desc: `Verified Industry Experts: Learn from a network of certified mentors (5,000+ successful sessions, 95% satisfaction). Our process is transparent and built on trust. We ensure expert guidance, Our transparent process, and clear pricing make learning safe and reliable.`,
     },
     {
       img: diff,
       alt: "What makes us Different",
       title: "What makes us Different",
-      desc: `At Vikas Tech Solutions, learners enjoy personalized 1:1 mentorship, instant doubt-solving,
-        and career-focused guidance. With skill-based contests and flexible, affordable plans,
-        we make quality learning engaging and accessible.`,
+      desc: `We combine 1:1 mentorship with instant doubt-solving and skill contests to create a complete ecosystem designed for high-ROI career growth`,
     },
     {
       img: career,

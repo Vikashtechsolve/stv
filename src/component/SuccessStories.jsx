@@ -216,7 +216,7 @@ const SuccessStories = () => {
           id="prev"
           className="hidden md:flex absolute top-1/2 -translate-y-1/2 left-8 bg-white shadow rounded-full p-2"
         >
-          <FiChevronLeft className="w-6 h-6 text-gray-700" />
+          <FiChevronLeft className="w-6 h-6 cursor-pointer text-gray-700" />
         </button>
 
         <button
@@ -226,7 +226,7 @@ const SuccessStories = () => {
           }}
           aria-label="next"
           id="next"
-          className="hidden md:flex absolute top-1/2 -translate-y-1/2 right-8 bg-white shadow rounded-full p-2"
+          className="hidden md:flex absolute cursor-pointer top-1/2 -translate-y-1/2 right-8 bg-white shadow rounded-full p-2"
         >
           <FiChevronRight className="w-6 h-6 text-gray-700" />
         </button>

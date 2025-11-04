@@ -22,7 +22,9 @@ export default function OneToOneMentoring() {
         <MentorshipCards/>
         <MentorshipDomain/>
         <MentorshipSteps/>
-        <MentorSection/>
+         <div id="mentors-section" >
+          <MentorSection/>
+         </div>
         <WhyChooseUs/>
         <StudentsFeedback/>
         <Faqs faqData={faqData} />

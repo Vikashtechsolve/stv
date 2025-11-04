@@ -11,12 +11,12 @@ const masterClassData = {
     { name: "Priya Singh", role: "UX/UI Designer, Ex-Microsoft", image: AnanyaImg },
   ],
   points: [
-    { title: "Affordable Learning", description: "Start your journey with live masterclasses at affordable prices." },
-    { title: "Focused Learning", description: "Deep dive into one topic with practical, easy-to-understand examples." },
+    { title: "Affordable Learning", description: "Affordable Learning: High-Value Masterclasses Starting at Just ₹49 " },
+    { title: "Focused Learning", description: "Concept Clarity Guaranteed: Deep-dive into one core topic with hands-on, practical examples in 90 minutes." },
     { title: "Expert Mentors", description: "Learn directly from industry professionals and experienced teachers." },
     { title: "Practical Insights", description: "Gain real-world knowledge through hands-on exercises." },
     { title: "Flexible Schedule", description: "Attend classes at your convenience and pace." },
-    { title: "Lifetime Access", description: "Revisit class recordings and resources anytime." },
+    { title: "Lifetime Access", description: "Future Proof Your Learning: Get Lifetime Access to recordings, mentor notes, and exclusive resources." },
   ],
 };
 

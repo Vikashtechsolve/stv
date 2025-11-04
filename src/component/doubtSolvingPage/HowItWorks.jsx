@@ -5,7 +5,7 @@ import { FileQuestion, Video, NotebookText, ClipboardList, PlayCircle, CalendarC
 const stepsData = [
   {
     id: 1,
-    title: 'Post Your Question',
+    title: 'Post your Doubts & Get Instant Match',
     mainIcon: FileQuestion,
     description: 'Upload your question, screenshot, or describe your doubt in detail.',
     secondaryIcon: ClipboardList,
@@ -13,7 +13,7 @@ const stepsData = [
   },
   {
     id: 2,
-    title: 'Connect Live with Mentor',
+    title: 'Live 1:1 Video Solution (Real-Time Clarity)',
     mainIcon: Video,
     description: 'Join a 1:1 video session with an expert who specializes in your subject.',
     secondaryIcon: PlayCircle,
@@ -21,7 +21,7 @@ const stepsData = [
   },
   {
     id: 3,
-    title: 'Get Notes + Next Steps',
+    title: 'Receive Personalized Roadmap & Notes',
     mainIcon: NotebookText,
     description: 'After your session, receive personalized notes, suggested resources, and a roadmap for mastering the topic.',
     secondaryIcon: CalendarCheck,
