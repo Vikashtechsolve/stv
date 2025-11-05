@@ -43,14 +43,17 @@ const LoginPage = () => {
       const role = data.user?.role;
 
       startTransition(() => {
-        if (role === "admin") {
-          window.location.href = "https://admin.vikashtechsolution.com/";
-        } else if (role === "sales") {
-          navigate("/dashboard");
-        } else {
-          navigate("/");
-        }
-      });
+      if (role === "admin") {
+        const tokenParam = encodeURIComponent(data.token);
+        // ✅ Send the JWT token in query params
+        window.location.href = `https://admin.vikashtechsolution.com/?token=${tokenParam}`;
+      } else if (role === "sales") {
+        navigate("/dashboard");
+      } else {
+        navigate("/");
+      }
+    });
+
     } catch (err) {
       console.error("❌ Login error:", err);
       setError("Server error. Please try again later.");
