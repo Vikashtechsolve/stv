@@ -1,15 +1,29 @@
-import React, { useState, useTransition } from "react";
+import React, { useState, useTransition, useEffect } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isPending, startTransition] = useTransition();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [infoMessage, setInfoMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // ✅ Show message passed via query (e.g. "Please login first")
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const msg = params.get("message");
+    if (msg) {
+      setInfoMessage(decodeURIComponent(msg));
+      // Clean message from URL
+      window.history.replaceState({}, document.title, "/login");
+    }
+  }, [location]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +41,7 @@ const LoginPage = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: trimmedUsername, password }),
-        credentials: "include", // allows cookie-based session if backend sets it
+        credentials: "include", // allows backend cookie if set
       });
 
       const data = await res.json();
@@ -41,22 +55,18 @@ const LoginPage = () => {
       const token = data.token;
       const role = data.user?.role;
 
-      // ⚠️ Do NOT use localStorage for sensitive tokens
-      // Instead, use sessionStorage (clears when tab/browser closes)
       if (token) {
         sessionStorage.setItem("token", token);
+        Cookies.set("token", token, { secure: true, sameSite: "strict" });
       }
 
       // ✅ Redirect based on role
       startTransition(() => {
         if (role === "admin") {
-          // Pass token temporarily for first load
           const tokenParam = encodeURIComponent(token);
           window.location.href = `https://admin.vikashtechsolution.com/?token=${tokenParam}`;
-        } else if (role === "sales") {
-          navigate("/dashboard");
         } else {
-          navigate("/");
+          navigate("/unauthorized");
         }
       });
     } catch (err) {
@@ -87,6 +97,18 @@ const LoginPage = () => {
           </p>
         </div>
 
+        {/* Info / error messages */}
+        {infoMessage && (
+          <p className="text-blue-600 text-sm font-medium text-center mb-2">
+            {infoMessage}
+          </p>
+        )}
+        {error && (
+          <p className="text-red-500 text-sm font-medium text-center mb-2">
+            {error}
+          </p>
+        )}
+
         <form className="space-y-5" onSubmit={handleLogin}>
           <div>
             <label className="block text-sm font-semibold mb-1">User ID</label>
@@ -115,12 +137,6 @@ const LoginPage = () => {
               />
             </div>
           </div>
-
-          {error && (
-            <p className="text-red-500 text-sm font-medium text-center">
-              {error}
-            </p>
-          )}
 
           <button
             type="submit"
