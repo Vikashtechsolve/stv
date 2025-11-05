@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [isPending, startTransition] = useTransition();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +16,6 @@ const LoginPage = () => {
     setError("");
 
     const trimmedUsername = username.trim();
-
     if (!trimmedUsername || !password) {
       setError("Please enter both username and password");
       return;
@@ -37,18 +37,23 @@ const LoginPage = () => {
         return;
       }
 
-      // Save user info in localStorage
-      localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
-      // Redirect based on role
-      if (data.role === "admin" || data.role === "sales") {
-        navigate("/dashboard");
-      } else {
-        navigate("/");
-      }
+      const role = data.user?.role;
+
+      startTransition(() => {
+        if (role === "admin") {
+          window.location.href = "https://admin.vikashtechsolution.com/";
+        } else if (role === "sales") {
+          navigate("/dashboard");
+        } else {
+          navigate("/");
+        }
+      });
     } catch (err) {
-      console.error(err);
-      setError("");
+      console.error("❌ Login error:", err);
+      setError("Server error. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -57,7 +62,6 @@ const LoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#E2E2E2] px-4">
       <div className="bg-white shadow-xl rounded-2xl w-full max-w-md p-8 relative">
-        {/* Back to home */}
         <Link
           to="/"
           className="absolute top-4 left-4 text-sm text-gray-600 hover:text-red-600"
@@ -65,7 +69,6 @@ const LoginPage = () => {
           ← Back to Home
         </Link>
 
-        {/* Header */}
         <div className="text-center mb-6">
           <div className="w-14 h-14 mx-auto flex items-center justify-center rounded-full bg-red-100">
             <FiUser className="text-red-600 text-2xl" />
@@ -76,7 +79,6 @@ const LoginPage = () => {
           </p>
         </div>
 
-        {/* Form */}
         <form className="space-y-5" onSubmit={handleLogin}>
           <div>
             <label className="block text-sm font-semibold mb-1">User ID</label>
@@ -84,7 +86,7 @@ const LoginPage = () => {
               <FiUser className="text-gray-400 mr-2" />
               <input
                 type="text"
-                placeholder="Enter your employee ID"
+                placeholder="Enter your username"
                 className="w-full outline-none text-sm"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -106,16 +108,20 @@ const LoginPage = () => {
             </div>
           </div>
 
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-sm font-medium text-center">
+              {error}
+            </p>
+          )}
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || isPending}
             className={`w-full bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white py-2 rounded-lg font-semibold hover:opacity-90 transition ${
-              loading ? "opacity-50 cursor-not-allowed" : ""
+              loading || isPending ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            {loading ? "Signing In..." : "Sign In"}
+            {loading || isPending ? "Signing In..." : "Sign In"}
           </button>
         </form>
       </div>
