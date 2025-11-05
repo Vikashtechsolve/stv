@@ -27,6 +27,7 @@ const LoginPage = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: trimmedUsername, password }),
+        credentials: "include", // allows cookie-based session if backend sets it
       });
 
       const data = await res.json();
@@ -37,23 +38,27 @@ const LoginPage = () => {
         return;
       }
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
+      const token = data.token;
       const role = data.user?.role;
 
-      startTransition(() => {
-      if (role === "admin") {
-        const tokenParam = encodeURIComponent(data.token);
-        // ✅ Send the JWT token in query params
-        window.location.href = `https://admin.vikashtechsolution.com/?token=${tokenParam}`;
-      } else if (role === "sales") {
-        navigate("/dashboard");
-      } else {
-        navigate("/");
+      // ⚠️ Do NOT use localStorage for sensitive tokens
+      // Instead, use sessionStorage (clears when tab/browser closes)
+      if (token) {
+        sessionStorage.setItem("token", token);
       }
-    });
 
+      // ✅ Redirect based on role
+      startTransition(() => {
+        if (role === "admin") {
+          // Pass token temporarily for first load
+          const tokenParam = encodeURIComponent(token);
+          window.location.href = `https://admin.vikashtechsolution.com/?token=${tokenParam}`;
+        } else if (role === "sales") {
+          navigate("/dashboard");
+        } else {
+          navigate("/");
+        }
+      });
     } catch (err) {
       console.error("❌ Login error:", err);
       setError("Server error. Please try again later.");
