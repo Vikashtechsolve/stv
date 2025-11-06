@@ -3,6 +3,17 @@ import { FiUser, FiLock } from "react-icons/fi";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 
+/**
+ * 🌍 Auto-detect API base URL
+ * - Uses Render URL in production
+ * - Uses localhost in local dev
+ */
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (window.location.hostname === "localhost"
+    ? "http://localhost:8000"
+    : "https://vts-backend-ms7k.onrender.com");
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,17 +25,17 @@ const LoginPage = () => {
   const [infoMessage, setInfoMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ✅ Show message passed via query (e.g. "Please login first")
+  // ✅ Show info messages passed via query
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const msg = params.get("message");
     if (msg) {
       setInfoMessage(decodeURIComponent(msg));
-      // Clean message from URL
       window.history.replaceState({}, document.title, "/login");
     }
   }, [location]);
 
+  // ✅ Handle Login
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -37,28 +48,29 @@ const LoginPage = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/api/auth/login", {
+      console.log("🌐 Using API:", `${API_BASE_URL}/api/auth/login`);
+
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: trimmedUsername, password }),
-        credentials: "include", // allows backend cookie if set
+        credentials: "include",
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.message || "Login failed");
-        setLoading(false);
-        return;
+        throw new Error(data.message || "Invalid credentials");
       }
 
       const token = data.token;
       const role = data.user?.role;
 
-      if (token) {
-        sessionStorage.setItem("token", token);
-        Cookies.set("token", token, { secure: true, sameSite: "strict" });
-      }
+      if (!token) throw new Error("No token received from server");
+
+      // ✅ Save token in cookies + session
+      sessionStorage.setItem("token", token);
+      Cookies.set("token", token, { secure: true, sameSite: "Strict" });
 
       // ✅ Redirect based on role
       startTransition(() => {
@@ -71,7 +83,11 @@ const LoginPage = () => {
       });
     } catch (err) {
       console.error("❌ Login error:", err);
-      setError("Server error. Please try again later.");
+      if (err.name === "TypeError" && err.message.includes("Failed to fetch")) {
+        setError("Unable to connect to server. Please try again later.");
+      } else {
+        setError(err.message || "Server error. Please try again later.");
+      }
     } finally {
       setLoading(false);
     }
@@ -97,7 +113,7 @@ const LoginPage = () => {
           </p>
         </div>
 
-        {/* Info / error messages */}
+        {/* ✅ Info / Error messages */}
         {infoMessage && (
           <p className="text-blue-600 text-sm font-medium text-center mb-2">
             {infoMessage}
