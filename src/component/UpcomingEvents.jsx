@@ -2,70 +2,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import AnanyaImg from "../assets/anayasharma.png";
 import { ChevronDown } from "lucide-react";
+import axios from "axios";
 
-// ---------------- DATA -----------------
-const eventsData = [
-  {
-    category: "Mathematics Masterclass",
-    topic: "Crack Algebra Concepts in Just 1 Hour",
-    mentor: "Arjun Singh",
-    date: "30th September, 2025",
-    time: "5:00 PM - 6:00 PM",
-    registered: 56,
-    image: AnanyaImg,
-    leftText: "Mastering Core Maths Fundamentals for Competitive Exams",
-  },
-  {
-    category: "Physics Masterclass",
-    topic: "Master Newton's Laws in 2 Hours",
-    mentor: "Rahul Verma",
-    date: "1st October, 2025",
-    time: "6:00 PM - 8:00 PM",
-    registered: 42,
-    image: AnanyaImg,
-    leftText: "Understanding Newtonian Mechanics",
-  },
-  {
-    category: "Chemistry Masterclass",
-    topic: "Organic Chemistry Made Easy",
-    mentor: "Priya Nair",
-    date: "2nd October, 2025",
-    time: "4:00 PM - 5:30 PM",
-    registered: 47,
-    image: AnanyaImg,
-    leftText: "Organic Reactions Simplified",
-  },
-  {
-    category: "Biology Masterclass",
-    topic: "Human Anatomy Simplified",
-    mentor: "Rohan Mehta",
-    date: "3rd October, 2025",
-    time: "3:00 PM - 4:30 PM",
-    registered: 33,
-    image: AnanyaImg,
-    leftText: "Explore Human Anatomy Basics",
-  },
-  {
-    category: "Computer Science Masterclass",
-    topic: "Introduction to Python Programming",
-    mentor: "Sneha Kapoor",
-    date: "4th October, 2025",
-    time: "5:00 PM - 6:30 PM",
-    registered: 61,
-    image: AnanyaImg,
-    leftText: "Start Your Python Journey",
-  },
-  {
-    category: "Statistics Masterclass",
-    topic: "Probability Simplified",
-    mentor: "Karan Malhotra",
-    date: "5th October, 2025",
-    time: "6:00 PM - 8:00 PM",
-    registered: 60,
-    image: AnanyaImg,
-    leftText: "Master Probability Concepts",
-  },
-];
+
+const baseUrl = import.meta.env.VITE_APP_API_URL;
 
 // ---------------- LOADER -----------------
 const LoadingOverlay = ({ message }) => (
@@ -76,104 +16,102 @@ const LoadingOverlay = ({ message }) => (
 );
 
 // ---------------- COMPONENTS -----------------
-const EventCard = ({ event, onRegister }) => (
-  <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
-    <div className="w-full h-52 bg-gray-200 relative">
-      <div
-        className="absolute left-3 top-3 z-10"
-        style={{
-          color: "#1B1718",
-          fontSize: "22.14px",
-          fontFamily: "Playfair Display",
-          fontWeight: 700,
-          lineHeight: "31.36px",
-          wordWrap: "break-word",
-          maxWidth: "60%",
-        }}
-      >
-        {event.leftText}
-      </div>
-      <img
-        src={event.image}
-        alt={event.topic}
-        className="absolute top-1/2 left-1/2 transform -translate-y-1/2 translate-x-6 w-52 h-48 object-cover rounded-lg"
-      />
-    </div>
+const EventCard = ({ event, onRegister }) => {
+  const imageUrl = `http://localhost:8000${event.bannerImage}`;
 
-    <div className="p-5 flex flex-col gap-3 font-playfair">
-      <div className="text-center text-xl font-semibold underline bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
-        {event.category}
+  return (
+    <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
+      <div className="w-full h-52 bg-gray-200 relative">
+        <img
+          src={imageUrl}
+          alt={event.eventTitle}
+          className="absolute top-1/2 left-1/2 transform -translate-y-1/2 translate-x-6 w-52 h-48 object-cover rounded-lg"
+        />
       </div>
 
-      <div
-        className="text-black font-semibold text-base text-center"
-        style={{ fontSize: "16.6px", lineHeight: "25.83px" }}
-      >
-        {event.topic}
-      </div>
-
-      <div
-        className="text-black text-left"
-        style={{
-          fontSize: "18.45px",
-          fontWeight: 500,
-          lineHeight: "25.83px",
-          fontFamily: "Playfair Display",
-        }}
-      >
-        Mentor: {event.mentor}
-      </div>
-
-      <div
-        className="text-black text-left"
-        style={{
-          fontSize: "16.6px",
-          lineHeight: "25.83px",
-          fontFamily: "Playfair Display",
-          marginTop: "8px",
-        }}
-      >
-        <div>
-          <span className="font-semibold">Date: </span>
-          {event.date}
+      <div className="p-5 flex flex-col gap-3 font-playfair">
+        <div className="text-center text-xl font-semibold underline bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+          {event.eventTitle}
         </div>
-        <div>
-          <span className="font-semibold">Time: </span>
-          {event.time}
-        </div>
-      </div>
 
-      <div className="mt-3 flex justify-between items-center">
-        <span
+        <div
+          className="text-black font-semibold text-base text-center"
+          style={{ fontSize: "16.6px", lineHeight: "25.83px" }}
+        >
+          {event.eventSubtitle}
+        </div>
+
+        <div
+          className="text-black text-left"
           style={{
-            color: "black",
-            fontSize: "14.76px",
+            fontSize: "18.45px",
+            fontWeight: 500,
+            lineHeight: "25.83px",
             fontFamily: "Playfair Display",
-            fontWeight: 600,
           }}
         >
-          Registered:
-        </span>
-        <span
+          Mentor: {event.mentorName}
+        </div>
+
+        <div
+          className="text-black text-left"
           style={{
-            color: "red",
+            fontSize: "16.6px",
+            lineHeight: "25.83px",
             fontFamily: "Playfair Display",
-            fontSize: "14.76px",
-            fontWeight: 600,
+            marginTop: "8px",
           }}
         >
-          {event.registered} Students
-        </span>
-        <button
-          onClick={() => onRegister(event)}
-          className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-900 text-white py-2 px-4 rounded-lg font-semibold cursor-pointer hover:opacity-90 transition-opacity duration-300"
-        >
-          Register Now
-        </button>
+          <div>
+            <span className="font-semibold">Date: </span>
+            {event.scheduleEventDate}
+          </div>
+          <div>
+            <span className="font-semibold">Time: </span>
+            {event.scheduleEventTime} PM
+          </div>
+        </div>
+
+        <div className="mt-3 flex justify-between items-center">
+          <span
+            style={{
+              color: "black",
+              fontSize: "14.76px",
+              fontFamily: "Playfair Display",
+              fontWeight: 600,
+            }}
+          >
+            Registered:
+          </span>
+
+          {event.registered === undefined ? (
+            <span className="text-gray-500 italic">Loading...</span>
+          ) : (
+            <span
+              style={{
+                color: "red",
+                fontFamily: "Playfair Display",
+                fontSize: "14.76px",
+                fontWeight: 600,
+              }}
+            >
+              {event.registered} Students
+            </span>
+          )}
+
+          <button
+            onClick={() => onRegister(event)}
+            className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-900 text-white py-2 px-4 rounded-lg font-semibold cursor-pointer hover:opacity-90 transition-opacity duration-300"
+          >
+            Register Now
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+
 
 // ---------------- COUNTRY DROPDOWN -----------------
 const countries = [
@@ -307,97 +245,120 @@ const RegistrationPopup = ({ event, onClose }) => {
     return true;
   };
 
-  const handlePayment = async () => {
-    if (!validateForm()) return;
-    setLoading(true);
-    try {
-      const baseUrl = "https://vts-backend-ms7k.onrender.com";
-      const masterClassAmount = 49;
+const handlePayment = async () => {
+  if (!validateForm()) return;
+  setLoading(true);
 
-      const res = await fetch(`${baseUrl}/api/payments/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: "a1b2c3d4e5f6789012345678", amount: masterClassAmount }),
-      });
-      const data = await res.json();
+  try {
+    
+    const masterClassAmount = 1;
 
-      if (!data.orderId) throw new Error("Failed to create payment order");
+    const res = await fetch(`${baseUrl}/api/payments/create`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: "a1b2c3d4e5f6789012345678",
+        amount: masterClassAmount,
+      }),
+    });
 
-      const options = {
-        key: data.key,
-        amount: data.amount,
-        currency: data.currency,
-        name: "VTS Masterclass",
-        description: event.topic,
-        order_id: data.orderId,
-        prefill: {
-          name: formData.name,
-          email: formData.email,
-          contact: formData.mobile,
-        },
-        handler: async function (response) {
+    const data = await res.json();
+    if (!data.orderId) throw new Error("Failed to create payment order");
+
+    const options = {
+      key: data.key,
+      amount: data.amount,
+      currency: data.currency,
+      name: "VTS Masterclass",
+      description: event.eventTitle, // ✅ updated field
+      order_id: data.orderId,
+
+      prefill: {
+        name: formData.name,
+        email: formData.email,
+        contact: formData.mobile,
+      },
+
+      handler: async function (response) {
+        try {
+          const verifyRes = await fetch(`${baseUrl}/api/payments/verify`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(response),
+          });
+
+          const verifyData = await verifyRes.json();
+          if (!verifyData.success)
+            throw new Error("Payment verification failed");
+
+          // ✅ Step 1: Send confirmation email
           try {
-            const verifyRes = await fetch(`${baseUrl}/api/payments/verify`, {
+            await fetch(`${baseUrl}/api/mail/send-mail`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(response),
+              body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.mobile,
+                query:
+                  "🎉 Congratulations! Your Masterclass registration is successful.",
+                type: "general",
+              }),
             });
+          } catch {
+            console.warn("Email sending failed but continuing...");
+          }
 
-            const verifyData = await verifyRes.json();
-            if (verifyData.success) {
-              try {
-                let headersList = {
-                  Accept: "*/*",
-                  "Content-Type": "application/json",
-                };
-                let bodyContent = JSON.stringify({
+          // ✅ Step 2: Store registration in DB
+          const registrationData={
+                  masterclassId: event._id, 
                   name: formData.name,
                   email: formData.email,
-                  phone: formData.mobile,
-                  query:
-                    "🎉 Congratulations! Your Masterclass registration is successful. Our team will contact you soon with all the details — don’t worry, you’re all set!",
-                  type: "general",
-                });
-
-                await fetch(`${baseUrl}/api/mail/send-mail`, {
-                  method: "POST",
-                  body: bodyContent,
-                  headers: headersList,
-                });
-
-                setModal({
-                  message:
-                    "🎉 Registration successful! Confirmation mail has been sent.",
-                  type: "success",
-                });
-              } catch {
-                setModal({
-                  message: "Payment done but failed to send confirmation mail.",
-                  type: "error",
-                });
+                  mobile: formData.mobile,
+                  graduationYear: formData.graduationYear,
+                }
+                console.log(registrationData);
+          try {
+            await fetch(
+              `${baseUrl}/api/masterclass/register`,
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(registrationData),
               }
-            } else {
-              throw new Error("Payment verification failed");
-            }
-          } catch (err) {
-            setModal({ message: err.message, type: "error" });
-          } finally {
-            setLoading(false);
+            );
+          } catch {
+            console.warn("Failed to store in DB but payment worked!");
           }
-        },
-      };
 
-      const rzp = new window.Razorpay(options);
-      rzp.on("payment.failed", () => {
-        setModal({ message: "Payment failed. Try again.", type: "error" });
-        setLoading(false);
-      });
-      rzp.open();
-    } catch (err) {
-      setModal({ message: err.message || "Something went wrong", type: "error" });
+          setModal({
+            message:
+              "🎉 Registration successful! Confirmation mail has been sent.",
+            type: "success",
+          });
+        } catch (err) {
+          setModal({ message: err.message, type: "error" });
+        } finally {
+          setLoading(false);
+        }
+      },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.on("payment.failed", () => {
+      setModal({ message: "Payment failed. Try again.", type: "error" });
       setLoading(false);
-    }
-  };
+    });
+    rzp.open();
+  } catch (err) {
+    setModal({
+      message: err.message || "Something went wrong",
+      type: "error",
+    });
+    setLoading(false);
+  }
+};
+
 
   if (!event) return null;
 
@@ -500,8 +461,54 @@ const RegistrationPopup = ({ event, onClose }) => {
 };
 
 // ---------------- MAIN -----------------
+
+
 const UpcomingEvents = () => {
+  const [eventsData, setEventsData] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch masterclass main data
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/api/masterclass/");
+        if (res.data.success && Array.isArray(res.data.data)) {
+          setEventsData(res.data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  // Fetch student registration count for each masterclass
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        const promises = eventsData.map(event =>
+          axios.get(`http://localhost:8000/api/masterclass/${event._id}/students/count`)
+        );
+
+        const results = await Promise.all(promises);
+
+        const updatedEvents = eventsData.map((event, index) => ({
+          ...event,
+          registered: results[index]?.data?.totalRegisteredStudents ?? 0,
+        }));
+
+        setEventsData(updatedEvents);
+      } catch (error) {
+        console.error("Error fetching student counts:", error);
+      }
+    };
+
+    if (eventsData.length > 0) fetchCounts();
+  }, [eventsData.length]); // Only runs once after data load
 
   return (
     <div className="w-full py-20 px-6 bg-[#E2E2E2] flex flex-col items-center">
@@ -516,11 +523,17 @@ const UpcomingEvents = () => {
         Upcoming Events
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl">
-        {eventsData.map((event, index) => (
-          <EventCard key={index} event={event} onRegister={setSelectedEvent} />
-        ))}
-      </div>
+      {loading ? (
+        <p className="text-lg font-medium">Loading events...</p>
+      ) : eventsData.length === 0 ? (
+        <p className="text-lg font-medium">No upcoming events available ✅</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl">
+          {eventsData.map(event => (
+            <EventCard key={event._id} event={event} onRegister={setSelectedEvent} />
+          ))}
+        </div>
+      )}
 
       {selectedEvent && (
         <RegistrationPopup
