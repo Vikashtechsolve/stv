@@ -18,7 +18,8 @@ const LoadingOverlay = ({ message }) => (
 
 // ---------------- COMPONENTS -----------------
 const EventCard = ({ event, onRegister }) => {
-  const imageUrl = `${baseUrl}/${event.bannerImage}`;
+  const imageUrl = `${baseUrl}${event.bannerImage}`;
+  console.log("Event Image URL:", imageUrl);
 
   return (
     <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
