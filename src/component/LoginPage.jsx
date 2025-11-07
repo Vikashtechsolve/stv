@@ -1,7 +1,7 @@
 import React, { useState, useTransition, useEffect } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-//import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 
 /**
  * 🌍 Auto-detect API base URL
@@ -70,7 +70,7 @@ const LoginPage = () => {
 
       // ✅ Save token in cookies + session
       sessionStorage.setItem("token", token);
-      //Cookies.set("token", token, { secure: true, sameSite: "Strict" });
+      Cookies.set("token", token, { secure: true, sameSite: "Strict" });
 
       // ✅ Redirect based on role
       startTransition(() => {
