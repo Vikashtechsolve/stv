@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import AnanyaImg from "../assets/anayasharma.png";
 import { ChevronDown } from "lucide-react";
 import axios from "axios";
+import { date } from "yup";
 
 
 const baseUrl = import.meta.env.VITE_APP_API_URL;
@@ -17,7 +18,7 @@ const LoadingOverlay = ({ message }) => (
 
 // ---------------- COMPONENTS -----------------
 const EventCard = ({ event, onRegister }) => {
-  const imageUrl = `http://localhost:8000${event.bannerImage}`;
+  const imageUrl = `${baseUrl}/${event.bannerImage}`;
 
   return (
     <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
@@ -302,8 +303,14 @@ const handlePayment = async () => {
                 phone: formData.mobile,
                 query:
                   "🎉 Congratulations! Your Masterclass registration is successful.",
-                type: "general",
-              }),
+                type: "masterclass",
+                data:{
+                  meetUrl: event.meetingUrl,
+                  date:event.scheduleEventDate,
+                  time:event.scheduleEventTime,
+                  title:event.eventTitle,
+                }
+              }), 
             });
           } catch {
             console.warn("Email sending failed but continuing...");
@@ -472,7 +479,7 @@ const UpcomingEvents = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/masterclass/");
+        const res = await axios.get(`${baseUrl}/api/masterclass/`);
         if (res.data.success && Array.isArray(res.data.data)) {
           setEventsData(res.data.data);
         }
@@ -491,7 +498,7 @@ const UpcomingEvents = () => {
     const fetchCounts = async () => {
       try {
         const promises = eventsData.map(event =>
-          axios.get(`http://localhost:8000/api/masterclass/${event._id}/students/count`)
+          axios.get(`${baseUrl}/api/masterclass/${event._id}/students/count`)
         );
 
         const results = await Promise.all(promises);
