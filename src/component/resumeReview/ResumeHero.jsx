@@ -1,13 +1,22 @@
-import React from "react";
-import { Upload, ArrowRight, CheckCircle, Users, ClipboardCheck } from "lucide-react";
+import React, { useState } from "react";
+import {
+  Upload,
+  ArrowRight,
+  CheckCircle,
+  Users,
+  ClipboardCheck,
+} from "lucide-react";
+import ResumeReviewForm from "./ResumeReviewForm";
 
 const ResumeReview = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
     <section className="w-full bg-[#E2E2E2] py-12 px-6 md:px-16 flex flex-col lg:flex-row items-center justify-between gap-10">
       {/* Left Section */}
       <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
         {/* Heading */}
-        <h1 className=" font-playfair text-3xl md:text-4xl font-bold text-gray-900 leading-snug text-center lg:text-left">
+        <h1 className="font-playfair text-3xl md:text-4xl font-bold text-gray-900 leading-snug text-center lg:text-left">
           Get Your Resume Reviewed by <br />
           Industry Experts{" "}
           <span className="red-gradient font-extrabold">– in Just ₹149</span>
@@ -26,9 +35,16 @@ const ResumeReview = () => {
             <Upload size={18} /> Upload your Resume
           </button>
 
-          <button className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white font-medium rounded-lg px-6 py-3 shadow-md hover:scale-105 transition">
+          <button
+            onClick={() => setIsFormOpen(true)}
+            className="flex items-center cursor-pointer justify-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white font-medium rounded-lg px-6 py-3 shadow-md hover:scale-105 transition"
+          >
             Book Live Review Session <ArrowRight size={18} />
           </button>
+
+          {isFormOpen && (
+            <ResumeReviewForm onClose={() => setIsFormOpen(false)} />
+          )}
         </div>
 
         {/* Features Section */}
@@ -51,7 +67,10 @@ const ResumeReview = () => {
             </div>
 
             <div className="bg-blue-50 p-5 rounded-xl shadow-sm w-[260px] text-center">
-              <ClipboardCheck className="text-blue-700 mx-auto mb-2" size={24} />
+              <ClipboardCheck
+                className="text-blue-700 mx-auto mb-2"
+                size={24}
+              />
               <h3 className="font-semibold text-lg">Personalized Feedback</h3>
               <p className="text-sm text-gray-600 mt-2">
                 Receive actionable suggestions tailored to your profile.
