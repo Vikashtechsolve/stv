@@ -17,6 +17,10 @@ const DoubtSolvingHero = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleNavigate = (sectionId) => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className=" w-full flex flex-col items-center py-10 px-4 bg-[#E2E2E2]">
 
@@ -42,7 +46,7 @@ const DoubtSolvingHero = () => {
         </div>
       </div>
 
-      <button className="mt-12 bg-gradient-to-r cursor-pointer from-[#E70021] to-[#9B0014] text-white text-xl font-semibold px-8 py-5 rounded-xl shadow-lg hover:scale-105 transition-transform">
+      <button onClick={() => handleNavigate("pricingplans")} className="mt-12 bg-gradient-to-r cursor-pointer from-[#E70021] to-[#9B0014] text-white text-xl font-semibold px-8 py-5 rounded-xl shadow-lg hover:scale-105 transition-transform">
         Connect with a Mentor Now →
       </button>
     </div>

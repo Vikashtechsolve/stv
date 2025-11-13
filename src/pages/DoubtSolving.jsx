@@ -22,7 +22,9 @@ export default function DoubtSolving() {
         <SubjectDetails/>
         <StudentTestimonials />
         <Mentors/>
-        <PricingPlans />
+         <div id="pricingplans">
+            <PricingPlans />
+         </div>
         <WhyChooseUs/>
         <Faqs faqData={faqData} />
     </Layout>

@@ -4,16 +4,24 @@ import RegistrationPopup from "../component/RegistrationPopup";
 
 const baseUrl = import.meta.env.VITE_APP_API_URL;
 
-
-const EventCard = ({ event, onRegister,baseUrl }) => {
+const EventCard = ({ event, onRegister, baseUrl }) => {
   const imageUrl = `${baseUrl}${event.bannerImage}`;
+
+  // Format date from YYYY-MM-DD → DD-MM-YYYY
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    return `${day}-${month}-${year}`;
+  };
 
   return (
     <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
-      <div className="w-full h-52 bg-gray-200 relative">
+
+      <div className="w-full h-52 bg-gray-200 relative overflow-hidden">
         <img
           src={imageUrl}
           alt={event.eventTitle}
+          className="w-full h-full object-cover"
         />
       </div>
 
@@ -22,37 +30,19 @@ const EventCard = ({ event, onRegister,baseUrl }) => {
           {event.eventTitle}
         </div>
 
-        <div
-          className="text-black font-semibold text-base text-center"
-          style={{ fontSize: "16.6px", lineHeight: "25.83px" }}
-        >
+        <div className="text-black font-semibold text-base text-center">
           {event.eventSubtitle}
         </div>
 
-        <div
-          className="text-black text-left"
-          style={{
-            fontSize: "18.45px",
-            fontWeight: 500,
-            lineHeight: "25.83px",
-            fontFamily: "Playfair Display",
-          }}
-        >
+        <div className="text-black text-left text-lg font-semibold">
           Mentor: {event.mentorName}
         </div>
 
-        <div
-          className="text-black text-left"
-          style={{
-            fontSize: "16.6px",
-            lineHeight: "25.83px",
-            fontFamily: "Playfair Display",
-            marginTop: "8px",
-          }}
-        >
+        {/* DATE + TIME */}
+        <div className="text-black text-left mt-2 text-[16px] leading-[25px] font-playfair">
           <div>
             <span className="font-semibold">Date: </span>
-            {event.scheduleEventDate}
+            {formatDate(event.scheduleEventDate)}
           </div>
           <div>
             <span className="font-semibold">Time: </span>
@@ -61,35 +51,19 @@ const EventCard = ({ event, onRegister,baseUrl }) => {
         </div>
 
         <div className="mt-3 flex justify-between items-center">
-          <span
-            style={{
-              color: "black",
-              fontSize: "14.76px",
-              fontFamily: "Playfair Display",
-              fontWeight: 600,
-            }}
-          >
-            Registered:
-          </span>
+          <span className="text-[15px] font-semibold">Registered:</span>
 
           {event.registered === undefined ? (
             <span className="text-gray-500 italic">Loading...</span>
           ) : (
-            <span
-              style={{
-                color: "red",
-                fontFamily: "Playfair Display",
-                fontSize: "14.76px",
-                fontWeight: 600,
-              }}
-            >
+            <span className="text-red-600 font-semibold text-[15px]">
               {event.registered} Students
             </span>
           )}
 
           <button
             onClick={() => onRegister(event)}
-            className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-900 text-white py-2 px-4 rounded-lg font-semibold cursor-pointer hover:opacity-90 transition-opacity duration-300"
+            className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-900 text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300"
           >
             Register Now
           </button>
@@ -99,15 +73,16 @@ const EventCard = ({ event, onRegister,baseUrl }) => {
   );
 };
 
-
-
 const UpcomingEvents = () => {
   const [eventsData, setEventsData] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const [loading, setLoading] = useState(true);
+  const [loadingEvents, setLoadingEvents] = useState(true);
+  const [loadingCounts, setLoadingCounts] = useState(true);
 
-  // Fetch masterclass main data
+  // ------------------------------
+  // 1️⃣ Fetch Masterclass Events
+  // ------------------------------
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -118,18 +93,22 @@ const UpcomingEvents = () => {
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {
-        setLoading(false);
+        setLoadingEvents(false);
       }
     };
 
     fetchEvents();
   }, []);
 
-  // Fetch student registration count for each masterclass
+  // ------------------------------
+  // 2️⃣ Fetch Registration Count After Events Loaded
+  // ------------------------------
   useEffect(() => {
+    if (eventsData.length === 0) return;
+
     const fetchCounts = async () => {
       try {
-        const promises = eventsData.map(event =>
+        const promises = eventsData.map((event) =>
           axios.get(`${baseUrl}/api/masterclass/${event._id}/students/count`)
         );
 
@@ -143,17 +122,20 @@ const UpcomingEvents = () => {
         setEventsData(updatedEvents);
       } catch (error) {
         console.error("Error fetching student counts:", error);
+      } finally {
+        setLoadingCounts(false);
       }
     };
 
-    if (eventsData.length > 0) fetchCounts();
-  }, [eventsData.length]); // Only runs once after data load
+    fetchCounts();
+  }, [loadingEvents]); // Runs only when main events finish loading
 
-
+  // ------------------------------
 
   return (
-    <div className="w-full py-20 px-6 bg-[#E2E2E2] flex  flex-col items-center">
-      <h2 className="text-5xl font-semibold font-playfair   bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent mb-15">
+    <div className="w-full py-20 px-6 bg-[#E2E2E2] flex flex-col items-center">
+
+      <h2 className="text-5xl font-semibold font-playfair bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent mb-15">
         Upcoming Events
       </h2>
 
@@ -161,12 +143,21 @@ const UpcomingEvents = () => {
         {eventsData
           .filter((e) => e.status === "scheduled")
           .map((event) => (
-            <EventCard key={event._id} event={event} baseUrl={baseUrl} onRegister={setSelectedEvent} />
+            <EventCard
+              key={event._id}
+              event={event}
+              baseUrl={baseUrl}
+              onRegister={setSelectedEvent}
+            />
           ))}
       </div>
 
       {selectedEvent && (
-        <RegistrationPopup event={selectedEvent} onClose={() => setSelectedEvent(null)} baseUrl={baseUrl} />
+        <RegistrationPopup
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+          baseUrl={baseUrl}
+        />
       )}
     </div>
   );

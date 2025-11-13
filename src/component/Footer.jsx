@@ -83,7 +83,7 @@ const Footer = () => {
             Meet our Mentors
           </li>
 
-          <li onClick={() => handleNavigate("contact")} className="cursor-pointer">
+          <li onClick={() => handleNavigate("contact")} className="cursor-pointer"> 
             Submit Query
           </li>
 
