@@ -30,6 +30,12 @@ const ResumeReviewForm = ({ onClose }) => {
   const handleFileChange = (e) =>
     setFormData((prev) => ({ ...prev, file: e.target.files[0] }));
 
+   const formatDate = (d) => {
+    if (!d) return "";
+    const [y, m, day] = d.split("-");
+    return `${day}-${m}-${y}`;
+  };
+
   const validateForm = () => {
     if (
       !formData.name ||
@@ -92,18 +98,18 @@ const ResumeReviewForm = ({ onClose }) => {
           },
         }),
       });
-
+      // SAVE DATA TO DB
       const form = new FormData();
       form.append("name", formData.name);
       form.append("email", formData.email);
       form.append("mobile", formData.mobile);
       form.append("careerGoal", formData.careerGoal);
-      form.append("date", formData.date);
+      form.append("date", formatDate(formData.date));
       form.append("time", formData.time);
       form.append("status", "pending");
-      form.append("file", formData.file);
+      form.append("resume", formData.file);
 
-      await fetch(`${baseUrl}/api/resume-review`, {
+      await fetch(`${baseUrl}/api/resume-review/register`, {
         method: "POST",
         body: form,
       });
