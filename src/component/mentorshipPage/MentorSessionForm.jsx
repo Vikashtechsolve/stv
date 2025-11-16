@@ -100,14 +100,14 @@ const MentorSessionForm = ({ mentor, onClose }) => {
             form.append("email", formData.email);
             form.append("mobile", formData.mobile);
             form.append("subject", mentor.subject);
-            form.append("doubt", formData.doubt);
+            form.append("query", formData.doubt);
             form.append("date", formData.date);
             form.append("time", formData.time);
             form.append("mentorName", mentor.name);
             form.append("status", "pending");
             if (formData.file) form.append("file", formData.file);
 
-            await fetch(`${baseUrl}/api/doubts`, {
+            await fetch(`${baseUrl}/api/mentorship/register`, {
                 method: "POST",
                 body: form,
             });
