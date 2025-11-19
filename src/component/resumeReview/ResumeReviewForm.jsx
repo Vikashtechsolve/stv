@@ -18,6 +18,7 @@ const ResumeReviewForm = ({ onClose }) => {
     name: "",
     email: "",
     mobile: "",
+    fullMobile: "",
     careerGoal: "",
     date: "",
     time: "",
@@ -30,7 +31,7 @@ const ResumeReviewForm = ({ onClose }) => {
   const handleFileChange = (e) =>
     setFormData((prev) => ({ ...prev, file: e.target.files[0] }));
 
-   const formatDate = (d) => {
+  const formatDate = (d) => {
     if (!d) return "";
     const [y, m, day] = d.split("-");
     return `${day}-${m}-${y}`;
@@ -40,15 +41,17 @@ const ResumeReviewForm = ({ onClose }) => {
     if (
       !formData.name ||
       !formData.email ||
-      !formData.mobile ||
+      !formData.fullMobile ||
       !formData.careerGoal ||
       !formData.date ||
       !formData.time ||
       !formData.file
     )
       return "⚠️ Please fill all required fields and upload your resume.";
+
     if (!/\S+@\S+\.\S+/.test(formData.email)) return "Invalid email address.";
     if (formData.mobile.length < 10) return "Invalid mobile number.";
+
     return null;
   };
 
@@ -61,12 +64,12 @@ const ResumeReviewForm = ({ onClose }) => {
     }
 
     const paymentResult = await handlePayment({
-      amount: 1 ,// 149,
+      amount: 1,
       prefill: {
         userId: "6730b6d8e29f4b001f6f91d1",
         name: formData.name,
         email: formData.email,
-        contact: formData.mobile,
+        contact: formData.fullMobile,
       },
       description: `Resume Review Session`,
     });
@@ -78,18 +81,17 @@ const ResumeReviewForm = ({ onClose }) => {
       });
       return;
     }
-
+  
     try {
-
-      // Example 1: Send confirmation email
       await fetch(`${baseUrl}/api/mail/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.mobile,
-          query: "🎉 Registration successful for personal resume review session",
+          phone: formData.fullMobile,
+          query:
+            "🎉 Registration successful for personal resume review session",
           type: "resumereview",
           data: {
             careerGoal: formData.careerGoal,
@@ -98,11 +100,11 @@ const ResumeReviewForm = ({ onClose }) => {
           },
         }),
       });
-      // SAVE DATA TO DB
+
       const form = new FormData();
       form.append("name", formData.name);
       form.append("email", formData.email);
-      form.append("mobile", formData.mobile);
+      form.append("mobile", formData.fullMobile);
       form.append("careerGoal", formData.careerGoal);
       form.append("date", formatDate(formData.date));
       form.append("time", formData.time);
@@ -145,7 +147,6 @@ const ResumeReviewForm = ({ onClose }) => {
             transition={{ duration: 0.25 }}
             className="bg-white w-full max-w-lg rounded-2xl border border-gray-200 shadow-2xl relative p-6 sm:p-10 overflow-y-auto max-h-[90vh]"
           >
-            {/* ❌ Close Button */}
             <button
               onClick={onClose}
               className="absolute top-4 right-4 text-gray-500 hover:text-[#ED0331] transition"
@@ -153,7 +154,6 @@ const ResumeReviewForm = ({ onClose }) => {
               <IoClose size={28} />
             </button>
 
-            {/* Heading */}
             <h2 className="text-2xl sm:text-3xl font-playfair font-semibold text-center mb-2">
               Resume Review & Career Goal Details
             </h2>
@@ -161,12 +161,10 @@ const ResumeReviewForm = ({ onClose }) => {
               Fill in your details to book your personalized resume review session
             </p>
 
-            {/* FORM */}
             <form
               onSubmit={handleSubmit}
               className="flex flex-col gap-5 text-left font-nunito"
             >
-              {/* Name */}
               <div>
                 <label className="font-medium text-gray-800">Name *</label>
                 <input
@@ -179,7 +177,6 @@ const ResumeReviewForm = ({ onClose }) => {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label className="font-medium text-gray-800">Email-Id *</label>
                 <input
@@ -192,21 +189,19 @@ const ResumeReviewForm = ({ onClose }) => {
                 />
               </div>
 
-              {/* Mobile */}
               <div>
                 <label className="font-medium text-gray-800">
                   Mobile Number *
                 </label>
                 <MobileNumberInput
-                  value={formData}
-                  onChange={(val) =>
-                    handleInput("mobile", val.mobile) ||
-                    handleInput("fullMobile", val.fullMobile)
-                  }
+                  value={{ mobile: formData.mobile }}
+                  onChange={(val) => {
+                    handleInput("mobile", val.mobile);
+                    handleInput("fullMobile", val.fullMobile);
+                  }}
                 />
               </div>
 
-              {/* Career Goal */}
               <div>
                 <label className="font-medium text-gray-800">
                   Your Career Goal *
@@ -221,7 +216,6 @@ const ResumeReviewForm = ({ onClose }) => {
                 />
               </div>
 
-              {/* Date & Time */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <label className="font-medium text-gray-800">
@@ -248,7 +242,6 @@ const ResumeReviewForm = ({ onClose }) => {
                 </div>
               </div>
 
-              {/* File Upload (Now Mandatory) */}
               <div>
                 <label className="font-medium text-gray-800">
                   Upload Your Resume *
@@ -261,12 +254,12 @@ const ResumeReviewForm = ({ onClose }) => {
                 />
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
-                className={`mt-4 flex justify-center items-center gap-2 bg-[#ED0331] text-white py-4 cursor-pointer rounded-xl font-medium hover:bg-[#c20228] ${loading ? "opacity-70 cursor-not-allowed" : ""
-                  }`}
+                className={`mt-4 flex justify-center items-center gap-2 bg-[#ED0331] text-white py-4 cursor-pointer rounded-xl font-medium hover:bg-[#c20228] ${
+                  loading ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
                 {loading ? (
                   <>
@@ -280,7 +273,6 @@ const ResumeReviewForm = ({ onClose }) => {
             </form>
           </motion.div>
 
-          {/* ✅ Message Modal */}
           <MessageModal
             message={modal.message}
             type={modal.type}
@@ -293,3 +285,4 @@ const ResumeReviewForm = ({ onClose }) => {
 };
 
 export default ResumeReviewForm;
+
