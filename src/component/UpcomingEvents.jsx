@@ -5,7 +5,7 @@ import RegistrationPopup from "../component/RegistrationPopup";
 const baseUrl = import.meta.env.VITE_APP_API_URL;
 
 const EventCard = ({ event, onRegister, baseUrl }) => {
-  const imageUrl = `${baseUrl}${event.bannerImage}`;
+ 
 
   // Format date from YYYY-MM-DD → DD-MM-YYYY
   const formatDate = (dateString) => {
@@ -19,7 +19,7 @@ const EventCard = ({ event, onRegister, baseUrl }) => {
 
       <div className="w-full h-52 bg-gray-200 relative overflow-hidden">
         <img
-          src={imageUrl}
+          src={event.bannerImage}
           alt={event.eventTitle}
           className="w-full h-full object-cover"
         />

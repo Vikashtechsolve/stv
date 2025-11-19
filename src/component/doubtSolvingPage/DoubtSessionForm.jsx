@@ -12,12 +12,17 @@ const baseUrl = import.meta.env.VITE_APP_API_URL;
 const DoubtSessionForm = ({ plan, onClose }) => {
   const navigate = useNavigate();
 
-  const { handlePayment, loading } = useRazorpayPayment(baseUrl);
+  const { handlePayment, loading, setLoading } = useRazorpayPayment(baseUrl);
   const [modal, setModal] = useState({ message: "", type: "" });
+
+  const defaultCountryCode = "+91";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     mobile: "",
+    countryCode: defaultCountryCode,
+    fullMobile: "",
     subject: "",
     doubt: "",
     date: "",
@@ -28,58 +33,100 @@ const DoubtSessionForm = ({ plan, onClose }) => {
   const handleInput = (field, value) =>
     setFormData((prev) => ({ ...prev, [field]: value }));
 
-  const handleFileChange = (e) => {
+  const handleMobileChange = (val) => {
+    setFormData((prev) => ({
+      ...prev,
+      mobile: val?.mobile || "",
+      countryCode: val?.countryCode || prev.countryCode,
+      fullMobile: val?.fullMobile || "",
+    }));
+  };
+
+  const handleFileChange = (e) =>
     setFormData((prev) => ({ ...prev, file: e.target.files[0] }));
+
+  // ✅ FIXED — PERFECT PAST DATE + TIME VALIDATION
+  const validateDateTime = () => {
+    if (!formData.date || !formData.time)
+      return "Please select date & time.";
+
+    const today = new Date();
+    const selectedDate = new Date(formData.date);
+    const selectedDateTime = new Date(`${formData.date}T${formData.time}`);
+
+    // Check past dates
+    if (selectedDate < new Date(today.toDateString()))
+      return "⛔ You cannot choose a past date.";
+
+    // If today, check past time
+    const todayDate = today.toISOString().split("T")[0];
+    if (formData.date === todayDate) {
+      const nowTime = today.getHours() * 60 + today.getMinutes();
+      const selectedTime =
+        Number(formData.time.split(":")[0]) * 60 +
+        Number(formData.time.split(":")[1]);
+
+      if (selectedTime <= nowTime)
+        return "⛔ Please choose a future time.";
+    }
+
+    return null;
   };
 
   const validateForm = () => {
-    if (!formData.name || !formData.email || !formData.mobile)
+    if (!formData.name || !formData.email || !formData.fullMobile)
       return "⚠️ Please fill all required fields.";
+
     if (!/\S+@\S+\.\S+/.test(formData.email)) return "Invalid email.";
-    if (formData.mobile.length < 10) return "Invalid mobile number.";
-    return null;
+
+    if (!/^\+\d{1,4}\d{10,15}$/.test(formData.fullMobile))
+      return "Invalid mobile number with country code.";
+
+    return validateDateTime();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const error = validateForm();
     if (error) {
       setModal({ message: error, type: "error" });
       return;
     }
 
+    // ⭐ PAYMENT ⭐
     const paymentResult = await handlePayment({
       amount: 1,
       prefill: {
         userId: "6730b6d8e29f4b001f6f91d1",
         name: formData.name,
         email: formData.email,
-        contact: formData.mobile,
+        contact: formData.fullMobile,
       },
       description: plan.description,
     });
 
+    // ⛔ FIXED — STOP OVERLAY + SHOW POPUP WHEN CANCELED
     if (!paymentResult.success) {
+      setLoading(false);
+
       setModal({
-        message: paymentResult.error || "Payment failed",
+        message: paymentResult.error || "❌ Payment Cancelled",
         type: "error",
       });
       return;
     }
 
     try {
-      // -----------------------------
-      // 1️⃣ Send Confirmation Email
-      // -----------------------------
+      // 📩 SEND EMAIL
       await fetch(`${baseUrl}/api/mail/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.mobile,
-          query:
-            "🎉 Registration successful for personal doubt solving session",
+          phone: formData.fullMobile,
+          query: "🎉 Registration successful for personal doubt solving session",
           type: "doubtsolving",
           data: {
             doubt: formData.doubt,
@@ -91,13 +138,11 @@ const DoubtSessionForm = ({ plan, onClose }) => {
         }),
       });
 
-      // -----------------------------
-      // 2️⃣ Save Form Data to Backend (multipart/form-data)
-      // -----------------------------
+      // 📤 SAVE DATA
       const form = new FormData();
       form.append("name", formData.name);
       form.append("email", formData.email);
-      form.append("mobile", formData.mobile);
+      form.append("mobile", formData.fullMobile);
       form.append("subject", formData.subject);
       form.append("doubt", formData.doubt);
       form.append("date", formData.date);
@@ -107,7 +152,6 @@ const DoubtSessionForm = ({ plan, onClose }) => {
       form.append("mentorName", "");
       if (formData.file) form.append("file", formData.file);
 
-      // ✅ FINAL API CALL (this was missing)
       const saveRes = await fetch(`${baseUrl}/api/doubts`, {
         method: "POST",
         body: form,
@@ -115,23 +159,17 @@ const DoubtSessionForm = ({ plan, onClose }) => {
 
       const saveData = await saveRes.json();
 
-      if (!saveRes.ok) {
-        throw new Error(saveData.message || "Failed to save doubt data");
-      }
+      if (!saveRes.ok) throw new Error(saveData.message);
 
-      // SUCCESS MESSAGE
       setModal({
         message: "🎉 Payment & Registration successful!",
         type: "success",
       });
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       setModal({
-        message:
-          err.message || "Payment succeeded but saving the data failed.",
+        message: err.message || "Payment succeeded but saving failed.",
         type: "error",
       });
     }
@@ -161,6 +199,7 @@ const DoubtSessionForm = ({ plan, onClose }) => {
               <IoClose size={28} />
             </button>
 
+            {/* UI same */}
             <h2 className="text-2xl sm:text-3xl font-playfair font-semibold text-center mb-2">
               Book Your 1:1 Doubt Solving Session
             </h2>
@@ -168,12 +207,7 @@ const DoubtSessionForm = ({ plan, onClose }) => {
               Fill in the details below to connect with the right mentor
             </p>
 
-            {/* FORM */}
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-5 text-left font-nunito"
-            >
-              {/* Name */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left font-nunito">
               <div>
                 <label className="font-medium text-gray-800">Name *</label>
                 <input
@@ -186,7 +220,6 @@ const DoubtSessionForm = ({ plan, onClose }) => {
                 />
               </div>
 
-              {/* Email */}
               <div>
                 <label className="font-medium text-gray-800">Email-Id *</label>
                 <input
@@ -199,22 +232,19 @@ const DoubtSessionForm = ({ plan, onClose }) => {
                 />
               </div>
 
-              {/* Mobile */}
               <div>
-                <label className="font-medium text-gray-800">
-                  Mobile Number *
-                </label>
+                <label className="font-medium text-gray-800">Mobile Number *</label>
                 <MobileNumberInput
-                  value={formData}
-                  onChange={(val) => handleInput("mobile", val.mobile)}
+                  value={{
+                    mobile: formData.mobile,
+                    countryCode: formData.countryCode,
+                  }}
+                  onChange={handleMobileChange}
                 />
               </div>
 
-              {/* Subject */}
               <div>
-                <label className="font-medium text-gray-800">
-                  Select Subject *
-                </label>
+                <label className="font-medium text-gray-800">Select Subject *</label>
                 <select
                   value={formData.subject}
                   onChange={(e) => handleInput("subject", e.target.value)}
@@ -230,11 +260,8 @@ const DoubtSessionForm = ({ plan, onClose }) => {
                 </select>
               </div>
 
-              {/* Doubt */}
               <div>
-                <label className="font-medium text-gray-800">
-                  Write about Doubt *
-                </label>
+                <label className="font-medium text-gray-800">Write about Doubt *</label>
                 <textarea
                   value={formData.doubt}
                   onChange={(e) => handleInput("doubt", e.target.value)}
@@ -245,12 +272,9 @@ const DoubtSessionForm = ({ plan, onClose }) => {
                 />
               </div>
 
-              {/* Date & Time */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
-                  <label className="font-medium text-gray-800">
-                    Schedule Date *
-                  </label>
+                  <label className="font-medium text-gray-800">Schedule Date *</label>
                   <input
                     type="date"
                     value={formData.date}
@@ -272,11 +296,8 @@ const DoubtSessionForm = ({ plan, onClose }) => {
                 </div>
               </div>
 
-              {/* Plan */}
               <div>
-                <label className="font-medium text-gray-800">
-                  Selected Plan *
-                </label>
+                <label className="font-medium text-gray-800">Selected Plan *</label>
                 <input
                   type="text"
                   value={`${plan.title} (${plan.price})`}
@@ -285,11 +306,8 @@ const DoubtSessionForm = ({ plan, onClose }) => {
                 />
               </div>
 
-              {/* File */}
               <div>
-                <label className="font-medium text-gray-800">
-                  Upload File (Optional)
-                </label>
+                <label className="font-medium text-gray-800">Upload File (Optional)</label>
                 <input
                   type="file"
                   onChange={handleFileChange}
@@ -297,7 +315,6 @@ const DoubtSessionForm = ({ plan, onClose }) => {
                 />
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
