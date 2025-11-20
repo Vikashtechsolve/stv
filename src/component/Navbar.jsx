@@ -59,7 +59,7 @@ const Navbar = () => {
           name: "LMS Portal",
           description:
             "Access a complete online learning management system with courses and training materials.",
-          href: "/login",
+          href: "https://lms.vikashtechsolution.com/",
         },
         {
           name: "Interview Portal",
