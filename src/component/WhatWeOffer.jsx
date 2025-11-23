@@ -8,7 +8,7 @@ import { FiAward, FiUsers, FiTool, FiSun } from "react-icons/fi";
 const WhatWeOffer = () => {
     return (
         <div className="py-2 mt-2"> {/* Reduced top margin */}
-            <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-4 sm:mb-6 md:mb-8 lg:mb-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+            <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-4 sm:mb-6 md:mb-8 lg:mb-10 heading-primary leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
                 What We Offer
             </h1>
 
@@ -21,15 +21,15 @@ const WhatWeOffer = () => {
                         <div className="bg-white shadow rounded-2xl p-6 w-72 min-h-[300px] flex flex-col justify-between">
                             <div className="text-center">
                                 <FiAward className="h-10 w-10 text-red-500 mx-auto mb-3" />
-                                <h2 className="text-lg font-semibold">Online Contests</h2>
-                                <p className="text-sm text-red-600 mt-1">Learn by competing</p>
-                                <p className="text-gray-600 text-sm mt-3">
+                                <h2 className="text-lg font-semibold font-playfair">Online Contests</h2>
+                                <p className="text-sm text-red-600 mt-1 font-nunito">Learn by competing</p>
+                                <p className="text-gray-600 text-sm mt-3 font-nunito">
                                     Participate in quizzes, coding rounds, and hackathons to test your
                                     skills.
                                 </p>
                             </div>
                             <div className="mt-4 flex justify-center">
-                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm">
+                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm font-nunito">
                                     Learn more
                                 </a>
                             </div>
@@ -43,17 +43,17 @@ const WhatWeOffer = () => {
                         <div className="bg-white shadow rounded-2xl p-6 w-72 min-h-[300px] flex flex-col justify-between">
                             <div className="text-center">
                                 <FiUsers className="h-10 w-10 text-red-500 mx-auto mb-3" />
-                                <h2 className="text-lg font-semibold">1:1 Mentorship</h2>
-                                <p className="text-sm text-red-600 mt-1">
+                                <h2 className="text-lg font-semibold font-playfair">1:1 Mentorship</h2>
+                                <p className="text-sm text-red-600 mt-1 font-nunito">
                                     Personal guidance from experts
                                 </p>
-                                <p className="text-gray-600 text-sm mt-3">
+                                <p className="text-gray-600 text-sm mt-3 font-nunito">
                                     Get tailored support on careers, projects, internships, or
                                     switching roles.
                                 </p>
                             </div>
                             <div className="mt-4 flex justify-center">
-                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm">
+                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm font-nunito">
                                     Learn more
                                 </a>
                             </div>
@@ -65,14 +65,14 @@ const WhatWeOffer = () => {
                         <div className="bg-white shadow rounded-2xl p-6 w-72 min-h-[300px] flex flex-col justify-between">
                             <div className="text-center">
                                 <FiTool className="h-10 w-10 text-red-500 mx-auto mb-3" />
-                                <h2 className="text-lg font-semibold">Workshops</h2>
-                                <p className="text-sm text-red-600 mt-1">Hands-on learning</p>
-                                <p className="text-gray-600 text-sm mt-3">
+                                <h2 className="text-lg font-semibold font-playfair">Workshops</h2>
+                                <p className="text-sm text-red-600 mt-1 font-nunito">Hands-on learning</p>
+                                <p className="text-gray-600 text-sm mt-3 font-nunito">
                                     Interactive sessions to master real-world skills with experts.
                                 </p>
                             </div>
                             <div className="mt-4 flex justify-center">
-                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm">
+                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm font-nunito">
                                     Learn more
                                 </a>
                             </div>
@@ -86,14 +86,14 @@ const WhatWeOffer = () => {
                         <div className="bg-white shadow rounded-2xl p-6 w-72 min-h-[300px] flex flex-col justify-between">
                             <div className="text-center">
                                 <FiSun className="h-10 w-10 text-red-500 mx-auto mb-3" />
-                                <h2 className="text-lg font-semibold">Hackathons</h2>
-                                <p className="text-sm text-red-600 mt-1">Build & Compete</p>
-                                <p className="text-gray-600 text-sm mt-3">
+                                <h2 className="text-lg font-semibold font-playfair">Hackathons</h2>
+                                <p className="text-sm text-red-600 mt-1 font-nunito">Build & Compete</p>
+                                <p className="text-gray-600 text-sm mt-3 font-nunito">
                                     Team up and solve challenges while showcasing your creativity.
                                 </p>
                             </div>
                             <div className="mt-4 flex justify-center">
-                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm">
+                                <a href="#" className="bg-red-500 text-white px-5 py-2 rounded-full text-sm font-nunito">
                                     Learn more
                                 </a>
                             </div>

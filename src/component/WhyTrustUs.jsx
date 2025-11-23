@@ -40,7 +40,7 @@ const CardsSection = () => {
 
   return (
     <section className="py-12 mt-6">
-      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 heading-primary leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
         Why Learners Trust Us?
       </h1>
       <div className="flex  items-center justify-center min-h-screen">
@@ -59,7 +59,7 @@ const CardsSection = () => {
 
                 {/* Title Section */}
                 <div className="bg-[#BDBDBD66] py-2">
-                  <h2 className="font-playfair text-2xl font-bold bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+                  <h2 className="font-playfair text-2xl font-bold heading-primary">
                     {card.title}
                   </h2>
                 </div>

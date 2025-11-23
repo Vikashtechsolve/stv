@@ -40,10 +40,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <h3 className=" font-playfair font-bold text-md red-gradient leading-[21.33px] tracking-[0.02em] gap-[7.11px] pt-[10.67px] pb-6 uppercase">
+          <h3 className="font-playfair font-bold text-base heading-primary leading-tight tracking-wide pt-[10.67px] pb-4 uppercase">
             ABOUT VIKAS TECH SOLUTIONS
           </h3>
-          <p className="text-md leading-6 .font-nunito text-gray-600">
+          <p className="text-base leading-6 font-nunito text-gray-600">
             We provide personalized mentorship, live doubt-solving, coding
             contests, and career guidance to help students and professionals
             achieve their goals.
@@ -52,8 +52,8 @@ const Footer = () => {
 
         {/* EXPLORE SECTION */}
         <div>
-        <h3 className="font-semibold text-2xl red-gradient font-playfair">EXPLORE</h3>
-        <ul className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
+        <h3 className="font-semibold text-base heading-primary font-playfair mb-4">EXPLORE</h3>
+        <ul className="space-y-2 text-base font-nunito text-gray-600">
 
           {/* <li onClick={() => handleNavigate("home")} className="cursor-pointer">
             Home
@@ -99,33 +99,32 @@ const Footer = () => {
 
         {/* CONTACT SECTION */}
         <div>
-          <h3 className="font-semibold text-2xl red-gradient font-playfair">CONTACT</h3>
-          <div className="space-y-2 text-xl font-nunito text-[#A2A1A1] mt-4"></div>
+          <h3 className="font-semibold text-base heading-primary font-playfair mb-4">CONTACT</h3>
 
-          <div className="flex items-start space-y-1 text-xl font-nunito text-[#A2A1A1] mt-4">
-            <FaMapMarkerAlt className="text-red-600 mr-3 text-xl" />
-            <p>
+          <div className="flex items-start gap-3 text-base font-nunito text-gray-600 mb-4">
+            <FaMapMarkerAlt className="text-[#ED0331] mt-1 text-lg shrink-0" />
+            <p className="leading-relaxed">
               Vikas Tech Solutions, <br />
               3rd Floor, ABC Tower, <br />
               Sector-15, Noida, Uttar Pradesh, India
             </p>
           </div>
 
-          <div className="flex items-center space-x-2 mb-3 pace-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
-            <FaEnvelope className="text-red-600" />
+          <div className="flex items-center gap-3 text-base font-nunito text-gray-600 mb-4">
+            <FaEnvelope className="text-[#ED0331] text-lg shrink-0" />
             <p>support@vikastechsolutions.com</p>
           </div>
 
-          <div className="flex items-center space-x-2 mb-3 pace-y-2 text-xl font-nunito text-[#A2A1A1] mt-4">
-            <FaPhoneAlt className="text-red-600" />
+          <div className="flex items-center gap-3 text-base font-nunito text-gray-600">
+            <FaPhoneAlt className="text-[#ED0331] text-lg shrink-0" />
             <p>+91 98765 43210</p>
           </div>
         </div>
 
         {/* SOCIAL SECTION */}
         <div>
-          <h3 className="font-semibold text-2xl red-gradient font-playfair">GET IN TOUCH</h3>
-          <div className="flex space-x-4 text-gray-600 text-lg mt-3">
+          <h3 className="font-semibold text-base heading-primary font-playfair mb-4">GET IN TOUCH</h3>
+          <div className="flex space-x-4 text-gray-600 text-xl">
             <a target="_blank" href="https://www.youtube.com/@fixWithvikas"><FaYoutube className="hover:text-red-600 cursor-pointer" /></a>
             <a target="_blank" href="https://www.facebook.com/profile.php?id=61575266311355"><FaFacebookF className="hover:text-red-600 cursor-pointer" /></a>
             <a target="_blank" href="https://x.com/VikashDube9198"><FaTwitter className="hover:text-red-600 cursor-pointer" /></a>
@@ -136,13 +135,13 @@ const Footer = () => {
       </div>
 
       {/* BOTTOM */}
-      <div className="flex flex-col md:flex-row justify-between items-center mt-6 text-sm text-gray-600">
-        <p className="text-red-600 font-semibold">VTS © 2025. All rights reserved.</p>
-        <div className="flex space-x-6 mt-3 md:mt-0">
-          <a href="/masterClass" className="hover:text-red-600">Master Class</a>
-          <a href="oneToOneMentoring" className="hover:text-red-600">Mentorship</a>
-          <a href="resume-review" className="hover:text-red-600">Resume Review</a>
-          <a href="doubt-solving" className="hover:text-red-600">Live Doubt Solving</a>
+      <div className="flex flex-col md:flex-row justify-between items-center mt-6 pt-6 border-t border-gray-300 text-base font-nunito text-gray-600">
+        <p className="text-[#ED0331] font-semibold mb-3 md:mb-0">VTS © 2025. All rights reserved.</p>
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+          <a href="/masterClass" className="hover:text-[#ED0331] transition-colors">Master Class</a>
+          <a href="oneToOneMentoring" className="hover:text-[#ED0331] transition-colors">Mentorship</a>
+          <a href="resume-review" className="hover:text-[#ED0331] transition-colors">Resume Review</a>
+          <a href="doubt-solving" className="hover:text-[#ED0331] transition-colors">Live Doubt Solving</a>
         </div>
       </div>
     </footer>

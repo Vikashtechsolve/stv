@@ -119,7 +119,7 @@ const MentorsSmoothCarousel = () => {
 
   return (
     <section className="w-full h-screen  flex flex-col items-center justify-center overflow-hidden">
-      <h1 className="text-5xl font-bold font-playfair mb-10 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+      <h1 className="text-5xl font-bold font-playfair mb-10 heading-primary">
         Meet Our Mentors
       </h1>
 
@@ -153,13 +153,13 @@ const MentorsSmoothCarousel = () => {
                   className="w-full h-64 object-cover rounded-t-lg"
                 />
                 <div className="p-4 overflow-visible">
-                  <h2 className="text-lg font-playfair font-bold bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+                  <h2 className="text-lg font-playfair font-bold heading-primary">
                     {mentor.name}
                   </h2>
-                  <p className="text-gray-700 italic text-sm mt-1">
+                  <p className="text-gray-700 italic text-sm mt-1 font-nunito">
                     {mentor.role}
                   </p>
-                  <p className="text-gray-800 text-sm mt-2 leading-relaxed">
+                  <p className="text-gray-800 text-sm mt-2 leading-relaxed font-nunito">
                     {mentor.description}
                   </p>
                 </div>

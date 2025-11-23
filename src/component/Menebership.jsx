@@ -123,7 +123,7 @@ const Membership = () => {
     return (
         <div className="mt-6">
             {/* Title */}
-            <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+            <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 heading-primary leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
                 Power of Mentorship
             </h1>
 
@@ -162,13 +162,13 @@ const Membership = () => {
                     </div>
 
                     {/* Right: Text */}
-                    <div className=" font-nunito  text-white w-1/2 space-y-6 px-2 text-center flex flex-col items-center ">
-                        <p className="font-nunito  text-[26px] leading-[158%] tracking-[-0.02em] text-center">
+                    <div className="font-nunito text-white w-1/2 space-y-6 px-2 text-center flex flex-col items-center">
+                        <p className="font-nunito text-[26px] leading-[158%] tracking-[-0.02em] text-center">
                             See how our mentors simplify concepts and guide learners step by
                             step!
                         </p>
                         <hr className="border-gray-300/50 w-3/4 mx-auto" />
-                        <p className="font-nunito  text-[26px] leading-[158%] tracking-[-0.02em] text-center">
+                        <p className="font-nunito text-[26px] leading-[158%] tracking-[-0.02em] text-center">
                             Get a glimpse of how our mentors guide students toward success!
                         </p>
                     </div>
@@ -202,12 +202,12 @@ const Membership = () => {
 
                 {/* Text */}
                 <div className="text-white text-center space-y-4 mt-6">
-                    <p className="text-base sm:text-lg">
+                    <p className="text-base sm:text-lg font-nunito">
                         See how our mentors simplify concepts and guide learners step by
                         step!
                     </p>
                     <hr className="border-gray-300/50 w-3/4 mx-auto" />
-                    <p className="text-base sm:text-lg">
+                    <p className="text-base sm:text-lg font-nunito">
                         Get a glimpse of how our mentors guide students toward success!
                     </p>
                 </div>
@@ -217,7 +217,7 @@ const Membership = () => {
             <div className="flex justify-center mt-10">
                 <button
                 onClick={handleBookSession}
-                className="px-8 py-5 cursor-pointer bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white rounded-2xl shadow hover:opacity-90 transition text-2xl ">
+                className="px-8 py-5 cursor-pointer bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white rounded-2xl shadow hover:opacity-90 transition text-2xl font-nunito">
                     Book a Session
                 </button>
             </div>

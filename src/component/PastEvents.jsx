@@ -1,76 +1,116 @@
 import React from "react";
-import AnanyaImg from "../assets/anayasharma.png"; // single image for all events
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
 
 const baseUrl = import.meta.env.VITE_APP_API_URL;
 
 const PastEventCard = ({ event }) => {
-   const imageUrl = `${baseUrl}${event.bannerImage}`;
+  const imageUrl = `${baseUrl}${event.bannerImage}`;
+  
+  // Format date from YYYY-MM-DD → DD Month YYYY (compact)
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    const monthNames = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    const monthIndex = parseInt(month) - 1;
+    return `${parseInt(day)} ${monthNames[monthIndex]} ${year}`;
+  };
+  
   return (
-    <div className="relative w-full max-w-sm bg-white shadow-lg rounded-2xl overflow-hidden mx-auto mb-10 
-                    transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-      {/* Top Background */}
-      <div className="w-full h-52 bg-gray-200 relative">
-        <img
+    <motion.div
+      className="relative w-full max-w-sm bg-white shadow-xl rounded-3xl overflow-hidden mx-auto cursor-pointer group border border-gray-200/50 hover:border-gray-400/60 hover:shadow-2xl transition-all duration-300"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{ scale: 1.03, y: -6 }}
+    >
+      {/* Image Section with Enhanced Gradient Overlay */}
+      <div className="w-full h-60 bg-gray-200 relative overflow-hidden group/image">
+        <motion.img
           src={imageUrl}
           alt={event.eventTitle}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110"
         />
+        {/* Enhanced Gradient Overlay */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/40 to-black/10 group-hover:from-black/80 transition-all duration-300" />
+        
+        {/* Subtle Shine Effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+        
+        {/* Event Title Over Image */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold font-playfair mb-2 drop-shadow-2xl line-clamp-2 leading-tight group-hover:drop-shadow-2xl transition-all">
+            {event.eventTitle}
+          </h3>
+        </div>
+
+        {/* Completed Badge with Enhanced Style */}
+        <motion.div 
+          className="absolute top-3 right-3 bg-gray-700 text-white px-3 py-1 rounded-full text-xs font-semibold font-nunito shadow-xl backdrop-blur-sm border border-white/20"
+          whileHover={{ scale: 1.05 }}
+        >
+          ✓ Completed
+        </motion.div>
       </div>
 
-      {/* Bottom Content */}
-      <div className="p-5 relative font-playfair">
-        {/* Event Title */}
-        <div className="text-center text-lg font-semibold underline bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
-          {event.eventTitle}
+      {/* Content Section - Enhanced Styling */}
+      <div className="p-4 md:p-5 flex flex-col gap-3 bg-white relative">
+        {/* Subtle Top Accent Line */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gray-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        
+        {/* Event Subtitle */}
+        <div className="pb-2 border-b border-gray-200/80">
+          <p className="text-sm font-semibold font-nunito text-gray-700 leading-tight line-clamp-2">
+            {event.eventSubtitle}
+          </p>
         </div>
 
-        {/* Topic Covered */}
-        <div className="text-black text-center font-semibold mb-2" style={{ fontSize: "15.73px", lineHeight: "24.47px" }}>
-          Topic Covered : {event.eventSubtitle}
-        </div>
-
-        {/* Mentor */}
-        <div className="text-black font-medium mb-2" style={{ fontSize: "17.48px", lineHeight: "24.47px" }}>
-          Mentor : {event.mentorName}
-        </div>
-
-        {/* Date & Duration */}
-        <div className="flex gap-2 mb-2">
-          <div className="text-black font-medium" style={{ fontSize: "15.73px" }}>
-            Date:
+        {/* Mentor Info */}
+        <div className="flex items-center gap-3 pb-2 border-b border-gray-200/80">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-700 font-bold font-nunito text-sm shadow-md ring-1 ring-gray-300/50 group-hover:ring-gray-400/40 transition-all">
+            {event.mentorName?.charAt(0) || "M"}
           </div>
-          <div className="text-black/70 font-semibold" style={{ fontSize: "13.98px" }}>
-            {event.scheduleEventDate}
-          </div>
-        </div>
-        <div className="flex gap-2 mb-2">
-          <div className="text-black font-medium" style={{ fontSize: "15.73px" }}>
-            Time:
-          </div>
-          <div className="text-black/70 font-semibold" style={{ fontSize: "13.98px" }}>
-            {event.scheduleEventTime} PM
+          <div className="flex-1 min-w-0">
+            <p className="text-xs text-gray-500 font-nunito font-medium">Mentor</p>
+            <p className="text-sm md:text-base font-semibold font-nunito text-black truncate">
+              {event.mentorName}
+            </p>
           </div>
         </div>
 
-        {/* Attended by */}
-        <div className="flex gap-2 items-center mb-4">
-          <div className="text-black font-medium" style={{ fontSize: "13.98px" }}>
-            Attended by:
+        {/* Date & Time Cards */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-2.5 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow group-hover:border-gray-300">
+            <p className="text-xs text-gray-500 font-nunito mb-1">📅 Date</p>
+            <p className="text-xs font-semibold font-nunito text-black leading-tight">
+              {formatDate(event.scheduleEventDate)}
+            </p>
           </div>
-          <div className="text-red-600 font-semibold" style={{ fontSize: "13.98px" }}>
-            {event.registered} Students
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-2.5 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow group-hover:border-gray-300">
+            <p className="text-xs text-gray-500 font-nunito mb-1">🕐 Time</p>
+            <p className="text-xs font-semibold font-nunito text-black">
+              {event.scheduleEventTime} PM
+            </p>
           </div>
         </div>
 
-        {/* Watch Now Button */}
-        <div className=" w-full flex justify-center">
-          <button className="bg-gray-200 border w-[70%] border-gray-400 rounded-xl px-6 py-2 font-playfair font-medium text-black text-base hover:bg-gray-300 transition">
-            Watch Now
-          </button>
+        {/* Attended Count */}
+        <div className="flex items-center justify-center pt-2 border-t border-gray-200/80">
+          <div className="flex items-center gap-2 bg-gradient-to-r from-gray-50 to-white rounded-lg px-4 py-2.5 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow">
+            <div className="w-2 h-2 rounded-full bg-gray-600 shadow-sm ring-2 ring-gray-600/20"></div>
+            <span className="text-xs font-semibold font-nunito text-black">
+              <span className="text-gray-800 font-bold">{event.registered || 0}</span>{" "}
+              <span className="text-gray-600">attended</span>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -89,8 +129,6 @@ const PastEventsPage = () => {
         }
       } catch (error) {
         console.error("Error fetching events:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -122,32 +160,53 @@ const PastEventsPage = () => {
   }, [eventsData.length]); // Only runs once after data load
 
   return (
-    <div className="w-full min-h-screen bg-[#E2E2E2] py-20 px-6 flex flex-col items-center">
-      {/* Page Header */}
-      <h1
-        style={{
-          fontSize: "48px",
-          fontFamily: "Playfair Display, serif",
-          fontWeight: 600,
-          lineHeight: "64.05px",
-          textAlign: "center",
-          marginBottom: "40px",
-          wordWrap: "break-word",
-          background: "linear-gradient(90deg, #ED0331, #87021C)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
+    <section className="w-full py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-[#E2E2E2] flex flex-col items-center relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute bottom-20 right-10 w-80 h-80 bg-red-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      {/* Page Header with Animation */}
+      <motion.h1
+        className="heading-section mb-8 md:mb-12 relative z-10"
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         Past Events
-      </h1>
+      </motion.h1>
 
-      {/* Events Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl">
-        {eventsData.map((event) => (
-          event.status === "completed" && <PastEventCard key={event._id} event={event} />
-        ))}
+      {/* Events Grid with Stagger Animation */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl relative z-10">
+        {eventsData.length === 0 ? (
+          <div className="col-span-full text-center py-12">
+            <p className="text-black font-nunito text-lg md:text-xl">Loading past events...</p>
+          </div>
+        ) : eventsData.filter((e) => e.status === "completed").length === 0 ? (
+          <div className="col-span-full text-center py-12">
+            <p className="text-black font-nunito text-lg md:text-xl">No past events available.</p>
+          </div>
+        ) : (
+          eventsData
+            .filter((event) => event.status === "completed")
+            .map((event, index) => (
+              <PastEventCard key={event._id} event={event} />
+            ))
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 

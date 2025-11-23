@@ -1,22 +1,505 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Lato:wght@400;500;600&family=Lexend+Peta:wght@400;500&display=swap');
 @import "tailwindcss";
 
-
-
+/* ============================================
+   FONT FAMILIES
+   ============================================ */
 .font-playfair {
   font-family: 'Playfair Display', serif;
 }
+
 .font-nunito {
-  font-family: 'Nunito Sans', serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
-.red-gradient{
-   background: linear-gradient(to right, #ED0331, #87021C);
+.font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.font-lexend {
+  font-family: 'Lexend Peta', sans-serif;
+}
+
+/* ============================================
+   HEADING STYLES - Red Gradient with Playfair Display
+   ============================================ */
+.heading-primary {
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(90deg, #ED0331, #87021C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.375; /* leading-snug = ~1.375 */
+  background-clip: text;
+  font-weight: 600;
 }
- 
-.heading-text{
-  
+
+.heading-primary-lg {
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(90deg, #ED0331, #87021C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 64.05px;
+  text-align: center;
+}
+
+.heading-primary-md {
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(90deg, #ED0331, #87021C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  font-size: 38px;
+}
+
+.heading-primary-sm {
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(90deg, #ED0331, #87021C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+/* Standardized Section Heading - Consistent across all pages */
+.heading-section {
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(90deg, #ED0331, #87021C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  font-size: 2rem; /* 32px */
+  text-align: center;
+  line-height: 1.3;
+}
+
+@media (min-width: 640px) {
+  .heading-section {
+    font-size: 2.5rem; /* 40px */
+  }
+}
+
+@media (min-width: 768px) {
+  .heading-section {
+    font-size: 3rem; /* 48px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .heading-section {
+    font-size: 3.25rem; /* 52px */
+  }
+}
+
+/* Heading with Playfair Display but solid color */
+.heading-playfair {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: #000;
+}
+
+.heading-playfair-red {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: #ED0331;
+  font-size: 32px;
+}
+
+/* ============================================
+   SUBTITLE STYLES - Standardized fonts
+   ============================================ */
+.subtitle-primary {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  color: #333;
+}
+
+.subtitle-lato {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn-gradient-red {
+  background: linear-gradient(90deg, #ED0331, #87021C);
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-red:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(237, 3, 49, 0.3);
+}
+
+.btn-gradient-red-vertical {
+  background: linear-gradient(180deg, #ED0331 0%, #87021C 100%);
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-red-vertical:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(237, 3, 49, 0.3);
+}
+
+.btn-red-outline {
+  border: 2px solid #ED0331;
+  color: #ED0331;
+  background: transparent;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-red-outline:hover {
+  background: #ED0331;
+  color: white;
+}
+
+.btn-whatsapp {
+  background: #20BA5A;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+  background: #1ea850;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(32, 186, 90, 0.3);
+}
+
+/* ============================================
+   INPUT STYLES
+   ============================================ */
+.input-standard {
+  width: 100%;
+  padding: 0 24px;
+  border-radius: 13px;
+  border: 1.5px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 18px;
+  color: #333;
+  font-family: 'Nunito Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-standard:focus,
+.input-standard:hover {
+  border-color: #ED0331;
+}
+
+.input-standard::placeholder {
+  color: #999;
+}
+
+/* ============================================
+   TEXT STYLES
+   ============================================ */
+.text-red-gradient {
+  color: linear-gradient(to right, #ED0331, #87021C);
+}
+
+.text-red-primary {
+  color: #ED0331;
+}
+
+.text-red-dark {
+  color: #87021C;
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+.card-testimonial {
+  width: 270px;
+  height: 420px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1)), #ED0331;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.card-testimonial:hover {
+  transform: translateY(-6px);
+}
+
+.card-testimonial-top {
+  position: relative;
+  background: #fff;
+  height: 290px;
+  padding: 15px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  word-wrap: break-word;
+  font-weight: 500;
+  color: #222;
+}
+
+.quote-symbol {
+  color: #222;
+  font-size: 50px;
+  font-family: 'Lexend Peta', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  word-wrap: break-word;
+  margin-bottom: -30px;
+}
+
+.quote-text {
+  color: #222;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  line-height: 25px;
+  word-wrap: break-word;
+}
+
+.testimonial-name {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  color: #D8D8D8;
+  font-size: 21px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  word-wrap: break-word;
+}
+
+/* ============================================
+   CAROUSEL STYLES
+   ============================================ */
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  gap: 15px;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 25px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  flex-grow: 1;
+  padding-bottom: 50px;
+}
+
+.carousel-arrow {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  z-index: 5;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-arrow:hover {
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 6px 14px rgba(237, 3, 49, 0.3);
+}
+
+.carousel-arrow-active {
+  background-color: #ED0331 !important;
+  color: #fff !important;
+}
+
+.carousel-arrow-left {
+  left: 10px;
+}
+
+.carousel-arrow-right {
+  right: 10px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #434343;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot-active {
+  background: #ED0331;
+}
+
+/* ============================================
+   SECTION STYLES
+   ============================================ */
+.section-bg-gray {
+  background: #E2E2E2;
+}
+
+.section-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: #E2E2E2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  color: #444;
+}
+
+.section-bg-light {
+  background: rgba(208,208,208,0.4);
+}
+
+.mt-25 {
+  margin-top: 100px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+/* ============================================
+   NAVBAR STYLES
+   ============================================ */
+.navbar-clip-path {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
+  min-height: 60px;
+}
+
+/* ============================================
+   IMAGE STYLES
+   ============================================ */
+.img-testimonial-wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.img-testimonial {
+  height: 100%;
+  border-radius: 50%;
+  margin-top: -80px;
+  border: 2px solid #fff;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.letter-spacing-tight {
+  letter-spacing: -1px;
+}
+
+.transition-smooth {
+  transition: all 0.3s ease;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
+
+/* ============================================
+   FAQ STYLES
+   ============================================ */
+.faq-item {
+  width: 100%;
+  max-width: 1260px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 8px 0;
+  font-size: 26px;
+  font-weight: 500;
+  color: black;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-answer-open {
+  border-top: 2px solid #BCBCBC;
+  margin-top: 8px;
+}
+
+.faq-option {
+  padding: 10px;
+  font-size: 22px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.faq-arrow {
+  width: 25px;
+  transition: transform 0.3s ease;
+}
+
+.faq-arrow-rotated {
+  transform: rotate(180deg);
 }

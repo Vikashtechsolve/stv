@@ -22,7 +22,7 @@ const MasterClass = () => {
 
             {/* Image + Button Section */}
             <div className="w-full flex justify-center overflow-hidden mb-8">
-            <div className="text-center flex flex-col items-center" style={{ width: "1200px" }}>
+            <div className="text-center flex flex-col items-center max-w-[1200px] w-full">
                 {/* Master Class Image */}
                 <img
                 src={masterImg}
@@ -40,10 +40,7 @@ const MasterClass = () => {
 
             {/* Center Text Section */}
             <div className="w-full px-4 sm:px-6 py-6">
-                <p
-                    className="text-center font-bold leading-relaxed bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent"
-                    style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px" }}
-                >
+                <p className="text-center font-bold leading-relaxed heading-primary font-playfair text-[28px]">
                     Quick, interactive, and affordable — our live Master Classes help you
                     master one topic in just 60 minutes. Perfect for students and
                     professionals who want focused learning without extra cost.
@@ -55,7 +52,7 @@ const MasterClass = () => {
 
             {/* CTA Button */}
             <div className="flex justify-center pb-6 sm:pb-8">
-                <button className="cursor-pointer text-white text-[16px] sm:text-[18px] md:text-[20px] px-6 sm:px-8 py-3 sm:py-4 rounded-md font-semibold shadow bg-gradient-to-r from-[#ED0331] to-[#87021C] hover:opacity-90 transition" onClick={() => navigate("/masterClass")}>
+                <button className="cursor-pointer text-white text-[16px] sm:text-[18px] md:text-[20px] px-6 sm:px-8 py-3 sm:py-4 rounded-md font-semibold shadow bg-gradient-to-r from-[#ED0331] to-[#87021C] hover:opacity-90 transition font-nunito" onClick={() => navigate("/masterClass")}>
                      Master Class Only ₹49 
                 </button>
             </div>
