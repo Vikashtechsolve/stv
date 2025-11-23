@@ -7,7 +7,7 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "YUG PANDEY",
-      college: "College Name",
+      college: "3rd Year B.Tech Student",
       quote:
         "I attended the Resume Building masterclass and within a week my CV looked 10x better. The mentor explained every detail step by step and even shared templates. This has boosted my confidence for interviews.",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842750/Yug_Dobariya_hpnrvx.jpg",
@@ -15,7 +15,7 @@ const Testimonials = () => {
     },
     {
       name: "SWATEE",
-      college: "College Name",
+      college: "BCA Student",
       quote:
         "The Data Structures session cleared all my basics in just one hour. I used to struggle with arrays, but the mentor's examples made it so easy to understand. It felt like a full semester packed into 60 minutes.",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842668/swatee_ulkfwf.jpg",
@@ -23,7 +23,7 @@ const Testimonials = () => {
     },
     {
       name: "HARPAL PATEL",
-      college: "College Name",
+      college: "MCA Student",
       quote:
         "I never thought online classes could feel so engaging. The mentor gave personal attention to each of us, answered doubts live, and even shared notes afterward. Totally worth much more than the fee!",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842663/Harpal_Modasiya_km895u.jpg",
@@ -31,7 +31,7 @@ const Testimonials = () => {
     },
     {
       name: "AKSHIT PANDEY",
-      college: "College Name",
+      college: "Non-Technical Student",
       quote:
         "The competitive programming masterclass was a game changer for me. I learned problem-solving tricks that I now apply in coding contests. The best part was the real-time coding examples shared during the class.",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842659/Akshit_bc5spo.jpg",
@@ -39,7 +39,7 @@ const Testimonials = () => {
     },
     {
       name: "ADISH MODI",
-      college: "College Name",
+      college: "BCA Student",
       quote:
         "The mentorship program transformed my career path. The hands-on approach and real-world examples made complex concepts easy to understand. Highly recommend to anyone serious about learning.",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842657/Adroja_Akshit_opn25p.jpg",
@@ -47,7 +47,7 @@ const Testimonials = () => {
     },
     {
       name: "DEV DARJI",
-      college: "College Name",
+      college: "BE Student",
       quote:
         "The DSA course completely changed the way I approach problem-solving. The step-by-step explanations and practical coding examples made even tough concepts feel simple. Highly recommend it to anyone serious about improving their coding skills.",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842662/Dev_Kardani_u6l6uq.jpg",
