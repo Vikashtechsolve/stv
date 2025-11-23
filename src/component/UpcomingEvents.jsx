@@ -6,7 +6,7 @@ import RegistrationPopup from "../component/RegistrationPopup";
 const baseUrl = import.meta.env.VITE_APP_API_URL;
 
 const EventCard = ({ event, onRegister, baseUrl }) => {
-  const imageUrl = `${baseUrl}${event.bannerImage}`;
+  const imageUrl = `${event.bannerImage}`;
 
   // Format date from YYYY-MM-DD → DD Month YYYY (compact)
   const formatDate = (dateString) => {
