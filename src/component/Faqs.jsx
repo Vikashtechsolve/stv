@@ -1,142 +1,135 @@
-import React, { useState ,useRef,useEffect} from "react";
-import dropdownArrow from './../assets/dropdownarrow.png'
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiChevronDown } from "react-icons/fi";
 
-
- const FAQItem = ({ faq }) => {
- const [isOpen, setIsOpen] = useState(false);
+const FAQItem = ({ faq, index }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef(null);
-  const [height, setHeight] = useState("0px");
-
-  useEffect(() => {
-    setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : "0px");
-  }, [isOpen]);
 
   return (
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "1260px",
-        borderRadius: "8px",
-        padding: "8px 16px",
-        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-        transition: "all 0.3s ease",
-        fontFamily: "Nunito Sans, sans-serif",
-      }}
+    <motion.div
+      className="w-full max-w-5xl bg-white/80 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden mb-3 transition-all duration-300 hover:shadow-xl border border-gray-200/60 hover:border-[#ED0331]/60"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
+      whileHover={{ scale: 1.01, y: -2 }}
     >
       {/* Question */}
-      <div
+      <motion.div
         onClick={() => setIsOpen(!isOpen)}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          cursor: "pointer",
-          padding: "8px 0",
-          fontSize: "26px",
-          fontWeight: 500,
-          color: "black",
-        }}
+        className="flex items-center justify-between cursor-pointer p-4 md:p-5 lg:p-6 font-nunito bg-gradient-to-r from-white/90 to-gray-50/50"
+        whileHover={{ backgroundColor: "rgba(249, 249, 249, 0.9)" }}
+        transition={{ duration: 0.2 }}
       >
-        <div style={{ flex: 1 }}>{faq.question}</div>
-        <img
-          src={dropdownArrow}
-          alt="Arrow"
-          style={{
-            width: "25px",
-            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-            transition: "transform 0.3s ease",
-          }}
-        />
-      </div>
-
-      {/* Dropdown */}
-      <div
-        ref={contentRef}
-        style={{
-          maxHeight: height,
-          overflow: "hidden",
-          transition: "max-height 0.4s ease",
-          borderTop: isOpen ? "2px solid #BCBCBC" : "none",
-          marginTop: isOpen ? "8px" : "0",
-        }}
-      >
-        {faq.options.map((opt, idx) => (
-          <div
-            key={idx}
-            style={{
-              padding: "10px",
-              fontSize: "22px",
-              background: "linear-gradient(90deg, #ED0331, #87021C)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            {opt}
+        <div className="flex items-center gap-3 flex-1">
+          <div className="w-8 h-8 rounded-full bg-[#ED0331]/10 flex items-center justify-center shrink-0">
+            <span className="text-[#ED0331] font-bold text-sm">{index + 1}</span>
           </div>
-        ))}
-      </div>
-    </div>
+          <div className="text-sm md:text-base lg:text-lg font-semibold text-black pr-4">
+            {faq.question}
+          </div>
+        </div>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="shrink-0"
+        >
+          <div className="w-8 h-8 rounded-full bg-[#ED0331]/10 flex items-center justify-center">
+            <FiChevronDown className="w-5 h-5 md:w-6 md:h-6 text-[#ED0331]" />
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Dropdown Answer */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            ref={contentRef}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="border-t border-gray-200/60 pt-4 pb-4 md:pb-5 px-4 md:px-5 lg:px-6 bg-white/50">
+              {faq.options.map((opt, idx) => (
+                <motion.div
+                  key={idx}
+                  className="mb-2.5 last:mb-0 p-3 md:p-3.5 rounded-xl bg-gradient-to-r from-gray-50/80 to-gray-100/50 hover:from-gray-100/90 hover:to-gray-200/60 transition-all duration-200 font-nunito text-xs md:text-sm lg:text-base text-black leading-relaxed border-l-[3px] border-[#ED0331]/30 shadow-sm"
+                  initial={{ opacity: 0, x: -15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: idx * 0.04 }}
+                  whileHover={{ x: 3 }}
+                >
+                  {opt}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
 
-const Faqs = ({faqData}) => {
+const Faqs = ({ faqData }) => {
   return (
-    <div
-      style={{
-        width: "100vw",
-       
-        padding: "20px",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "18px",
-        backgroundColor: "#E2E2E2", // light gray background
-      }}
-    >
+    <section className="w-full py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-[#E2E2E2] flex flex-col items-center relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-10 right-10 w-64 h-64 bg-red-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
       {/* Frequently Asked Questions Title */}
-      <h2
-        style={{
-          fontSize: "48px",
-          fontFamily: "Playfair Display, serif",
-          fontWeight: 600,
-          lineHeight: "64.05px",
-          textAlign: "center",
-          marginBottom: "40px",
-          wordWrap: "break-word",
-          background: "linear-gradient(90deg, #ED0331, #87021C)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
+      <motion.h2
+        className="heading-section mb-6 md:mb-8 relative z-10"
+        initial={{ opacity: 0, y: -30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         Frequently Asked Questions
-      </h2>
+      </motion.h2>
 
-      {/* Top Left Subtext */}
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "1260px",
-          textAlign: "left",
-          fontSize: "40px",
-          fontFamily: "Nunito Sans, sans-serif",
-          fontWeight: 500,
-          lineHeight: "46px",
-          color: "black",
-          marginBottom: "20px",
-        }}
+      {/* Subtext with Animation */}
+      <motion.div
+        className="w-full max-w-5xl text-center mb-6 md:mb-8 relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
       >
-        Have more Questions?
-      </div>
+        <p className="text-base md:text-lg font-nunito font-semibold text-black">
+          Have more Questions?
+        </p>
+      </motion.div>
 
-      {/* FAQ Items */}
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: "18px" }}>
-        {faqData.map((faq, idx) => (
-          <FAQItem key={idx} faq={faq} />
-        ))}
+      {/* FAQ Items with Stagger Animation */}
+      <div className="w-full max-w-5xl flex flex-col items-center gap-3 relative z-10">
+        {faqData && faqData.length > 0 ? (
+          faqData.map((faq, idx) => (
+            <FAQItem key={idx} faq={faq} index={idx} />
+          ))
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-black font-nunito text-lg md:text-xl">No FAQs available at the moment.</p>
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 

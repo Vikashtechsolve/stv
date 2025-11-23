@@ -22,44 +22,44 @@ const ServiceOverlay = ({ title }) => {
     <>
       {title === "1:1 Mentorship" && (
         <div className="text-white space-y-4 text-base">
-          <p>Book a Slot</p>
+          <p className="font-nunito">Book a Slot</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Join a live video session</p>
+          <p className="font-nunito">Join a live video session</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Get a personalized career roadmap</p>
+          <p className="font-nunito">Get a personalized career roadmap</p>
         </div>
       )}
       {title === "Doubt Solving" && (
         <div className="text-white space-y-4 text-base">
-          <p>Post your Question</p>
+          <p className="font-nunito">Post your Question</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Book live session</p>
+          <p className="font-nunito">Book live session</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Get it Explained</p>
+          <p className="font-nunito">Get it Explained</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Receive practice notes to strengthen concepts</p>
+          <p className="font-nunito">Receive practice notes to strengthen concepts</p>
         </div>
       )}
       {title === "Online Contests" && (
         <div className="text-white space-y-4 text-base">
-          <p>Register</p>
+          <p className="font-nunito">Register</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Participate in live coding/MCQ tests</p>
+          <p className="font-nunito">Participate in live coding/MCQ tests</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Earn rewards & recognition</p>
+          <p className="font-nunito">Earn rewards & recognition</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Track your progress on the leaderboard</p>
+          <p className="font-nunito">Track your progress on the leaderboard</p>
         </div>
       )}
       {title === "Resume Review" && (
         <div className="text-white space-y-4 text-base">
-          <p>Upload your resume</p>
+          <p className="font-nunito">Upload your resume</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Get an expert review & analysis</p>
+          <p className="font-nunito">Get an expert review & analysis</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Receive detailed feedback</p>
+          <p className="font-nunito">Receive detailed feedback</p>
           <FaArrowDownLong className="mx-auto text-xl" />
-          <p>Get a step-by-step roadmap for your career journey</p>
+          <p className="font-nunito">Get a step-by-step roadmap for your career journey</p>
         </div>
       )}
     </>
@@ -82,7 +82,7 @@ const ShapeYourJourney = () => {
   return (
     <section className="py-12 mt-6">
       {/* Heading */}
-      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 heading-primary">
         Shape Your Journey
       </h1>
 
@@ -110,7 +110,7 @@ const ShapeYourJourney = () => {
                     activeIndex === index ? "opacity-95" : "opacity-0"
                   }`}
                 >
-                  <h3 className="text-white text-2xl font-bold mb-4">
+                  <h3 className="text-white text-2xl font-bold mb-4 font-playfair">
                     {service.title}
                   </h3>
                   <ServiceOverlay title={service.title} />
@@ -122,7 +122,7 @@ const ShapeYourJourney = () => {
                     activeIndex === index ? "opacity-0" : "opacity-100"
                   }`}
                 >
-                  <h3 className="text-white text-lg font-medium">
+                  <h3 className="text-white text-lg font-medium font-playfair">
                     {service.title}
                   </h3>
                 </div>

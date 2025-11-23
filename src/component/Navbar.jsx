@@ -259,13 +259,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <div
-          className="flex items-center justify-end px-6 py-2 w-[80%] ml-auto bg-black"
-          style={{
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 5% 100%)",
-            minHeight: "60px",
-          }}
-        >
+        <div className="flex items-center justify-end px-6 py-2 w-[80%] ml-auto bg-black navbar-clip-path">
           <div className="flex space-x-12 text-lg font-medium text-white mr-6">
             {links.map((link) => (
               <div

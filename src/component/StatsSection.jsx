@@ -7,7 +7,7 @@ const StatsSection = () => {
         
         {/* Left Side: Text Section */}
         <div className="order-2 md:order-1 flex flex-col justify-end">
-          <div className="space-y-6 text-[#1B1718] text-xl md:text-2xl">
+          <div className="space-y-6 text-[#1B1718] text-xl md:text-2xl font-nunito">
             <p className="flex items-start">
               <span className="mr-3 text-red-600 text-2xl">›</span> Get Industry-focused Training Programs.
             </p>
@@ -34,7 +34,7 @@ const StatsSection = () => {
               ].map((card, idx) => (
                 <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8">
                   <h2 className="text-4xl md:text-5xl font-bold text-red-600">{card.title}</h2>
-                  <p className="text-base md:text-lg mt-3">{card.subtitle}</p>
+                  <p className="text-base md:text-lg mt-3 font-nunito">{card.subtitle}</p>
                 </div>
               ))}
             </div>
@@ -43,7 +43,7 @@ const StatsSection = () => {
             <div className="flex justify-center mt-6">
               <div className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
                 <h2 className="text-4xl md:text-5xl font-bold text-red-600">50+</h2>
-                <p className="text-base md:text-lg mt-3">High-Impact Masterclasses Delivered</p>
+                <p className="text-base md:text-lg mt-3 font-nunito">High-Impact Masterclasses Delivered</p>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ const StatsSection = () => {
             ].map((card, idx) => (
               <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
                 <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>
-                <p className="text-lg mt-3">{card.subtitle}</p>
+                <p className="text-lg mt-3 font-nunito">{card.subtitle}</p>
               </div>
             ))}
           </div>
@@ -69,7 +69,7 @@ const StatsSection = () => {
             ].map((card, idx) => (
               <div key={idx} className="bg-white rounded-xl shadow-lg text-center p-8 w-[280px]">
                 <h2 className="text-4xl font-bold text-red-600">{card.title}</h2>
-                <p className="text-lg mt-3">{card.subtitle}</p>
+                <p className="text-lg mt-3 font-nunito">{card.subtitle}</p>
               </div>
             ))}
           </div>

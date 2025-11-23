@@ -56,8 +56,8 @@ const ContactForm = () => {
   return (
     <section className="py-12 mt-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
-          Have Questions? We’re Here to Help
+        <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 heading-primary leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+          Have Questions? We're Here to Help
         </h1>
 
         <div className=" grid md:grid-cols-2 gap-10 md:gap-7 items-center">
@@ -67,15 +67,15 @@ const ContactForm = () => {
               alt="Support Illustration"
               className="w-[90%] sm:w-[70%] md:w-[75%] lg:w-[65%]"
             />
-            <p className="text-base sm:text-lg font-medium text-center mb-6 sm:mb-10">
-              Let’s solve your doubts together!
+            <p className="text-base sm:text-lg font-medium text-center mb-6 sm:mb-10 font-nunito">
+              Let's solve your doubts together!
             </p>
             <div  className=" self-center ">
               <a
                 href="https://wa.me/919876543210"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-md transition text-sm sm:text-base"
+                className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-md transition text-sm sm:text-base font-nunito"
               >
                 <FaWhatsapp className="text-lg sm:text-xl" /> Chat with us
               </a>
@@ -90,7 +90,7 @@ const ContactForm = () => {
               type="text"
               name="name"
               placeholder="Enter your Full Name"
-              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500 font-nunito"
               value={formData.name}
               onChange={handleChange}
             />
@@ -98,7 +98,7 @@ const ContactForm = () => {
               type="email"
               name="email"
               placeholder="Enter your Email Address"
-              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500 font-nunito"
               value={formData.email}
               onChange={handleChange}
             />
@@ -106,7 +106,7 @@ const ContactForm = () => {
               type="tel"
               name="phone"
               placeholder="Enter your 10-digit mobile number"
-              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500 font-nunito"
               value={formData.phone}
               onChange={handleChange}
             />
@@ -114,7 +114,7 @@ const ContactForm = () => {
               name="query"
               rows="4"
               placeholder="Type your Query Here..."
-              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="w-full sm:w-[85%] px-4 py-3 sm:py-4 rounded-xl border border-black placeholder:text-center placeholder:text-base sm:placeholder:text-lg focus:outline-none focus:ring-2 focus:ring-red-500 font-nunito"
               value={formData.query}
               onChange={handleChange}
             />
@@ -132,7 +132,7 @@ const ContactForm = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-[60%] sm:w-[40%] lg:w-[30%] bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white font-medium px-6 py-3 rounded-xl hover:opacity-90 transition disabled:opacity-50"
+              className="w-[60%] sm:w-[40%] lg:w-[30%] bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white font-medium px-6 py-3 rounded-xl hover:opacity-90 transition disabled:opacity-50 font-nunito"
             >
               {loading ? "Sending..." : "Submit Query"}
             </button>

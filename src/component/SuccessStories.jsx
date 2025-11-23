@@ -148,7 +148,7 @@ const SuccessStories = () => {
 
   return (
     <section className="py-12 mt-6">
-      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 heading-primary leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
         Our Success Stories
       </h1>
       <p className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl text-black mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-nunito">
@@ -176,18 +176,15 @@ const SuccessStories = () => {
       ? "scale-105 shadow-xl z-10" 
       : "scale-95 opacity-80"
   }`}
-  style={{
-    transformOrigin: "center",
-  }}
             >
               {/* Text Content (Desktop left, Mobile below image) */}
               <div className="order-2 md:order-1 px-6 py-6 md:px-10 md:py-8 w-full md:w-2/3 flex flex-col justify-center text-center md:text-left">
-                <img src={vector} className="w-7 mb-10 " alt="not found" />
-                <p className="text-gray-700 mb-6 text-base  leading-relaxed">
+                <img src={vector} className="w-7 mb-10" alt="not found" />
+                <p className="text-gray-700 mb-6 text-base leading-relaxed font-nunito">
                   {t.text}
                 </p>
-                <h3 className="text-2xl font-nunito  font-semibold">{t.name}</h3>
-                <p className="text-gray-500 text-sm">{t.role}</p>
+                <h3 className="text-2xl font-nunito font-semibold">{t.name}</h3>
+                <p className="text-gray-500 text-sm font-nunito">{t.role}</p>
               </div>
 
               {/* Image (Mobile top, Desktop right) */}

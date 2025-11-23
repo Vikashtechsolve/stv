@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -42,6 +43,8 @@ const dynamicContent = [
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,7 +62,7 @@ const Hero = () => {
   };
 
   return (
-      <div className="w-full flex flex-col md:flex-row p-6 md:p-12 bg-gray-1">
+      <div className="w-full flex flex-col md:flex-row p-4 md:p-12 bg-gray-1 gap-4 md:gap-0">
 
       {/* Left Side Text */}
       <div className="flex-1 flex flex-col justify-center">
@@ -78,7 +81,7 @@ const Hero = () => {
               {dynamicContent.map((item, i) => (
                 <div
                   key={i}
-                  className="h-[60px] flex items-center text-red-700 font-semibold"
+                  className="h-[60px] flex items-center text-red-700 font-semibold font-playfair text-[52px] sm:text-[50px] md:text-[50px]"
                 >
                   {item.word}
                 </div>
@@ -89,19 +92,18 @@ const Hero = () => {
           with Vikash Tech Solution.
         </h1>
 
-        <p className="text-red-700 text-2xl sm:text-[28px] md:text-[32px] font-semibold mt-4">
+        <p className="text-red-700 text-2xl sm:text-[28px] md:text-[32px] font-semibold mt-2 md:mt-4 font-nunito">
           Your end-to-end career partner<br />
           to land your dream job
         </p>
 
-        <p className="text-gray-700 mt-4 text-lg sm:text-xl md:text-2xl font-normal leading-relaxed">
+        <p className="text-gray-700 mt-2 md:mt-4 text-lg sm:text-xl md:text-2xl font-normal leading-relaxed font-nunito">
           Learn from our expert mentors, gain hands-on project experience & take
           the right step toward a successful career!
         </p>
 
         <button
-          className="mt-8 px-6 mb-4 cursor-pointer py-2 rounded-[20px] w-80 h-20 font-semibold shadow text-white text-lg sm:text-xl md:text-2xl transition hover:opacity-90 self-start"
-          style={{ background: "linear-gradient(90deg, #ED0331, #87021C)" }}
+          className="mt-4 md:mt-8 px-6 mb-2 md:mb-4 cursor-pointer py-2 rounded-[20px] w-80 h-20 font-semibold shadow text-white text-lg sm:text-xl md:text-2xl transition hover:opacity-90 self-start btn-gradient-red font-nunito"
           onClick={() => handleNavigate("shapeYourJourney")}
         >
           Explore our Programs »
@@ -129,10 +131,10 @@ const Hero = () => {
 
               {/* Overlay Text */}
               <div className="absolute top-4 left-4 sm:top-6 sm:left-6 text-white max-w-[75%]">
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 font-playfair">
                   {dynamicContent[currentIndex].heading}
                 </h2>
-                <p className="text-sm sm:text-base md:text-lg mb-3">
+                <p className="text-sm sm:text-base md:text-lg mb-3 font-nunito">
                   {dynamicContent[currentIndex].description}
                 </p>
                 {/* <button className="bg-white text-gray-900 px-3 sm:px-5 py-1.5 sm:py-2 rounded-md font-medium shadow hover:bg-gray-200 transition text-xs sm:text-sm md:text-base">

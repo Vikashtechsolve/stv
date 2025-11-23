@@ -21,7 +21,7 @@ const HowWeWork = () => {
   return (
     <section className="py-12 mt-6">
       {/* Heading */}
-      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold font-playfair mb-8 sm:mb-10 md:mb-12 lg:mb-16 heading-primary leading-snug sm:leading-snug md:leading-[1.2] lg:leading-[1.2]">
         How We Work
       </h1>
       <p className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl text-black mb-6 sm:mb-8 md:mb-10 lg:mb-12 font-nunito">
@@ -34,10 +34,10 @@ const HowWeWork = () => {
         {steps.map((step, index) => (
           <React.Fragment key={index}>
             <div className="bg-white rounded-lg shadow-md p-6 w-full md:w-1/3 h-full flex flex-col justify-center text-center min-h-[150px]">
-              <h3 className="text-red-700 font-semibold text-lg mb-2">
+              <h3 className="text-red-700 font-semibold text-lg mb-2 font-playfair">
                 {step.title}
               </h3>
-              <p className="text-[#A2A1A1] text-lg">{step.description}</p>
+              <p className="text-[#A2A1A1] text-lg font-nunito">{step.description}</p>
             </div>
 
             {/* Arrows between steps (only on desktop) */}
