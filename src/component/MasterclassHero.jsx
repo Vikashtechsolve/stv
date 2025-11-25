@@ -1,25 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { useNavigate, useLocation } from "react-router-dom";
 import masterclassImage from "../assets/masterclasshead.png";
+import authfreemasterclass from "../assets/authfreemasterclass.png";
 
-const images = ["https://res.cloudinary.com/dc4gqqd35/image/upload/v1763878938/Gemini_Generated_Image_ip97hhip97hhip97_yx8jfs.png", masterclassImage, "https://res.cloudinary.com/dc4gqqd35/image/upload/v1763878938/Gemini_Generated_Image_ip97hhip97hhip97_1_qciqk9.png"];
+const images = [
+  authfreemasterclass,
+  "https://res.cloudinary.com/dc4gqqd35/image/upload/v1763878938/Gemini_Generated_Image_ip97hhip97hhip97_yx8jfs.png",
+  masterclassImage,
+  authfreemasterclass
+];
 
 const MasterClassHero = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Auto-slide every 4 seconds (pauses on hover)
+  const handleBannerClick = () => {
+    if (location.pathname === "/masterClass") {
+      const upcomingSection = document.getElementById("upcoming-events");
+      if (upcomingSection) {
+        upcomingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      navigate("/masterClass");
+      setTimeout(() => {
+        const upcomingSection = document.getElementById("upcoming-events");
+        if (upcomingSection) {
+          upcomingSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  };
+
   useEffect(() => {
     if (isHovered) return;
-
     const interval = setInterval(() => {
-      setCurrentIndex((prev) =>
-        prev === images.length - 1 ? 0 : prev + 1
-      );
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
     }, 4000);
     return () => clearInterval(interval);
-  }, [isHovered, images.length]);
+  }, [isHovered]);
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
@@ -30,7 +52,8 @@ const MasterClassHero = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-start md:justify-center pt-12 pb-8 md:py-8 px-4 md:px-6 bg-[#E2E2E2] relative overflow-hidden min-h-[60vh] md:min-h-[90vh]">
+    <div className="w-full flex flex-col items-center justify-start md:justify-center pt-6 pb-6 md:py-8 bg-[#E2E2E2] relative overflow-hidden min-h-[55vh] md:min-h-[90vh]">
+      
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div
@@ -59,7 +82,7 @@ const MasterClassHero = () => {
         />
       </div>
 
-      {/* Text Section with Enhanced Animation */}
+      {/* Text Section */}
       <motion.div
         className="w-full max-w-5xl text-center mb-3 md:mb-6 relative z-10 px-4"
         initial={{ opacity: 0, y: -30 }}
@@ -86,16 +109,20 @@ const MasterClassHero = () => {
         </motion.p>
       </motion.div>
 
-      {/* Enhanced Image Slider Section */}
+      {/* Slider Section */}
       <div
         className="w-full flex flex-col justify-center items-center relative z-10"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative flex justify-center items-center w-full max-w-6xl mx-auto">
-          {/* Previous Button */}
+        <div className="relative flex justify-center items-center w-full max-w-6xl mx-auto px-3 md:px-0">
+          
+          {/* Previous Button (Desktop Only) */}
           <motion.button
-            onClick={goToPrevious}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
+            }}
             className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white rounded-full p-2 md:p-3 shadow-lg backdrop-blur-sm transition-all duration-300 hidden md:flex items-center justify-center group cursor-pointer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -104,12 +131,16 @@ const MasterClassHero = () => {
             <FiChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-800 group-hover:text-[#ED0331] transition-colors" />
           </motion.button>
 
-          {/* Image Container with Enhanced Styling */}
-          <div className="relative w-full max-w-[92%] md:max-w-[88%] lg:max-w-[85%] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl group">
+          <motion.div 
+            className="relative w-full md:max-w-[88%] lg:max-w-[85%] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl group cursor-pointer" 
+            onClick={handleBannerClick}
+            whileHover={{ scale: 1.005 }}
+            transition={{ duration: 0.2 }}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                className="relative w-full"
+                className="relative w-full flex justify-center items-center bg-black/5" // Added bg-black/5 to show container bounds if image varies
                 initial={{ opacity: 0, scale: 0.95, x: 50 }}
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95, x: -50 }}
@@ -121,20 +152,28 @@ const MasterClassHero = () => {
                 <motion.img
                   src={images[currentIndex]}
                   alt={`Masterclass slide ${currentIndex + 1}`}
-                  className="w-full h-auto max-h-[50vh] md:max-h-[60vh] object-cover rounded-xl md:rounded-2xl"
+                  // --- FIXES START HERE ---
+                  // 1. Changed 'object-cover' to 'object-contain' so the whole image fits.
+                  // 2. Removed 'aspect-video' so it doesn't force a crop on mobile.
+                  // 3. Kept 'max-h' but allowed 'w-full' and 'h-auto' to control sizing naturally.
+                  className="w-full h-auto object-contain rounded-xl md:rounded-2xl max-h-[65vh] md:max-h-[60vh]"
+                  // --- FIXES END HERE ---
                   whileHover={{ scale: 1.01 }}
                   transition={{ duration: 0.3 }}
                 />
 
-                {/* Gradient Overlay for Better Text Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-xl md:rounded-2xl pointer-events-none" />
+                {/* Adjusted overlay to only show if needed, or remove entirely if images are clean */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent rounded-xl md:rounded-2xl pointer-events-none" />
               </motion.div>
             </AnimatePresence>
-          </div>
+          </motion.div>
 
-          {/* Next Button */}
+          {/* Next Button (Desktop Only) */}
           <motion.button
-            onClick={goToNext}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
             className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white rounded-full p-2 md:p-3 shadow-lg backdrop-blur-sm transition-all duration-300 hidden md:flex items-center justify-center group cursor-pointer"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -144,12 +183,15 @@ const MasterClassHero = () => {
           </motion.button>
         </div>
 
-        {/* Indicator Dots - Positioned below image container */}
+        {/* Indicator Dots */}
         <div className="mt-3 md:mt-6 flex gap-2 md:gap-3 z-20">
           {images.map((_, index) => (
             <motion.button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(index);
+              }}
               className={`h-2 md:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                 index === currentIndex
                   ? "w-6 md:w-8 bg-[#ED0331] shadow-lg"
