@@ -10,6 +10,8 @@ const RegistrationPopup = ({ event, onClose, baseUrl }) => {
 
   const { handlePayment, loading } = useRazorpayPayment(baseUrl);
   const [modal, setModal] = useState({ message: "", type: "" });
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -37,25 +39,30 @@ const RegistrationPopup = ({ event, onClose, baseUrl }) => {
       return;
     }
 
-    const paymentResult = await handlePayment({
-      amount: event.amount || 1,
-      prefill: {
-        userId:event._id,
-        name: formData.name,
-        email: formData.email,
-        contact: formData.fullMobile,
-      },
-      description: event.eventTitle,
-    });
+    // ============================================
+    // PAYMENT CODE - COMMENTED (TO BE UNCOMMENTED LATER)
+    // ============================================
+    // const paymentResult = await handlePayment({
+    //   amount: event.amount || 1,
+    //   prefill: {
+    //     userId:event._id,
+    //     name: formData.name,
+    //     email: formData.email,
+    //     contact: formData.fullMobile,
+    //   },
+    //   description: event.eventTitle,
+    // });
 
-    if (!paymentResult.success) {
-      setModal({ message: paymentResult.error || "Payment failed", type: "error" });
-      return;
-    }
+    // if (!paymentResult.success) {
+    //   setModal({ message: paymentResult.error || "Payment failed", type: "error" });
+    //   return;
+    // }
+    // ============================================
 
-  //  ✅ Payment success → Now do what you want
+    setIsRegistering(true);
+
     try {
-    // Example 1: Send confirmation email
+      // Send confirmation email
       await fetch(`${baseUrl}/api/mail/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -64,7 +71,7 @@ const RegistrationPopup = ({ event, onClose, baseUrl }) => {
           email: formData.email,
           phone: formData.fullMobile,
           query: "🎉 Registration successful for masterclass",
-          type: "masterclass", // could also be "workshop" or "course"
+          type: "masterclass",
           data: {
             meetUrl: event.meetingUrl,
             date: event.scheduleEventDate,
@@ -74,35 +81,39 @@ const RegistrationPopup = ({ event, onClose, baseUrl }) => {
         }),
       });
 
-      // Example 2: Save registration (optional)
-    try {
-        const registrationFrom = {
-            masterclassId: event._id,
-            name: formData.name,
-            email: formData.email,
-            mobile: formData.fullMobile,
-            graduationYear: formData.graduationYear,
-        };
+      // Save registration
+      const registrationFrom = {
+        masterclassId: event._id,
+        name: formData.name,
+        email: formData.email,
+        mobile: formData.fullMobile,
+        graduationYear: formData.graduationYear,
+      };
 
-        const res = await fetch(`${baseUrl}/api/masterclass/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(registrationFrom), // ❗ no extra { }
-        });
-    } catch (err) {
-            console.error("❌ Registration API Error:", err.message);
-            alert(`Error: ${err.message}`);
-    }
+      const res = await fetch(`${baseUrl}/api/masterclass/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(registrationFrom),
+      });
 
+      if (!res.ok) {
+        throw new Error("Registration failed");
+      }
 
-      setModal({ message: "🎉 Payment & Registration successful!", type: "success" });
+      setIsRegistering(false);
+      setShowSuccess(true);
+
+      // Close popup and redirect after 2 seconds
       setTimeout(() => {
-        navigate("/")
-      }, 2000);
-    } catch (err) {
-      setModal({ message: "Payment succeeded but post-actions failed.", type: "error" });
-    }
+        onClose();
+        navigate("/");
+      }, 4000);
 
+    } catch (err) {
+      console.error("❌ Registration Error:", err.message);
+      setIsRegistering(false);
+      setModal({ message: "Registration failed. Please try again.", type: "error" });
+    }
   };
 
   if (!event) return null;
@@ -226,21 +237,25 @@ const RegistrationPopup = ({ event, onClose, baseUrl }) => {
 
             <motion.button
               type="submit"
-              disabled={loading}
-              className={`mt-2 md:mt-4 flex justify-center items-center gap-2 btn-gradient-red text-white py-3 md:py-4 cursor-pointer rounded-xl font-bold font-nunito text-base md:text-lg hover:scale-105 transition-transform ${
-                loading ? "opacity-70 cursor-not-allowed" : ""
+              disabled={isRegistering || loading}
+              className={`mt-2 md:mt-4 flex justify-center items-center gap-2 btn-gradient-red text-white py-3 md:py-4 cursor-pointer rounded-xl font-bold font-nunito text-base md:text-lg transition-all ${
+                isRegistering || loading ? "opacity-70 cursor-not-allowed" : "hover:scale-105"
               }`}
               onClick={submit}
-              whileHover={!loading ? { scale: 1.02 } : {}}
-              whileTap={!loading ? { scale: 0.98 } : {}}
+              whileHover={!isRegistering && !loading ? { scale: 1.02 } : {}}
+              whileTap={!isRegistering && !loading ? { scale: 0.98 } : {}}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
-              {loading ? (
+              {isRegistering ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-t-white border-white/40 rounded-full animate-spin"></div>
-                  Processing...
+                  <motion.div 
+                    className="w-5 h-5 border-2 border-t-white border-white/40 rounded-full"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  />
+                  <span>Registering...</span>
                 </>
               ) : (
                 "Confirm your Registration"
@@ -250,6 +265,86 @@ const RegistrationPopup = ({ event, onClose, baseUrl }) => {
         </motion.div>
       </motion.div>
       <MessageModal message={modal.message} type={modal.type} onClose={() => setModal({ message: "", type: "" })} />
+      
+      {/* Success Modal with Animation */}
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[10001] p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 max-w-md w-full text-center relative"
+              initial={{ scale: 0.8, y: 50, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.8, y: 50, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              {/* Success Icon */}
+              <motion.div
+                className="w-20 h-20 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              >
+                <motion.svg
+                  className="w-12 h-12 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <motion.path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
+                </motion.svg>
+              </motion.div>
+
+              {/* Success Message */}
+              <motion.h3
+                className="text-2xl md:text-3xl font-bold font-playfair heading-primary mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                Registration Successful!
+              </motion.h3>
+              
+              <motion.p
+                className="text-base md:text-lg font-nunito text-gray-700 mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                You have successfully registered for the masterclass. A confirmation email has been sent to your email address.
+              </motion.p>
+
+              {/* Loading indicator for redirect */}
+              <motion.div
+                className="flex items-center justify-center gap-2 text-sm font-nunito text-gray-600"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+              >
+                <motion.div
+                  className="w-4 h-4 border-2 border-[#ED0331] border-t-transparent rounded-full"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+                <span>Redirecting to home...</span>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

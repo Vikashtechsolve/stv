@@ -16,7 +16,7 @@ const masterClassData = {
     { name: "Pavan Dubey", role: "UX/UI Designer, Ex-Microsoft", image: pavan },
   ],
   points: [
-    { title: "Affordable Learning", description: "Affordable Learning: High-Value Masterclasses Starting at Just ₹49 " },
+    { title: "Affordable Learning", description: "Affordable Learning: High-Value Masterclasses Starting at Just ₹0" },
     { title: "Focused Learning", description: "Concept Clarity Guaranteed: Deep-dive into one core topic with hands-on, practical examples in 90 minutes." },
     { title: "Expert Mentors", description: "Learn directly from industry professionals and experienced teachers." },
     { title: "Practical Insights", description: "Gain real-world knowledge through hands-on exercises." },
