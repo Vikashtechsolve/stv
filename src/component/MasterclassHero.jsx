@@ -107,6 +107,48 @@ const MasterClassHero = () => {
           Affordable, focused, and live masterclasses designed for school students,
           B.Tech learners, and professionals.
         </motion.p>
+
+        {/* Join Master Class Now Button */}
+        <motion.div
+          className="mt-4 md:mt-6 mb-4 md:mb-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        >
+          <motion.button
+            onClick={handleBannerClick}
+            className="btn-gradient-red text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold font-nunito text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              Join Master Class Now
+              <motion.svg
+                className="w-5 h-5 md:w-6 md:h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                initial={{ x: 0 }}
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </motion.svg>
+            </span>
+            {/* Shine effect on hover */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.6 }}
+            />
+          </motion.button>
+        </motion.div>
       </motion.div>
 
       {/* Slider Section */}
@@ -132,15 +174,15 @@ const MasterClassHero = () => {
           </motion.button>
 
           <motion.div 
-            className="relative w-full md:max-w-[88%] lg:max-w-[85%] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl group cursor-pointer" 
+            className="relative w-full md:max-w-[88%] lg:max-w-[85%] rounded-xl md:rounded-2xl overflow-visible group cursor-pointer" 
             onClick={handleBannerClick}
             whileHover={{ scale: 1.005 }}
             transition={{ duration: 0.2 }}
           >
-            <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                className="relative w-full flex justify-center items-center bg-black/5" // Added bg-black/5 to show container bounds if image varies
+                className="relative w-full flex justify-center items-center bg-[#E2E2E2] rounded-xl md:rounded-2xl"
                 initial={{ opacity: 0, scale: 0.95, x: 50 }}
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95, x: -50 }}
@@ -149,15 +191,15 @@ const MasterClassHero = () => {
                   ease: [0.4, 0, 0.2, 1],
                 }}
               >
-                <motion.img
-                  src={images[currentIndex]}
+            <motion.img
+              src={images[currentIndex]}
                   alt={`Masterclass slide ${currentIndex + 1}`}
-                  // --- FIXES START HERE ---
-                  // 1. Changed 'object-cover' to 'object-contain' so the whole image fits.
-                  // 2. Removed 'aspect-video' so it doesn't force a crop on mobile.
-                  // 3. Kept 'max-h' but allowed 'w-full' and 'h-auto' to control sizing naturally.
-                  className="w-full h-auto object-contain rounded-xl md:rounded-2xl max-h-[65vh] md:max-h-[60vh]"
-                  // --- FIXES END HERE ---
+                  className="w-full h-auto object-contain rounded-xl md:rounded-2xl max-h-[65vh] md:max-h-[60vh] block shadow-2xl"
+                  style={{ 
+                    maxWidth: '100%', 
+                    height: 'auto',
+                    display: 'block'
+                  }}
                   whileHover={{ scale: 1.01 }}
                   transition={{ duration: 0.3 }}
                 />

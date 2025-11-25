@@ -27,7 +27,7 @@ const FAQItem = ({ faq, index }) => {
             <span className="text-[#ED0331] font-bold text-sm">{index + 1}</span>
           </div>
           <div className="text-sm md:text-base lg:text-lg font-semibold text-black pr-4">
-            {faq.question}
+          {faq.question}
           </div>
         </div>
         <motion.div

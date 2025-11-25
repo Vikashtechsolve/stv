@@ -41,11 +41,11 @@ const EventCard = ({ event, onRegister, baseUrl }) => {
         
         {/* Subtle Shine Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
-        
+
         {/* Event Title Over Image */}
         <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
           <h3 className="text-xl md:text-2xl lg:text-3xl font-bold font-playfair mb-2 drop-shadow-2xl line-clamp-2 leading-tight group-hover:drop-shadow-2xl transition-all">
-            {event.eventTitle}
+          {event.eventTitle}
           </h3>
         </div>
 
@@ -69,7 +69,7 @@ const EventCard = ({ event, onRegister, baseUrl }) => {
         {/* Event Subtitle */}
         <div className="pb-2 border-b border-gray-200/80">
           <p className="text-sm font-semibold font-nunito text-gray-700 leading-tight line-clamp-2">
-            {event.eventSubtitle}
+          {event.eventSubtitle}
           </p>
         </div>
 
@@ -91,13 +91,13 @@ const EventCard = ({ event, onRegister, baseUrl }) => {
           <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-2.5 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow group-hover:border-gray-300">
             <p className="text-xs text-gray-500 font-nunito mb-1">📅 Date</p>
             <p className="text-xs font-semibold font-nunito text-black leading-tight">
-              {formatDate(event.scheduleEventDate)}
+            {formatDate(event.scheduleEventDate)}
             </p>
           </div>
           <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-2.5 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow group-hover:border-gray-300">
             <p className="text-xs text-gray-500 font-nunito mb-1">🕐 Time</p>
             <p className="text-xs font-semibold font-nunito text-black">
-              {event.scheduleEventTime} PM
+            {event.scheduleEventTime} PM
             </p>
           </div>
         </div>
@@ -188,7 +188,7 @@ const UpcomingEvents = () => {
               const eventIndex = scheduledEvents.findIndex((e) => e._id === event._id);
               if (eventIndex !== -1) {
                 return {
-                  ...event,
+          ...event,
                   registered: results[eventIndex]?.data?.totalRegisteredStudents ?? 0,
                 };
               }
@@ -259,10 +259,10 @@ const UpcomingEvents = () => {
             .map((event, index) => (
               <EventCard
                 key={event._id}
-                event={event}
-                baseUrl={baseUrl}
-                onRegister={setSelectedEvent}
-              />
+                  event={event}
+                  baseUrl={baseUrl}
+                  onRegister={setSelectedEvent}
+                />
             ))
         )}
       </div>
