@@ -1,6 +1,6 @@
-
 import React, { useState, useRef } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Star, Sparkles, Award, TrendingUp, BookOpen } from "lucide-react";
 import MentorSessionForm from "./MentorSessionForm";
 
 const mentorsData = [
@@ -89,86 +89,227 @@ const MentorSection = () => {
   const scrollLeft = () => scrollRef.current.scrollBy({ left: -200, behavior: "smooth" });
   const scrollRight = () => scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
 
-  return (
-    <section className="px-4 md:px-10 py-10 bg-gray-50 text-center">
-      {/* Headings */}
-      <h2 className="font-playfair text-3xl sm:text-4xl mb-7">Meet Our Mentors</h2>
-      <p className="red-gradient font-nunito text-lg md:text-xl mb-2">
-        Learn directly from professionals working at Google, Microsoft, and top startups.
-      </p>
-      <p className="text-lg md:text-xl font-nunito red-gradient mb-10">
-        Our mentors are not just teachers — they are guides who've walked the same path you're on.
-      </p>
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+  };
 
-      {/* Category Bar */}
-      <div className="relative flex items-center hide-scrollbar justify-center mb-8">
-        <button
-          onClick={scrollLeft}
-          className="absolute left-0 bg-black text-white p-2 rounded-full hover:bg-gray-800 z-10"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <div ref={scrollRef} className="flex gap-3 overflow-x-auto hide-scrollbar mx-8">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-md whitespace-nowrap font-medium transition-all ${
-                selectedCategory === cat
-                  ? "bg-black text-white"
-                  : "bg-[#f2f2f2] hover:bg-gray-300"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        <button
-          onClick={scrollRight}
-          className="absolute right-0 bg-black text-white p-2 rounded-full hover:bg-gray-800 z-10"
-        >
-          <ChevronRight size={20} />
-        </button>
+  return (
+    <section className="px-4 md:px-10 py-16 bg-gray-50 text-center relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 right-20 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
       </div>
 
-      {/* Mentor Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-        {filteredMentors.map((mentor, index) => (
-          <div
-            key={index}
-            className="bg-[#f2f2f2] shadow-md rounded-xl p-6 w-[90%] sm:w-[280px] md:w-[300px] lg:w-[320px] transition-transform hover:scale-[1.03] text-left"
-          >
-            <img
-              src={mentor.img}
-              alt={mentor.name}
-              className="w-28 h-28 object-cover rounded-full mb-4 mx-auto md:mx-0"
-            />
-            <h3 className="text-lg font-playfair font-semibold">{mentor.name}</h3>
-            <p className="text-gray-600 text-sm mb-3">{mentor.role}</p>
-
-            <p className="text-sm mb-1 font-nunito">
-              <span className="font-semibold text-red-700">Expertise:</span>{" "}
-              {mentor.expertise}
-            </p>
-            <p className="text-sm mb-1">
-              <span className="font-semibold text-red-700">Experience:</span>{" "}
-              {mentor.experience}
-            </p>
-
-            <div className="flex items-center mt-1 mb-2">
-              <span className="text-sm text-red-700 font-semibold mr-1">Rating:</span>
-              <span className="text-sm font-medium">{mentor.rating}</span>
-              <Star size={16} className="text-yellow-400 fill-yellow-400 ml-1" />
-            </div>
-
-            <button
-              onClick={() => setSelectedMentor(mentor)}
-              className="bg-gradient-to-b from-[#ED0331] to-[#87021C] text-white px-4 py-2 rounded-xl mt-2 hover:opacity-90 cursor-pointer font-nunito transition-all duration-300 shadow-md"
-            >
-              Book Session
-            </button>
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Headings */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-2 mb-4">
+            <Sparkles className="w-6 h-6 text-[#ED0331]" />
+            <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-gray-800">
+              Meet Our Mentors
+            </h2>
+            <Sparkles className="w-6 h-6 text-[#ED0331]" />
           </div>
-        ))}
+          <p className="heading-primary font-nunito text-lg md:text-xl mb-2">
+            Learn directly from professionals working at Google, Microsoft, and top startups.
+          </p>
+          <p className="text-lg md:text-xl font-nunito heading-primary mb-10">
+            Our mentors are not just teachers — they are guides who've walked the same path you're on.
+          </p>
+        </motion.div>
+
+        {/* Category Bar */}
+        <motion.div
+          className="relative flex items-center hide-scrollbar justify-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <motion.button
+            onClick={scrollLeft}
+            className="absolute left-0 bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white p-2 rounded-full hover:opacity-90 z-10 shadow-lg"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ChevronLeft size={20} />
+          </motion.button>
+          <div ref={scrollRef} className="flex gap-3 overflow-x-auto hide-scrollbar mx-8">
+            {categories.map((cat, index) => (
+              <motion.button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-6 py-3 rounded-lg whitespace-nowrap font-medium transition-all ${
+                  selectedCategory === cat
+                    ? "bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white shadow-lg"
+                    : "bg-white hover:bg-gray-100 text-gray-700 shadow-md"
+                }`}
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {cat}
+              </motion.button>
+            ))}
+          </div>
+          <motion.button
+            onClick={scrollRight}
+            className="absolute right-0 bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white p-2 rounded-full hover:opacity-90 z-10 shadow-lg"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ChevronRight size={20} />
+          </motion.button>
+        </motion.div>
+
+        {/* Mentor Cards */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+        >
+          <AnimatePresence mode="wait">
+            {filteredMentors.map((mentor, index) => (
+              <motion.div
+                key={mentor.name}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="bg-white shadow-lg rounded-2xl p-6 w-[90%] sm:w-[280px] md:w-[300px] lg:w-[320px] transition-all border-2 border-transparent hover:border-[#ED0331]/30 text-left relative overflow-hidden group"
+                whileHover={{ y: -10, scale: 1.02 }}
+              >
+                {/* Decorative Background */}
+                <motion.div
+                  className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-2xl -z-0"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+
+                <div className="relative z-10">
+                  {/* Profile Image */}
+                  <motion.div
+                    className="relative mb-4"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img
+                      src={mentor.img}
+                      alt={mentor.name}
+                      className="w-28 h-28 object-cover rounded-full mx-auto md:mx-0 border-4 border-[#ED0331]/20 shadow-lg"
+                    />
+                    <motion.div
+                      className="absolute -top-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </motion.div>
+
+                  {/* Name and Role */}
+                  <h3 className="text-lg font-playfair font-semibold text-gray-800 mb-1">
+                    {mentor.name}
+                  </h3>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Award className="w-4 h-4 text-[#ED0331]" />
+                    <p className="text-gray-600 text-sm">{mentor.role}</p>
+                  </div>
+
+                  {/* Expertise */}
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2 mb-1">
+                      <BookOpen className="w-4 h-4 text-[#ED0331]" />
+                      <span className="font-semibold text-[#ED0331] text-sm">Expertise:</span>
+                    </div>
+                    <p className="text-sm text-gray-700 font-nunito ml-6">{mentor.expertise}</p>
+                  </div>
+
+                  {/* Experience */}
+                  <div className="mb-3">
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-4 h-4 text-[#ED0331]" />
+                      <span className="font-semibold text-[#ED0331] text-sm">Experience:</span>
+                      <span className="text-sm text-gray-700">{mentor.experience}</span>
+                    </div>
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="text-sm text-[#ED0331] font-semibold">Rating:</span>
+                    <span className="text-sm font-medium text-gray-700">{mentor.rating}</span>
+                    <Star size={16} className="text-yellow-400 fill-yellow-400" />
+                  </div>
+
+                  {/* Book Session Button */}
+                  <motion.button
+                    onClick={() => setSelectedMentor(mentor)}
+                    className="w-full bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white px-4 py-3 rounded-xl font-nunito font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      Book Session
+                      <motion.span
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.span>
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-[#87021C] to-[#ED0331] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       {/* Open Modal */}
@@ -183,4 +324,3 @@ const MentorSection = () => {
 };
 
 export default MentorSection;
-
