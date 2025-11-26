@@ -12,7 +12,7 @@ const ResumeReview = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
-    <section className="w-full bg-[#E2E2E2] py-12 px-6 md:px-16 flex flex-col lg:flex-row items-center justify-between gap-10">
+    <section className="w-full bg-gray-50 py-12 px-6 md:px-16 flex flex-col lg:flex-row items-center justify-between gap-10">
       {/* Left Section */}
       <div className="w-full lg:w-1/2 flex flex-col items-start text-left">
         {/* Heading */}

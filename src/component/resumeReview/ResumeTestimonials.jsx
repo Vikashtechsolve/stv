@@ -30,7 +30,7 @@ const testimonials = [
 
 export default function ResumeTestimonials() {
   return (
-    <section className="bg-[#E2E2E2] py-16 px-4">
+    <section className="bg-gray-50 py-16 px-4">
       <div className="max-w-5xl mx-auto text-center mb-12">
         <h2 className="font-playfair text-3xl sm:text-4xl  text-gray-800 ">
           What Students Say About Our Resume Reviews

@@ -104,7 +104,7 @@ const SubjectCard = ({ subject }) => {
  */
 const SubjectDetails = () => {
   return (
-    <div className="min-h-screen bg-[#E2E2E2]  py-10 sm:py-20 font-sans">
+    <div className="min-h-screen bg-gray-50  py-10 sm:py-20 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center mb-12 sm:mb-16">

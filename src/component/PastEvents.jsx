@@ -160,7 +160,7 @@ const PastEventsPage = () => {
   }, [eventsData.length]); // Only runs once after data load
 
   return (
-    <section className="w-full py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-[#E2E2E2] flex flex-col items-center relative overflow-hidden">
+    <section className="w-full py-12 md:py-16 lg:py-20 px-4 md:px-6 bg-gray-50 flex flex-col items-center relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div

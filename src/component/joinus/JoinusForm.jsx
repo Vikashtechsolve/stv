@@ -71,7 +71,7 @@ const JoinUsForm = () => {
     "w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-700 placeholder:text-gray-500 text-left focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none";
 
   return (
-    <section className="bg-[#E2E2E2] text-gray-800 py-10 px-6 md:px-16 mt-0 pt-5">
+    <section className="bg-gray-50 text-gray-800 py-10 px-6 md:px-16 mt-0 pt-5">
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-semibold mb-12 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">

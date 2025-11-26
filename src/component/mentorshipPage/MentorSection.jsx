@@ -90,7 +90,7 @@ const MentorSection = () => {
   const scrollRight = () => scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
 
   return (
-    <section className="px-4 md:px-10 py-10 bg-[#E2E2E2] text-center">
+    <section className="px-4 md:px-10 py-10 bg-gray-50 text-center">
       {/* Headings */}
       <h2 className="font-playfair text-3xl sm:text-4xl mb-7">Meet Our Mentors</h2>
       <p className="red-gradient font-nunito text-lg md:text-xl mb-2">

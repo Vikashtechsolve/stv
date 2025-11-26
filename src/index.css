@@ -383,14 +383,14 @@
    SECTION STYLES
    ============================================ */
 .section-bg-gray {
-  background: #E2E2E2;
+  background: #F9FAFB;
 }
 
 .section-container {
   width: 100%;
   min-height: 100vh;
   padding: 60px 20px;
-  background: #E2E2E2;
+  background: #F9FAFB;
   display: flex;
   flex-direction: column;
   align-items: center;

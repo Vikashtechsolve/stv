@@ -96,7 +96,7 @@ const ResumeImportant = () => {
 
     return (
         // Outer container with light gray background and Inter font (Tailwind default)
-        <div className="min-h-screen bg-[#E2E2E2] py-16 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header Section */}

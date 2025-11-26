@@ -6,7 +6,7 @@ const WhatIsMentorship = () => {
   const videoCallImageUrl = "https://res.cloudinary.com/dc4gqqd35/image/upload/v1760434707/57049b741899d50e47496fd3bf0c5036d0f2a1b4_givpkg.jpg";
 
   return (
-    <div className="bg-[#E2E2E2]  flex flex-col items-center justify-center p-6 sm:p-10 font-sans">
+    <div className="bg-gray-50  flex flex-col items-center justify-center p-6 sm:p-10 font-sans">
       
       {/* Container for the entire section content */}
       <div className="max-w-7xl w-full mx-auto">

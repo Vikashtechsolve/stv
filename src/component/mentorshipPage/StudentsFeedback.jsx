@@ -56,7 +56,7 @@ const StudentsFeedback = () => {
   const visibleCards = getVisibleCards();
 
   return (
-    <section className="bg-[#E2E2E2] py-16 px-6 text-center">
+    <section className="bg-gray-50 py-16 px-6 text-center">
       <h2 className="text-3xl sm:text-4xl font-playfair text-gray-800  mb-5">
         Students Feedback
       </h2>

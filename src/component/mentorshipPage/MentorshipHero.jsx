@@ -11,7 +11,7 @@ const MentorshipHero = () => {
   };
 
   return (
-    <section className="flex flex-col bg-[#E2E2E2] items-center justify-center vksbg text-center px-4 md:px-5 py-16">
+    <section className="flex flex-col bg-gray-50 items-center justify-center vksbg text-center px-4 md:px-5 py-16">
       {/* Heading */}
       <h1 className="text-3xl font-playfair md:text-4xl font-serif font-bold text-black mb-4">
         Personalized 1:1 Mentorship Tailored Just for You

@@ -52,7 +52,7 @@ const MasterClassHero = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-start md:justify-center pt-6 pb-6 md:py-8 bg-[#E2E2E2] relative overflow-hidden min-h-[55vh] md:min-h-[90vh]">
+    <div className="w-full flex flex-col items-center justify-start md:justify-center pt-6 pb-6 md:py-8 bg-gray-50 relative overflow-hidden min-h-[55vh] md:min-h-[90vh]">
       
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -182,7 +182,7 @@ const MasterClassHero = () => {
           <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                className="relative w-full flex justify-center items-center bg-[#E2E2E2] rounded-xl md:rounded-2xl"
+                className="relative w-full flex justify-center items-center bg-gray-50 rounded-xl md:rounded-2xl"
                 initial={{ opacity: 0, scale: 0.95, x: 50 }}
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95, x: -50 }}

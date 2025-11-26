@@ -59,7 +59,7 @@ const experts = [
 
 export default function ResumeExperts() {
   return (
-    <section className="bg-[#E2E2E2]  py-14 px-4">
+    <section className="bg-gray-50  py-14 px-4">
       <div className="max-w-6xl mx-auto text-center mb-10">
         <h2 className=" mb-2 font-playfair text-3xl sm:text-4xl  text-gray-800  inline-block pb-2">
           Meet Our Resume Experts

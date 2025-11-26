@@ -16,7 +16,7 @@ export default function BlogPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#E2E2E2] p-6 md:p-12 font-nunito">
+    <div className="min-h-screen bg-gray-50 p-6 md:p-12 font-nunito">
       {!selectedBlog ? (
         <BlogList 
           blogs={filteredBlogs} 
