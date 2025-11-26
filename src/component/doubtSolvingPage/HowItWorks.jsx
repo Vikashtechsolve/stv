@@ -68,7 +68,7 @@ const StepCard = ({ step }) => {
 // Main App Component
 const HowItWorks = () => {
   return (
-    <div className=" bg-[#E2E2E2]  flex items-center justify-center sm:p-8 font-inter">
+    <div className=" bg-gray-50  flex items-center justify-center sm:p-8 font-inter">
       <div className="max-w-6xl w-full">
         
         {/* Header Section */}

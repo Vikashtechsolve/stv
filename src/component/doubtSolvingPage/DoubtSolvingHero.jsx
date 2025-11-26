@@ -22,7 +22,7 @@ const DoubtSolvingHero = () => {
   };
 
   return (
-    <div className=" w-full flex flex-col items-center py-10 px-4 bg-[#E2E2E2]">
+    <div className=" w-full flex flex-col items-center py-10 px-4 bg-gray-50">
 
       {/* Image Slider Section */}
       <div className="w-full flex justify-center items-center py-6">

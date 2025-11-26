@@ -51,7 +51,7 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="bg-[#E2E2E2] py-16 px-4 md:px-8 lg:px-16 text-center">
+    <section className="bg-gray-50 py-16 px-4 md:px-8 lg:px-16 text-center">
       {/* Heading */}
       <h2 className="text-3xl sm:text-4xl font-playfair mb-12">
         Why Choose Us

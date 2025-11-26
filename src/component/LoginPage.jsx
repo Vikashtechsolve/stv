@@ -94,7 +94,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#E2E2E2] px-4">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
       <div className="bg-white shadow-xl rounded-2xl w-full max-w-md p-8 relative">
         <Link
           to="/"

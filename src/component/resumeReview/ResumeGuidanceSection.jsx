@@ -35,7 +35,7 @@ const ResumeGuidanceSection = () => {
 
   return (
     <>
-      <section className="bg-[#E2E2E2] py-16 px-6 md:px-16 lg:px-24 text-center">
+      <section className="bg-gray-50 py-16 px-6 md:px-16 lg:px-24 text-center">
         {/* Heading */}
         <h2 className="font-playfair text-3xl sm:text-4xl text-gray-800 mb-2">
           All This for Just ₹149

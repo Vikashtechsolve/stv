@@ -31,7 +31,7 @@ const PricingPlans = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
 
   return (
-    <section className="bg-[#E2E2E2] py-16 px-4 md:px-8 lg:px-16 text-center">
+    <section className="bg-gray-50 py-16 px-4 md:px-8 lg:px-16 text-center">
       <h2 className="text-3xl sm:text-4xl font-playfair font-light text-gray-800 mb-2">
         Choose Your Perfect Plan
       </h2>

@@ -155,7 +155,7 @@ const MentorCard = ({ mentor }) => {
 const Mentors    = () => {
   return (
     // Outer container with a light background and padding
-    <div className="bg-[#E2E2E2] min-h-screen py-12 sm:py-20  font-sans">
+    <div className="bg-gray-50 min-h-screen py-12 sm:py-20  font-sans">
       <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
         
         {/* Header Section */}

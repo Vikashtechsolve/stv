@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 export const Empowering = () => { 
     
     return(
-         <div className="min-h-screen  bg-[#E2E2E2] flex items-center justify-center p-4 md:p-8">
+         <div className="min-h-screen  bg-gray-50 flex items-center justify-center p-4 md:p-8">
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
         
         {/* Left Content */}

@@ -61,7 +61,7 @@ const StepCard = ({ icon: Icon, title, description, iconBg, cardBg }) => {
 };
 
 const MentorshipSteps = () => (
-    <section className="py-16 px-4 sm:px-8 bg-[#E2E2E2]">
+    <section className="py-16 px-4 sm:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
             {/* Header Section */}
             <header className="text-center mb-12 lg:mb-16">

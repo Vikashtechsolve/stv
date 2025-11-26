@@ -67,7 +67,7 @@ const FeatureCard = ({ icon: Icon, title, description, index }) => (
 // Main Application Component
 const WhyChooseUs = () => {
   return (
-    <div className="min-h-screen bg-[#E2E2E2] flex flex-col items-center justify-center p-4 sm:p-8 font-inter">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 sm:p-8 font-inter">
       {/* Header Section */}
       <header className="text-center mb-12 max-w-4xl mx-auto">
         <h1 className="text-3xl sm:text-4xl font-playfair text-gray-800   mb-4">

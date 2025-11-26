@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
         description="Read Vikas Tech Solutions' privacy policy on how we protect and use your personal data securely."
         url="https://vikastechsolutions.com/privacy-policy"
       />
-    <div className="min-h-screen bg-[#E2E2E2] ">
+    <div className="min-h-screen bg-gray-50 ">
       {/* Header */}
       <div className=" px-6 py-16 text-center">
         <h1 className="text-5xl font-bold font-playfair text-gray-900 mb-8">

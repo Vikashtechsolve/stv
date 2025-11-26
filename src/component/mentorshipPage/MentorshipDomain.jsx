@@ -139,7 +139,7 @@ const DomainCard = ({ icon: Icon, title, description, cardBg, iconContainerClass
 
 const MentorshipDomain = () => {
     return (
-        <div className="min-h-screen bg-[#E2E2E2] font-inter py-16 px-4 sm:px-8">
+        <div className="min-h-screen bg-gray-50 font-inter py-16 px-4 sm:px-8">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header Section */}

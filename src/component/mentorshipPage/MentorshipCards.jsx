@@ -121,7 +121,7 @@ const MentorshipCards = () => {
 
   return (
     // Set up the overall canvas style
-    <div className="min-h-screen bg-[#E2E2E2] font-inter p-6 md:p-12 lg:py-16">
+    <div className="min-h-screen bg-gray-50 font-inter p-6 md:p-12 lg:py-16">
       <div className="max-w-7xl mx-auto">
         
         {/*

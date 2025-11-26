@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#E2E2E2] text-gray-800 py-10 px-6 md:px-16 mt-0 pt-50">
+    <footer className="bg-gray-50 text-gray-800 py-10 px-6 md:px-16 mt-0 pt-50">
       <div className=" grid md:grid-cols-4 gap-10 border-b border-t pt-18 border-gray-300 pb-10 ">
         
         {/* ABOUT SECTION */}
