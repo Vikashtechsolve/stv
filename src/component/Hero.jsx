@@ -123,11 +123,11 @@ const Hero = () => {
 
         {/* Right Side Animated Image */}
         <div className="flex-1 flex justify-center items-center relative w-full max-w-xl lg:max-w-2xl">
-          <div className="relative w-full">
+          <div className="relative w-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                className="relative w-full"
+                className="absolute inset-0 flex items-center justify-center"
                 initial={{ opacity: 0, x: 50, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -50, scale: 0.95 }}
@@ -136,7 +136,7 @@ const Hero = () => {
                 <img
                   src={dynamicContent[currentIndex].image}
                   alt={dynamicContent[currentIndex].word}
-                  className="w-full h-auto object-contain rounded-xl shadow-xl"
+                  className="w-full h-auto max-h-[250px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[500px] object-contain rounded-xl shadow-xl"
                 />
               </motion.div>
             </AnimatePresence>
