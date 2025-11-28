@@ -131,7 +131,7 @@ const Hero = () => {
                 initial={{ opacity: 0, x: 50, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -50, scale: 0.95 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <img
                   src={dynamicContent[currentIndex].image}
@@ -153,7 +153,7 @@ const Hero = () => {
               className="bg-white rounded-xl shadow-md hover:shadow-xl p-4 md:p-6 transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
               whileHover={{ scale: 1.02, y: -3 }}
             >
               <div className="flex items-start gap-4">

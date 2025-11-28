@@ -3,8 +3,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import { FaCloudUploadAlt } from "react-icons/fa";
-import joinImg from "../../assets/form.png"; // 🖼️ Update if path differs
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Upload, 
+  User, 
+  GraduationCap, 
+  Calendar, 
+  Phone, 
+  BookOpen, 
+  Briefcase, 
+  MapPin, 
+  DollarSign,
+  CheckCircle2,
+  Sparkles,
+  Award,
+  Users,
+  Zap,
+  Target,
+  ArrowRight,
+  FileText,
+  Clock,
+  Building2
+} from "lucide-react";
+import joinImg from "../../assets/form.png";
 
 // ✅ Validation Schema
 const schema = yup.object({
@@ -31,12 +52,24 @@ const schema = yup.object({
 
 const JoinUsForm = () => {
   const [message, setMessage] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: yupResolver(schema) });
+
+  const resumeFile = watch("resume");
+
+  // Update selected file when file changes
+  React.useEffect(() => {
+    if (resumeFile && resumeFile[0]) {
+      setSelectedFile(resumeFile[0]);
+    }
+  }, [resumeFile]);
 
   // 📅 Passing Year dropdown (current year - last 50 years)
   const currentYear = new Date().getFullYear();
@@ -45,6 +78,7 @@ const JoinUsForm = () => {
   // 🧩 Submit handler
   const onSubmit = async (data) => {
     setMessage(null);
+    setShowSuccess(false);
     try {
       const formData = new FormData();
       for (const key in data) {
@@ -58,7 +92,9 @@ const JoinUsForm = () => {
       });
 
       setMessage({ type: "success", text: res.data.message || "Form submitted successfully!" });
+      setShowSuccess(true);
       reset();
+      setSelectedFile(null);
     } catch (err) {
       setMessage({
         type: "error",
@@ -67,171 +103,526 @@ const JoinUsForm = () => {
     }
   };
 
-  const inputClass =
-    "w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-700 placeholder:text-gray-500 text-left focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none";
+  const benefits = [
+    { icon: Award, text: "Competitive Compensation", color: "from-yellow-500 to-amber-600" },
+    { icon: Users, text: "Impact 10K+ Students", color: "from-blue-500 to-cyan-600" },
+    { icon: Zap, text: "Flexible Schedule", color: "from-purple-500 to-indigo-600" },
+    { icon: Target, text: "Career Growth", color: "from-green-500 to-emerald-600" },
+  ];
+
+  const whyJoin = [
+    { icon: Building2, title: "Reputed Organization", desc: "Join a trusted name in tech education" },
+    { icon: Users, title: "Supportive Community", desc: "Work with passionate educators" },
+    { icon: Award, title: "Recognition & Rewards", desc: "Get recognized for your contributions" },
+    { icon: Clock, title: "Work-Life Balance", desc: "Flexible hours that fit your schedule" },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.05,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
-    <section className="bg-gray-50 text-gray-800 py-10 px-6 md:px-16 mt-0 pt-5">
-      <div className="max-w-6xl mx-auto">
-        {/* Heading */}
-        <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-semibold mb-12 bg-gradient-to-r from-[#ED0331] to-[#87021C] bg-clip-text text-transparent">
-          Join as a Trainer
-        </h1>
+    <section className="bg-gray-50 text-gray-800 py-12 md:py-20 px-4 sm:px-6 md:px-16 relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-blue-200/10 to-purple-200/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [0, -90, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Left: Image & Text */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
-            <img src={joinImg} alt="Join Us" className="w-[80%] md:w-[70%] mx-auto md:mx-0" />
-            <p className="text-base md:text-lg font-medium text-gray-700 leading-relaxed">
-              Help shape the next generation of developers!  
-              Apply now to become a mentor or trainer at{" "}
-              <span className="font-semibold text-red-600">VTS</span>.
-            </p>
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Enhanced Hero Section */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-3 mb-6">
+            <Sparkles className="w-8 h-8 text-[#ED0331]" />
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-playfair heading-primary">
+              Join as a Trainer
+            </h1>
+            <Sparkles className="w-8 h-8 text-[#ED0331]" />
           </div>
+          <motion.div
+            className="w-32 h-2 bg-gradient-to-r from-[#ED0331] to-[#87021C] mx-auto rounded-full mb-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          />
+          <p className="text-xl md:text-2xl font-nunito text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Help shape the next generation of developers! Share your expertise and make a lasting impact on students' careers.
+          </p>
+        </motion.div>
 
-          {/* Right: Form */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            encType="multipart/form-data"
-            className="space-y-5 bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col w-full"
+        {/* Benefits Cards */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {benefits.map((benefit, index) => {
+            const Icon = benefit.icon;
+            return (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-100 hover:border-[#ED0331]/30 transition-all text-center group"
+                whileHover={{ scale: 1.05, y: -5 }}
+              >
+                <div className={`w-14 h-14 mx-auto mb-4 bg-gradient-to-br ${benefit.color} rounded-xl flex items-center justify-center shadow-md group-hover:shadow-xl transition-shadow`}>
+                  <Icon className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-sm md:text-base font-semibold text-gray-800 font-nunito">
+                  {benefit.text}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Left: Enhanced Image & Why Join Section */}
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
           >
-            {/* Name */}
-            <div>
-              <input {...register("name")} placeholder="Full Name *" className={inputClass} />
-              <p className="text-sm text-red-600 mt-1">{errors.name?.message}</p>
-            </div>
-
-            {/* Qualification */}
-            <div>
-              <input
-                {...register("qualification")}
-                placeholder="Qualification *"
-                className={inputClass}
+            {/* Image */}
+            <motion.div
+              className="relative"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-[#ED0331]/20 to-[#87021C]/20 rounded-3xl blur-2xl" />
+              <img 
+                src={joinImg} 
+                alt="Join Us" 
+                className="relative w-full rounded-2xl shadow-2xl border-4 border-white" 
               />
-              <p className="text-sm text-red-600 mt-1">{errors.qualification?.message}</p>
-            </div>
+            </motion.div>
 
-            {/* Passing Year Dropdown */}
-            <div>
-              <select {...register("passingYear")} className={inputClass} defaultValue="">
-                <option value="" disabled>
-                  Select Passing Year *
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-              <p className="text-sm text-red-600 mt-1">{errors.passingYear?.message}</p>
-            </div>
+            {/* Why Join Us Section */}
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-xl border-2 border-gray-100"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold font-playfair heading-primary mb-6 flex items-center gap-3">
+                <Award className="w-8 h-8 text-[#ED0331]" />
+                Why Join VTS?
+              </h2>
+              <div className="space-y-4">
+                {whyJoin.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl hover:shadow-md transition-all"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="p-2 bg-gradient-to-br from-[#ED0331] to-[#87021C] rounded-lg">
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-900 mb-1 font-nunito">{item.title}</h3>
+                        <p className="text-sm text-gray-600 font-nunito">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </motion.div>
 
-            {/* Contact Number */}
-            <div>
-              <input
-                {...register("contactNo")}
-                placeholder="Contact Number *"
-                className={inputClass}
-              />
-              <p className="text-sm text-red-600 mt-1">{errors.contactNo?.message}</p>
-            </div>
+          {/* Right: Enhanced Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              encType="multipart/form-data"
+              className="space-y-6 bg-white p-8 rounded-2xl shadow-2xl border-2 border-gray-100 relative overflow-hidden"
+            >
+              {/* Decorative Background */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#ED0331]/5 to-[#87021C]/5 rounded-full blur-3xl" />
 
-            {/* Subject */}
-            <div>
-              <input {...register("subject")} placeholder="Subject *" className={inputClass} />
-              <p className="text-sm text-red-600 mt-1">{errors.subject?.message}</p>
-            </div>
+              <div className="relative z-10 space-y-5">
+                {/* Name */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <User className="w-5 h-5 text-[#ED0331]" />
+                    Full Name *
+                  </label>
+                  <input 
+                    {...register("name")} 
+                    placeholder="Enter your full name" 
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito" 
+                  />
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.name?.message}</p>
+                </motion.div>
 
-            {/* Resume Upload */}
-            <div>
-              <label className="w-full border border-dashed border-gray-400 rounded-lg py-4 flex flex-col items-center cursor-pointer hover:border-red-400">
-                <FaCloudUploadAlt className="text-3xl text-red-600 mb-2" />
-                <span className="text-gray-600">Upload Resume (PDF/DOC) *</span>
-                <input type="file" {...register("resume")} className="hidden" />
-              </label>
-              <p className="text-sm text-red-600 mt-1">{errors.resume?.message}</p>
-            </div>
+                {/* Qualification */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <GraduationCap className="w-5 h-5 text-[#ED0331]" />
+                    Qualification *
+                  </label>
+                  <input
+                    {...register("qualification")}
+                    placeholder="e.g., B.Tech, M.Tech, BCA, MCA"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito"
+                  />
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.qualification?.message}</p>
+                </motion.div>
 
-            {/* Experience Fields (Responsive grid) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {["teachingExperience", "developmentExperience", "totalExperience"].map((f) => (
-                <div key={f}>
+                {/* Passing Year */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <Calendar className="w-5 h-5 text-[#ED0331]" />
+                    Passing Year *
+                  </label>
+                  <select 
+                    {...register("passingYear")} 
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito" 
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Select Passing Year</option>
+                    {years.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.passingYear?.message}</p>
+                </motion.div>
+
+                {/* Contact Number */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.25 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <Phone className="w-5 h-5 text-[#ED0331]" />
+                    Contact Number *
+                  </label>
+                  <input
+                    {...register("contactNo")}
+                    placeholder="Enter your contact number"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito"
+                  />
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.contactNo?.message}</p>
+                </motion.div>
+
+                {/* Subject */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <BookOpen className="w-5 h-5 text-[#ED0331]" />
+                    Subject *
+                  </label>
+                  <input 
+                    {...register("subject")} 
+                    placeholder="e.g., Java, React, DSA, Spring Boot" 
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito" 
+                  />
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.subject?.message}</p>
+                </motion.div>
+
+                {/* Resume Upload */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.35 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <FileText className="w-5 h-5 text-[#ED0331]" />
+                    Resume *
+                  </label>
+                  <label className="w-full border-2 border-dashed border-gray-300 rounded-xl py-6 flex flex-col items-center cursor-pointer hover:border-[#ED0331] hover:bg-[#ED0331]/5 transition-all group">
+                    <Upload className="text-4xl text-[#ED0331] mb-3 group-hover:scale-110 transition-transform" />
+                    <span className="text-gray-600 font-medium font-nunito">
+                      {selectedFile ? selectedFile.name : "Upload Resume (PDF/DOC) *"}
+                    </span>
+                    <span className="text-xs text-gray-500 mt-1 font-nunito">Max 10MB</span>
+                    <input type="file" {...register("resume")} className="hidden" accept=".pdf,.doc,.docx" />
+                  </label>
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.resume?.message}</p>
+                </motion.div>
+
+                {/* Experience Fields */}
+                <motion.div
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                >
+                  {["teachingExperience", "developmentExperience", "totalExperience"].map((f, idx) => (
+                    <div key={f}>
+                      <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 text-sm font-nunito">
+                        <Briefcase className="w-4 h-4 text-[#ED0331]" />
+                        {f.replace(/([A-Z])/g, " $1").trim()} *
+                      </label>
+                      <input
+                        type="number"
+                        {...register(f)}
+                        placeholder="Years"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito"
+                      />
+                      <p className="text-sm text-red-600 mt-1 font-nunito">{errors[f]?.message}</p>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* Work Looking For */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.45 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-3 font-nunito">
+                    <Clock className="w-5 h-5 text-[#ED0331]" />
+                    Work Looking For *
+                  </label>
+                  <div className="flex flex-wrap gap-4">
+                    {["Part-Time Trainer", "Full-Time Trainer"].map((v) => (
+                      <label 
+                        key={v} 
+                        className="flex items-center gap-2 px-4 py-2 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-[#ED0331] hover:bg-[#ED0331]/5 transition-all group"
+                      >
+                        <input 
+                          type="checkbox" 
+                          value={v} 
+                          {...register("workLookingFor")} 
+                          className="w-4 h-4 text-[#ED0331] focus:ring-[#ED0331] rounded"
+                        />
+                        <span className="font-nunito text-gray-700 group-hover:text-[#ED0331] transition-colors">{v}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.workLookingFor?.message}</p>
+                </motion.div>
+
+                {/* Mode */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-3 font-nunito">
+                    <Building2 className="w-5 h-5 text-[#ED0331]" />
+                    Mode *
+                  </label>
+                  <div className="flex flex-wrap gap-4">
+                    {["Online Mode", "Offline Mode"].map((v) => (
+                      <label 
+                        key={v} 
+                        className="flex items-center gap-2 px-4 py-2 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-[#ED0331] hover:bg-[#ED0331]/5 transition-all group"
+                      >
+                        <input 
+                          type="checkbox" 
+                          value={v} 
+                          {...register("mode")} 
+                          className="w-4 h-4 text-[#ED0331] focus:ring-[#ED0331] rounded"
+                        />
+                        <span className="font-nunito text-gray-700 group-hover:text-[#ED0331] transition-colors">{v}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.mode?.message}</p>
+                </motion.div>
+
+                {/* Location */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.55 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <MapPin className="w-5 h-5 text-[#ED0331]" />
+                    Location *
+                  </label>
+                  <input 
+                    {...register("location")} 
+                    placeholder="Enter your location" 
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito" 
+                  />
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.location?.message}</p>
+                </motion.div>
+
+                {/* Payout */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2 font-nunito">
+                    <DollarSign className="w-5 h-5 text-[#ED0331]" />
+                    Payout Expectations (per hour) *
+                  </label>
                   <input
                     type="number"
-                    {...register(f)}
-                    placeholder={`${f.replace(/([A-Z])/g, " $1")} *`}
-                    className={inputClass}
+                    {...register("payoutExpectations")}
+                    placeholder="Enter expected payout"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#ED0331]/20 focus:border-[#ED0331] outline-none transition-all font-nunito"
                   />
-                  <p className="text-sm text-red-600 mt-1">{errors[f]?.message}</p>
-                </div>
-              ))}
-            </div>
+                  <p className="text-sm text-red-600 mt-1 font-nunito">{errors.payoutExpectations?.message}</p>
+                </motion.div>
 
-            {/* Work Looking For */}
-            <div>
-              <span className="font-medium">Work Looking For *</span>
-              <div className="flex flex-wrap gap-4 mt-2">
-                {["Part-Time Trainer", "Full-Time Trainer"].map((v) => (
-                  <label key={v} className="inline-flex items-center gap-2">
-                    <input type="checkbox" value={v} {...register("workLookingFor")} />
-                    <span>{v}</span>
-                  </label>
-                ))}
+                {/* Submit Button */}
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full btn-gradient-red text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group font-nunito text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.65 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-white/20"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {isSubmitting ? (
+                      <>
+                        <motion.div
+                          className="w-5 h-5 border-2 border-t-white border-white/40 rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        Submit Application
+                        <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
+                  </span>
+                </motion.button>
+
+                {/* Success/Error Message */}
+                <AnimatePresence>
+                  {message && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className={`p-4 rounded-xl ${
+                        message.type === "success" 
+                          ? "bg-green-50 border-2 border-green-200" 
+                          : "bg-red-50 border-2 border-red-200"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        {message.type === "success" ? (
+                          <CheckCircle2 className="w-6 h-6 text-green-600" />
+                        ) : (
+                          <motion.div
+                            className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center"
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            <span className="text-white text-sm font-bold">!</span>
+                          </motion.div>
+                        )}
+                        <p className={`font-semibold font-nunito ${
+                          message.type === "success" ? "text-green-700" : "text-red-700"
+                        }`}>
+                          {message.text}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              <p className="text-sm text-red-600 mt-1">{errors.workLookingFor?.message}</p>
-            </div>
-
-            {/* Mode */}
-            <div>
-              <span className="font-medium">Mode *</span>
-              <div className="flex flex-wrap gap-4 mt-2">
-                {["Online Mode", "Offline Mode"].map((v) => (
-                  <label key={v} className="inline-flex items-center gap-2">
-                    <input type="checkbox" value={v} {...register("mode")} />
-                    <span>{v}</span>
-                  </label>
-                ))}
-              </div>
-              <p className="text-sm text-red-600 mt-1">{errors.mode?.message}</p>
-            </div>
-
-            {/* Location */}
-            <div>
-              <input {...register("location")} placeholder="Location *" className={inputClass} />
-              <p className="text-sm text-red-600 mt-1">{errors.location?.message}</p>
-            </div>
-
-            {/* Payout */}
-            <div>
-              <input
-                type="number"
-                {...register("payoutExpectations")}
-                placeholder="Payout Expectations (per hour) *"
-                className={inputClass}
-              />
-              <p className="text-sm text-red-600 mt-1">{errors.payoutExpectations?.message}</p>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full sm:w-[60%] md:w-[50%] bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white font-medium px-6 py-3 rounded-xl hover:opacity-90 transition disabled:opacity-50 mx-auto"
-            >
-              {isSubmitting ? "Submitting..." : "Submit Application"}
-            </button>
-
-            {/* Success/Error Message */}
-            {message && (
-              <p
-                className={`mt-3 text-center font-medium ${
-                  message.type === "success" ? "text-green-600" : "text-red-600"
-                }`}
-              >
-                {message.text}
-              </p>
-            )}
-          </form>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -101,14 +101,14 @@ const MentorshipHero = () => {
         className="relative z-10 max-w-7xl w-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.3 }}
       >
         {/* Enhanced Heading */}
         <motion.div
           className="mb-8"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.05 }}
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <motion.div
@@ -126,7 +126,7 @@ const MentorshipHero = () => {
                     className="absolute -bottom-2 left-0 right-0 h-1.5 bg-gradient-to-r from-[#ED0331] to-[#87021C] rounded-full"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
-                    transition={{ delay: 0.8, duration: 0.6 }}
+                    transition={{ delay: 0.2, duration: 0.4 }}
                   />
                 </span>
               </h1>
@@ -148,7 +148,7 @@ const MentorshipHero = () => {
           className="mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
         >
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-nunito font-semibold heading-primary max-w-4xl mx-auto leading-relaxed mb-4">
             Get direct guidance from industry experts in{" "}
@@ -160,7 +160,7 @@ const MentorshipHero = () => {
                 className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ED0331] to-[#87021C]"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ delay: 1.2, duration: 0.5 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
               />
             </span>
             ,{" "}
@@ -182,14 +182,14 @@ const MentorshipHero = () => {
           className="flex flex-col lg:flex-row items-center justify-center mt-8 gap-8 lg:gap-16 w-full"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
         >
           {/* Left Side - Enhanced Illustration */}
           <motion.div
             className="flex justify-center w-full lg:w-1/2 relative"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
           >
             <div className="relative">
               {/* Glowing background */}
@@ -226,7 +226,7 @@ const MentorshipHero = () => {
             className="w-full lg:w-1/2 flex flex-col items-center gap-6"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
           >
             {/* Top Two Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
@@ -238,7 +238,7 @@ const MentorshipHero = () => {
                     className={`${stat.bgColor} shadow-xl rounded-2xl py-6 px-5 flex flex-col items-center w-full border-2 ${stat.borderColor} hover:border-[#ED0331]/50 transition-all relative overflow-hidden group`}
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ delay: 1.2 + index * 0.1, type: "spring", stiffness: 100 }}
+                    transition={{ delay: 0.3 + index * 0.05, type: "spring", stiffness: 100 }}
                     whileHover={{ scale: 1.05, y: -8 }}
                   >
                     {/* Shine effect */}
@@ -269,7 +269,7 @@ const MentorshipHero = () => {
               className="bg-gradient-to-br from-yellow-50 via-amber-50 to-yellow-100 shadow-xl rounded-2xl py-6 px-5 flex flex-col items-center w-full sm:w-[75%] border-2 border-yellow-200 hover:border-yellow-400/50 transition-all relative overflow-hidden group"
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 1.4, type: "spring", stiffness: 100 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
               whileHover={{ scale: 1.05, y: -8 }}
             >
               <motion.div
@@ -298,7 +298,7 @@ const MentorshipHero = () => {
           className="mt-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6, duration: 0.5 }}
+          transition={{ delay: 0.45, duration: 0.3 }}
         >
           <motion.button
             className="group relative inline-flex items-center justify-center px-8 md:px-12 py-4 md:py-5 text-base md:text-lg font-bold text-white rounded-2xl shadow-2xl overflow-hidden"
@@ -309,6 +309,7 @@ const MentorshipHero = () => {
             whileHover={{ scale: 1.08, y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
+
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-[#87021C] to-[#ED0331] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             />
@@ -336,7 +337,7 @@ const MentorshipHero = () => {
           className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm md:text-base"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 0.5 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
         >
           {[
             { icon: TrendingUp, text: "Trusted by 10K+ Students", color: "text-[#ED0331]" },
@@ -351,7 +352,7 @@ const MentorshipHero = () => {
                 whileHover={{ scale: 1.05 }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 2 + index * 0.1 }}
+                transition={{ delay: 0.55 + index * 0.05 }}
               >
                 <Icon className={`w-5 h-5 ${item.color}`} />
                 <span className="font-nunito font-semibold text-gray-700">{item.text}</span>

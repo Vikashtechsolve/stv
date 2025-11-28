@@ -209,7 +209,7 @@ const WhyChooseUs = () => {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
           />
           <div className="flex items-center justify-center gap-3 mb-4">
             <Zap className="w-6 h-6 text-[#ED0331]" />

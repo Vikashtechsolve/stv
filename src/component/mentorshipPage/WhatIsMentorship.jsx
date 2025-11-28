@@ -48,8 +48,8 @@ const WhatIsMentorship = () => {
           className="text-center mb-16 pt-10"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4 }}
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <Sparkles className="w-6 h-6 text-[#ED0331]" />
@@ -62,8 +62,8 @@ const WhatIsMentorship = () => {
             className="w-32 h-1.5 bg-gradient-to-r from-[#ED0331] to-[#87021C] mx-auto rounded-full"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: 0.1, duration: 0.3 }}
           />
         </motion.div>
 
@@ -74,8 +74,8 @@ const WhatIsMentorship = () => {
             className="order-2 font-nunito lg:order-1 space-y-6 text-lg text-gray-700 leading-relaxed"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: 0.05 }}
           >
             <motion.div
               className="p-6 bg-white rounded-2xl shadow-lg border-l-4 border-[#ED0331]"
@@ -91,8 +91,8 @@ const WhatIsMentorship = () => {
               className="p-6 bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-md"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
               <p className="text-lg md:text-xl">
                 Whether you're a student struggling with complex topics, a graduate seeking the
@@ -104,8 +104,8 @@ const WhatIsMentorship = () => {
               className="p-6 bg-white rounded-2xl shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.3, delay: 0.15 }}
             >
               <p className="text-lg md:text-xl">
                 With personalized guidance, real-world insights, and structured learning paths, you'll gain the clarity, confidence, and skills needed to grow faster and achieve your goals all through one-on-one interactive sessions designed just for you.
@@ -117,8 +117,8 @@ const WhatIsMentorship = () => {
               className="grid grid-cols-2 gap-4 mt-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               {features.map((feature, index) => {
                 const Icon = feature.icon;
@@ -129,8 +129,8 @@ const WhatIsMentorship = () => {
                     whileHover={{ scale: 1.05, y: -5 }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.9 + index * 0.1 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ delay: 0.25 + index * 0.05 }}
                   >
                     <motion.div
                       className={`p-3 bg-gradient-to-br ${feature.color} rounded-xl shadow-md`}
@@ -152,8 +152,8 @@ const WhatIsMentorship = () => {
               className="flex flex-wrap gap-3 mt-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 1.2 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.3 }}
             >
               {benefits.map((benefit, index) => {
                 const Icon = benefit.icon;
@@ -164,8 +164,8 @@ const WhatIsMentorship = () => {
                     whileHover={{ scale: 1.05 }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 1.3 + index * 0.1 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ delay: 0.35 + index * 0.05 }}
                   >
                     <Icon className="w-4 h-4 text-[#ED0331]" />
                     <span className="text-sm font-semibold text-gray-700">{benefit.text}</span>
@@ -180,7 +180,7 @@ const WhatIsMentorship = () => {
             className="order-1 lg:order-2 relative flex flex-col gap-6"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             {/* Image Section */}
@@ -232,7 +232,7 @@ const WhatIsMentorship = () => {
                   className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-5 py-3 rounded-full shadow-xl flex items-center gap-2 border-2 border-green-200"
                   initial={{ opacity: 0, scale: 0, rotate: -180 }}
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: 1, type: "spring", stiffness: 200 }}
                   whileHover={{ scale: 1.1 }}
                 >
@@ -250,8 +250,8 @@ const WhatIsMentorship = () => {
                   className="absolute bottom-4 left-4 bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white px-5 py-2 rounded-full shadow-xl flex items-center gap-2"
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 1.2 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: 0.3 }}
                   whileHover={{ scale: 1.05 }}
                 >
                   <Users className="w-5 h-5" />
@@ -265,8 +265,8 @@ const WhatIsMentorship = () => {
               className="grid grid-cols-3 gap-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.3 }}
             >
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
@@ -277,8 +277,8 @@ const WhatIsMentorship = () => {
                     whileHover={{ scale: 1.05, y: -5 }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ delay: 0.2 + index * 0.05 }}
                   >
                     <div className="flex justify-center mb-2">
                       <div className="p-2 bg-gradient-to-br from-[#ED0331] to-[#87021C] rounded-lg">

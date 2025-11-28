@@ -57,8 +57,8 @@ const WhatWeOffer = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.1,
+                staggerChildren: 0.08,
+                delayChildren: 0.05,
             },
         },
     };
@@ -70,7 +70,7 @@ const WhatWeOffer = () => {
             y: 0,
             scale: 1,
             transition: {
-                duration: 0.6,
+                duration: 0.4,
                 ease: "easeOut",
             },
         },
@@ -131,7 +131,7 @@ const WhatWeOffer = () => {
                     className="heading-section mb-4"
                     initial={{ opacity: 0, y: -20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.3 }}
                 >
                     What We Offer
                 </motion.h1>
@@ -139,7 +139,7 @@ const WhatWeOffer = () => {
                     className="text-lg md:text-xl text-gray-600 font-nunito max-w-2xl mx-auto"
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
                 >
                     Discover our comprehensive range of services designed to accelerate your career growth
                 </motion.p>

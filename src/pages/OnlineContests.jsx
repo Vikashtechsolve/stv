@@ -1,14 +1,19 @@
 import React from 'react'
-import Navbar from '../component/Navbar'
 import Layout from '../component/Layout'
-import OnlineContesthero from '../component/OnlineContesthero'
+import OnlineContestHero from '../component/OnlineContesthero'
+import ContestStats from '../component/ContestStats'
+import ContestBenefits from '../component/ContestBenefits'
 import HowItWorksPage from '../component/HowItWorks'
+
 const OnlineContest = () => {
     return (
         <Layout>
-       <OnlineContesthero/>
-       <HowItWorksPage/>
+            <OnlineContestHero/>
+            <ContestStats/>
+            <ContestBenefits/>
+            <HowItWorksPage/>
         </Layout>
     )
 }
+
 export default OnlineContest;
