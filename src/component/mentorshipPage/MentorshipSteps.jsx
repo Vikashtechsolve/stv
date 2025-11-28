@@ -110,7 +110,7 @@ const StepCard = ({ icon: Icon, title, description, iconBg, cardBg, stepNumber, 
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.15 + 0.4 }}
+        transition={{ delay: index * 0.05 + 0.1 }}
       >
         <CheckCircle2 className="w-6 h-6 text-green-600" />
       </motion.div>

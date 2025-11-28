@@ -21,7 +21,7 @@ const StartJourney = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.08,
         delayChildren: 0.1,
       },
     },
@@ -33,7 +33,7 @@ const StartJourney = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.3,
         ease: "easeOut",
       },
     },
@@ -145,7 +145,7 @@ const StartJourney = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.1 }}
           >
             {/* Animated Background */}
             <motion.div

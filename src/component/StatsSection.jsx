@@ -6,7 +6,7 @@ const StatsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   // Counter animation hook
-  const useCountUp = (target, duration = 2000, isInView) => {
+  const useCountUp = (target, duration = 1200, isInView) => {
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -50,11 +50,11 @@ const StatsSection = () => {
     return count;
   };
 
-  const count95 = useCountUp("95", 2000, isInView);
-  const count1K = useCountUp("1000", 2000, isInView);
-  const count80 = useCountUp("80", 2000, isInView);
-  const count500 = useCountUp("500", 2000, isInView);
-  const count50 = useCountUp("50", 2000, isInView);
+  const count95 = useCountUp("95", 1200, isInView);
+  const count1K = useCountUp("1000", 1200, isInView);
+  const count80 = useCountUp("80", 1200, isInView);
+  const count500 = useCountUp("500", 1200, isInView);
+  const count50 = useCountUp("50", 1200, isInView);
 
   const formatStat = (num, type) => {
     if (type === 'percentage') return `${num}%`;
@@ -88,8 +88,8 @@ const StatsSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
+        staggerChildren: 0.05,
+        delayChildren: 0.05,
       },
     },
   };
@@ -101,7 +101,7 @@ const StatsSection = () => {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -113,7 +113,7 @@ const StatsSection = () => {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
         ease: "easeOut",
       },
     },
@@ -144,7 +144,7 @@ const StatsSection = () => {
                 type: "spring",
                 stiffness: 200,
                 damping: 15,
-                delay: idx * 0.1 + 0.3,
+                delay: idx * 0.05 + 0.1,
               }}
             >
               {formatStat(stat.number, stat.format)}
@@ -197,7 +197,7 @@ const StatsSection = () => {
                   type: "spring",
                   stiffness: 200,
                   damping: 15,
-                  delay: (idx + 3) * 0.1 + 0.5,
+                  delay: (idx + 3) * 0.05 + 0.15,
                 }}
               >
                 {formatStat(stat.number, stat.format)}
@@ -215,7 +215,7 @@ const StatsSection = () => {
         className="border-t-2 border-gray-300 w-full mt-10 md:mt-12"
         initial={{ scaleX: 0 }}
         animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
       />
     </motion.div>
   );

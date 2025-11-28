@@ -84,8 +84,8 @@ const ContactForm = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
+        staggerChildren: 0.05,
+        delayChildren: 0.05,
       },
     },
   };
@@ -96,7 +96,7 @@ const ContactForm = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -160,14 +160,14 @@ const ContactForm = () => {
             className="inline-flex items-center gap-3 mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
           >
             <Sparkles className="w-8 h-8 text-[#ED0331]" />
             <motion.h1
               className="heading-section"
               initial={{ opacity: 0, y: -20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.3, delay: 0.15 }}
             >
               Have Questions? We're Here to Help
             </motion.h1>
@@ -177,7 +177,7 @@ const ContactForm = () => {
             className="text-lg md:text-xl text-gray-600 font-nunito max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
             Get in touch with us and let's solve your doubts together!
           </motion.p>
@@ -193,7 +193,7 @@ const ContactForm = () => {
               className="relative"
               initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
               animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.9, rotate: -5 }}
-              transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 100 }}
+              transition={{ duration: 0.4, delay: 0.2, type: "spring", stiffness: 100 }}
             >
               {/* Decorative Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-red-200/40 via-pink-200/30 to-purple-200/20 rounded-3xl blur-3xl -z-10 transform scale-110"></div>
@@ -213,7 +213,7 @@ const ContactForm = () => {
               className="text-center space-y-6 w-full"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
             >
               <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-gray-200/50">
                 <div className="flex items-center justify-center gap-3 mb-4">
@@ -258,7 +258,7 @@ const ContactForm = () => {
                   className="relative group"
                   initial={{ opacity: 0, x: 30 }}
                   animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                  transition={{ duration: 0.3, delay: 0.25 + index * 0.05 }}
                 >
                   <div className="relative">
                     {/* Icon */}
@@ -301,7 +301,7 @@ const ContactForm = () => {
               className="relative group"
               initial={{ opacity: 0, x: 30 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
             >
               <div className="relative">
                 <div className="absolute left-5 top-5 z-10">
@@ -351,7 +351,7 @@ const ContactForm = () => {
               whileTap={!loading ? { scale: 0.98 } : {}}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 1.1 }}
+              transition={{ duration: 0.3, delay: 0.45 }}
             >
               <span className="relative z-10 flex items-center justify-center gap-3">
                 {loading ? (

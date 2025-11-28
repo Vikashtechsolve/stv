@@ -14,7 +14,7 @@ import DoubtSolving from "./pages/DoubtSolving";
 import ResumeReview from "./pages/ResumeReview";
 import AutoPay from "./utils/AutoPay";
 import BlogPage from "./pages/BlogPage";
-import BlogDetail from "./component/blogs/BlogDetail";
+import BlogDetailPage from "./pages/BlogDetailPage";
 import JoinUs from "./pages/JoinUs";
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
           <Route path="/resume-review" element={ <ResumeReview/> } />
           <Route path="/pay" element={<AutoPay />} />
           <Route path="/blogs" element={<BlogPage />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/blog/:id" element={<BlogDetailPage />} />
 
         </Routes>
       <ScrollToTop />

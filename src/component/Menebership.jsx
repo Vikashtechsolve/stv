@@ -143,8 +143,8 @@ const Membership = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.1,
+                staggerChildren: 0.08,
+                delayChildren: 0.05,
             },
         },
     };
@@ -155,7 +155,7 @@ const Membership = () => {
             opacity: 1,
             y: 0,
             transition: {
-                duration: 0.6,
+                duration: 0.4,
                 ease: "easeOut",
             },
         },
@@ -207,7 +207,7 @@ const Membership = () => {
                         className="heading-section mb-4"
                         initial={{ opacity: 0, y: -20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                        transition={{ duration: 0.6 }}
+                        transition={{ duration: 0.3 }}
                     >
                 Power of Mentorship
                     </motion.h1>
@@ -215,7 +215,7 @@ const Membership = () => {
                         className="text-lg md:text-xl text-gray-600 font-nunito max-w-2xl mx-auto"
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
                     >
                         Experience personalized guidance that transforms your learning journey
                     </motion.p>
@@ -239,7 +239,7 @@ const Membership = () => {
                                 className="flex-1 max-w-2xl"
                                 initial={{ opacity: 0, x: -50 }}
                                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-                                transition={{ duration: 0.8, delay: 0.3 }}
+                                transition={{ duration: 0.4, delay: 0.1 }}
                             >
                                 <div
                                     className="relative group cursor-pointer"
@@ -295,7 +295,7 @@ const Membership = () => {
                                 className="flex-1 space-y-8"
                                 initial={{ opacity: 0, x: 50 }}
                                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-                                transition={{ duration: 0.8, delay: 0.5 }}
+                                transition={{ duration: 0.4, delay: 0.15 }}
                             >
                                 {benefits.map((benefit, index) => {
                                     const IconComponent = benefit.icon;
@@ -305,7 +305,7 @@ const Membership = () => {
                                             className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl"
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                            transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
+                                            transition={{ duration: 0.3, delay: 0.2 + index * 0.08 }}
                                             whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.15)" }}
                                         >
                                             <div className="flex items-start gap-4">
@@ -364,7 +364,7 @@ const Membership = () => {
                                         className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                        transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+                                        transition={{ duration: 0.3, delay: 0.15 + index * 0.08 }}
                                     >
                                         <div className="flex items-start gap-4">
                                             <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-[#ED0331] to-[#87021C] flex items-center justify-center">

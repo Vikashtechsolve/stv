@@ -249,7 +249,7 @@ const MentorshipCards = () => {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
           />
           <p className="text-xl md:text-2xl text-gray-600 font-nunito max-w-3xl mx-auto font-semibold">
             Everything you need for personalized growth and career success

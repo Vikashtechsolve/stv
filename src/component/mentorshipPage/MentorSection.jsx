@@ -126,8 +126,8 @@ const MentorSection = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.3 }}
         >
           <div className="inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-6 h-6 text-[#ED0331]" />
@@ -149,8 +149,8 @@ const MentorSection = () => {
           className="relative flex items-center hide-scrollbar justify-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.3, delay: 0.05 }}
         >
           <motion.button
             onClick={scrollLeft}
@@ -172,7 +172,7 @@ const MentorSection = () => {
                 }`}
                 initial={{ opacity: 0, y: -10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

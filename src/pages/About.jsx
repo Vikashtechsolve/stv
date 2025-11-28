@@ -11,7 +11,7 @@ const About = () => {
     const thumbNail="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/coding-design-template-7fdcbfed1fb311be96a282920fba8515_screen.jpg?ts=1738234094";
     return (
         <Layout>
-            <div className='bg-gray-50' >
+            <div className='w-full overflow-hidden' >
                 <Empowering/>
                 <AboutVTS/>
                 <TestimonialsPage videoUrl={"https://www.w3schools.com/html/mov_bbb.mp4"} testimonialImg={thumbNail} title={""} />
