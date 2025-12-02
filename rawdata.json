@@ -106,6 +106,54 @@
     "blogData": [
         {
             "id": "b1",
+            "title": "Quantum-Inspired Algorithms for Beginners",
+            "category": "Computer Science",
+            "hero": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+            "excerpt": "You don’t need an actual quantum computer to use quantum-inspired ideas. Learn how modern algorithms borrow quantum principles to work faster and smarter.",
+            "author": "Anonymous",
+            "date": "Jan 15, 2025",
+            "readTime": "5 min",
+            "tags": [
+                "Quantum Computing",
+                "Algorithms",
+                "Optimization"
+            ],
+            "content": "Simple intro to how quantum ideas improve classical algorithms\n\nTechnology is moving faster than ever, and one of the most exciting fields today is quantum computing. But here’s the good news: you don’t need an actual quantum computer to use quantum-inspired ideas.\n\nMany modern algorithms running on normal classical computers take inspiration from quantum principles to work faster and smarter.\n\n**What Are Quantum-Inspired Algorithms?**\nQuantum-inspired algorithms are classical algorithms (run on normal computers) that borrow concepts from quantum computing such as:\n- Superposition → working with many possibilities at once\n- Entanglement-like correlations → linking data efficiently\n- Amplitude-based probability → choosing better solutions\n\nThink of it like this: A real quantum computer is like a jet plane. Quantum-inspired algorithms are like a supercar designed using jet technology—still on the road, but much faster than normal cars.\n\n**How Quantum Ideas Improve Classical Algorithms**\nHere are the key quantum concepts used:\n\n1. **Superposition → Parallel Thinking**\nQuantum bits (qubits) can represent many states at once. Inspired by this, classical algorithms create smart data structures which allow exploring many solutions together instead of one-by-one.\n\n2. **Quantum Amplitudes → Weighted Probability**\nIn quantum systems, every possible answer has a “probability amplitude”. Quantum-inspired algorithms use weighted sampling to quickly find the best answers.\n\n3. **Quantum Annealing → Better Optimization**\nQuantum annealing solves “What is the best possible solution?” type problems. Used in logistics, scheduling, and AI model tuning.\n\n✅ **Where Beginners Should Start**\nIf you're just starting, learn these topics step-by-step:\n- Step 1: Basic Linear Algebra (Vectors, matrices)\n- Step 2: Classical Optimization (Genetic algorithms)\n- Step 3: Quantum Basics (Superposition, entanglement concepts)\n- Step 4: Try Quantum-Inspired Tools (Microsoft QIO, D-Wave hybrid solvers)"
+        },
+        {
+            "id": "b2",
+            "title": "Why Browser Engines Behave Differently",
+            "category": "Web Development",
+            "hero": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+            "excerpt": "Blink, WebKit, Gecko — Have you ever opened the same website in two different browsers and noticed small changes? Here is why that happens.",
+            "author": "Anonymous",
+            "date": "Feb 10, 2025",
+            "readTime": "6 min",
+            "tags": [
+                "Browsers",
+                "Web Standards",
+                "Frontend"
+            ],
+            "content": "Blink, WebKit, Gecko — What makes each browser unique?\n\nHave you ever opened the same website in two different browsers and noticed small changes—like fonts shifting, animations feeling smoother, or layouts behaving differently? This happens because every browser uses a different browser engine, and each engine has its own style of interpreting web code.\n\n**What Is a Browser Engine?**\nA browser engine is like the brain of the browser. It reads HTML, CSS, and JavaScript, then decides how the page should look, how animations run, and how fast things load.\n\n**The Three Major Engines**\n\n1️⃣ **Blink — The Speed Lover**\n(Used in: Chrome, Edge, Brave, Opera)\nBlink focuses heavily on speed, performance, and modern web features. If a website uses heavy animations, Blink often runs them more smoothly.\nMindset: “Make things fast and support the newest features.”\n\n2️⃣ **WebKit — The Apple Specialist**\n(Used in: Safari on iPhone, iPad, Mac)\nWebKit is known for tight integration with Apple hardware and energy efficiency. A website might look perfect on Safari because WebKit uses advanced graphics optimizations that match Apple devices.\nMindset: “Make things look beautiful and run efficiently on Apple devices.”\n\n3️⃣ **Gecko — The Rule Follower**\n(Used in: Firefox)\nGecko focuses on standards compliance, privacy, and security. Some CSS properties behave more strictly in Firefox because Gecko follows web standards very closely.\nMindset: “Follow web standards exactly, even if it’s harder.”\n\n✅ **Why Do They Behave Differently?**\n- **Different Rendering Techniques**: Each engine calculates layout and painting differently.\n- **Different JavaScript Engines**: Blink uses V8, WebKit uses JavaScriptCore, and Gecko uses SpiderMonkey.\n- **Different Priorities**: Speed vs. Graphics vs. Privacy.\n\nThis is why developers always test across multiple browsers!"
+        },
+        {
+            "id": "b3",
+            "title": "Micro-Frontends in 2025 — Still Worth It?",
+            "category": "Architecture",
+            "hero": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+            "excerpt": "Micro-frontends were once the “hot trend”. In 2025, are they still worth it, or have better solutions arrived? Let’s break down the pros and cons.",
+            "author": "Anonymous",
+            "date": "Mar 05, 2025",
+            "readTime": "7 min",
+            "tags": [
+                "Micro-Frontends",
+                "Architecture",
+                "Scalability"
+            ],
+            "content": "Pros, cons, and the architecture patterns that still matter today\n\nMicro-frontends were once the “hot trend” in frontend architecture. In 2025, the question many teams now ask is simple: Are micro-frontends still worth it, or have better solutions arrived?\n\n**What Are Micro-Frontends?**\nMicro-frontends take the idea of microservices and apply it to the UI. Instead of one big frontend, the app is split into smaller, independent parts—each built, deployed, and updated separately. Think of it like a modular house where each room can be redesigned without rebuilding the entire house.\n\n⚡ **Pros of Micro-Frontends (Still Relevant in 2025)**\n- **Independent Teams = Faster Delivery**: Each team owns its piece of the UI. No long coordination, no giant merge conflicts.\n- **Technology Freedom**: One team can use React, another can use Vue. Still useful in large enterprises.\n- **Gradual Migration**: If your app is old and huge, micro-frontends allow a step-by-step rewrite.\n\n⚠️ **Cons of Micro-Frontends (More Visible in 2025)**\n- **High Complexity**: Routing, shared state, and communication become harder.\n- **Bigger Bundle Sizes**: Multiple frameworks = more weight, more loading time.\n- **Overkill for Small Teams**: If your team is under 15 developers, micro-frontends often slow you down.\n\n**Modern Architecture Patterns (2025) That Matter More Now**\nMany companies have realized that micro-frontends solve problems—but also create new ones. Here is what is trending now:\n\n1. **Module Federation (Webpack + Rspack)**: The most popular way to implement micro-frontends today.\n2. **Monorepos with Turborepo or Nx**: Many teams prefer structured monorepos instead of micro-frontends because they offer shared components and faster builds with fewer complexities.\n3. **“Mini-Apps” Pattern**: Apps contain small standalone modules that load only when needed.\n\n✅ **Verdict**: Yes, they are worth it for large enterprise apps, but startups should stick to Monorepos."
+        },
+        {
+            "id": "b1",
             "title": "Understanding JavaScript Closures — Simplified",
             "category": "JavaScript",
             "hero": "https://cdn.vectorstock.com/i/500p/26/33/javascript-programming-banner-vector-24192633.jpg",
