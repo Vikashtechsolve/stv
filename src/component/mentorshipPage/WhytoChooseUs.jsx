@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Award, Ruler, UserCheck, Tag, Video, MessageSquare, Sparkles, CheckCircle2, Zap } from 'lucide-react';
 
@@ -53,19 +53,20 @@ const features = [
   },
 ];
 
-const FeatureCard = ({ icon: Icon, title, description, gradient, bgGradient, borderColor, index }) => {
+const FeatureCard = ({ icon: Icon, title, description, gradient, bgGradient, borderColor, index, isMobile }) => {
   const cardVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.8, rotateX: -15 },
+    hidden: { opacity: 0, y: 40, scale: 0.9, rotateX: isMobile ? 0 : -15 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       rotateX: 0,
       transition: {
-        delay: index * 0.12,
-        duration: 0.6,
+        delay: index * (isMobile ? 0.06 : 0.12),
+        duration: isMobile ? 0.4 : 0.6,
         type: "spring",
-        stiffness: 100,
+        stiffness: isMobile ? 150 : 100,
+        damping: 20,
       },
     },
   };
@@ -77,8 +78,8 @@ const FeatureCard = ({ icon: Icon, title, description, gradient, bgGradient, bor
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      whileHover={{ y: -15, scale: 1.03, rotateY: 5 }}
-      style={{ perspective: "1000px" }}
+      whileHover={isMobile ? {} : { y: -15, scale: 1.03, rotateY: 5 }}
+      style={{ perspective: isMobile ? "none" : "1000px" }}
     >
       {/* Shine Effect */}
       <motion.div
@@ -91,21 +92,22 @@ const FeatureCard = ({ icon: Icon, title, description, gradient, bgGradient, bor
       {/* Enhanced Icon Container */}
       <motion.div
         className={`mb-6 w-20 h-20 p-4 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-2xl relative z-10`}
-        whileHover={{ rotate: 360, scale: 1.2 }}
+        whileHover={isMobile ? {} : { rotate: 360, scale: 1.2 }}
         transition={{ duration: 0.8 }}
       >
         <Icon className="h-10 w-10 text-white" />
         <motion.div
           className="absolute inset-0 rounded-2xl border-4 border-white/30"
-          animate={{
-            scale: [1, 1.3, 1],
+          animate={isMobile ? {} : {
+            scale: [1, 1.2, 1],
             opacity: [0.5, 0, 0.5],
           }}
           transition={{
-            duration: 2.5,
+            duration: 3,
             repeat: Infinity,
             ease: "easeOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
         />
       </motion.div>
 
@@ -125,8 +127,8 @@ const FeatureCard = ({ icon: Icon, title, description, gradient, bgGradient, bor
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.12 + 0.3, type: "spring" }}
-        whileHover={{ scale: 1.1 }}
+        transition={{ delay: index * (isMobile ? 0.06 : 0.12) + 0.2, type: "spring" }}
+        whileHover={isMobile ? {} : { scale: 1.1 }}
       >
         <CheckCircle2 className="w-5 h-5 text-[#ED0331]" />
         <span className="text-sm font-bold text-[#ED0331]">Included</span>
@@ -136,12 +138,23 @@ const FeatureCard = ({ icon: Icon, title, description, gradient, bgGradient, bor
 };
 
 const WhyChooseUs = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: isMobile ? 0.05 : 0.1,
       },
     },
   };
@@ -151,31 +164,35 @@ const WhyChooseUs = () => {
       {/* Enhanced Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-20 w-[600px] h-[600px] bg-gradient-to-br from-red-200/15 to-pink-200/15 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/15 to-purple-200/15 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            x: [0, -100, 0],
-            y: [0, 50, 0],
+          className={`absolute top-20 left-20 w-[600px] h-[600px] bg-gradient-to-br from-red-200/15 to-pink-200/15 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
           }}
           transition={{
             duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform' }}
         />
+        {!isMobile && (
+          <motion.div
+            className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/15 to-purple-200/15 rounded-full blur-3xl"
+            animate={{
+              scale: [1.1, 1, 1.1],
+              x: [0, -50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ willChange: 'transform' }}
+          />
+        )}
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -189,8 +206,9 @@ const WhyChooseUs = () => {
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <motion.div
-              animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={isMobile ? {} : { rotate: [0, 360], scale: [1, 1.1, 1] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-8 h-8 text-[#ED0331]" />
             </motion.div>
@@ -198,8 +216,9 @@ const WhyChooseUs = () => {
               Why Choose Us
             </h1>
             <motion.div
-              animate={{ rotate: [360, 0], scale: [1, 1.2, 1] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={isMobile ? {} : { rotate: [360, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-8 h-8 text-[#ED0331]" />
             </motion.div>
@@ -229,7 +248,7 @@ const WhyChooseUs = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {features.map((feature, index) => (
@@ -242,6 +261,7 @@ const WhyChooseUs = () => {
                 gradient={feature.gradient}
                 bgGradient={feature.bgGradient}
                 borderColor={feature.borderColor}
+                isMobile={isMobile}
               />
             ))}
           </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 
@@ -92,20 +92,21 @@ const features = [
   },
 ];
 
-const FeatureCard = ({ feature, isBottomRow, index }) => {
+const FeatureCard = ({ feature, isBottomRow, index, isMobile }) => {
   const IconComponent = feature.icon;
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.8 },
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        delay: index * 0.15,
-        duration: 0.6,
+        delay: index * (isMobile ? 0.08 : 0.15),
+        duration: isMobile ? 0.4 : 0.6,
         type: "spring",
-        stiffness: 100,
+        stiffness: isMobile ? 150 : 100,
+        damping: 20,
       },
     },
   };
@@ -122,8 +123,8 @@ const FeatureCard = ({ feature, isBottomRow, index }) => {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      whileHover={{ y: -12, scale: 1.03 }}
+      viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}
+      whileHover={isMobile ? {} : { y: -12, scale: 1.03 }}
     >
       {/* Shine Effect */}
       <motion.div
@@ -140,21 +141,22 @@ const FeatureCard = ({ feature, isBottomRow, index }) => {
           ${feature.iconBg} rounded-2xl
           flex items-center justify-center shadow-2xl relative z-10
         `}
-        whileHover={{ rotate: 360, scale: 1.15 }}
+        whileHover={isMobile ? {} : { rotate: 360, scale: 1.15 }}
         transition={{ duration: 0.8 }}
       >
         <IconComponent className={`text-white ${ICON_SIZE}`} />
         <motion.div
           className="absolute inset-0 rounded-2xl border-4 border-white/30"
-          animate={{
-            scale: [1, 1.2, 1],
+          animate={isMobile ? {} : {
+            scale: [1, 1.15, 1],
             opacity: [0.5, 0, 0.5],
           }}
           transition={{
-            duration: 2,
+            duration: 3,
             repeat: Infinity,
             ease: "easeOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
         />
       </motion.div>
 
@@ -177,7 +179,7 @@ const FeatureCard = ({ feature, isBottomRow, index }) => {
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.15 + 0.3 }}
+        transition={{ delay: index * (isMobile ? 0.08 : 0.15) + 0.2 }}
       >
         <CheckCircle2 className="w-5 h-5 text-[#ED0331]" />
         <span className="text-sm font-bold text-[#ED0331]">Included</span>
@@ -187,6 +189,17 @@ const FeatureCard = ({ feature, isBottomRow, index }) => {
 };
 
 const MentorshipCards = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const topRowFeatures = features.slice(0, 3);
   const bottomRowFeatures = features.slice(3);
 
@@ -195,7 +208,7 @@ const MentorshipCards = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: isMobile ? 0.05 : 0.1,
       },
     },
   };
@@ -205,16 +218,17 @@ const MentorshipCards = () => {
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
+          className={`absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
           }}
           transition={{
-            duration: 20,
+            duration: 25,
             repeat: Infinity,
             ease: "linear",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform' }}
         />
       </div>
 
@@ -229,8 +243,9 @@ const MentorshipCards = () => {
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <motion.div
-              animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={isMobile ? {} : { rotate: [0, 360], scale: [1, 1.1, 1] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-8 h-8 text-[#ED0331]" />
             </motion.div>
@@ -238,8 +253,9 @@ const MentorshipCards = () => {
               What You Get
             </h2>
             <motion.div
-              animate={{ rotate: [360, 0], scale: [1, 1.2, 1] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={isMobile ? {} : { rotate: [360, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-8 h-8 text-[#ED0331]" />
             </motion.div>
@@ -267,10 +283,10 @@ const MentorshipCards = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}
         >
           {features.map((feature, index) => (
-            <FeatureCard key={index} feature={feature} index={index} />
+            <FeatureCard key={index} feature={feature} index={index} isMobile={isMobile} />
           ))}
         </motion.div>
 
@@ -280,12 +296,12 @@ const MentorshipCards = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}
         >
           {/* Row 1: Three equal columns */}
           <div className="grid grid-cols-3 gap-8 mb-8">
             {topRowFeatures.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} />
+              <FeatureCard key={index} feature={feature} index={index} isMobile={isMobile} />
             ))}
           </div>
 
@@ -293,7 +309,7 @@ const MentorshipCards = () => {
           <div className="flex justify-center">
             <div className="grid grid-cols-2 gap-8 w-full xl:max-w-[70%] 2xl:max-w-[60%]">
               {bottomRowFeatures.map((feature, index) => (
-                <FeatureCard key={index + 3} feature={feature} isBottomRow={true} index={index + 3} />
+                <FeatureCard key={index + 3} feature={feature} isBottomRow={true} index={index + 3} isMobile={isMobile} />
               ))}
             </div>
           </div>
