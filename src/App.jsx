@@ -38,7 +38,7 @@ const App = () => {
           <Route path="/resume-review" element={ <ResumeReview/> } />
           <Route path="/pay" element={<AutoPay />} />
           <Route path="/blogs" element={<BlogPage />} />
-          <Route path="/blog/:id" element={<BlogDetailPage />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
 
         </Routes>
       <ScrollToTop />

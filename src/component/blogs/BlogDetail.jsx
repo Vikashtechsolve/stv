@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useSpring, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   Clock,
@@ -19,11 +20,108 @@ import {
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
-import data from "../../../rawdata.json";
-
-const BLOGS = data?.blogData || [];
+import { getRelatedBlogs, incrementBlogViews, likeBlog, getAllBlogs } from "../../services/blogApi";
 
 export default function BlogDetail({ blog, onBack, onSelectBlog }) {
+  const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(blog?.likes || 0);
+  const [viewsCount, setViewsCount] = useState(blog?.views || 0);
+  const [relatedBlogs, setRelatedBlogs] = useState([]);
+  const [loadingRelated, setLoadingRelated] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+  const contentRef = useRef(null);
+  const isContentInView = useInView(contentRef, { once: true, margin: "-100px" });
+
+  // Track views when blog loads
+  useEffect(() => {
+    const blogId = blog?._id || blog?.id;
+    if (blogId) {
+      incrementBlogViews(blogId)
+        .then((updatedBlog) => {
+          if (updatedBlog?.views !== undefined) {
+            setViewsCount(updatedBlog.views);
+          }
+        })
+        .catch((err) => {
+          console.error('Error tracking views:', err);
+        });
+    }
+  }, [blog?._id, blog?.id]);
+
+  // Fetch related blogs
+  useEffect(() => {
+    const fetchRelated = async () => {
+      const blogId = blog?._id || blog?.id;
+      const blogCategory = blog?.category;
+      if (!blogId) return;
+      
+      try {
+        setLoadingRelated(true);
+        // Try to get related blogs from API
+        let related = await getRelatedBlogs(blogId);
+        
+        // If no related blogs from API, fetch all blogs and filter by category
+        if (!related || related.length === 0) {
+          const allBlogs = await getAllBlogs('published');
+          if (Array.isArray(allBlogs) && blogCategory) {
+            // Filter by same category, exclude current blog
+            related = allBlogs
+              .filter(b => {
+                const bId = b._id || b.id;
+                const currentId = blog._id || blog.id;
+                return b.category === blogCategory && bId !== currentId;
+              })
+              .slice(0, 3); // Limit to 3 related blogs
+          }
+        }
+        
+        setRelatedBlogs(related || []);
+      } catch (err) {
+        console.error('Error fetching related blogs:', err);
+        // Fallback: try to get blogs from same category
+        try {
+          if (blog?.category) {
+            const allBlogs = await getAllBlogs('published');
+            if (Array.isArray(allBlogs)) {
+              const blogId = blog._id || blog.id;
+              const related = allBlogs
+                .filter(b => {
+                  const bId = b._id || b.id;
+                  return b.category === blog.category && bId !== blogId;
+                })
+                .slice(0, 3);
+              setRelatedBlogs(related);
+            }
+          }
+        } catch (fallbackErr) {
+          console.error('Error in fallback related blogs:', fallbackErr);
+          setRelatedBlogs([]);
+        }
+      } finally {
+        setLoadingRelated(false);
+      }
+    };
+
+    fetchRelated();
+  }, [blog?._id, blog?.id, blog?.category]);
+
+  // Initialize likes state from blog data
+  useEffect(() => {
+    if (blog?.likes !== undefined) {
+      setLikesCount(blog.likes);
+    }
+    if (blog?.views !== undefined) {
+      setViewsCount(blog.views);
+    }
+  }, [blog]);
+
   if (!blog) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -40,21 +138,24 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
     );
   }
 
-  const [copied, setCopied] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-  const contentRef = useRef(null);
-  const isContentInView = useInView(contentRef, { once: true, margin: "-100px" });
-
-  // Get related blogs (same category, excluding current blog)
-  const relatedBlogs = (BLOGS || []).filter(
-    (b) => b && b.category === blog?.category && b.id !== blog?.id
-  ).slice(0, 3);
+  // Handle like/unlike
+  const handleLike = async () => {
+    const blogId = blog?._id || blog?.id;
+    if (!blogId) return;
+    
+    const newAction = isLiked ? 'unlike' : 'like';
+    try {
+      const updatedBlog = await likeBlog(blogId, newAction);
+      setIsLiked(!isLiked);
+      if (updatedBlog?.likes !== undefined) {
+        setLikesCount(updatedBlog.likes);
+      } else {
+        setLikesCount(prev => isLiked ? prev - 1 : prev + 1);
+      }
+    } catch (err) {
+      console.error('Error liking blog:', err);
+    }
+  };
 
   // Copy link to clipboard
   const handleCopyLink = () => {
@@ -83,40 +184,103 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
   // Format content with better structure
   const formatContent = (content) => {
     if (!content) return <p className="text-gray-700 leading-relaxed mb-4 font-nunito">No content available.</p>;
-    // Split by double newlines to create paragraphs
-    const paragraphs = content.split("\n\n").filter((p) => p.trim());
+    
+    // Convert literal \n escape sequences to actual newlines
+    let processedContent = content;
+    if (typeof content === 'string') {
+      // Replace literal \n with actual newlines
+      processedContent = content.replace(/\\n/g, '\n');
+    }
+    
+    // Split by double newlines to create paragraphs, or single newlines if no double newlines
+    const paragraphs = processedContent.includes('\n\n') 
+      ? processedContent.split('\n\n').filter((p) => p.trim())
+      : processedContent.split('\n').filter((p) => p.trim());
+    
     return paragraphs.map((para, idx) => {
-      // Check for headings (lines starting with #)
-      if (para.startsWith("✅") || para.includes("**")) {
+      const trimmedPara = para.trim();
+      if (!trimmedPara) return null;
+      
+      // Check for headings (lines starting with # or emoji indicators)
+      if (trimmedPara.startsWith('#') || trimmedPara.startsWith('⚡') || trimmedPara.startsWith('✅') || trimmedPara.startsWith('**')) {
+        // Format headings
+        if (trimmedPara.startsWith('#')) {
+          const level = trimmedPara.match(/^#+/)?.[0]?.length || 2;
+          const text = trimmedPara.replace(/^#+\s*/, '');
+          const headingClass = `font-playfair font-bold text-gray-900 mb-4 mt-6 ${
+            level === 1 ? 'text-3xl' : level === 2 ? 'text-2xl' : 'text-xl'
+          }`;
+          
+          if (level === 1) {
+            return <h1 key={idx} className={headingClass}>{text}</h1>;
+          } else if (level === 2) {
+            return <h2 key={idx} className={headingClass}>{text}</h2>;
+          } else if (level === 3) {
+            return <h3 key={idx} className={headingClass}>{text}</h3>;
+          } else {
+            return <h4 key={idx} className={headingClass}>{text}</h4>;
+          }
+        }
+        
         // Format bullet points and emphasized text
-        const formatted = para
+        const formatted = trimmedPara
           .replace(/\*\*(.*?)\*\*/g, "<strong class='font-semibold text-gray-900'>$1</strong>")
-          .replace(/✅/g, "<span class='text-green-600 mr-2'>✓</span>");
+          .replace(/✅/g, "<span class='text-green-600 mr-2'>✓</span>")
+          .replace(/⚡/g, "<span class='text-yellow-600 mr-2'>⚡</span>")
+          .replace(/^-\s+/gm, "<span class='text-[#ED0331] mr-2'>•</span>")
+          .replace(/\n/g, '<br />');
+        
         return (
-          <p
+          <div
             key={idx}
-            className="text-gray-700 leading-relaxed mb-4"
+            className="text-gray-700 leading-relaxed mb-4 font-nunito"
             dangerouslySetInnerHTML={{ __html: formatted }}
           />
         );
       }
+      
+      // Check for bullet points (lines starting with -)
+      if (trimmedPara.startsWith('-') || trimmedPara.match(/^[•·]\s/)) {
+        const formatted = trimmedPara
+          .replace(/^[-•·]\s*/, '')
+          .replace(/\*\*(.*?)\*\*/g, "<strong class='font-semibold text-gray-900'>$1</strong>");
+        return (
+          <div
+            key={idx}
+            className="flex items-start mb-2 text-gray-700 leading-relaxed font-nunito"
+          >
+            <span className="text-[#ED0331] mr-2 mt-1">•</span>
+            <span dangerouslySetInnerHTML={{ __html: formatted }} />
+          </div>
+        );
+      }
+      
       // Check for code blocks
-      if (para.includes("function") || para.includes("const") || para.includes("let")) {
+      if (trimmedPara.includes('function') || trimmedPara.includes('const') || trimmedPara.includes('let') || trimmedPara.startsWith('```')) {
         return (
           <pre
             key={idx}
-            className="bg-gray-100 border-l-4 border-[#ED0331] p-4 rounded-lg overflow-x-auto mb-4 font-mono text-sm text-gray-800"
+            className="bg-gray-100 border-l-4 border-[#ED0331] p-4 rounded-lg overflow-x-auto mb-4 font-mono text-sm text-gray-800 whitespace-pre-wrap"
           >
-            <code>{para}</code>
+            <code>{trimmedPara.replace(/```/g, '')}</code>
           </pre>
         );
       }
+      
+      // Regular paragraph - handle inline formatting and line breaks
+      const formatted = trimmedPara
+        .replace(/\*\*(.*?)\*\*/g, "<strong class='font-semibold text-gray-900'>$1</strong>")
+        .replace(/\*(.*?)\*/g, "<em class='italic'>$1</em>")
+        .replace(/\n/g, '<br />');
+      
       return (
-        <p key={idx} className="text-gray-700 leading-relaxed mb-4 font-nunito">
-          {para}
-        </p>
+        <p 
+          key={idx} 
+          className="text-gray-700 leading-relaxed mb-4 font-nunito"
+          dangerouslySetInnerHTML={{ __html: formatted }}
+        />
       );
-    });
+    }).filter(Boolean); // Remove null entries
   };
 
   return (
@@ -147,8 +311,8 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
           transition={{ duration: 0.6 }}
           className="relative h-64 md:h-80 lg:h-96 rounded-2xl overflow-hidden mb-8 shadow-2xl"
         >
-      <img
-        src={blog.hero}
+          <img
+        src={blog.hero || blog.heroImage || '/placeholder.jpg'}
         alt={blog.title}
             className="w-full h-full object-cover"
           />
@@ -203,19 +367,21 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
               {/* Date */}
               <div className="flex items-center gap-2 text-gray-600">
                 <Calendar className="w-5 h-5 text-[#ED0331]" />
-                <span className="font-medium">{blog.date}</span>
+                <span className="font-medium">
+                  {blog.date || blog.createdAt ? new Date(blog.date || blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A'}
+                </span>
               </div>
 
               {/* Read Time */}
               <div className="flex items-center gap-2 text-gray-600">
                 <Clock className="w-5 h-5 text-[#ED0331]" />
-                <span className="font-medium">{blog.readTime}</span>
+                <span className="font-medium">{blog.readTime || '5 min'}</span>
               </div>
 
               {/* Engagement Stats */}
               <div className="flex items-center gap-4 ml-auto">
                 <button
-                  onClick={() => setIsLiked(!isLiked)}
+                  onClick={handleLike}
                   className={`flex items-center gap-1 px-3 py-1 rounded-full transition-all ${
                     isLiked
                       ? "bg-red-100 text-red-600"
@@ -223,11 +389,13 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
                   }`}
                 >
                   <Heart className={`w-4 h-4 ${isLiked ? "fill-current" : ""}`} />
-                  <span className="text-sm font-medium">24</span>
+                  <span className="text-sm font-medium">{likesCount}</span>
                 </button>
                 <div className="flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-600 rounded-full">
                   <Eye className="w-4 h-4" />
-                  <span className="text-sm font-medium">1.2K</span>
+                  <span className="text-sm font-medium">
+                    {viewsCount >= 1000 ? `${(viewsCount / 1000).toFixed(1)}K` : viewsCount}
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -337,20 +505,25 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
               transition={{ delay: 0.4 }}
               className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
             >
-              <div className="flex flex-col items-center text-center mb-4">
+              <div className="flex flex-col items-center text-center">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#ED0331] to-[#87021C] flex items-center justify-center mb-4 shadow-lg">
                   <User className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="font-semibold text-xl text-gray-900 mb-1">{blog.author}</h3>
-                <p className="text-sm text-gray-500">Tech Writer & Educator</p>
+                <h3 className="font-semibold text-xl text-gray-900">{blog.author}</h3>
               </div>
-              <p className="text-sm text-gray-600 text-center leading-relaxed">
-                Passionate about sharing knowledge and helping developers grow their skills.
-              </p>
             </motion.div>
 
             {/* Related Blogs */}
-            {relatedBlogs.length > 0 && (
+            {loadingRelated ? (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
+              >
+                <p className="text-gray-500 text-sm">Loading related articles...</p>
+              </motion.div>
+            ) : (
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -361,40 +534,50 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
                   <TrendingUp className="w-5 h-5 text-[#ED0331]" />
                   Related Articles
                 </h3>
-                <div className="space-y-4">
-                  {relatedBlogs.map((relatedBlog, idx) => (
-                    <motion.div
-                      key={relatedBlog.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 + idx * 0.1 }}
-                      onClick={() => {
-                        if (onSelectBlog) {
-                          onSelectBlog(relatedBlog);
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }
-                      }}
-                      className="group cursor-pointer p-3 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-200"
-                    >
-                      <div className="flex gap-3">
-                        <img
-                          src={relatedBlog.hero}
-                          alt={relatedBlog.title}
-                          className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-sm text-gray-900 line-clamp-2 mb-1 group-hover:text-[#ED0331] transition-colors">
-                            {relatedBlog.title}
-                          </h4>
-                          <div className="flex items-center gap-2 text-xs text-gray-500">
-                            <Clock className="w-3 h-3" />
-                            {relatedBlog.readTime}
+                {relatedBlogs.length > 0 ? (
+                  <div className="space-y-4">
+                    {relatedBlogs.map((relatedBlog, idx) => {
+                      const relatedBlogId = relatedBlog._id || relatedBlog.id || idx;
+                      return (
+                      <motion.div
+                        key={relatedBlogId}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 + idx * 0.1 }}
+                        onClick={() => {
+                          if (relatedBlog?.slug) {
+                            navigate(`/blog/${relatedBlog.slug}`);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          } else if (onSelectBlog) {
+                            onSelectBlog(relatedBlog);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }
+                        }}
+                        className="group cursor-pointer p-3 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-200"
+                      >
+                        <div className="flex gap-3">
+                          <img
+                            src={relatedBlog.hero || relatedBlog.heroImage || '/placeholder.jpg'}
+                            alt={relatedBlog.title}
+                            className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-sm text-gray-900 line-clamp-2 mb-1 group-hover:text-[#ED0331] transition-colors">
+                              {relatedBlog.title}
+                            </h4>
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                              <Clock className="w-3 h-3" />
+                              {relatedBlog.readTime || '5 min'}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                      </motion.div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-sm text-center py-4">No related articles found.</p>
+                )}
               </motion.div>
             )}
 
@@ -412,15 +595,17 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm opacity-90">Reading Time</span>
-                  <span className="font-semibold">{blog.readTime}</span>
+                  <span className="font-semibold">{blog.readTime || '5 min'}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm opacity-90">Views</span>
-                  <span className="font-semibold">1.2K</span>
+                  <span className="font-semibold">
+                    {viewsCount >= 1000 ? `${(viewsCount / 1000).toFixed(1)}K` : viewsCount}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm opacity-90">Likes</span>
-                  <span className="font-semibold">24</span>
+                  <span className="font-semibold">{likesCount}</span>
                 </div>
               </div>
             </motion.div>
