@@ -1,10 +1,11 @@
 import React, { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { 
   User, Mail, Phone, MessageSquare, Send, Sparkles, MapPin, Clock, 
-  Linkedin, Instagram, Youtube, ArrowRight, CheckCircle 
+  Linkedin, Instagram, Youtube, ArrowRight, CheckCircle2, X, PartyPopper
 } from "lucide-react";
+import axios from "axios";
 import womenmentor from "../assets/womenmentor.png";
 import vtsImage from "../assets/logo.png";
 import linkedinIcon from "../assets/linkedin.png";
@@ -12,14 +13,15 @@ import instagramIcon from "../assets/instagram.svg";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     phone: "",
-    query: "",
+    message: "",
   });
   const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState(null);
   const [focusedField, setFocusedField] = useState(null);
-  const [submitted, setSubmitted] = useState(false);
   
   const heroRef = useRef(null);
   const formRef = useRef(null);
@@ -33,23 +35,44 @@ const ContactUs = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { fullName, email, phone, message } = formData;
+
+    if (!fullName || !email || !phone || !message) {
+      setError("⚠️ Please fill in all fields!");
+      return;
+    }
+
     setLoading(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const res = await axios.post("/api/contact", {
+        fullName,
+        email,
+        phone,
+        message,
+      });
+
+      if (res.status === 200 || res.status === 201) {
+        setShowSuccess(true);
+        setFormData({ fullName: "", email: "", phone: "", message: "" });
+      }
+    } catch (err) {
+      console.error("Error sending query:", err);
+      setError(err.response?.data?.message || "Failed to send message. Please try again later.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-      setFormData({ name: "", email: "", phone: "", query: "" });
-      setTimeout(() => setSubmitted(false), 3000);
-    }, 1500);
+    }
   };
 
   const inputFields = [
-    { name: "name", type: "text", placeholder: "Enter your Full Name", icon: User },
+    { name: "fullName", type: "text", placeholder: "Enter your Full Name", icon: User },
     { name: "email", type: "email", placeholder: "Enter your Email Address", icon: Mail },
     { name: "phone", type: "tel", placeholder: "Enter your 10-digit mobile number", icon: Phone },
   ];
@@ -305,21 +328,21 @@ const ContactUs = () => {
                   <div className="absolute left-5 top-5 z-10">
                     <MessageSquare
                       className={`w-5 h-5 transition-all duration-300 ${
-                        focusedField === "query" ? "text-[#ED0331] scale-110" : "text-gray-400 group-hover:text-gray-600"
+                        focusedField === "message" ? "text-[#ED0331] scale-110" : "text-gray-400 group-hover:text-gray-600"
                       }`}
                     />
                   </div>
                   <textarea
-                    name="query"
+                    name="message"
                     rows="5"
-                    placeholder="Type your Query Here..."
+                    placeholder="Type your Message Here..."
                     className="w-full pl-14 pr-5 py-4 rounded-xl border-2 bg-white/90 backdrop-blur-sm transition-all duration-300 placeholder:text-gray-400 focus:outline-none focus:border-[#ED0331] focus:ring-4 focus:ring-red-100 focus:bg-white font-nunito shadow-lg hover:shadow-xl hover:border-gray-300 resize-none"
-                    value={formData.query}
+                    value={formData.message}
                     onChange={handleChange}
-                    onFocus={() => setFocusedField("query")}
+                    onFocus={() => setFocusedField("message")}
                     onBlur={() => setFocusedField(null)}
                   />
-                  {focusedField === "query" && (
+                  {focusedField === "message" && (
                     <motion.div
                       className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#ED0331] via-[#C50228] to-[#87021C] rounded-b-xl"
                       initial={{ scaleX: 0 }}
@@ -329,6 +352,17 @@ const ContactUs = () => {
                   )}
                 </div>
               </motion.div>
+
+              {/* Error Message */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-xl bg-red-50 border-2 border-red-200"
+                >
+                  <p className="text-red-700 font-semibold font-nunito">{error}</p>
+                </motion.div>
+              )}
 
               {/* Submit Button */}
               <motion.button
@@ -342,12 +376,7 @@ const ContactUs = () => {
                 whileTap={!loading ? { scale: 0.98 } : {}}
               >
                 <span className="relative z-10 flex items-center justify-center gap-3">
-                  {submitted ? (
-                    <>
-                      <CheckCircle className="w-5 h-5" />
-                      Message Sent!
-                    </>
-                  ) : loading ? (
+                  {loading ? (
                     <>
                       <motion.div
                         className="w-5 h-5 border-3 border-white border-t-transparent rounded-full"
@@ -372,6 +401,103 @@ const ContactUs = () => {
           </div>
         </div>
       </motion.section>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={() => setShowSuccess(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Background Decoration */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-blue-200/10 to-purple-200/10 rounded-full blur-2xl" />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setShowSuccess(false)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors z-10"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+
+              <div className="relative z-10 text-center">
+                {/* Success Icon */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", delay: 0.2, duration: 0.6 }}
+                  className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <CheckCircle2 className="w-12 h-12 text-white" />
+                </motion.div>
+
+                {/* Confetti Animation */}
+                <motion.div
+                  className="absolute top-0 left-1/2 -translate-x-1/2"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <PartyPopper className="w-16 h-16 text-yellow-400" />
+                </motion.div>
+
+                {/* Title */}
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-3xl font-bold font-playfair heading-primary mb-4"
+                >
+                  Thank You for Contacting Us!
+                </motion.h2>
+
+                {/* Message */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-gray-600 text-lg font-nunito mb-6 leading-relaxed"
+                >
+                  We will reach you soon!
+                </motion.p>
+
+                {/* Decorative Line */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="w-24 h-1 bg-gradient-to-r from-[#ED0331] to-[#87021C] mx-auto rounded-full mb-6"
+                />
+
+                {/* Action Button */}
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  onClick={() => setShowSuccess(false)}
+                  className="w-full btn-gradient-red text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all font-nunito text-lg"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Close
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* === JOURNEY SECTION === */}
       <motion.section

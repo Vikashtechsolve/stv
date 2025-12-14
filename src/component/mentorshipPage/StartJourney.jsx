@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Rocket, Target, Zap } from 'lucide-react';
 
 const StartJourney = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const handleStartJourney = () => {
     const mentorsSection = document.getElementById('mentors-section');
     if (mentorsSection) {
@@ -21,8 +32,8 @@ const StartJourney = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
+        staggerChildren: isMobile ? 0.04 : 0.08,
+        delayChildren: isMobile ? 0.05 : 0.1,
       },
     },
   };
@@ -44,31 +55,35 @@ const StartJourney = () => {
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-[#ED0331]/20 to-[#87021C]/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-[#87021C]/20 to-[#ED0331]/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1.3, 1, 1.3],
-            x: [0, -100, 0],
-            y: [0, 50, 0],
+          className={`absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-[#ED0331]/20 to-[#87021C]/20 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
           }}
           transition={{
             duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform' }}
         />
+        {!isMobile && (
+          <motion.div
+            className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-br from-[#87021C]/20 to-[#ED0331]/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              x: [0, -50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ willChange: 'transform' }}
+          />
+        )}
       </div>
 
       <motion.div
@@ -108,7 +123,7 @@ const StartJourney = () => {
               <motion.div
                 key={index}
                 className="flex flex-col items-center gap-2 p-4 bg-white rounded-xl shadow-md"
-                whileHover={{ scale: 1.1, y: -5 }}
+                whileHover={isMobile ? {} : { scale: 1.1, y: -5 }}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -140,7 +155,7 @@ const StartJourney = () => {
             style={{
               background: "linear-gradient(90deg, #ED0331, #87021C)",
             }}
-            whileHover={{ scale: 1.05, y: -2 }}
+            whileHover={isMobile ? {} : { scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -163,8 +178,9 @@ const StartJourney = () => {
             <span className="relative z-10 flex items-center gap-3">
               Start Mentorship Journey
               <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                animate={isMobile ? {} : { x: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ willChange: isMobile ? 'auto' : 'transform' }}
               >
                 <ArrowRight className="w-6 h-6" />
               </motion.span>

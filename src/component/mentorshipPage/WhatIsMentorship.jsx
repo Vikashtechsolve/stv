@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Video, Users, Target, Zap, CheckCircle2, Sparkles, BookOpen, MessageSquare, Award, TrendingUp } from 'lucide-react';
 
 const WhatIsMentorship = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const videoCallImageUrl = "https://res.cloudinary.com/dc4gqqd35/image/upload/v1760434707/57049b741899d50e47496fd3bf0c5036d0f2a1b4_givpkg.jpg";
 
   const features = [
@@ -29,16 +40,17 @@ const WhatIsMentorship = () => {
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-20 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
+          className={`absolute top-20 left-20 w-96 h-96 bg-blue-200/10 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
           }}
           transition={{
-            duration: 15,
+            duration: 20,
             repeat: Infinity,
             ease: "linear",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform' }}
         />
       </div>
 
@@ -72,14 +84,14 @@ const WhatIsMentorship = () => {
           {/* Left Column: Enhanced Text Content */}
           <motion.div
             className="order-2 font-nunito lg:order-1 space-y-6 text-lg text-gray-700 leading-relaxed"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.4, delay: 0.05 }}
+            viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+            transition={{ duration: 0.3, delay: 0.03 }}
           >
             <motion.div
               className="p-6 bg-white rounded-2xl shadow-lg border-l-4 border-[#ED0331]"
-              whileHover={{ scale: 1.02, y: -5 }}
+              whileHover={isMobile ? {} : { scale: 1.02, y: -5 }}
             >
               <p className="text-xl md:text-2xl font-semibold mb-4">
                 Our <span className="heading-primary font-bold">1:1 Mentorship Program</span> connects you directly with
@@ -126,15 +138,15 @@ const WhatIsMentorship = () => {
                   <motion.div
                     key={index}
                     className="flex flex-col items-center gap-3 p-5 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all border-2 border-transparent hover:border-[#ED0331]/30 group"
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={isMobile ? {} : { scale: 1.05, y: -5 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ delay: 0.25 + index * 0.05 }}
+                    viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+                    transition={{ delay: 0.15 + index * 0.03 }}
                   >
                     <motion.div
                       className={`p-3 bg-gradient-to-br ${feature.color} rounded-xl shadow-md`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      whileHover={isMobile ? {} : { rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
                       <Icon className="w-6 h-6 text-white" />
@@ -178,42 +190,46 @@ const WhatIsMentorship = () => {
           {/* Right Column: Enhanced Image with Stats */}
           <motion.div
             className="order-1 lg:order-2 relative flex flex-col gap-6"
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             {/* Image Section */}
             <div className="relative">
               {/* Multiple Decorative Backgrounds */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-[#ED0331]/20 to-[#87021C]/20 rounded-3xl blur-3xl -z-10"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.5, 0.3],
+                className={`absolute inset-0 bg-gradient-to-br from-[#ED0331]/20 to-[#87021C]/20 rounded-3xl ${isMobile ? 'blur-xl' : 'blur-3xl'} -z-10`}
+                animate={isMobile ? {} : {
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.4, 0.3],
                 }}
                 transition={{
-                  duration: 4,
+                  duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
+                style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
               />
-              <motion.div
-                className="absolute -inset-4 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-3xl blur-2xl -z-10"
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
+              {!isMobile && (
+                <motion.div
+                  className="absolute -inset-4 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-3xl blur-2xl -z-10"
+                  animate={{
+                    rotate: [0, 360],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  style={{ willChange: 'transform' }}
+                />
+              )}
               
               <motion.div
                 className="relative shadow-2xl rounded-3xl overflow-hidden border-4 border-white"
-                whileHover={{ scale: 1.03, rotate: 1 }}
+                whileHover={isMobile ? {} : { scale: 1.03, rotate: 1 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
@@ -230,15 +246,16 @@ const WhatIsMentorship = () => {
                 {/* Enhanced Overlay Badges */}
                 <motion.div
                   className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-5 py-3 rounded-full shadow-xl flex items-center gap-2 border-2 border-green-200"
-                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                  initial={{ opacity: 0, scale: 0.8, rotate: -90 }}
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: 1, type: "spring", stiffness: 200 }}
-                  whileHover={{ scale: 1.1 }}
+                  viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+                  transition={{ delay: 0.5, type: "spring", stiffness: isMobile ? 150 : 200 }}
+                  whileHover={isMobile ? {} : { scale: 1.1 }}
                 >
                   <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                    animate={isMobile ? {} : { scale: [1, 1.1, 1] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    style={{ willChange: isMobile ? 'auto' : 'transform' }}
                   >
                     <CheckCircle2 className="w-6 h-6 text-green-600" />
                   </motion.div>
@@ -248,11 +265,11 @@ const WhatIsMentorship = () => {
                 {/* Bottom Badge */}
                 <motion.div
                   className="absolute bottom-4 left-4 bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white px-5 py-2 rounded-full shadow-xl flex items-center gap-2"
-                  initial={{ opacity: 0, x: -50 }}
+                  initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: 0.3 }}
-                  whileHover={{ scale: 1.05 }}
+                  viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+                  transition={{ delay: 0.2 }}
+                  whileHover={isMobile ? {} : { scale: 1.05 }}
                 >
                   <Users className="w-5 h-5" />
                   <span className="font-semibold text-sm">1:1 Personalized</span>
@@ -274,11 +291,11 @@ const WhatIsMentorship = () => {
                   <motion.div
                     key={index}
                     className="bg-white rounded-xl p-4 shadow-lg border-2 border-transparent hover:border-[#ED0331]/30 text-center group"
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={isMobile ? {} : { scale: 1.05, y: -5 }}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ delay: 0.2 + index * 0.05 }}
+                    viewport={{ once: true, margin: isMobile ? "-20px" : "-50px" }}
+                    transition={{ delay: 0.1 + index * 0.03 }}
                   >
                     <div className="flex justify-center mb-2">
                       <div className="p-2 bg-gradient-to-br from-[#ED0331] to-[#87021C] rounded-lg">

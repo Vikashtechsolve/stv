@@ -1,24 +1,43 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Search, Filter, Clock, User, ArrowRight, Sparkles, BookOpen, TrendingUp } from 'lucide-react';
-import data from "../../../rawdata.json";
+import { Search, Filter, Clock, User, ArrowRight, Sparkles, BookOpen, TrendingUp, Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { getAllBlogs } from '../../services/blogApi';
 import BlogDetail from './BlogDetail';
-
-const BLOGS = data?.blogData || [];
 
 export default function BlogHero() {
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('All');
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  // Debug: Log if blogs are loaded
+  // Fetch blogs from API
   useEffect(() => {
-    if (BLOGS.length === 0) {
-      console.warn('No blogs found in data. Check rawdata.json for blogData array.');
-    }
+    const fetchBlogs = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        // Fetch only published blogs for public view
+        // getAllBlogs now returns empty array on error instead of throwing
+        const fetchedBlogs = await getAllBlogs('published');
+        setBlogs(Array.isArray(fetchedBlogs) ? fetchedBlogs : []);
+      } catch (err) {
+        // This catch is now unlikely since getAllBlogs returns [] instead of throwing
+        console.error('Error fetching blogs:', err);
+        setError(null);
+        setBlogs([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
   }, []);
 
-  const filteredBlogs = (BLOGS || []).filter(b => {
+  const filteredBlogs = (blogs || []).filter(b => {
     if (!b || !b.title || !b.excerpt) return false;
     const matchesSearch = b.title.toLowerCase().includes(search.toLowerCase()) || 
                           b.excerpt.toLowerCase().includes(search.toLowerCase());
@@ -26,33 +45,59 @@ export default function BlogHero() {
     return matchesSearch && matchesCategory;
   });
 
+  // Handle blog selection - navigate to detail page
+  const handleSelectBlog = (blog) => {
+    if (blog?.slug) {
+      navigate(`/blog/${blog.slug}`);
+    } else {
+      setSelectedBlog(blog);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 font-nunito">
       {!selectedBlog ? (
         <BlogList 
           blogs={filteredBlogs}
-          allBlogs={BLOGS}
-          onSelect={setSelectedBlog}
+          allBlogs={blogs}
+          onSelect={handleSelectBlog}
           search={search}
           setSearch={setSearch}
           category={category}
           setCategory={setCategory}
+          loading={loading}
+          error={error}
         />
       ) : (
         <BlogDetail 
           blog={selectedBlog} 
           onBack={() => setSelectedBlog(null)}
-          onSelectBlog={setSelectedBlog}
+          onSelectBlog={handleSelectBlog}
         />
       )}
     </div>
   );
 }
 
-function BlogList({ blogs, allBlogs, onSelect, search, setSearch, category, setCategory }) {
+function BlogList({ blogs, allBlogs, onSelect, search, setSearch, category, setCategory, loading, error }) {
   const categories = ['All', ...new Set((allBlogs || []).map(b => b.category).filter(Boolean))];
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, margin: "-100px" });
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-[#ED0331] animate-spin mx-auto mb-4" />
+          <p className="text-gray-600 font-nunito">Loading blogs...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state only if there's a specific error message
+  // Otherwise, show empty state below
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
@@ -60,13 +105,13 @@ function BlogList({ blogs, allBlogs, onSelect, search, setSearch, category, setC
       <motion.div
         ref={heroRef}
         initial={{ opacity: 0, y: 20 }}
-        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-center mb-12 md:mb-16"
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
-          animate={isHeroInView ? { scale: 1, opacity: 1 } : {}}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-50 to-pink-50 rounded-full mb-6"
         >
@@ -80,18 +125,18 @@ function BlogList({ blogs, allBlogs, onSelect, search, setSearch, category, setC
         
         <motion.p
           initial={{ opacity: 0 }}
-          animate={isHeroInView ? { opacity: 1 } : {}}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
           className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto"
         >
-          Curated blogs on <span className="font-semibold text-gray-800">Coding</span> • <span className="font-semibold text-gray-800">AI</span> • <span className="font-semibold text-gray-800">Science</span> • <span className="font-semibold text-gray-800">Data</span>
+          Curated blogs on <span className="font-semibold text-gray-800">Coding</span> • <span className="font-semibold text-gray-800">AI</span> • <span className="font-semibold text-gray-800">Data Science</span> • <span className="font-semibold text-gray-800">Technology</span>
         </motion.p>
       </motion.div>
 
       {/* Search and Filter Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6 }}
         className="mb-10 md:mb-12"
       >
@@ -199,14 +244,17 @@ function BlogList({ blogs, allBlogs, onSelect, search, setSearch, category, setC
             exit={{ opacity: 0 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           >
-            {blogs.map((blog, index) => (
+            {blogs.map((blog, index) => {
+              const blogId = blog._id || blog.id || index;
+              return (
               <BlogCard
-                key={blog.id}
+                key={blogId}
                 blog={blog}
                 index={index}
                 onSelect={onSelect}
               />
-            ))}
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
@@ -229,7 +277,6 @@ function BlogCard({ blog, index, onSelect }) {
       onHoverEnd={() => setIsHovered(false)}
       onClick={() => {
         onSelect(blog);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }}
       className="group relative bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer flex flex-col transform hover:-translate-y-2 border border-gray-100"
     >
@@ -242,7 +289,7 @@ function BlogCard({ blog, index, onSelect }) {
       {/* Image Container */}
       <div className="relative h-48 md:h-56 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
         <motion.img
-          src={blog.hero}
+          src={blog.hero || blog.heroImage || '/placeholder.jpg'}
           alt={blog.title}
           className="w-full h-full object-cover"
           whileHover={{ scale: 1.1 }}
@@ -270,7 +317,7 @@ function BlogCard({ blog, index, onSelect }) {
           className="absolute top-4 right-4 flex items-center gap-1 px-3 py-1 bg-black/60 backdrop-blur-sm rounded-full text-xs font-semibold text-white z-20"
         >
           <Clock className="w-3 h-3" />
-          {blog.readTime}
+          {blog.readTime || '5 min'}
         </motion.div>
       </div>
 
@@ -298,8 +345,10 @@ function BlogCard({ blog, index, onSelect }) {
                 <User className="w-4 h-4 text-white" />
               </div>
               <div>
-                <p className="text-xs font-semibold text-gray-800">{blog.author}</p>
-                <p className="text-xs text-gray-500">{blog.date}</p>
+                <p className="text-xs font-semibold text-gray-800">{blog.author || 'Anonymous'}</p>
+                <p className="text-xs text-gray-500">
+                  {blog.date || (blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '')}
+                </p>
               </div>
             </div>
             

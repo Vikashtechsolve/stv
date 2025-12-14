@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, Users, Star, Sparkles, ArrowRight, TrendingUp, Award, Zap } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -6,6 +6,16 @@ import { useNavigate, useLocation } from "react-router-dom";
 const MentorshipHero = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const handleNavigate = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
@@ -49,49 +59,53 @@ const MentorshipHero = () => {
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-[#ED0331]/20 to-[#87021C]/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-gradient-to-br from-pink-200/20 to-purple-200/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            x: [0, 100, 0],
-            y: [0, -50, 0],
+          className={`absolute top-20 right-10 w-[500px] h-[500px] bg-gradient-to-br from-[#ED0331]/20 to-[#87021C]/20 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.2, 1],
+            x: [0, -50, 0],
+            y: [0, 30, 0],
           }}
           transition={{
             duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform' }}
         />
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
+        {!isMobile && (
+          <motion.div
+            className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-gradient-to-br from-pink-200/20 to-purple-200/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1.1, 1, 1.1],
+              x: [0, 50, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 14,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ willChange: 'transform' }}
+          />
+        )}
+        {/* Floating particles - reduced on mobile */}
+        {[...Array(isMobile ? 2 : 4)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-[#ED0331]/30 rounded-full"
             style={{
-              left: `${20 + i * 15}%`,
-              top: `${30 + (i % 3) * 20}%`,
+              left: `${20 + i * 25}%`,
+              top: `${30 + (i % 2) * 25}%`,
+              willChange: isMobile ? 'auto' : 'transform, opacity',
             }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 0.6, 0.3],
-              scale: [1, 1.5, 1],
+            animate={isMobile ? {} : {
+              y: [0, -20, 0],
+              opacity: [0.3, 0.5, 0.3],
             }}
             transition={{
-              duration: 3 + i * 0.5,
+              duration: 4 + i * 0.5,
               repeat: Infinity,
-              delay: i * 0.3,
+              delay: i * 0.5,
             }}
           />
         ))}
@@ -112,8 +126,9 @@ const MentorshipHero = () => {
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <motion.div
-              animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              animate={isMobile ? {} : { rotate: [0, 360], scale: [1, 1.1, 1] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-[#ED0331]" />
             </motion.div>
@@ -126,7 +141,7 @@ const MentorshipHero = () => {
                     className="absolute -bottom-2 left-0 right-0 h-1.5 bg-gradient-to-r from-[#ED0331] to-[#87021C] rounded-full"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
-                    transition={{ delay: 0.2, duration: 0.4 }}
+                    transition={{ delay: 0.1, duration: 0.3 }}
                   />
                 </span>
               </h1>
@@ -135,8 +150,9 @@ const MentorshipHero = () => {
               </p>
             </div>
             <motion.div
-              animate={{ rotate: [360, 0], scale: [1, 1.2, 1] }}
-              transition={{ duration: 3, repeat: Infinity }}
+              animate={isMobile ? {} : { rotate: [360, 0], scale: [1, 1.1, 1] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-[#ED0331]" />
             </motion.div>
@@ -194,28 +210,32 @@ const MentorshipHero = () => {
             <div className="relative">
               {/* Glowing background */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#ED0331] to-[#87021C] rounded-3xl blur-3xl opacity-30"
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0.4, 0.3],
+                className={`absolute inset-0 bg-gradient-to-r from-[#ED0331] to-[#87021C] rounded-3xl ${isMobile ? 'blur-xl' : 'blur-3xl'} opacity-30`}
+                animate={isMobile ? {} : {
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.35, 0.3],
                 }}
                 transition={{
-                  duration: 4,
+                  duration: 6,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
+                style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
               />
-              {/* Decorative rings */}
-              <motion.div
-                className="absolute inset-0 border-4 border-[#ED0331]/20 rounded-3xl"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
+              {/* Decorative rings - disabled on mobile */}
+              {!isMobile && (
+                <motion.div
+                  className="absolute inset-0 border-4 border-[#ED0331]/20 rounded-3xl"
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  style={{ willChange: 'transform' }}
+                />
+              )}
               <motion.img
                 src="https://res.cloudinary.com/dc4gqqd35/image/upload/v1760421141/07c6f352f10c5ce0b7ba9e97833d723092b40455_kgxuio.png"
                 alt="Mentorship illustration"
                 className="relative w-[85%] md:w-[75%] max-w-lg z-10 rounded-2xl shadow-2xl"
-                whileHover={{ scale: 1.05, rotate: 2 }}
+                whileHover={isMobile ? {} : { scale: 1.05, rotate: 2 }}
                 transition={{ duration: 0.3 }}
               />
             </div>
@@ -236,10 +256,10 @@ const MentorshipHero = () => {
                   <motion.div
                     key={index}
                     className={`${stat.bgColor} shadow-xl rounded-2xl py-6 px-5 flex flex-col items-center w-full border-2 ${stat.borderColor} hover:border-[#ED0331]/50 transition-all relative overflow-hidden group`}
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    initial={{ opacity: 0, scale: 0.9, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ delay: 0.3 + index * 0.05, type: "spring", stiffness: 100 }}
-                    whileHover={{ scale: 1.05, y: -8 }}
+                    transition={{ delay: 0.2 + index * 0.03, type: "spring", stiffness: isMobile ? 150 : 100, damping: 20 }}
+                    whileHover={isMobile ? {} : { scale: 1.05, y: -8 }}
                   >
                     {/* Shine effect */}
                     <motion.div
@@ -247,7 +267,7 @@ const MentorshipHero = () => {
                     />
                     <motion.div
                       className={`${stat.iconBg} p-4 rounded-full mb-4 shadow-lg`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      whileHover={isMobile ? {} : { rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
                       <Icon className="text-white w-7 h-7" />
@@ -267,17 +287,17 @@ const MentorshipHero = () => {
             {/* Bottom Centered Card */}
             <motion.div
               className="bg-gradient-to-br from-yellow-50 via-amber-50 to-yellow-100 shadow-xl rounded-2xl py-6 px-5 flex flex-col items-center w-full sm:w-[75%] border-2 border-yellow-200 hover:border-yellow-400/50 transition-all relative overflow-hidden group"
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-              whileHover={{ scale: 1.05, y: -8 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: isMobile ? 150 : 100, damping: 20 }}
+              whileHover={isMobile ? {} : { scale: 1.05, y: -8 }}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
               />
               <motion.div
                 className="bg-gradient-to-br from-yellow-500 to-amber-600 p-4 rounded-full mb-4 shadow-lg"
-                whileHover={{ rotate: 360, scale: 1.1 }}
+                whileHover={isMobile ? {} : { rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
               >
                 <Star className="text-white w-7 h-7 fill-white" />
@@ -306,7 +326,7 @@ const MentorshipHero = () => {
               background: "linear-gradient(90deg, #ED0331, #87021C)",
             }}
             onClick={() => handleNavigate("mentors-section")}
-            whileHover={{ scale: 1.08, y: -3 }}
+            whileHover={isMobile ? {} : { scale: 1.08, y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
 
@@ -317,8 +337,9 @@ const MentorshipHero = () => {
               <Award className="w-5 h-5" />
               Book a Session Now
               <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                animate={isMobile ? {} : { x: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ willChange: isMobile ? 'auto' : 'transform' }}
               >
                 <ArrowRight className="w-5 h-5" />
               </motion.span>
@@ -349,10 +370,10 @@ const MentorshipHero = () => {
               <motion.div
                 key={index}
                 className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-md"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
+                whileHover={isMobile ? {} : { scale: 1.05 }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.55 + index * 0.05 }}
+                transition={{ delay: 0.4 + index * 0.03 }}
               >
                 <Icon className={`w-5 h-5 ${item.color}`} />
                 <span className="font-nunito font-semibold text-gray-700">{item.text}</span>

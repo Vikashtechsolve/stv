@@ -56,6 +56,16 @@ const feedbacks = [
 const StudentsFeedback = () => {
   const [index, setIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleNext = () => {
     if (isAnimating) return;
@@ -95,31 +105,35 @@ const StudentsFeedback = () => {
       {/* Enhanced Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-[#ED0331]/5 to-[#87021C]/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+          className={`absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-[#ED0331]/5 to-[#87021C]/5 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.4, 0.3],
             rotate: [0, 90, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-br from-yellow-200/10 to-orange-200/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
-            rotate: [0, -90, 0],
           }}
           transition={{
             duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
         />
+        {!isMobile && (
+          <motion.div
+            className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-br from-yellow-200/10 to-orange-200/10 rounded-full blur-3xl"
+            animate={{
+              scale: [1.1, 1, 1.1],
+              opacity: [0.2, 0.3, 0.2],
+              rotate: [0, -90, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ willChange: 'transform, opacity' }}
+          />
+        )}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -139,8 +153,9 @@ const StudentsFeedback = () => {
             transition={{ duration: 0.5 }}
           >
             <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              animate={isMobile ? {} : { rotate: [0, 360] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-[#ED0331]" />
             </motion.div>
@@ -148,8 +163,9 @@ const StudentsFeedback = () => {
               What Our Students Say
             </h2>
             <motion.div
-              animate={{ rotate: [0, -360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              animate={isMobile ? {} : { rotate: [0, -360] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              style={{ willChange: isMobile ? 'auto' : 'transform' }}
             >
               <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-[#ED0331]" />
             </motion.div>
@@ -180,25 +196,26 @@ const StudentsFeedback = () => {
               initial={{ opacity: 0, y: 30, scale: 0.9, rotateY: -15 }}
               animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }}
               exit={{ opacity: 0, y: -30, scale: 0.9, rotateY: 15 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              transition={{ duration: isMobile ? 0.3 : 0.5, ease: "easeInOut" }}
               className="w-full max-w-sm mx-auto"
             >
               <motion.div
                 className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200 relative overflow-hidden"
-                whileHover={{ scale: 1.02, y: -5 }}
+                whileHover={isMobile ? {} : { scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
                 {/* Animated Decorative Elements */}
                 <motion.div
                   className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#ED0331]/8 to-[#87021C]/8 rounded-full blur-2xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
+                  animate={isMobile ? {} : {
+                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.4, 0.3],
                   }}
                   transition={{
-                    duration: 3,
+                    duration: 4,
                     repeat: Infinity,
                   }}
+                  style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
                 />
 
                 <div className="relative z-10">
@@ -247,7 +264,7 @@ const StudentsFeedback = () => {
                   >
                     <motion.div
                       className="relative"
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={isMobile ? {} : { scale: 1.1 }}
                     >
                       <img
                         src={feedbacks[index].avatar}
@@ -256,13 +273,14 @@ const StudentsFeedback = () => {
                       />
                       <motion.div
                         className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-white"
-                        animate={{
-                          scale: [1, 1.2, 1],
+                        animate={isMobile ? {} : {
+                          scale: [1, 1.1, 1],
                         }}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
                         }}
+                        style={{ willChange: isMobile ? 'auto' : 'transform' }}
                       />
                     </motion.div>
                     <div className="text-left">
@@ -305,8 +323,8 @@ const StudentsFeedback = () => {
                   rotateY: position === "left" ? -10 : position === "right" ? 10 : 0,
                   zIndex: isCenter ? 3 : 1,
                 }}
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                whileHover={isCenter ? { scale: 1.05, y: -8 } : { scale: 0.9 }}
+                transition={{ type: "spring", stiffness: isMobile ? 150 : 200, damping: isMobile ? 20 : 25 }}
+                whileHover={isMobile ? {} : (isCenter ? { scale: 1.05, y: -8 } : { scale: 0.9 })}
                 className={`w-[280px] lg:w-[320px] rounded-2xl shadow-xl p-6 ${
                   isCenter
                     ? "bg-white border-2 border-[#ED0331]/40"
@@ -382,7 +400,7 @@ const StudentsFeedback = () => {
                   >
                     <motion.div
                       className="relative"
-                      whileHover={{ scale: 1.1 }}
+                      whileHover={isMobile ? {} : { scale: 1.1 }}
                     >
                       <img
                         src={fb.avatar}
@@ -391,13 +409,14 @@ const StudentsFeedback = () => {
                       />
                       <motion.div
                         className="absolute -bottom-0.5 -right-0.5 w-3 h-3 lg:w-3.5 lg:h-3.5 bg-green-500 rounded-full border-2 border-white"
-                        animate={{
-                          scale: [1, 1.2, 1],
+                        animate={isMobile ? {} : {
+                          scale: [1, 1.1, 1],
                         }}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
                         }}
+                        style={{ willChange: isMobile ? 'auto' : 'transform' }}
                       />
                     </motion.div>
                     <div className="text-left">

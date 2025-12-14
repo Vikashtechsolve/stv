@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, Search, Calendar, TrendingUp, CheckCircle2, ArrowRight } from 'lucide-react';
 
@@ -37,18 +37,19 @@ const stepData = [
   },
 ];
 
-const StepCard = ({ icon: Icon, title, description, iconBg, cardBg, stepNumber, index }) => {
+const StepCard = ({ icon: Icon, title, description, iconBg, cardBg, stepNumber, index, isMobile }) => {
   const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        delay: index * 0.15,
-        duration: 0.5,
+        delay: index * (isMobile ? 0.08 : 0.15),
+        duration: isMobile ? 0.3 : 0.5,
         type: "spring",
-        stiffness: 100,
+        stiffness: isMobile ? 150 : 100,
+        damping: 20,
       },
     },
   };
@@ -60,7 +61,7 @@ const StepCard = ({ icon: Icon, title, description, iconBg, cardBg, stepNumber, 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
-      whileHover={{ y: -10, scale: 1.02 }}
+      whileHover={isMobile ? {} : { y: -10, scale: 1.02 }}
     >
       {/* Step Number Badge */}
       <motion.div
@@ -76,21 +77,22 @@ const StepCard = ({ icon: Icon, title, description, iconBg, cardBg, stepNumber, 
       {/* Icon Circle */}
       <motion.div
         className={`w-20 h-20 p-3 rounded-full flex items-center justify-center mb-6 text-white shadow-xl ${iconBg} relative`}
-        whileHover={{ rotate: 360, scale: 1.1 }}
+        whileHover={isMobile ? {} : { rotate: 360, scale: 1.1 }}
         transition={{ duration: 0.6 }}
       >
         <Icon className="w-10 h-10 stroke-white" />
         <motion.div
           className="absolute inset-0 rounded-full border-4 border-white/30"
-          animate={{
-            scale: [1, 1.3, 1],
+          animate={isMobile ? {} : {
+            scale: [1, 1.2, 1],
             opacity: [0.5, 0, 0.5],
           }}
           transition={{
-            duration: 2,
+            duration: 3,
             repeat: Infinity,
             ease: "easeOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
         />
       </motion.div>
 
@@ -119,12 +121,23 @@ const StepCard = ({ icon: Icon, title, description, iconBg, cardBg, stepNumber, 
 };
 
 const MentorshipSteps = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: isMobile ? 0.05 : 0.1,
       },
     },
   };
@@ -134,16 +147,17 @@ const MentorshipSteps = () => {
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 bg-purple-200/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
+          className={`absolute top-20 right-20 w-96 h-96 bg-purple-200/10 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.1, 1],
+            x: [0, 30, 0],
           }}
           transition={{
-            duration: 8,
+            duration: 10,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform' }}
         />
       </div>
 
@@ -171,7 +185,7 @@ const MentorshipSteps = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: isMobile ? "-50px" : "-100px" }}
         >
           {/* Connecting Line for Desktop */}
           <div className="hidden lg:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-blue-500 via-[#ED0331] to-green-500 opacity-20 rounded-full" />
@@ -186,6 +200,7 @@ const MentorshipSteps = () => {
                 cardBg={step.cardBg}
                 stepNumber={step.stepNumber}
                 index={index}
+                isMobile={isMobile}
               />
               {/* Arrow between steps (desktop only) */}
               {index < stepData.length - 1 && (
@@ -194,7 +209,7 @@ const MentorshipSteps = () => {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 + 0.3 }}
+                  transition={{ delay: index * (isMobile ? 0.08 : 0.15) + 0.2 }}
                 >
                   <ArrowRight className="w-8 h-8 text-[#ED0331]" />
                 </motion.div>

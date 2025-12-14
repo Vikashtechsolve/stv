@@ -23,7 +23,9 @@ import {
   ArrowRight,
   FileText,
   Clock,
-  Building2
+  Building2,
+  X,
+  PartyPopper
 } from "lucide-react";
 import joinImg from "../../assets/form.png";
 
@@ -81,17 +83,26 @@ const JoinUsForm = () => {
     setShowSuccess(false);
     try {
       const formData = new FormData();
-      for (const key in data) {
-        if (Array.isArray(data[key])) formData.append(key, JSON.stringify(data[key]));
-        else if (key === "resume") formData.append("resume", data.resume[0]);
-        else formData.append(key, data[key]);
-      }
+      
+      // Append all fields according to backend format
+      formData.append("name", data.name);
+      formData.append("qualification", data.qualification);
+      formData.append("passingYear", String(data.passingYear));
+      formData.append("contactNo", data.contactNo);
+      formData.append("subject", data.subject);
+      formData.append("teachingExperience", String(data.teachingExperience));
+      formData.append("developmentExperience", String(data.developmentExperience));
+      formData.append("totalExperience", String(data.totalExperience));
+      formData.append("workLookingFor", JSON.stringify(data.workLookingFor));
+      formData.append("mode", JSON.stringify(data.mode));
+      formData.append("location", data.location);
+      formData.append("payoutExpectations", String(data.payoutExpectations));
+      formData.append("resume", data.resume[0]);
 
       const res = await axios.post("/api/joinus", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      setMessage({ type: "success", text: res.data.message || "Form submitted successfully!" });
       setShowSuccess(true);
       reset();
       setSelectedFile(null);
@@ -586,34 +597,24 @@ const JoinUsForm = () => {
                   </span>
                 </motion.button>
 
-                {/* Success/Error Message */}
+                {/* Error Message */}
                 <AnimatePresence>
-                  {message && (
+                  {message && message.type === "error" && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className={`p-4 rounded-xl ${
-                        message.type === "success" 
-                          ? "bg-green-50 border-2 border-green-200" 
-                          : "bg-red-50 border-2 border-red-200"
-                      }`}
+                      className="p-4 rounded-xl bg-red-50 border-2 border-red-200"
                     >
                       <div className="flex items-center gap-3">
-                        {message.type === "success" ? (
-                          <CheckCircle2 className="w-6 h-6 text-green-600" />
-                        ) : (
-                          <motion.div
-                            className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center"
-                            animate={{ scale: [1, 1.2, 1] }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            <span className="text-white text-sm font-bold">!</span>
-                          </motion.div>
-                        )}
-                        <p className={`font-semibold font-nunito ${
-                          message.type === "success" ? "text-green-700" : "text-red-700"
-                        }`}>
+                        <motion.div
+                          className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center"
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <span className="text-white text-sm font-bold">!</span>
+                        </motion.div>
+                        <p className="font-semibold font-nunito text-red-700">
                           {message.text}
                         </p>
                       </div>
@@ -625,6 +626,103 @@ const JoinUsForm = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccess && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={() => setShowSuccess(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Background Decoration */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-blue-200/10 to-purple-200/10 rounded-full blur-2xl" />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setShowSuccess(false)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors z-10"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+
+              <div className="relative z-10 text-center">
+                {/* Success Icon */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", delay: 0.2, duration: 0.6 }}
+                  className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <CheckCircle2 className="w-12 h-12 text-white" />
+                </motion.div>
+
+                {/* Confetti Animation */}
+                <motion.div
+                  className="absolute top-0 left-1/2 -translate-x-1/2"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <PartyPopper className="w-16 h-16 text-yellow-400" />
+                </motion.div>
+
+                {/* Title */}
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-3xl font-bold font-playfair heading-primary mb-4"
+                >
+                  Application Submitted!
+                </motion.h2>
+
+                {/* Message */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-gray-600 text-lg font-nunito mb-6 leading-relaxed"
+                >
+                  Your response has been successfully saved. We'll reach out to you shortly!
+                </motion.p>
+
+                {/* Decorative Line */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="w-24 h-1 bg-gradient-to-r from-[#ED0331] to-[#87021C] mx-auto rounded-full mb-6"
+                />
+
+                {/* Action Button */}
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  onClick={() => setShowSuccess(false)}
+                  className="w-full btn-gradient-red text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all font-nunito text-lg"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Close
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

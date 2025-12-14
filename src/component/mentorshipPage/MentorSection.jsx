@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Sparkles, Award, TrendingUp, BookOpen } from "lucide-react";
 import MentorSessionForm from "./MentorSessionForm";
@@ -79,7 +79,17 @@ const categories = [
 const MentorSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedMentor, setSelectedMentor] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef(null);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const filteredMentors =
     selectedCategory === "All"
@@ -90,15 +100,16 @@ const MentorSection = () => {
   const scrollRight = () => scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.5,
+        duration: isMobile ? 0.3 : 0.5,
         type: "spring",
-        stiffness: 100,
+        stiffness: isMobile ? 150 : 100,
+        damping: 20,
       },
     },
   };
@@ -108,16 +119,17 @@ const MentorSection = () => {
       {/* Background Decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 bg-blue-200/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
+          className={`absolute top-20 right-20 w-96 h-96 bg-blue-200/10 rounded-full ${isMobile ? 'blur-xl' : 'blur-3xl'}`}
+          animate={isMobile ? {} : {
+            scale: [1, 1.1, 1],
             rotate: [0, 90, 0],
           }}
           transition={{
-            duration: 15,
+            duration: 20,
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: isMobile ? 'auto' : 'transform' }}
         />
       </div>
 
@@ -216,27 +228,28 @@ const MentorSection = () => {
                 animate="visible"
                 exit="hidden"
                 className="bg-white shadow-lg rounded-2xl p-6 w-[90%] sm:w-[280px] md:w-[300px] lg:w-[320px] transition-all border-2 border-transparent hover:border-[#ED0331]/30 text-left relative overflow-hidden group"
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={isMobile ? {} : { y: -10, scale: 1.02 }}
               >
                 {/* Decorative Background */}
                 <motion.div
                   className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-2xl -z-0"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3],
+                  animate={isMobile ? {} : {
+                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.4, 0.3],
                   }}
                   transition={{
-                    duration: 3,
+                    duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
+                  style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
                 />
 
                 <div className="relative z-10">
                   {/* Profile Image */}
                   <motion.div
                     className="relative mb-4"
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={isMobile ? {} : { scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
                     <img
@@ -246,8 +259,9 @@ const MentorSection = () => {
                     />
                     <motion.div
                       className="absolute -top-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
+                      animate={isMobile ? {} : { scale: [1, 1.1, 1] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      style={{ willChange: isMobile ? 'auto' : 'transform' }}
                     />
                   </motion.div>
 
@@ -289,14 +303,15 @@ const MentorSection = () => {
                   <motion.button
                     onClick={() => setSelectedMentor(mentor)}
                     className="w-full bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white px-4 py-3 rounded-xl font-nunito font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={isMobile ? {} : { scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       Book Session
                       <motion.span
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
+                        animate={isMobile ? {} : { x: [0, 5, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        style={{ willChange: isMobile ? 'auto' : 'transform' }}
                       >
                         →
                       </motion.span>
