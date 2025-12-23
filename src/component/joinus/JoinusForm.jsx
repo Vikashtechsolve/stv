@@ -29,6 +29,8 @@ import {
 } from "lucide-react";
 import joinImg from "../../assets/form.png";
 
+const baseUrl = import.meta.env.VITE_APP_API_URL;
+
 // ✅ Validation Schema
 const schema = yup.object({
   name: yup.string().required("Name is required"),
@@ -99,7 +101,7 @@ const JoinUsForm = () => {
       formData.append("payoutExpectations", String(data.payoutExpectations));
       formData.append("resume", data.resume[0]);
 
-      const res = await axios.post("/api/joinus", formData, {
+      const res = await axios.post(`${baseUrl}/api/joinus`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

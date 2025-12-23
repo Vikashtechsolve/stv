@@ -5,6 +5,8 @@ import { User, Mail, Phone, MessageSquare, Send, Sparkles, X, CheckCircle2, Part
 import axios from "axios";
 import formImg from "../assets/form.png";
 
+const baseUrl = import.meta.env.VITE_APP_API_URL;
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -39,7 +41,7 @@ const ContactForm = () => {
     setError(null);
 
     try {
-      const res = await axios.post("/api/contact", {
+      const res = await axios.post(`${baseUrl}/api/contact`, {
         fullName,
         email,
         phone,
