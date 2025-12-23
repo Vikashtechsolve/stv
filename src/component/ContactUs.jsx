@@ -11,6 +11,8 @@ import vtsImage from "../assets/logo.png";
 import linkedinIcon from "../assets/linkedin.png";
 import instagramIcon from "../assets/instagram.svg";
 
+const baseUrl = import.meta.env.VITE_APP_API_URL;
+
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -52,7 +54,7 @@ const ContactUs = () => {
     setError(null);
 
     try {
-      const res = await axios.post("/api/contact", {
+      const res = await axios.post(`${baseUrl}/api/contact`, {
         fullName,
         email,
         phone,
