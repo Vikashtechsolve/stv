@@ -101,14 +101,14 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold text-base heading-primary font-playfair mb-4">CONTACT</h3>
 
-          <div className="flex items-start gap-3 text-base font-nunito text-gray-600 mb-4">
+          {/* <div className="flex items-start gap-3 text-base font-nunito text-gray-600 mb-4">
             <FaMapMarkerAlt className="text-[#ED0331] mt-1 text-lg shrink-0" />
             <p className="leading-relaxed">
               Vikas Tech Solutions, <br />
               3rd Floor, ABC Tower, <br />
               Sector-15, Noida, Uttar Pradesh, India
             </p>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-3 text-base font-nunito text-gray-600 mb-4">
             <FaEnvelope className="text-[#ED0331] text-lg shrink-0" />
