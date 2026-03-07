@@ -32,10 +32,10 @@ const FullStack = () => {
     <Layout>
       <section className="relative w-full bg-white overflow-hidden">
         {/* HERO SECTION */}
-        <div className="w-full bg-[linear-gradient(to_bottom,#FFF_20%,#FBEAEB_80%)] mx-auto px-6 md:px-12 lg:px-18 grid grid-cols-1 md:grid-cols-2 gap-10 items-center pb-28 md:pb-36 min-h-screen">
+        <div className="w-full bg-[linear-gradient(to_bottom,#FFF_20%,#FBEAEB_80%)] mx-auto mt-2 px-6 md:px-12 lg:px-18 grid grid-cols-1 md:grid-cols-2 gap-10 items-center pb-8 md:pb-36 lg:h-screen">
           {/* LEFT CONTENT */}
           <div>
-            <span className="inline-flex items-center gap-2 bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm font-semibold">
+            <span className="inline-flex items-center gap-2  bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm font-semibold">
               ⭐ Career-Ready Program
             </span>
 
@@ -103,7 +103,7 @@ const FullStack = () => {
           </div>
 
           {/* RIGHT IMAGE */}
-          <div className="relative flex justify-center mt-10 md:mt-16">
+          <div className="relative flex justify-center md:mt-32">
             <img
               src={images[currentImage]}
               alt="Student"
@@ -113,7 +113,7 @@ const FullStack = () => {
         </div>
 
         {/* INFO STRIP */}
-        <div className="relative left-1/2 -translate-x-1/2 lg:left-16 lg:translate-x-0 md:bottom-12 w-[92%] max-w-3xl bg-white rounded-2xl shadow-md p-6 grid grid-cols-2 md:flex md:flex-row items-center gap-6 text-center">
+        <div className="relative -mt-6 md:mt-0 left-1/2 -translate-x-1/2 lg:left-16 lg:translate-x-0 md:bottom-12 w-[92%] max-w-3xl bg-white rounded-2xl shadow-md p-5 grid grid-cols-2 md:flex md:flex-row items-center gap-6 text-center">
           <div>
             <p className="text-[#B11C20] text-lg font-semibold">3-6 Months</p>
             <p className="text-gray-500 text-sm">Course Duration</p>
