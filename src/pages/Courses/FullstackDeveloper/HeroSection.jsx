@@ -4,7 +4,7 @@ import girlImg from "../../../../public/girl2.png";
 import DownloadButton from "../../../assets/download Button.png";
 
 import WhyVTS from "./WhyVTS";
-import WhyChooseProgram from "./whyChooseProgram";
+import WhyChooseProgram from "./WhyChooseProgram";
 import WhatYouLearn from "./WhatYouLearn";
 import AddmissionProcess from "./AdmissionProcess";
 import CourseFees from "./CourseFees";
