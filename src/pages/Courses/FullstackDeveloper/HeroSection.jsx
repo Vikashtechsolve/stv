@@ -17,7 +17,7 @@ import FAQ from "./FAQ";
 import Layout from "../../../component/Layout";
 import CourseApplyModal from "../../../component/courses/CourseApplyModal";
 import { FULLSTACK_BROCHURE } from "../../../constants/courseBrochures";
-
+//added comment
 const FullStack = () => {
   const images = [boyImg, girlImg];
   const [currentImage, setCurrentImage] = useState(0);
