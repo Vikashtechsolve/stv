@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { CheckCircle, Loader2, XCircle, Sparkles, Clock, Mail, Phone, Calendar, FileText, ArrowRight } from "lucide-react";
 import MobileNumberInput from "../common/MobileNumberInput";
 
-const baseUrl = import.meta.env.VITE_APP_API_URL;
+import { onlineCourseApi as baseUrl } from "../../config/env";
 
 const DoubtSessionForm = ({ plan, onClose }) => {
   const navigate = useNavigate();

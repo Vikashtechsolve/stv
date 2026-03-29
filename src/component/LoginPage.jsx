@@ -1,15 +1,13 @@
 import React, { useState, useTransition, useEffect } from "react";
 import { FiUser, FiLock } from "react-icons/fi";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { onlineCourseApi } from "../config/env";
 //import Cookies from "js-cookie";
 
-/**
- * 🌍 Auto-detect API base URL
- * - Uses Render URL in production
- * - Uses localhost in local dev
- */
+/** API base: VITE_ONLINE_COURSE_API, else localhost / Render fallback */
+
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ||
+  onlineCourseApi ||
   (window.location.hostname === "localhost"
     ? "http://localhost:8000"
     : "https://vts-backend-ms7k.onrender.com");

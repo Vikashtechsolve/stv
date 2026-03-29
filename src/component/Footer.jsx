@@ -105,8 +105,10 @@ const Footer = () => {
             <FaMapMarkerAlt className="text-[#ED0331] mt-1 text-lg shrink-0" />
             <p className="leading-relaxed">
               Vikas Tech Solutions, <br />
-              3rd Floor, ABC Tower, <br />
-              Sector-15, Noida, Uttar Pradesh, India
+              423, 4th Floor, <br />
+              Samanvay Business Square, <br />
+              Vaikuth Four crossing, <br />
+              Vadodara, Gujarat, India
             </p>
           </div> */}
 

@@ -11,7 +11,7 @@ import vtsImage from "../assets/logo.png";
 import linkedinIcon from "../assets/linkedin.png";
 import instagramIcon from "../assets/instagram.svg";
 
-const baseUrl = import.meta.env.VITE_APP_API_URL;
+import { onlineCourseApi as baseUrl } from "../config/env";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -82,7 +82,12 @@ const ContactUs = () => {
   const contactInfo = [
     { icon: Mail, label: "Email", value: "contact@vikastechsolutions.com", link: "mailto:contact@vikastechsolutions.com" },
     { icon: Phone, label: "Phone", value: "+91 98765 43210", link: "tel:+919876543210" },
-    { icon: MapPin, label: "Location", value: "India", link: null },
+    {
+      icon: MapPin,
+      label: "Location",
+      value: "423, 4th Floor, Samanvay Business Square, Vaikuth Four crossing, Vadodara, Gujarat",
+      link: null,
+    },
     { icon: Clock, label: "Response Time", value: "Within 24 hours", link: null },
   ];
 

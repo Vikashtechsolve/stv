@@ -3,10 +3,10 @@
  * Handles all blog-related API calls
  */
 
-// Use proxy in development (vite.config.js proxies /api to localhost:8000)
-// In production, use VITE_APP_API_URL if set, otherwise use relative URLs
-const API_BASE_URL = import.meta.env.VITE_APP_API_URL || 
-  (import.meta.env.DEV ? "" : "");
+import { onlineCourseApi } from "../config/env";
+
+// Dev: Vite proxy. Prod: VITE_ONLINE_COURSE_API from .env
+const API_BASE_URL = onlineCourseApi || (import.meta.env.DEV ? "" : "");
 
 /**
  * Get all blogs with optional status filter

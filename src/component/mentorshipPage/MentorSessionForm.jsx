@@ -7,7 +7,7 @@ import MessageModal from "../common/MessageModal";
 import MobileNumberInput from "../common/MobileNumberInput";
 import { useNavigate } from "react-router-dom";
 
-const baseUrl = import.meta.env.VITE_APP_API_URL;
+import { onlineCourseApi as baseUrl } from "../../config/env";
 
 const MentorSessionForm = ({ mentor, onClose }) => {
   const navigate = useNavigate();
