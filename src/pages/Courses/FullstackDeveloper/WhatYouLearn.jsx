@@ -16,7 +16,7 @@ import vercel from "../FullstackDeveloper/img/Vercel.png";
 // Macro Toolkit Icons
 import react from "../FullstackDeveloper/img/React.png";
 import redux from "../FullstackDeveloper/img/Redux.png";
-import cloudinary from "../FullstackDeveloper/img/Cloudinary.png";
+import cloudinary from "../FullstackDeveloper/img/cloudinary.png";
 import render from "../FullstackDeveloper/img/React.png";
 import nodemailer from "../FullstackDeveloper/img/nodemailer.png";
 import socket from "../FullstackDeveloper/img/socket.io.png";
