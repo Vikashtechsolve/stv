@@ -40,7 +40,7 @@ const programData = {
   },
 };
 
-export default function DataChooseProgram() {
+export default function DataChooseProgram({ onApplyClick }) {
   const [program, setProgram] = useState("mini");
   const data = programData[program];
 
@@ -62,8 +62,9 @@ export default function DataChooseProgram() {
         {/* Toggle */}
         <div className="bg-gray-200 rounded-lg p-1 flex ">
           <button
+            type="button"
             onClick={() => setProgram("mini")}
-            className={`px-4 md:px-5 py-2 rounded-lg text-sm md:text-base ${
+            className={`cursor-pointer px-4 md:px-5 py-2 rounded-lg text-sm md:text-base ${
               program === "mini"
                 ? "bg-white shadow font-medium text-red-700"
                 : "text-gray-600"
@@ -73,8 +74,9 @@ export default function DataChooseProgram() {
           </button>
 
           <button
+            type="button"
             onClick={() => setProgram("macro")}
-            className={`px-4 md:px-5 py-2 rounded-lg text-sm md:text-base ${
+            className={`cursor-pointer px-4 md:px-5 py-2 rounded-lg text-sm md:text-base ${
               program === "macro"
                 ? "bg-white shadow font-medium text-red-700"
                 : "text-gray-600"
@@ -113,7 +115,11 @@ export default function DataChooseProgram() {
 
         "
         >
-          <button className="bg-red-700 text-white px-6 py-2 rounded-xl hover:bg-red-800 transition">
+          <button
+            type="button"
+            onClick={() => onApplyClick?.(program)}
+            className="cursor-pointer bg-red-700 text-white px-6 py-2 rounded-xl hover:bg-red-800 transition"
+          >
             Apply Now
           </button>
         </div>

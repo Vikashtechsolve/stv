@@ -17,11 +17,15 @@ import FAQ from "../FullstackDeveloper/FAQ";
 import Fees from "./Fees";
 
 import Layout from "../../../component/Layout";
+import CourseApplyModal from "../../../component/courses/CourseApplyModal";
+import { DATA_ANALYTICS_BROCHURE } from "../../../constants/courseBrochures";
 
 const DataAnalyticsProgram = () => {
 
   const images = [boyImg, girlImg];
   const [currentImage, setCurrentImage] = useState(0);
+  const [applyOpen, setApplyOpen] = useState(false);
+  const [applyProgram, setApplyProgram] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,7 +61,14 @@ const DataAnalyticsProgram = () => {
             {/* Buttons */}
             <div className="mt-8 flex flex-row sm:flex-row sm:items-center gap-4 sm:gap-6">
 
-              <button className="bg-[#B11C20] hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition w-fit">
+              <button
+                type="button"
+                onClick={() => {
+                  setApplyProgram(null);
+                  setApplyOpen(true);
+                }}
+                className="cursor-pointer bg-[#B11C20] hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition w-fit"
+              >
                 Apply Now
               </button>
 
@@ -72,14 +83,20 @@ const DataAnalyticsProgram = () => {
                   </span>
                 </p>
 
-                <button className="text-[#B11C20] font-semibold hover:underline text-sm sm:text-base flex items-center gap-1">
+                <a
+                  href={DATA_ANALYTICS_BROCHURE.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer text-[#B11C20] font-semibold hover:underline text-sm sm:text-base inline-flex items-center gap-1"
+                >
                   <img
                     src={DownloadButton}
-                    alt="Download Brochure"
+                    alt=""
                     className="w-4 h-4"
+                    aria-hidden
                   />
                   Download Brochure
-                </button>
+                </a>
 
               </div>
 
@@ -171,12 +188,22 @@ const DataAnalyticsProgram = () => {
         {/* Other Sections */}
 
         <WhyLearnSection />
-        <WhyProgramWorks />
+        <WhyProgramWorks
+          onRegisterClick={() => {
+            setApplyProgram(null);
+            setApplyOpen(true);
+          }}
+        />
         <WhatLearn />
         <DataAnalyticsAddmission />
         <Fees />
         <Curriculum />
-        <DataChooseProgram />
+        <DataChooseProgram
+          onApplyClick={(prog) => {
+            setApplyProgram(prog);
+            setApplyOpen(true);
+          }}
+        />
         <DataAnalyticsOutcomes />
         <HiringPartners />
         <DataSuccessStories />
@@ -184,6 +211,13 @@ const DataAnalyticsProgram = () => {
 
       </section>
 
+      <CourseApplyModal
+        open={applyOpen}
+        onClose={() => setApplyOpen(false)}
+        courseType="data_analytics"
+        courseTitle="Data Analytics Program"
+        defaultProgram={applyProgram}
+      />
     </Layout>
   );
 };

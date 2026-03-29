@@ -480,31 +480,32 @@ export default function Curriculum() {
   const current = modules[activeModule];
 
   return (
-    <section className="bg-white py-20 px-6">
+    <section className="bg-[#fff] py-14 md:py-20 px-4 md:px-6">
       {/* Heading */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-medium">
+        <h2 className="text-2xl md:text-3xl font-medium">
           Course{" "}
-          <span className="text-red-700 underline underline-offset-4 relative -top-3">
+          <span className="text-red-700 underline underline-offset-4">
             Curriculum
           </span>
         </h2>
 
-        <p className="text-gray-600 mt-3">
+        <p className="text-gray-600 mt-3 text-sm md:text-base">
           A structured, industry-aligned curriculum designed to build strong
           full-stack skills step-by-step
         </p>
       </div>
 
       {/* Toggle */}
-      <div className="flex justify-center mb-12">
-        <div className="bg-gray-200 rounded-full p-1 flex w-[340px]">
+      <div className="flex justify-center mb-8 md:mb-12">
+        <div className="bg-gray-200 rounded-full p-1 flex w-full max-w-[340px]">
           <button
+            type="button"
             onClick={() => {
               setProgram("mini");
               setActiveModule(0);
             }}
-            className={`flex-1 py-2 rounded-full transition ${
+            className={`cursor-pointer flex-1 py-2 text-sm md:text-base rounded-full transition ${
               program === "mini"
                 ? "bg-white shadow font-medium"
                 : "text-gray-600"
@@ -514,11 +515,12 @@ export default function Curriculum() {
           </button>
 
           <button
+            type="button"
             onClick={() => {
               setProgram("macro");
               setActiveModule(0);
             }}
-            className={`flex-1 py-2 rounded-full transition ${
+            className={`cursor-pointer flex-1 py-2 text-sm md:text-base rounded-full transition ${
               program === "macro"
                 ? "bg-white shadow font-medium"
                 : "text-gray-600"
@@ -530,20 +532,21 @@ export default function Curriculum() {
       </div>
 
       {/* Main Layout */}
-      <div className="max-w-6xl mx-auto bg-red-50 p-6 rounded-xl">
-        <div className="grid grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto bg-red-50 p-4 md:p-6 rounded-xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {/* LEFT MODULE LIST */}
-          <div className="space-y-2">
+          <div className="space-y-2 overflow-x-auto md:overflow-visible flex md:block gap-2 md:gap-0">
             {modules.map((module, index) => (
               <div
                 key={index}
                 onClick={() => setActiveModule(index)}
                 className={`
                   cursor-pointer
-                  p-4
+                  p-3 md:p-4
                   rounded-lg
                   border-l-4
                   transition
+                  min-w-[220px] md:min-w-0
                   ${
                     activeModule === index
                       ? "bg-white border-red-600 shadow"

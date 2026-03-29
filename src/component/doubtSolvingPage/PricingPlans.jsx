@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Zap, Lightbulb, User, Sparkles, Check, ArrowRight } from "lucide-react";
 import DoubtSessionForm from "./DoubtSessionForm";
-const baseUrl = import.meta.env.VITE_APP_API_URL;
+import { onlineCourseApi as baseUrl } from "../../config/env";
 
 const plans = [
   {

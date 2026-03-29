@@ -1,6 +1,7 @@
 import React from "react";
 import certificate from "../FullstackDeveloper/img/certificate.png";
-import BlueCheck from "../../../assets/blueWhiteCheck.png"
+import BlueCheck from "../../../assets/blueWhiteCheck.png";
+import { DATA_ANALYTICS_BROCHURE } from "../../../constants/courseBrochures";
 
 const features = [
   {
@@ -29,7 +30,7 @@ const features = [
   },
 ];
 
-const WhyProgramWorks = () => {
+const WhyProgramWorks = ({ onRegisterClick }) => {
   return (
 
     <section className="w-full bg-[linear-gradient(180deg,#FFFFFF_0%,rgba(230,241,251,0.6)_100%)] py-14 md:py-20 px-4 md:px-6">
@@ -62,17 +63,22 @@ const WhyProgramWorks = () => {
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
 
-            <button className="bg-[#B11C20] text-white px-6 py-3 rounded-2xl font-normal hover:bg-red-800 transition">
-
+            <button
+              type="button"
+              onClick={() => onRegisterClick?.()}
+              className="cursor-pointer bg-[#B11C20] text-white px-6 py-3 rounded-2xl font-normal hover:bg-red-800 transition"
+            >
               Register Now
-
             </button>
 
-            <button className="border border-red-700 text-red-700 px-6 py-3 rounded-2xl font-medium hover:bg-red-50 transition">
-
+            <a
+              href={DATA_ANALYTICS_BROCHURE.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center cursor-pointer border border-red-700 text-red-700 px-6 py-3 rounded-2xl font-medium hover:bg-red-50 transition text-center"
+            >
               Download Brochure
-
-            </button>
+            </a>
 
           </div>
 

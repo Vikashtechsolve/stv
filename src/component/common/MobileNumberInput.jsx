@@ -37,7 +37,7 @@ const MobileNumberInput = ({ value, onChange }) => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-3 py-4 border-2 border-[#ECF0F3] rounded-xl bg-[#FAFBFC] flex items-center justify-between"
+          className="cursor-pointer w-full px-3 py-4 border-2 border-[#ECF0F3] rounded-xl bg-[#FAFBFC] flex items-center justify-between"
         >
           <span className="flex items-center gap-2 text-lg">
             <span>{selectedCountry.flag}</span>
@@ -59,7 +59,7 @@ const MobileNumberInput = ({ value, onChange }) => {
                   setSelectedCountry(c);
                   setIsOpen(false);
                 }}
-                className="w-full px-3 py-3 hover:bg-red-50 flex items-center gap-2"
+                className="cursor-pointer w-full px-3 py-3 hover:bg-red-50 flex items-center gap-2 text-left"
               >
                 <span>{c.flag}</span> <span>{c.code}</span>
               </button>

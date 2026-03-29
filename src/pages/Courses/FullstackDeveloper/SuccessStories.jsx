@@ -144,8 +144,9 @@ export default function SuccessStories() {
 
         {/* LEFT BUTTON */}
          <button
+                  type="button"
                   onClick={prev}
-                  className="bg-white shadow-md rounded-full w-10 h-10 md:w-14 md:h-14 flex items-center justify-center hover:shadow-lg transition shrink-0"
+                  className="cursor-pointer bg-white shadow-md rounded-full w-10 h-10 md:w-14 md:h-14 flex items-center justify-center hover:shadow-lg transition shrink-0"
                 >
                    <ChevronLeft className="text-[#B11C20]" />
                   
@@ -215,8 +216,9 @@ export default function SuccessStories() {
 
         {/* RIGHT BUTTON */}
         <button
+          type="button"
           onClick={next}
-          className="bg-white shadow-md rounded-full w-10 h-10 md:w-14 md:h-14 flex items-center justify-center hover:shadow-lg transition shrink-0"
+          className="cursor-pointer bg-white shadow-md rounded-full w-10 h-10 md:w-14 md:h-14 flex items-center justify-center hover:shadow-lg transition shrink-0"
         >
          <ChevronRight className="text-[#B11C20]"  />
         </button>

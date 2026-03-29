@@ -82,10 +82,13 @@ export default function Footer() {
               <div className="text-gray-600">
                 Vikas Tech Solutions,
                 <br />
-                3rd Floor, ABC Tower,
+                423, 4th Floor,
                 <br />
-                Sector-15, Noida,
-                Uttar Pradesh, India
+                Samanvay Business Square,
+                <br />
+                Vaikuth Four crossing,
+                <br />
+                Vadodara, Gujarat, India
               </div>
             </div>
 

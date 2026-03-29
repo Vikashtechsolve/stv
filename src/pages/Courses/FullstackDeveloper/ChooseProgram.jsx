@@ -38,7 +38,7 @@ const programData = {
   },
 };
 
-export default function ChooseProgram() {
+export default function ChooseProgram({ onApplyClick }) {
   const [program, setProgram] = useState("mini");
   const data = programData[program];
 
@@ -63,8 +63,9 @@ export default function ChooseProgram() {
           <div className="bg-gray-200 rounded-lg p-1 flex w-full sm:w-auto">
 
             <button
+              type="button"
               onClick={() => setProgram("mini")}
-              className={`flex-1 sm:flex-none px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base transition ${
+              className={`cursor-pointer flex-1 sm:flex-none px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base transition ${
                 program === "mini"
                   ? "bg-white shadow font-medium text-red-700"
                   : "text-gray-600"
@@ -74,8 +75,9 @@ export default function ChooseProgram() {
             </button>
 
             <button
+              type="button"
               onClick={() => setProgram("macro")}
-              className={`flex-1 sm:flex-none px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base transition ${
+              className={`cursor-pointer flex-1 sm:flex-none px-4 sm:px-5 py-2 rounded-lg text-sm sm:text-base transition ${
                 program === "macro"
                   ? "bg-white shadow font-medium text-red-700"
                   : "text-gray-600"
@@ -105,7 +107,11 @@ export default function ChooseProgram() {
             />
           </div>
 
-          <button className="bg-red-700 text-white px-6 py-2 rounded-xl hover:bg-red-800 transition">
+          <button
+            type="button"
+            onClick={() => onApplyClick?.(program)}
+            className="cursor-pointer bg-red-700 text-white px-6 py-2 rounded-xl hover:bg-red-800 transition"
+          >
             Apply Now
           </button>
 

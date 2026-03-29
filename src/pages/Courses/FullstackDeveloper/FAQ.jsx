@@ -100,8 +100,9 @@ export default function FAQ() {
           ">
 
             <button
+              type="button"
               onClick={() => setActiveTab("overview")}
-              className={`px-5 lg:px-6 py-2 lg:py-3 rounded-lg font-serif whitespace-nowrap ${
+              className={`cursor-pointer px-5 lg:px-6 py-2 lg:py-3 rounded-lg font-serif whitespace-nowrap ${
                 activeTab === "overview"
                   ? "bg-red-700 text-white"
                   : "bg-red-100 text-red-700"
@@ -111,8 +112,9 @@ export default function FAQ() {
             </button>
 
             <button
+              type="button"
               onClick={() => setActiveTab("mini")}
-              className={`px-5 lg:px-6 py-2 lg:py-3 rounded-lg font-serif whitespace-nowrap ${
+              className={`cursor-pointer px-5 lg:px-6 py-2 lg:py-3 rounded-lg font-serif whitespace-nowrap ${
                 activeTab === "mini"
                   ? "bg-red-700 text-white"
                   : "bg-red-100 text-red-700"
@@ -122,8 +124,9 @@ export default function FAQ() {
             </button>
 
             <button
+              type="button"
               onClick={() => setActiveTab("macro")}
-              className={`px-5 lg:px-6 py-2 lg:py-3 rounded-lg font-serif whitespace-nowrap ${
+              className={`cursor-pointer px-5 lg:px-6 py-2 lg:py-3 rounded-lg font-serif whitespace-nowrap ${
                 activeTab === "macro"
                   ? "bg-red-700 text-white"
                   : "bg-red-100 text-red-700"
@@ -143,7 +146,7 @@ export default function FAQ() {
 
               <div
                 key={index}
-                className="bg-white border rounded-lg overflow-hidden"
+                className="bg-white border border-gray-100 rounded-lg overflow-hidden"
               >
 
                 <div
@@ -163,7 +166,7 @@ export default function FAQ() {
 
                 {openIndex === index && (
 
-                  <div className="px-4 pb-4 text-gray-600 text-sm">
+                  <div className="px-4 pb-4 pt-0 text-gray-600 text-sm border-t border-gray-100">
 
                     {item.answer}
 

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import RegistrationPopup from "../component/RegistrationPopup";
 
-const baseUrl = import.meta.env.VITE_APP_API_URL;
+import { onlineCourseApi as baseUrl } from "../config/env";
 
 const EventCard = ({ event, onRegister, baseUrl }) => {
   const imageUrl = `${event.bannerImage}`;

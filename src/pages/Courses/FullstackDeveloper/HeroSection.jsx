@@ -15,10 +15,14 @@ import HiringPartners from "./HiringPartners";
 import SuccessStories from "./SuccessStories";
 import FAQ from "./FAQ";
 import Layout from "../../../component/Layout";
+import CourseApplyModal from "../../../component/courses/CourseApplyModal";
+import { FULLSTACK_BROCHURE } from "../../../constants/courseBrochures";
 
 const FullStack = () => {
   const images = [boyImg, girlImg];
   const [currentImage, setCurrentImage] = useState(0);
+  const [applyOpen, setApplyOpen] = useState(false);
+  const [applyProgram, setApplyProgram] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -53,7 +57,14 @@ const FullStack = () => {
 
             {/* Buttons */}
             <div className="mt-8 flex flex-row sm:flex-row sm:items-center gap-4 sm:gap-6">
-              <button className="bg-[#B11C20] hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition w-fit">
+              <button
+                type="button"
+                onClick={() => {
+                  setApplyProgram(null);
+                  setApplyOpen(true);
+                }}
+                className="cursor-pointer bg-[#B11C20] hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition w-fit"
+              >
                 Apply Now
               </button>
 
@@ -67,14 +78,21 @@ const FullStack = () => {
                   </span>
                 </p>
 
-                <button className="text-[#B11C20] font-semibold hover:underline text-sm sm:text-base flex items-center gap-1">
+                <a
+                  href={FULLSTACK_BROCHURE.href}
+                  download={FULLSTACK_BROCHURE.downloadAs}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-pointer text-[#B11C20] font-semibold hover:underline text-sm sm:text-base inline-flex items-center gap-1"
+                >
                   <img
                     src={DownloadButton}
-                    alt="Download Brochure"
+                    alt=""
                     className="w-4 h-4"
+                    aria-hidden
                   />
                   Download Brochure
-                </button>
+                </a>
               </div>
             </div>
 
@@ -147,17 +165,35 @@ const FullStack = () => {
 
         {/* Other Sections */}
         <WhyVTS />
-        <WhyChooseProgram />
+        <WhyChooseProgram
+          onRegisterClick={() => {
+            setApplyProgram(null);
+            setApplyOpen(true);
+          }}
+        />
         <WhatYouLearn />
         <AddmissionProcess />
         <CourseFees />
         <Curriculum />
-        <ChooseProgram />
+        <ChooseProgram
+          onApplyClick={(prog) => {
+            setApplyProgram(prog);
+            setApplyOpen(true);
+          }}
+        />
         <CareerOutcomes />
         <HiringPartners />
         <SuccessStories />
         <FAQ />
       </section>
+
+      <CourseApplyModal
+        open={applyOpen}
+        onClose={() => setApplyOpen(false)}
+        courseType="fullstack_developer"
+        courseTitle="Full Stack MERN Development"
+        defaultProgram={applyProgram}
+      />
     </Layout>
   );
 };

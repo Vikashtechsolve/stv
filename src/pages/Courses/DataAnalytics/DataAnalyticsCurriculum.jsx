@@ -476,11 +476,12 @@ export default function Curriculum() {
       <div className="flex justify-center mb-8 md:mb-12">
         <div className="bg-gray-200 rounded-full p-1 flex w-full max-w-[340px]">
           <button
+            type="button"
             onClick={() => {
               setProgram("mini");
               setActiveModule(0);
             }}
-            className={`flex-1 py-2 text-sm md:text-base rounded-full transition ${
+            className={`cursor-pointer flex-1 py-2 text-sm md:text-base rounded-full transition ${
               program === "mini"
                 ? "bg-white shadow font-medium"
                 : "text-gray-600"
@@ -490,11 +491,12 @@ export default function Curriculum() {
           </button>
 
           <button
+            type="button"
             onClick={() => {
               setProgram("macro");
               setActiveModule(0);
             }}
-            className={`flex-1 py-2 text-sm md:text-base rounded-full transition ${
+            className={`cursor-pointer flex-1 py-2 text-sm md:text-base rounded-full transition ${
               program === "macro"
                 ? "bg-white shadow font-medium"
                 : "text-gray-600"

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DashLayout from "./Dashboard/DashLayout";
+import { onlineCourseApi } from "../config/env";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Dashboard = () => {
   const [role, setRole] = useState("");
   const [statusChanges, setStatusChanges] = useState({}); // Temporary dropdown values
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const API_URL = onlineCourseApi || "http://localhost:8000";
 
   // Check login
   useEffect(() => {
