@@ -1,13 +1,19 @@
 import React from "react";
+import { onlineCourseApi } from "../config/env";
+
+const defaultApiBase =
+  onlineCourseApi ||
+  (typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:8000"
+    : "https://vts-backend-ms7k.onrender.com");
 
 const RazorpayPayment = ({
   amount,
   userId = "652f85f2c5e4c87a0a5b9a1c",
   buttonText = "pay",
   buttonStyle,
+  baseUrl = defaultApiBase,
 }) => {
-  // const baseUrl =   `${process.env.REACT_APP_API_URL}/payments`;
- const baseUrl = "http://localhost:8000"
 
   const onSuccess = (res) => {
    alert("✅ Payment successful! ID: " + res.razorpay_payment_id);
