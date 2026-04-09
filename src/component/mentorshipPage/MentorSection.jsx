@@ -1,68 +1,38 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star, Sparkles, Award, TrendingUp, BookOpen } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles, BookOpen, ArrowUpRight } from "lucide-react";
 import MentorSessionForm from "./MentorSessionForm";
 
-const mentorsData = [
+const topicData = [
   {
-    name: "Arjun Singh",
-    role: "Frontend Engineer, Google",
-    expertise: "React, Next.js, and UI Systems",
-    experience: "7+ years",
-    rating: 4.9,
     category: "Web Development",
-    subject: "React.js",
-    img: "https://randomuser.me/api/portraits/men/32.jpg",
+    description: "Frontend, backend, APIs and project guidance.",
+    topics: ["HTML/CSS", "JavaScript", "React", "Node.js", "MERN Projects"],
   },
   {
-    name: "Shreya Patel",
-    role: "Full Stack Developer, Microsoft",
-    expertise: "MERN Stack, REST APIs",
-    experience: "6+ years",
-    rating: 4.8,
-    category: "Web Development",
-    subject: "Full Stack Development",
-    img: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    name: "Kavya Sharma",
-    role: "SDE II, Adobe",
-    expertise: "C++, Java, System Design",
-    experience: "6+ years",
-    rating: 4.9,
     category: "Data Structures",
-    subject: "System Design",
-    img: "https://randomuser.me/api/portraits/women/47.jpg",
+    description: "DSA concepts, problem solving and interview prep.",
+    topics: ["Arrays & Strings", "Recursion", "Dynamic Programming", "Graphs", "System Design Basics"],
   },
   {
-    name: "Rohan Gupta",
-    role: "Software Engineer, Amazon",
-    expertise: "DSA, Competitive Programming",
-    experience: "5+ years",
-    rating: 4.9,
-    category: "Data Structures",
-    subject: "DSA",
-    img: "https://randomuser.me/api/portraits/men/36.jpg",
+    category: "Data Science",
+    description: "Data analysis and practical machine learning workflows.",
+    topics: ["Python for Data", "Pandas & Numpy", "Data Visualization", "Statistics", "ML Projects"],
   },
   {
-    name: "Meera Jain",
-    role: "Machine Learning Engineer, Zomato",
-    expertise: "Statistics, Deep Learning, NLP",
-    experience: "5+ years",
-    rating: 4.8,
     category: "AI/Machine Learning",
-    subject: "Deep Learning",
-    img: "https://randomuser.me/api/portraits/women/52.jpg",
+    description: "Deep learning, NLP and real-world AI use-cases.",
+    topics: ["Neural Networks", "NLP", "Deep Learning", "Model Deployment", "Generative AI"],
   },
   {
-    name: "Nisha Bansal",
-    role: "Research Scientist, IIT Delhi",
-    expertise: "Deep Learning, Generative AI",
-    experience: "6+ years",
-    rating: 4.8,
-    category: "AI/Machine Learning",
-    subject: "Generative AI",
-    img: "https://randomuser.me/api/portraits/women/59.jpg",
+    category: "Career",
+    description: "Job strategy, interview confidence and growth plan.",
+    topics: ["Resume Review", "LinkedIn Profile", "Mock Interview", "Portfolio Guidance", "Career Roadmap"],
+  },
+  {
+    category: "Others",
+    description: "Custom learning goals tailored to your needs.",
+    topics: ["Academic Doubts", "Project Review", "Tech Planning", "Learning Strategy", "Custom Topic"],
   },
 ];
 
@@ -78,7 +48,9 @@ const categories = [
 
 const MentorSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedMentor, setSelectedMentor] = useState(null);
+  const [selectedTopics, setSelectedTopics] = useState([]);
+  const [openBooking, setOpenBooking] = useState(false);
+  const [topicWarning, setTopicWarning] = useState("");
   const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef(null);
   
@@ -91,10 +63,27 @@ const MentorSection = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const filteredMentors =
+  const filteredTopics =
     selectedCategory === "All"
-      ? mentorsData
-      : mentorsData.filter((m) => m.category === selectedCategory);
+      ? topicData
+      : topicData.filter((item) => item.category === selectedCategory);
+  const toggleTopic = (topic) => {
+    setSelectedTopics((prev) =>
+      prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]
+    );
+  };
+  const openBookingFlow = () => {
+    if (!selectedTopics.length) {
+      setTopicWarning("Please select at least one topic before booking.");
+      document.getElementById("topic-selection-grid")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      return;
+    }
+    setTopicWarning("");
+    setOpenBooking(true);
+  };
 
   const scrollLeft = () => scrollRef.current.scrollBy({ left: -200, behavior: "smooth" });
   const scrollRight = () => scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
@@ -144,15 +133,15 @@ const MentorSection = () => {
           <div className="inline-flex items-center gap-2 mb-4">
             <Sparkles className="w-6 h-6 text-[#ED0331]" />
             <h2 className="font-playfair text-3xl sm:text-4xl md:text-5xl text-gray-800">
-              Meet Our Mentors
+              Book by Topic
             </h2>
             <Sparkles className="w-6 h-6 text-[#ED0331]" />
           </div>
           <p className="heading-primary font-nunito text-lg md:text-xl mb-2">
-            Learn directly from professionals working at Google, Microsoft, and top startups.
+            Select one or multiple topics and book your 1:1 mentorship session.
           </p>
           <p className="text-lg md:text-xl font-nunito heading-primary mb-10">
-            Our mentors are not just teachers — they are guides who've walked the same path you're on.
+            Our team will assign the best available trainer after your booking.
           </p>
         </motion.div>
 
@@ -203,8 +192,52 @@ const MentorSection = () => {
           </motion.button>
         </motion.div>
 
-        {/* Mentor Cards */}
         <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          className="bg-white border border-[#ED0331]/20 rounded-2xl p-5 md:p-6 mb-8 text-left shadow-md"
+        >
+          <p className="text-sm md:text-base font-semibold text-gray-800 mb-3">
+            Step 1: Choose topic(s) {"->"} Step 2: Complete registration form
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4 min-h-[36px]">
+            {selectedTopics.length ? (
+              selectedTopics.map((topic) => (
+                <span
+                  key={topic}
+                  className="px-3 py-1.5 rounded-full bg-[#ED0331] text-white text-xs md:text-sm"
+                >
+                  {topic}
+                </span>
+              ))
+            ) : (
+              <span className="text-sm text-gray-600">No topics selected yet.</span>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setSelectedTopics([])}
+              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50"
+            >
+              Clear Selection
+            </button>
+            <button
+              type="button"
+              onClick={openBookingFlow}
+              className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white text-sm font-semibold shadow-lg disabled:opacity-60"
+              disabled={!selectedTopics.length}
+            >
+              Continue to Book Session
+            </button>
+          </div>
+          {topicWarning && <p className="text-sm text-[#ED0331] mt-3">{topicWarning}</p>}
+        </motion.div>
+
+        {/* Topic Cards */}
+        <motion.div
+          id="topic-selection-grid"
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center"
           initial="hidden"
           whileInView="visible"
@@ -220,9 +253,9 @@ const MentorSection = () => {
           }}
         >
           <AnimatePresence mode="wait">
-            {filteredMentors.map((mentor, index) => (
+            {filteredTopics.map((item, index) => (
               <motion.div
-                key={mentor.name}
+                key={item.category}
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
@@ -232,7 +265,7 @@ const MentorSection = () => {
               >
                 {/* Decorative Background */}
                 <motion.div
-                  className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-2xl -z-0"
+                  className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-full blur-2xl -z-0 pointer-events-none"
                   animate={isMobile ? {} : {
                     scale: [1, 1.1, 1],
                     opacity: [0.3, 0.4, 0.3],
@@ -246,80 +279,36 @@ const MentorSection = () => {
                 />
 
                 <div className="relative z-10">
-                  {/* Profile Image */}
-                  <motion.div
-                    className="relative mb-4"
-                    whileHover={isMobile ? {} : { scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <img
-                      src={mentor.img}
-                      alt={mentor.name}
-                      className="w-28 h-28 object-cover rounded-full mx-auto md:mx-0 border-4 border-[#ED0331]/20 shadow-lg"
-                    />
-                    <motion.div
-                      className="absolute -top-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white"
-                      animate={isMobile ? {} : { scale: [1, 1.1, 1] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      style={{ willChange: isMobile ? 'auto' : 'transform' }}
-                    />
-                  </motion.div>
-
-                  {/* Name and Role */}
-                  <h3 className="text-lg font-playfair font-semibold text-gray-800 mb-1">
-                    {mentor.name}
-                  </h3>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Award className="w-4 h-4 text-[#ED0331]" />
-                    <p className="text-gray-600 text-sm">{mentor.role}</p>
-                  </div>
-
-                  {/* Expertise */}
-                  <div className="mb-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <BookOpen className="w-4 h-4 text-[#ED0331]" />
-                      <span className="font-semibold text-[#ED0331] text-sm">Expertise:</span>
-                    </div>
-                    <p className="text-sm text-gray-700 font-nunito ml-6">{mentor.expertise}</p>
-                  </div>
-
-                  {/* Experience */}
-                  <div className="mb-3">
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-[#ED0331]" />
-                      <span className="font-semibold text-[#ED0331] text-sm">Experience:</span>
-                      <span className="text-sm text-gray-700">{mentor.experience}</span>
-                    </div>
-                  </div>
-
-                  {/* Rating */}
                   <div className="flex items-center gap-2 mb-4">
-                    <span className="text-sm text-[#ED0331] font-semibold">Rating:</span>
-                    <span className="text-sm font-medium text-gray-700">{mentor.rating}</span>
-                    <Star size={16} className="text-yellow-400 fill-yellow-400" />
+                    <BookOpen className="w-5 h-5 text-[#ED0331]" />
+                    <h3 className="text-xl font-playfair font-semibold text-gray-800">
+                      {item.category}
+                    </h3>
                   </div>
+                  <p className="text-sm text-gray-600 mb-4 font-nunito">{item.description}</p>
 
-                  {/* Book Session Button */}
-                  <motion.button
-                    onClick={() => setSelectedMentor(mentor)}
-                    className="w-full bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white px-4 py-3 rounded-xl font-nunito font-semibold shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-                    whileHover={isMobile ? {} : { scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      Book Session
-                      <motion.span
-                        animate={isMobile ? {} : { x: [0, 5, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        style={{ willChange: isMobile ? 'auto' : 'transform' }}
-                      >
-                        →
-                      </motion.span>
-                    </span>
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-[#87021C] to-[#ED0331] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    />
-                  </motion.button>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {item.topics.map((topic) => {
+                      const checked = selectedTopics.includes(topic);
+                      return (
+                        <button
+                          key={topic}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleTopic(topic);
+                          }}
+                          className={`text-xs px-3 py-2 rounded-full border transition-all ${
+                            checked
+                              ? "bg-[#ED0331] text-white border-[#ED0331]"
+                              : "bg-white text-gray-700 border-gray-300 hover:border-[#ED0331]/50"
+                          } cursor-pointer`}
+                        >
+                          {checked ? `✓ ${topic}` : topic}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -327,11 +316,21 @@ const MentorSection = () => {
         </motion.div>
       </div>
 
-      {/* Open Modal */}
-      {selectedMentor && (
+      <motion.button
+        type="button"
+        onClick={openBookingFlow}
+        className="fixed bottom-6 right-6 z-[9998] px-5 py-3 rounded-full bg-gradient-to-r from-[#ED0331] to-[#87021C] text-white font-semibold shadow-2xl flex items-center gap-2"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Book Now
+        <ArrowUpRight className="w-4 h-4" />
+      </motion.button>
+
+      {openBooking && (
         <MentorSessionForm
-          mentor={selectedMentor}
-          onClose={() => setSelectedMentor(null)}
+          selectedTopics={selectedTopics}
+          onClose={() => setOpenBooking(false)}
         />
       )}
     </section>
