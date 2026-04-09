@@ -84,12 +84,12 @@
               "Experience an advanced interview platform with scheduling, evaluation, and feedback tools.",
             href: "/login",
           },
-          {
-            name: "Manpower Management",
-            description:
-              "Streamline employee tracking, task allocation, and attendance management.",
-            href: "/login",
-          },
+          // {
+          //   name: "Manpower Management",
+          //   description:
+          //     "Streamline employee tracking, task allocation, and attendance management.",
+          //   href: "/login",
+          // },
         ],
       },
       { name: "About us", href: "/aboutus" },
