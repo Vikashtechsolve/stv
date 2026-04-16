@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Zap, Lightbulb, User, Sparkles, Check, ArrowRight } from "lucide-react";
 import DoubtSessionForm from "./DoubtSessionForm";
-import { onlineCourseApi as baseUrl } from "../../config/env";
+import { vtsBackendApi as baseUrl } from "../../config/env";
 
 const plans = [
   {

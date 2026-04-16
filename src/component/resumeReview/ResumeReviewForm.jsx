@@ -8,7 +8,7 @@ import MessageModal from "../common/MessageModal";
 import MobileNumberInput from "../common/MobileNumberInput";
 import { useNavigate } from "react-router-dom";
 
-import { onlineCourseApi as baseUrl } from "../../config/env";
+import { vtsBackendApi as baseUrl } from "../../config/env";
 
 const ResumeReviewForm = ({ onClose }) => {
   const navigate = useNavigate();

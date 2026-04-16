@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 import joinImg from "../../assets/form.png";
 
-import { onlineCourseApi as baseUrl } from "../../config/env";
+import { vtsBackendApi as baseUrl } from "../../config/env";
 
 // ✅ Validation Schema
 const schema = yup.object({
