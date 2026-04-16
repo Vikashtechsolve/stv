@@ -7,7 +7,7 @@ import MessageModal from "../common/MessageModal";
 import MobileNumberInput from "../common/MobileNumberInput";
 import { useNavigate } from "react-router-dom";
 
-import { onlineCourseApi as baseUrl } from "../../config/env";
+import { vtsBackendApi as baseUrl } from "../../config/env";
 
 const MentorSessionForm = ({ selectedTopics = [], onClose }) => {
   const navigate = useNavigate();
@@ -108,11 +108,18 @@ const MentorSessionForm = ({ selectedTopics = [], onClose }) => {
       });
 
       if (!res.ok) {
-        throw new Error("Registration failed");
+        let errorMessage = "Registration failed";
+        try {
+          const errorData = await res.json();
+          errorMessage = errorData?.message || errorData?.error || errorMessage;
+        } catch (_) {
+          // keep fallback error message
+        }
+        throw new Error(errorMessage);
       }
 
       // Send confirmation email only after successful registration
-      await fetch(`${baseUrl}/api/mail/send-mail`, {
+      const mailRes = await fetch(`${baseUrl}/api/mail/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -132,6 +139,17 @@ const MentorSessionForm = ({ selectedTopics = [], onClose }) => {
         }),
       });
 
+      if (!mailRes.ok) {
+        let mailError = "Registration completed, but email could not be sent.";
+        try {
+          const mailData = await mailRes.json();
+          mailError = mailData?.message || mailData?.error || mailError;
+        } catch (_) {
+          // keep fallback warning
+        }
+        setModal({ message: mailError, type: "error" });
+      }
+
       setIsSubmitting(false);
       setStep(3);
       setShowSuccess(true);
@@ -145,7 +163,10 @@ const MentorSessionForm = ({ selectedTopics = [], onClose }) => {
       setIsSubmitting(false);
       setStep(1);
       setModal({
-        message: "Booking failed. Please contact support.",
+        message:
+          err?.message === "Failed to fetch"
+            ? "Booking API is unreachable. Please start backend server and try again."
+            : err?.message || "Booking failed. Please contact support.",
         type: "error",
       });
     }

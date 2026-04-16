@@ -5,7 +5,7 @@ import { User, Mail, Phone, MessageSquare, Send, Sparkles, X, CheckCircle2, Part
 import axios from "axios";
 import formImg from "../assets/form.png";
 
-import { onlineCourseApi as baseUrl } from "../config/env";
+import { vtsBackendApi as baseUrl } from "../config/env";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

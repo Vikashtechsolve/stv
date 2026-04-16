@@ -1,8 +1,8 @@
 import React from "react";
-import { onlineCourseApi } from "../config/env";
+import { vtsBackendApi } from "../config/env";
 
 const defaultApiBase =
-  onlineCourseApi ||
+  vtsBackendApi ||
   (typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:8000"
     : "https://vts-backend-ms7k.onrender.com");
