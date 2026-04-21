@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import RegistrationPopup from "../component/RegistrationPopup";
 
-import { onlineCourseApi as baseUrl } from "../config/env";
+import { vtsBackendApi as baseUrl } from "../config/env";
 
 const EventCard = ({ event, onRegister, baseUrl }) => {
   const imageUrl = `${event.bannerImage}`;

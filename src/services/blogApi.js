@@ -3,10 +3,10 @@
  * Handles all blog-related API calls
  */
 
-import { onlineCourseApi } from "../config/env";
+import { vtsBackendApi } from "../config/env";
 
-// Dev: Vite proxy. Prod: VITE_ONLINE_COURSE_API from .env
-const API_BASE_URL = onlineCourseApi || (import.meta.env.DEV ? "" : "");
+// Dev: Vite proxy. Prod: VITE_VTS_BACKEND_API from .env
+const API_BASE_URL = vtsBackendApi || (import.meta.env.DEV ? "" : "");
 
 /**
  * Get all blogs with optional status filter

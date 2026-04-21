@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle2, Mail, Calendar, Clock, Video, Sparkles, Loader2, User, MessageSquare, Upload, FileText, Award, Star } from "lucide-react";
+import { X, CheckCircle2, Mail, Calendar, Clock, Video, Sparkles, Loader2, User, MessageSquare, Upload, FileText } from "lucide-react";
 import { useRazorpayPayment } from "../payment/useRazorpayPayment";
 import LoadingOverlay from "../common/LoadingOverlay";
 import MessageModal from "../common/MessageModal";
 import MobileNumberInput from "../common/MobileNumberInput";
 import { useNavigate } from "react-router-dom";
 
-import { onlineCourseApi as baseUrl } from "../../config/env";
+import { vtsBackendApi as baseUrl } from "../../config/env";
 
-const MentorSessionForm = ({ mentor, onClose }) => {
+const MentorSessionForm = ({ selectedTopics = [], onClose }) => {
   const navigate = useNavigate();
-  const { handlePayment, loading } = useRazorpayPayment(baseUrl);
+  // const { handlePayment, loading } = useRazorpayPayment(baseUrl);
+  const { loading } = useRazorpayPayment(baseUrl);
   const [modal, setModal] = useState({ message: "", type: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -26,6 +27,7 @@ const MentorSessionForm = ({ mentor, onClose }) => {
     date: "",
     time: "",
     file: null,
+    topics: selectedTopics,
   });
 
   const handleInput = (field, value) =>
@@ -40,6 +42,7 @@ const MentorSessionForm = ({ mentor, onClose }) => {
       !formData.name ||
       !formData.email ||
       !formData.fullMobile ||
+      !formData.topics.length ||
       !formData.doubt ||
       !formData.date ||
       !formData.time
@@ -61,58 +64,41 @@ const MentorSessionForm = ({ mentor, onClose }) => {
     setStep(2); // Show processing step
     setIsSubmitting(true);
 
-    const paymentResult = await handlePayment({
-      amount: 1, //199,
-      prefill: {
-        userId: "6730b6d8e29f4b001f6f91d1",
-        name: formData.name,
-        email: formData.email,
-        contact: formData.fullMobile,
-      },
-      description: `1:1 Mentorship with ${mentor.name}`,
-    });
-
-    if (!paymentResult.success) {
-      setModal({
-        message: paymentResult.error || "Payment failed.",
-        type: "error",
-      });
-      setStep(1);
-      setIsSubmitting(false);
-      return;
-    }
+    // Payment flow is intentionally bypassed for 1:1 mentorship bookings.
+    // Keep this code for future re-enable:
+    // const paymentResult = await handlePayment({
+    //   amount: 1, //199,
+    //   prefill: {
+    //     userId: "6730b6d8e29f4b001f6f91d1",
+    //     name: formData.name,
+    //     email: formData.email,
+    //     contact: formData.fullMobile,
+    //   },
+    //   description: `1:1 Mentorship`,
+    // });
+    //
+    // if (!paymentResult.success) {
+    //   setModal({
+    //     message: paymentResult.error || "Payment failed.",
+    //     type: "error",
+    //   });
+    //   setStep(1);
+    //   setIsSubmitting(false);
+    //   return;
+    // }
 
     try {
-      // Send confirmation email
-      await fetch(`${baseUrl}/api/mail/send-mail`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.fullMobile,
-          query: "🎉 Registration successful for personal mentorship session",
-          type: "mentorship",
-          data: {
-            doubt: formData.doubt,
-            date: formData.date,
-            time: formData.time,
-            subject: mentor.subject,
-            mentorName: mentor.name,
-          },
-        }),
-      });
-
-      // Save registration
+      // Save registration first. Only if this succeeds, send confirmation email.
       const form = new FormData();
       form.append("name", formData.name);
       form.append("email", formData.email);
       form.append("mobile", formData.fullMobile);
-      form.append("subject", mentor.subject);
+      form.append("subject", formData.topics.join(", "));
       form.append("query", formData.doubt);
       form.append("date", formData.date);
       form.append("time", formData.time);
-      form.append("mentorName", mentor.name);
+      form.append("mentorName", "Assigned by VTS Team");
+      form.append("topics", JSON.stringify(formData.topics));
       form.append("status", "pending");
       if (formData.file) form.append("file", formData.file);
 
@@ -122,7 +108,46 @@ const MentorSessionForm = ({ mentor, onClose }) => {
       });
 
       if (!res.ok) {
-        throw new Error("Registration failed");
+        let errorMessage = "Registration failed";
+        try {
+          const errorData = await res.json();
+          errorMessage = errorData?.message || errorData?.error || errorMessage;
+        } catch (_) {
+          // keep fallback error message
+        }
+        throw new Error(errorMessage);
+      }
+
+      // Send confirmation email only after successful registration
+      const mailRes = await fetch(`${baseUrl}/api/mail/send-mail`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.fullMobile,
+          query: "🎉 Registration successful for personal mentorship session",
+          type: "mentorship",
+          data: {
+            topics: formData.topics,
+            doubt: formData.doubt,
+            date: formData.date,
+            time: formData.time,
+            subject: formData.topics.join(", "),
+            mentorName: "Assigned by VTS Team",
+          },
+        }),
+      });
+
+      if (!mailRes.ok) {
+        let mailError = "Registration completed, but email could not be sent.";
+        try {
+          const mailData = await mailRes.json();
+          mailError = mailData?.message || mailData?.error || mailError;
+        } catch (_) {
+          // keep fallback warning
+        }
+        setModal({ message: mailError, type: "error" });
       }
 
       setIsSubmitting(false);
@@ -138,7 +163,10 @@ const MentorSessionForm = ({ mentor, onClose }) => {
       setIsSubmitting(false);
       setStep(1);
       setModal({
-        message: "Payment succeeded but booking failed. Please contact support.",
+        message:
+          err?.message === "Failed to fetch"
+            ? "Booking API is unreachable. Please start backend server and try again."
+            : err?.message || "Booking failed. Please contact support.",
         type: "error",
       });
     }
@@ -146,7 +174,7 @@ const MentorSessionForm = ({ mentor, onClose }) => {
 
   return (
     <>
-      {loading && <LoadingOverlay message="Processing your payment..." />}
+      {loading && <LoadingOverlay message="Processing your booking..." />}
 
       <AnimatePresence>
         {!showSuccess && (
@@ -196,38 +224,35 @@ const MentorSessionForm = ({ mentor, onClose }) => {
                   </div>
                   <div className="w-24 h-1 bg-gradient-to-r from-[#ED0331] to-[#87021C] mx-auto rounded-full mb-4" />
                   <p className="text-lg md:text-xl text-gray-700 font-nunito font-semibold mb-2">
-                    Connect with <span className="heading-primary">{mentor.name}</span>
+                    Book personalized 1:1 mentorship
                   </p>
                   <p className="text-base text-gray-600 font-nunito">
-                    Fill in your details to schedule your personalized mentorship session
+                    Fill in your details to complete your mentorship registration
                   </p>
                 </motion.div>
 
-                {/* Mentor Info Card */}
                 <motion.div
                   className="bg-gradient-to-br from-[#ED0331]/10 to-[#87021C]/10 rounded-2xl p-5 mb-8 border-2 border-[#ED0331]/20"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="relative">
-                      <img
-                        src={mentor.img}
-                        alt={mentor.name}
-                        className="w-16 h-16 rounded-full border-4 border-white shadow-lg object-cover"
-                      />
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold text-gray-900 font-playfair">{mentor.name}</h3>
-                      <p className="text-sm text-gray-600 font-nunito">{mentor.role}</p>
-                      <p className="text-sm font-semibold text-[#ED0331] mt-1">{mentor.subject}</p>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                      <span className="font-bold text-gray-800">{mentor.rating}</span>
-                    </div>
+                  <p className="text-sm font-semibold text-[#ED0331] mb-3">Selected Topics</p>
+                  <div className="flex flex-wrap gap-2">
+                    {formData.topics.length ? (
+                      formData.topics.map((topic) => (
+                        <span
+                          key={topic}
+                          className="px-3 py-1.5 rounded-full bg-white border border-[#ED0331]/20 text-sm font-medium text-gray-700"
+                        >
+                          {topic}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-sm text-gray-600">
+                        No topic selected. Please close this form and select topics first.
+                      </span>
+                    )}
                   </div>
                 </motion.div>
 
@@ -332,12 +357,12 @@ const MentorSessionForm = ({ mentor, onClose }) => {
                       >
                         <label className="text-gray-800 text-base font-semibold font-nunito mb-2 block flex items-center gap-2">
                           <FileText className="w-4 h-4 text-[#ED0331]" />
-                          <span>Subject</span>
+                          <span>Topics</span>
                         </label>
                         <input
                           type="text"
                           readOnly
-                          value={mentor.subject}
+                          value={formData.topics.join(", ")}
                           className="w-full bg-gray-100 text-gray-700 px-4 py-3 rounded-xl border-2 border-gray-200 cursor-not-allowed font-nunito"
                         />
                       </motion.div>
@@ -347,16 +372,12 @@ const MentorSessionForm = ({ mentor, onClose }) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.8 }}
                       >
-                        <label className="text-gray-800 text-base font-semibold font-nunito mb-2 block flex items-center gap-2">
-                          <User className="w-4 h-4 text-[#ED0331]" />
-                          <span>Mentor</span>
+                        <label className="text-gray-800 text-base font-semibold font-nunito mb-2 block">
+                          Session Allocation
                         </label>
-                        <input
-                          type="text"
-                          readOnly
-                          value={mentor.name}
-                          className="w-full bg-gray-100 text-gray-700 px-4 py-3 rounded-xl border-2 border-gray-200 cursor-not-allowed font-nunito"
-                        />
+                        <div className="w-full bg-gray-100 text-gray-700 px-4 py-3 rounded-xl border-2 border-gray-200 font-nunito text-sm">
+                          Trainer will be assigned by VTS team after booking.
+                        </div>
                       </motion.div>
                     </div>
 
@@ -567,7 +588,7 @@ const MentorSessionForm = ({ mentor, onClose }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  Congratulations! Your mentorship session with <span className="font-bold text-[#ED0331]">{mentor.name}</span> has been confirmed. A confirmation email with all the details has been sent to <span className="font-bold text-[#ED0331]">{formData.email}</span>.
+                  Congratulations! Your mentorship session request has been confirmed. A confirmation email with all the details has been sent to <span className="font-bold text-[#ED0331]">{formData.email}</span>.
                 </motion.p>
 
                 {/* Session Details */}

@@ -9,10 +9,12 @@ function upgradeApiToHttpsIfPageIsSecure(url) {
   return url.replace(/^http:\/\//i, "https://");
 }
 
-/** Online course backend — registration, masterclass, contact, blogs, etc. */
+/** VTS programs backend (vikashtechsolve backend). */
+export const vtsBackendApi = upgradeApiToHttpsIfPageIsSecure(
+  strip(import.meta.env.VITE_VTS_BACKEND_API)
+);
+
+/** Online course backend (course-leads, etc.). */
 export const onlineCourseApi = upgradeApiToHttpsIfPageIsSecure(
   strip(import.meta.env.VITE_ONLINE_COURSE_API)
 );
-
-/** VTS admin dashboard (staff) — use for links / redirects */
-export const adminAppUrl = strip(import.meta.env.VITE_ADMIN_APP);

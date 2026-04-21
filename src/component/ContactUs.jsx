@@ -11,7 +11,7 @@ import vtsImage from "../assets/logo.png";
 import linkedinIcon from "../assets/linkedin.png";
 import instagramIcon from "../assets/instagram.svg";
 
-import { onlineCourseApi as baseUrl } from "../config/env";
+import { vtsBackendApi as baseUrl } from "../config/env";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({

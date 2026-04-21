@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-import { onlineCourseApi as baseUrl } from "../config/env";
+import { vtsBackendApi as baseUrl } from "../config/env";
 
 const PastEventCard = ({ event }) => {
   const imageUrl = `${event.bannerImage}`;

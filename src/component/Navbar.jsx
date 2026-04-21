@@ -16,6 +16,8 @@
     const navRefs = useRef({});
     const navigate = useNavigate();
 
+    const isExternalHref = (href) => /^https?:\/\//i.test(href);
+
     const links = [
       {
     name: "Courses",
@@ -75,15 +77,24 @@
           {
             name: "LMS Portal",
             description:
-              "Access a complete online learning management system with courses and training materials.",
+              "All-in-one LMS for students — recordings, notes, assignments, progress tracking, and support tickets in one dashboard.",
             href: "https://lms.vikashtechsolution.com/",
           },
           {
-            name: "Interview Portal",
+            name: "Coding Platform",
             description:
-              "Experience an advanced interview platform with scheduling, evaluation, and feedback tools.",
-            href: "/login",
+              "Practice and evaluate skills with coding tests, DBMS & system design assessments, project evaluation, and AI-powered interviews.",
+            href: "https://test.vikashtechsolution.com/",
           },
+<<<<<<< HEAD
+=======
+          {
+            name: "Course Subscription Portal",
+            description:
+              "Subscription-based learning library — unlock all IT/CSE playlists and courses with one plan, watch anytime on any device.",
+            href: "https://course.vikashtechsolution.com/",
+          },
+>>>>>>> 47607a084608ec3e7c8e38f93a859f16d006a4bb
           // {
           //   name: "Manpower Management",
           //   description:
@@ -174,16 +185,31 @@
             {links
               .find((l) => l.name === "Our Programs")
               ?.dropdown?.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="block w-full mb-2 last:mb-0 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors duration-300"
-                >
-                  <span className="font-semibold">{item.name}</span>
-                  <span className="block text-gray-700 text-sm mt-1">
-                    {item.description}
-                  </span>
-                </Link>
+                isExternalHref(item.href) ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block w-full mb-2 last:mb-0 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors duration-300"
+                  >
+                    <span className="font-semibold">{item.name}</span>
+                    <span className="block text-gray-700 text-sm mt-1">
+                      {item.description}
+                    </span>
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="block w-full mb-2 last:mb-0 rounded-md px-3 py-2 hover:bg-gray-100 transition-colors duration-300"
+                  >
+                    <span className="font-semibold">{item.name}</span>
+                    <span className="block text-gray-700 text-sm mt-1">
+                      {item.description}
+                    </span>
+                  </Link>
+                )
               ))}
           </div>
         )}
@@ -224,16 +250,31 @@
                       }`}
                     >
                       {link.dropdown.map((item) => (
-                        <Link
-                          key={item.name}
-                          to={item.href}
-                          className="block w-full bg-white hover:bg-gray-100 rounded-md px-3 py-3 text-black"
-                        >
-                          <span className="font-semibold">{item.name}</span>
-                          <span className="block text-gray-700 text-sm mt-1">
-                            {item.description}
-                          </span>
-                        </Link>
+                        isExternalHref(item.href) ? (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="block w-full bg-white hover:bg-gray-100 rounded-md px-3 py-3 text-black"
+                          >
+                            <span className="font-semibold">{item.name}</span>
+                            <span className="block text-gray-700 text-sm mt-1">
+                              {item.description}
+                            </span>
+                          </a>
+                        ) : (
+                          <Link
+                            key={item.name}
+                            to={item.href}
+                            className="block w-full bg-white hover:bg-gray-100 rounded-md px-3 py-3 text-black"
+                          >
+                            <span className="font-semibold">{item.name}</span>
+                            <span className="block text-gray-700 text-sm mt-1">
+                              {item.description}
+                            </span>
+                          </Link>
+                        )
                       ))}
                     </div>
                   </div>
@@ -314,20 +355,39 @@
                             onMouseLeave={handleMouseLeave}
                           >
                             {link.dropdown.map((item) => (
-                              <Link
-                                key={item.name}
-                                to={item.href}
-                                className="block mb-2 last:mb-0 hover:bg-gray-50 transition-all duration-300 rounded-md px-2 py-2"
-                              >
-                                <div className="flex flex-col">
-                                  <span className="font-semibold text-black text-lg">
-                                    {item.name}
-                                  </span>
-                                  <span className="text-gray-600 hover:text-red-600 transition-colors duration-300 text-sm">
-                                    {item.description}
-                                  </span>
-                                </div>
-                              </Link>
+                              isExternalHref(item.href) ? (
+                                <a
+                                  key={item.name}
+                                  href={item.href}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="block mb-2 last:mb-0 hover:bg-gray-50 transition-all duration-300 rounded-md px-2 py-2"
+                                >
+                                  <div className="flex flex-col">
+                                    <span className="font-semibold text-black text-lg">
+                                      {item.name}
+                                    </span>
+                                    <span className="text-gray-600 hover:text-red-600 transition-colors duration-300 text-sm">
+                                      {item.description}
+                                    </span>
+                                  </div>
+                                </a>
+                              ) : (
+                                <Link
+                                  key={item.name}
+                                  to={item.href}
+                                  className="block mb-2 last:mb-0 hover:bg-gray-50 transition-all duration-300 rounded-md px-2 py-2"
+                                >
+                                  <div className="flex flex-col">
+                                    <span className="font-semibold text-black text-lg">
+                                      {item.name}
+                                    </span>
+                                    <span className="text-gray-600 hover:text-red-600 transition-colors duration-300 text-sm">
+                                      {item.description}
+                                    </span>
+                                  </div>
+                                </Link>
+                              )
                             ))}
                           </div>,
                           document.body

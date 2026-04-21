@@ -40,7 +40,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <h3 className="font-playfair font-bold text-base heading-primary leading-tight tracking-wide pt-[10.67px] pb-4 uppercase">
+          <h3
+            className="font-bold text-base heading-primary leading-tight tracking-wide pt-[10.67px] pb-4 uppercase"
+            style={{ fontFamily: "'Nunito Sans', sans-serif" }}
+          >
             ABOUT VIKAS TECH SOLUTIONS
           </h3>
           <p className="text-base leading-6 font-nunito text-gray-600">
@@ -51,7 +54,7 @@ const Footer = () => {
         </div>
 
         {/* EXPLORE SECTION */}
-        <div>
+        <div className="-mt-16">
         <h3 className="font-semibold text-base heading-primary font-playfair mb-4">EXPLORE</h3>
         <ul className="space-y-2 text-base font-nunito text-gray-600">
 
@@ -98,10 +101,10 @@ const Footer = () => {
 
 
         {/* CONTACT SECTION */}
-        <div>
+        <div className="-mt-16">
           <h3 className="font-semibold text-base heading-primary font-playfair mb-4">CONTACT</h3>
 
-          <div className="flex items-start gap-3 text-base font-nunito text-gray-600 mb-4">
+          {/* <div className="flex items-start gap-3 text-base font-nunito text-gray-600 mb-4">
             <FaMapMarkerAlt className="text-[#ED0331] mt-1 text-lg shrink-0" />
             <p className="leading-relaxed">
               Vikas Tech Solutions, <br />
@@ -110,7 +113,7 @@ const Footer = () => {
               Vaikuth Four crossing, <br />
               Vadodara, Gujarat, India
             </p>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-3 text-base font-nunito text-gray-600 mb-4">
             <FaEnvelope className="text-[#ED0331] text-lg shrink-0" />
@@ -124,7 +127,7 @@ const Footer = () => {
         </div>
 
         {/* SOCIAL SECTION */}
-        <div>
+        <div className="-mt-16">
           <h3 className="font-semibold text-base heading-primary font-playfair mb-4">GET IN TOUCH</h3>
           <div className="flex space-x-4 text-gray-600 text-xl">
             <a target="_blank" href="https://www.youtube.com/@fixWithvikas"><FaYoutube className="hover:text-red-600 cursor-pointer" /></a>
@@ -138,7 +141,7 @@ const Footer = () => {
 
       {/* BOTTOM */}
       <div className="flex flex-col md:flex-row justify-between items-center mt-6 pt-6  border-gray-300 text-base font-nunito text-gray-600">
-        <p className="text-[#ED0331] font-semibold mb-3 md:mb-0">VTS © 2025. All rights reserved.</p>
+        <p className="text-[#ED0331] font-semibold mb-3 md:mb-0">VTS © 2026. All rights reserved.</p>
         <div className="flex flex-wrap justify-center gap-4 md:gap-6">
           <a href="/masterClass" className="hover:text-[#ED0331] transition-colors">Master Class</a>
           <a href="oneToOneMentoring" className="hover:text-[#ED0331] transition-colors">Mentorship</a>
