@@ -17,8 +17,8 @@ export const getAllBlogs = async (status = null) => {
   try {
     const basePath = API_BASE_URL || '';
     const url = status 
-      ? `${basePath}/api/blogs?status=${status}`
-      : `${basePath}/api/blogs`;
+      ? `${basePath}/api/blogs?status=${status}&site=vts`
+      : `${basePath}/api/blogs?site=vts`;
     
     const response = await fetch(url);
     if (!response.ok) {
@@ -58,7 +58,7 @@ export const getAllBlogs = async (status = null) => {
 export const getBlogBySlug = async (slug) => {
   try {
     const basePath = API_BASE_URL || '';
-    const response = await fetch(`${basePath}/api/blogs/${slug}`);
+    const response = await fetch(`${basePath}/api/blogs/${slug}?site=vts`);
     if (!response.ok) {
       if (response.status === 404) {
         return null;
@@ -90,7 +90,7 @@ export const getBlogBySlug = async (slug) => {
 export const getRelatedBlogs = async (id) => {
   try {
     const basePath = API_BASE_URL || '';
-    const response = await fetch(`${basePath}/api/blogs/related/${id}`);
+    const response = await fetch(`${basePath}/api/blogs/related/${id}?site=vts`);
     if (!response.ok) {
       // Return empty array if endpoint fails
       return [];
