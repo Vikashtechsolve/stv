@@ -86,15 +86,12 @@
               "Practice and evaluate skills with coding tests, DBMS & system design assessments, project evaluation, and AI-powered interviews.",
             href: "https://test.vikashtechsolution.com/",
           },
-<<<<<<< HEAD
-=======
           {
             name: "Course Subscription Portal",
             description:
               "Subscription-based learning library — unlock all IT/CSE playlists and courses with one plan, watch anytime on any device.",
             href: "https://course.vikashtechsolution.com/",
           },
->>>>>>> 47607a084608ec3e7c8e38f93a859f16d006a4bb
           // {
           //   name: "Manpower Management",
           //   description:
