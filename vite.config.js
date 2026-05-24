@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const vtsProxyTarget =
     env.VITE_VTS_BACKEND_API?.replace(/\/$/, "") || "http://localhost:8000";
   const onlineCourseProxyTarget =
-    env.VITE_ONLINE_COURSE_API?.replace(/\/$/, "") || "http://localhost:8001";
+    env.VITE_ONLINE_COURSE_API?.replace(/\/$/, "") || "http://localhost:5001";
 
   return {
     plugins: [react(), tailwindcss()],
