@@ -18,6 +18,7 @@ import BlogDetailPage from "./pages/BlogDetailPage";
 import JoinUs from "./pages/JoinUs";
 import FullStack from "./pages/Courses/FullstackDeveloper/HeroSection";
 import DataAnalyticsProgram from "./pages/Courses/DataAnalytics/DataAnalyticsProgram";
+import GenerativeAI from "./pages/Courses/GenerativeAI/GenerativeAI";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/fullstack-developer" element={ <FullStack /> } />
           <Route path="/data-analytics" element={ <DataAnalyticsProgram /> } />
+          <Route path="/generative-ai" element={ <GenerativeAI /> } />
 
         </Routes>
       <ScrollToTop />

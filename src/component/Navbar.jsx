@@ -34,6 +34,12 @@
           "Learn data analysis, visualization, and tools like Excel, SQL, and Python to grow your career.",
         href: "/data-analytics",
       },
+      {
+        name: "Generative AI",
+        description:
+          "Master Generative AI and build production-ready AI applications using LLMs, RAG, and AI Agents.",
+        href: "/generative-ai",
+      },
     ],
   },
       {
