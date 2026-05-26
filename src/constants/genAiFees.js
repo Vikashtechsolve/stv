@@ -35,5 +35,5 @@ export const GENAI_PAYMENT_PLANS = {
 export const VTS_SUPPORT = {
   email: "support@vikastechsolutions.com",
   phone: "+91 98765 43210",
-  website: "https://vikastechsolutions.com",
+  website: "https://www.vikashtechsolution.com",
 };

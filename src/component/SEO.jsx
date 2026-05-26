@@ -5,8 +5,8 @@ const SEO = ({
   title = "VTS | Learn and Grow with Expert Mentors",
   description = "VTS is India’s leading tech learning platform. Master Java, Spring Boot, and React from industry experts.",
   keywords = "VTS, Java Training, Spring Boot, React, Full Stack, Coding Bootcamp, Developer Courses",
-  url = "https://vikastechsolutions.com",
-  image = "https://vikastechsolutions.com/images/preview.png",
+  url = "https://www.vikashtechsolution.com",
+  image = "https://www.vikashtechsolution.com/genai-og.png",
 }) => (
   <Helmet>
     <title>{title}</title>

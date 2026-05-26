@@ -7,8 +7,8 @@ const BlogPage = () => (
     <SEO
       title="VTS Blog | Developer Insights & Tutorials"
       description="Read expert insights and tutorials on Java, React, and Spring Boot from VTS mentors."
-      url="https://vikastechsolutions.com/blog"
-      image="https://vikastechsolutions.com/images/blog.png"
+      url="https://www.vikashtechsolution.com/blogs"
+      image="https://www.vikashtechsolution.com/genai-og.png"
     />
     <BlogHero />
   </Layout>

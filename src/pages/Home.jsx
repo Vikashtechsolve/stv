@@ -30,8 +30,8 @@ const Home = () => {
       <SEO
         title="VTS | Learn, Grow & Build Your Future"
         description="Master Java, Spring Boot, React, and Full Stack with top mentors. Learn online or offline with VTS."
-        url="https://vikastechsolutions.com/"
-        image="https://vikastechsolutions.com/images/preview-home.png"
+        url="https://www.vikashtechsolution.com/"
+        image="https://www.vikashtechsolution.com/genai-og.png"
       />
 
       <div id="home">
