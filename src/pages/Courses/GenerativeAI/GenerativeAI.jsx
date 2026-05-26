@@ -78,9 +78,9 @@ const GenerativeAI = () => {
   }, [heroLines.length]);
 
   const fullPay = genAiFullPaymentAmount();
-  const pageUrl = "https://vikastechsolutions.com/generative-ai";
-  const siteUrl = "https://vikastechsolutions.com";
-  const ogImage = "https://vikastechsolutions.com/genai-og.png";
+  const pageUrl = "https://www.vikashtechsolution.com/generative-ai";
+  const siteUrl = "https://www.vikashtechsolution.com";
+  const ogImage = "https://www.vikashtechsolution.com/genai-og.png";
   const logoUrl =
     "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759848700/vks_fav_icon_2_rjzspg.svg";
 

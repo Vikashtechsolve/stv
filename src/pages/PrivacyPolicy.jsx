@@ -252,7 +252,7 @@ export default function PrivacyPolicy() {
       <SEO
         title="Privacy Policy | VTS"
         description="Read Vikas Tech Solutions' privacy policy on how we protect and use your personal data securely."
-        url="https://vikastechsolutions.com/privacy-policy"
+        url="https://www.vikashtechsolution.com/privacy-policy"
       />
       <div className="min-h-screen bg-gray-50 font-nunito">
         {/* Hero Header */}

@@ -25,7 +25,7 @@ if (!existsSync(indexHtmlPath)) {
 }
 
 const baseHtml = readFileSync(indexHtmlPath, "utf8");
-const SITE_URL = "https://vikastechsolutions.com";
+const SITE_URL = "https://www.vikashtechsolution.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/genai-og.png`;
 const LOGO_URL =
   "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759848700/vks_fav_icon_2_rjzspg.svg";

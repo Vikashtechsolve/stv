@@ -6,4 +6,4 @@ Disallow: /login
 Disallow: /dashboard
 Disallow: /pay
 
-Sitemap: https://vikastechsolutions.com/sitemap.xml
+Sitemap: https://www.vikashtechsolution.com/sitemap.xml
