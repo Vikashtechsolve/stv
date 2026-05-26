@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
-import boyImg from "../../../../public/boy1.png";
-import girlImg from "../../../../public/girl2.png";
-import DownloadButton from "../../../assets/download Button.png";
+import { Helmet } from "react-helmet-async";
+import {
+  Sparkles,
+  Flame,
+  Clock,
+  CheckCircle2,
+  Download,
+  Cpu,
+  Star,
+} from "lucide-react";
 
 import WhyVTS from "./WhyVTS";
 import WhyChooseProgram from "./WhyChooseProgram";
@@ -14,153 +21,393 @@ import CareerOutcomes from "./CareerOutcomes";
 import HiringPartners from "./HiringPartners";
 import SuccessStories from "./SuccessStories";
 import FAQ from "./FAQ";
+import EnrollmentUrgency from "./EnrollmentUrgency";
+import ExclusiveBenefits from "./ExclusiveBenefits";
+import LiveAIDemo from "./LiveAIDemo";
+import AIUseCases from "./AIUseCases";
 import Layout from "../../../component/Layout";
-import CourseApplyModal from "../../../component/courses/CourseApplyModal";
+import GenAiEnrollmentModal from "../../../component/courses/GenAiEnrollmentModal";
 import { GENAI_BROCHURE } from "../../../constants/courseBrochures";
+import { GENAI_ENROLLMENT } from "./genAiCourseConfig";
+import {
+  GENAI_REGISTRATION_FEE,
+  genAiFullPaymentAmount,
+} from "../../../constants/genAiFees";
+
+const HERO_BULLETS = [
+  "Build 6+ production-ready AI applications",
+  "Work with OpenAI, Gemini, LangChain & RAG",
+  "1 guaranteed interview call + PPO opportunity",
+];
+
+const HERO_STATS = [
+  { value: "3 Months", label: "2 mo. training + 1 mo. internship" },
+  { value: "9 Modules", label: "Beginner to advanced" },
+  { value: "6+", label: "Real AI projects" },
+  { value: "2", label: "Industry certificates" },
+];
+
+const HERO_BADGES = [
+  { label: "OpenAI" },
+  { label: "Gemini" },
+  { label: "LangChain" },
+  { label: "RAG" },
+  { label: "AI Agents" },
+  { label: "FastAPI" },
+];
 
 const GenerativeAI = () => {
-  const images = [boyImg, girlImg];
-  const [currentImage, setCurrentImage] = useState(0);
   const [applyOpen, setApplyOpen] = useState(false);
+  const [activeLine, setActiveLine] = useState(0);
+
+  const heroLines = [
+    { prompt: "Build a chatbot that knows my docs", tag: "RAG" },
+    { prompt: "Generate React code from a screenshot", tag: "Multimodal" },
+    { prompt: "Summarize a 50-page contract in 5 bullets", tag: "Summarize" },
+    { prompt: "Create an AI agent that books my meetings", tag: "Agents" },
+  ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 2500);
+    const id = setInterval(
+      () => setActiveLine((p) => (p + 1) % heroLines.length),
+      3200
+    );
+    return () => clearInterval(id);
+  }, [heroLines.length]);
 
-    return () => clearInterval(interval);
-  }, []);
+  const fullPay = genAiFullPaymentAmount();
+  const pageUrl = "https://vikastechsolutions.com/generative-ai";
+  const ogImage = "https://vikastechsolutions.com/images/genai-og.png";
+
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: "Generative AI Program",
+    description:
+      "3-month Generative AI program by Vikash Tech Solution: 2 months training + 1 month internship. Learn LLMs, Prompt Engineering, RAG, AI Agents and Full-Stack AI Development with OpenAI, Gemini, LangChain and Hugging Face.",
+    provider: {
+      "@type": "Organization",
+      name: "Vikash Tech Solution",
+      sameAs: "https://vikastechsolutions.com",
+    },
+    educationalLevel: "Beginner to Advanced",
+    inLanguage: "en",
+    timeRequired: "P3M",
+    courseMode: "Online",
+    hasCourseInstance: [
+      {
+        "@type": "CourseInstance",
+        courseMode: "Online",
+        startDate: "2026-07-01",
+        courseWorkload: "P3M",
+        location: {
+          "@type": "VirtualLocation",
+          url: pageUrl,
+        },
+      },
+    ],
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Seat booking",
+        price: GENAI_REGISTRATION_FEE,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        url: pageUrl,
+      },
+      {
+        "@type": "Offer",
+        name: "Full payment (10% off)",
+        price: fullPay,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        url: pageUrl,
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "240",
+    },
+  };
 
   return (
     <Layout>
+      <Helmet>
+        <title>
+          Generative AI Course Online | LLMs, RAG, AI Agents | Vikash Tech
+          Solution
+        </title>
+        <meta
+          name="description"
+          content="Master Generative AI in 3 months with VTS. Learn LLMs, Prompt Engineering, RAG, AI Agents and Full-Stack AI Development. 2 months training + 1 month internship. PPO opportunity + 1 interview call. Live mentor-led classes."
+        />
+        <meta
+          name="keywords"
+          content="Generative AI course, GenAI training, LLM course, RAG, AI Agents, Prompt Engineering, AI internship India, OpenAI course, Gemini, LangChain, Vikash Tech Solution, online AI bootcamp"
+        />
+        <link rel="canonical" href={pageUrl} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        <meta
+          property="og:title"
+          content="Generative AI Program (3 Months) — Build Real AI Apps | VTS"
+        />
+        <meta
+          property="og:description"
+          content="Learn LLMs, RAG, AI Agents and Full-Stack AI development. 2 months training + 1 month internship. PPO opportunity for top performers."
+        />
+        <meta property="og:image" content={ogImage} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Generative AI Program — Build Real AI Apps | VTS"
+        />
+        <meta
+          name="twitter:description"
+          content="3-month Generative AI program: LLMs, RAG, AI Agents, Full-Stack AI. Only ₹99 to book your seat."
+        />
+        <meta name="twitter:image" content={ogImage} />
+
+        <script type="application/ld+json">
+          {JSON.stringify(courseJsonLd)}
+        </script>
+      </Helmet>
+
       <section className="relative w-full bg-white overflow-hidden">
         {/* HERO SECTION */}
-        <div className="w-full bg-[linear-gradient(to_bottom,#FFF_20%,#FBEAEB_80%)] mx-auto mt-2 px-6 md:px-12 lg:px-18 grid grid-cols-1 md:grid-cols-2 gap-10 items-center pb-8 md:pb-36 lg:h-screen">
-          {/* LEFT CONTENT */}
-          <div>
-            <span className="inline-flex items-center gap-2 bg-red-100 text-red-600 px-4 py-1 rounded-full text-sm font-semibold">
-              ⭐ Career-Ready Program
-            </span>
+        <div className="relative bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_70%,#f5f5f5_100%)] overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0 opacity-[0.4] pointer-events-none"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(15,23,42,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.05) 1px, transparent 1px)",
+              backgroundSize: "48px 48px",
+              maskImage:
+                "radial-gradient(ellipse at top, black 30%, transparent 75%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="absolute top-[-140px] right-[-120px] w-[380px] h-[380px] rounded-full bg-[#B11C20]/6 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="absolute bottom-[-180px] left-[-140px] w-[400px] h-[400px] rounded-full bg-slate-300/25 blur-3xl"
+          />
 
-            <h1 className="mt-6 text-3xl sm:text-3xl md:text-4xl font-bold font-serif leading-tight">
-              Master Generative AI &{" "}
-              <span className="text-[#B11C20]">Build Real AI Applications</span>
-            </h1>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-20 pb-16 sm:pb-20 lg:pb-28 grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-14 items-center">
+            {/* LEFT CONTENT */}
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-5">
+                <span className="inline-flex items-center gap-1.5 bg-red-50 border border-red-100 text-[#B11C20] text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Career-Ready Program
+                </span>
+                <span className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-800 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full">
+                  <Flame className="w-3.5 h-3.5" />
+                  Only {GENAI_ENROLLMENT.seatsLeft} seats left
+                </span>
+              </div>
 
-            <p className="mt-5 text-gray-600 max-w-xl text-sm sm:text-base">
-              Learn Generative AI from Basics to Advanced and build
-              production-ready AI applications using modern AI technologies.
-            </p>
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-[1.15] tracking-tight text-slate-900">
+                Master{" "}
+                <span className="bg-linear-to-r from-[#B11C20] via-rose-600 to-[#87021C] bg-clip-text text-transparent">
+                  Generative AI
+                </span>
+                <br />
+                & ship real AI apps.
+              </h1>
 
-            {/* Buttons */}
-            <div className="mt-8 flex flex-row sm:flex-row sm:items-center gap-4 sm:gap-6">
-              <button
-                type="button"
-                onClick={() => setApplyOpen(true)}
-                className="cursor-pointer bg-[#B11C20] hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition w-fit"
-              >
-                Apply Now
-              </button>
+              <p className="mt-5 text-slate-600 text-base sm:text-lg max-w-xl leading-relaxed">
+                A 3-month mentor-led program to take you from zero to building
+                production-grade AI products with{" "}
+                <span className="font-semibold text-slate-800">
+                  LLMs, RAG, AI Agents
+                </span>{" "}
+                and full-stack integrations.
+              </p>
 
-              <span className="hidden sm:block border-l h-6"></span>
+              <ul className="mt-6 space-y-2.5">
+                {HERO_BULLETS.map((b) => (
+                  <li
+                    key={b}
+                    className="flex items-start gap-2.5 text-sm sm:text-[15px] text-slate-700"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 shrink-0" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
 
-              <div className="text-gray-700">
-                <p className="text-sm sm:text-base">
-                  Next Batch Starting{" "}
-                  <span className="text-[#B11C20] font-semibold">Soon</span>
-                </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+                <button
+                  type="button"
+                  onClick={() => setApplyOpen(true)}
+                  className="cursor-pointer inline-flex items-center justify-center gap-2 bg-[#B11C20] hover:bg-[#9a181c] text-white px-6 py-3 rounded-xl font-semibold shadow-[0_6px_18px_-8px_rgba(15,23,42,0.35)] transition"
+                >
+                  Apply Now · ₹{GENAI_REGISTRATION_FEE}
+                </button>
 
                 <a
                   href={GENAI_BROCHURE.href}
                   download={GENAI_BROCHURE.downloadAs}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cursor-pointer text-[#B11C20] font-semibold hover:underline text-sm sm:text-base inline-flex items-center gap-1"
+                  className="cursor-pointer inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-slate-300 text-slate-800 px-5 py-3 rounded-xl font-semibold transition"
                 >
-                  <img
-                    src={DownloadButton}
-                    alt=""
-                    className="w-4 h-4"
-                    aria-hidden
-                  />
-                  Download Brochure
+                  <Download className="w-4 h-4" />
+                  Brochure
                 </a>
+
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-500">
+                  <Clock className="w-4 h-4 text-slate-400" />
+                  Next batch{" "}
+                  <span className="text-slate-800 font-semibold">
+                    {GENAI_ENROLLMENT.batchStartDisplay}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-7 flex flex-wrap items-center gap-2">
+                {HERO_BADGES.map((b) => (
+                  <span
+                    key={b.label}
+                    className="text-[11px] sm:text-xs font-medium px-2.5 py-1 rounded-full bg-white border border-slate-200 text-slate-600"
+                  >
+                    {b.label}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* FEATURE CARDS */}
-            <div className="mt-10 grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-2xl">
-              {[
-                ["Beginner Friendly", "No Prior AI Experience Needed"],
-                ["Industry Curriculum", "100% Industry-Aligned Modules"],
-                ["Real Projects", "6+ AI-Powered Applications"],
-                ["Mentor Support", "Live Expert-Led Sessions"],
-                ["Certificate", "Industry-Recognized Certification"],
-                ["12–16 Weeks", "Flexible Online Learning"],
-              ].map(([title, desc], i) => (
-                <div
-                  key={i}
-                  className="bg-white p-4 border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition text-center"
-                >
-                  <h4 className="font-serif text-xs sm:text-sm ">{title}</h4>
+            {/* RIGHT: AI Console Preview */}
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute -inset-4 rounded-3xl bg-linear-to-br from-slate-300/40 via-slate-200/30 to-[#B11C20]/10 blur-2xl opacity-60"
+              />
 
-                  <p className="text-[#B11C20] font-semibold text-xs sm:text-sm mt-1">
-                    {desc}
+              <div className="relative rounded-2xl bg-slate-900 border border-slate-800 shadow-[0_30px_80px_-20px_rgba(15,23,42,0.4)] overflow-hidden">
+                <div className="flex items-center justify-between px-4 py-2.5 bg-slate-950/80 border-b border-slate-800">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80" />
+                  </div>
+                  <span className="text-[11px] font-mono text-slate-400">
+                    vts-genai · console
+                  </span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold">
+                    LIVE
+                  </span>
+                </div>
+
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                    <Cpu className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="font-mono">$ ai run prompt</span>
+                  </div>
+
+                  <div className="space-y-2.5 font-mono text-[13px] sm:text-sm min-h-[200px]">
+                    {heroLines.map((line, i) => (
+                      <div
+                        key={line.prompt}
+                        className={[
+                          "flex items-start gap-2 transition-all",
+                          i === activeLine
+                            ? "opacity-100"
+                            : "opacity-40 hover:opacity-70",
+                        ].join(" ")}
+                      >
+                        <span className="text-rose-400 select-none">
+                          {">"}
+                        </span>
+                        <span className="text-slate-200 flex-1">
+                          {line.prompt}
+                          {i === activeLine && (
+                            <span className="inline-block w-1.5 h-4 align-middle bg-emerald-400 ml-1 animate-pulse" />
+                          )}
+                        </span>
+                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-300 shrink-0">
+                          {line.tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 grid grid-cols-2 gap-2.5">
+                    {[
+                      "POST /api/chat",
+                      "embeddings.create()",
+                      "vectorStore.search()",
+                      "agent.run()",
+                    ].map((s) => (
+                      <div
+                        key={s}
+                        className="font-mono text-[11px] text-slate-300 bg-slate-800/70 border border-slate-700 rounded-lg px-2.5 py-1.5 truncate"
+                      >
+                        {s}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
+                <div className="inline-flex items-center gap-1.5">
+                  <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                  <span className="font-semibold text-slate-700">4.8 / 5</span>
+                  <span className="text-slate-400">· 240+ learners</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("live-ai-demo");
+                    if (el)
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  className="cursor-pointer text-[#B11C20] font-semibold hover:underline"
+                >
+                  Try live demo ↓
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* STATS STRIP */}
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 -mt-2 pb-10 sm:pb-14">
+            <div className="rounded-2xl bg-white border border-slate-200 shadow-[0_18px_40px_-20px_rgba(15,23,42,0.18)] grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-100 overflow-hidden">
+              {HERO_STATS.map((s) => (
+                <div key={s.label} className="px-5 py-4 text-center">
+                  <p className="text-lg sm:text-xl font-bold text-slate-900">
+                    {s.value}
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-1">
+                    {s.label}
                   </p>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* RIGHT IMAGE */}
-          <div className="relative flex justify-center md:mt-32">
-            <img
-              src={images[currentImage]}
-              alt="Student"
-              className="relative z-10 w-[300px] sm:w-[420px] md:w-[520px] lg:w-[600px] transition-opacity duration-700"
-            />
-          </div>
         </div>
 
-        {/* INFO STRIP */}
-        <div className="relative -mt-6 md:mt-0 left-1/2 -translate-x-1/2 lg:left-16 lg:translate-x-0 md:bottom-12 w-[92%] max-w-3xl bg-white rounded-2xl shadow-md p-5 grid grid-cols-2 md:flex md:flex-row items-center gap-6 text-center">
-          <div>
-            <p className="text-[#B11C20] text-lg font-semibold">12–16 Weeks</p>
-            <p className="text-gray-500 text-sm">Course Duration</p>
-          </div>
+        {/* New unique GenAI sections */}
+        <LiveAIDemo />
+        <AIUseCases />
 
-          <div className="hidden md:block">|</div>
-
-          <div>
-            <p className="text-[#B11C20] font-semibold text-lg">
-              Training + Projects
-            </p>
-            <p className="text-gray-500 text-sm">Program Schedule</p>
-          </div>
-
-          <div className="hidden md:block">|</div>
-
-          <div>
-            <p className="text-[#B11C20] font-semibold text-lg">Online</p>
-            <p className="text-gray-500 text-sm">Mode</p>
-          </div>
-
-          <div className="hidden md:block">|</div>
-
-          <div>
-            <p className="text-[#B11C20] font-semibold text-lg">
-              Beginner to Advanced
-            </p>
-            <p className="text-gray-500 text-sm">Level</p>
-          </div>
-        </div>
+        <EnrollmentUrgency onApplyClick={() => setApplyOpen(true)} />
 
         {/* Other Sections */}
         <WhyVTS />
+        <ExclusiveBenefits onApplyClick={() => setApplyOpen(true)} />
         <WhyChooseProgram onRegisterClick={() => setApplyOpen(true)} />
         <WhatYouLearn />
         <AdmissionProcess />
-        <CourseFees />
+        <CourseFees onEnrollClick={() => setApplyOpen(true)} />
         <Curriculum />
         <ChooseProgram onApplyClick={() => setApplyOpen(true)} />
         <CareerOutcomes />
@@ -169,12 +416,10 @@ const GenerativeAI = () => {
         <FAQ />
       </section>
 
-      <CourseApplyModal
+      <GenAiEnrollmentModal
         open={applyOpen}
         onClose={() => setApplyOpen(false)}
-        courseType="generative_ai"
         courseTitle="Master Generative AI & Build Real AI Applications"
-        defaultProgram="standard"
       />
     </Layout>
   );

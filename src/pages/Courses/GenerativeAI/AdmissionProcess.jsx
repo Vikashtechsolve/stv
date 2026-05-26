@@ -1,15 +1,16 @@
 import React from "react";
 
 import admissionImg from "../FullstackDeveloper/img/addmisionImg.jpg";
-import QualifierTest from "../../../assets/qualifier_Test.png";
+import RegistrationIcon from "../../../assets/qualifier_Test.png";
 import complete from "../../../assets/completeCounselling.png";
 import Learning from "../../../assets/StartLearning.png";
+import { GENAI_REGISTRATION_FEE } from "../../../constants/genAiFees";
 
 const steps = [
   {
-    title: "Qualifier Test",
-    desc: "Appear for a short aptitude and logical thinking test to evaluate your readiness and commitment for the Generative AI program.",
-    icon: QualifierTest,
+    title: "Registration Process",
+    desc: `Fill the quick online application form, share your basic details, and reserve your seat by paying the ₹${GENAI_REGISTRATION_FEE} registration fee securely through Razorpay. You will receive an instant confirmation email with your seat details.`,
+    icon: RegistrationIcon,
   },
   {
     title: "Complete Counselling",

@@ -199,8 +199,8 @@ export default function Curriculum() {
         </h2>
 
         <p className="text-gray-600 mt-3 text-sm md:text-base">
-          A structured, industry-aligned curriculum designed to build strong
-          Generative AI skills step-by-step
+          A 3 month program with 2 months of training and 1 month internship,
+          designed to build strong Generative AI skills step by step
         </p>
       </div>
 

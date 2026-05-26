@@ -11,14 +11,18 @@ export const useRazorpayPayment = (baseUrl) => {
    * @param {String} config.description - Short description for payment window
    * @returns {Promise<Object>} Payment result { success, response, error }
    */
-  const handlePayment = async ({ amount, prefill, description }) => {
+  const handlePayment = async ({ amount, prefill, description, meta }) => {
     setLoading(true);
     try {
       // Step 1: Create Razorpay Order
       const res = await fetch(`${baseUrl}/api/payments/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId:prefill.userId,amount }),
+        body: JSON.stringify({
+          userId: prefill.userId,
+          amount,
+          meta: meta || undefined,
+        }),
       });
 
       const data = await res.json();

@@ -94,7 +94,7 @@ const WhatYouLearn = () => {
           </h3>
 
           <p className="mb-6">
-            <span className="font-medium">12–16 Weeks | Online + Recorded Sessions</span>
+            <span className="font-medium">3 Months | 2 Months Training + 1 Month Internship | Online + Recorded Sessions</span>
           </p>
 
           <FeatureList features={modules} />

@@ -1,6 +1,7 @@
 import React from "react";
 
 import programImg from "../FullstackDeveloper/img/programImg.jpg";
+import { GENAI_ENROLLMENT } from "./genAiCourseConfig";
 
 const audiences = [
   "Students exploring AI and technology careers",
@@ -12,14 +13,14 @@ const audiences = [
 ];
 
 const highlights = [
-  "Beginner-friendly curriculum — no prior AI experience needed",
+  "PPO opportunity for strong developers after course completion",
+  "1 guaranteed interview call through VTS hiring support",
+  "Beginner friendly curriculum with no prior AI experience needed",
   "Build 6+ real AI-powered applications",
   "Work with OpenAI, Gemini, LangChain, and Hugging Face",
   "Learn RAG, AI Agents, and full-stack AI development",
-  "Live mentorship with industry AI professionals",
-  "Portfolio-ready projects and career guidance",
-  "Industry-recognized certificate upon completion",
-  "Flexible 12–16 week online learning schedule",
+  "Two industry-recognized certificates for course completion and internship",
+  "3 months: 2 months training program and 1 month internship",
 ];
 
 export default function ChooseProgram({ onApplyClick }) {
@@ -46,7 +47,12 @@ export default function ChooseProgram({ onApplyClick }) {
           <div className="text-sm flex items-center gap-2 justify-center sm:justify-end">
             <span>
               Next Batch Starting :
-              <span className="text-red-600 font-medium ml-1">Soon</span>
+              <span className="text-red-600 font-medium ml-1">
+                {GENAI_ENROLLMENT.batchStartDisplay}
+              </span>
+              <span className="text-amber-700 font-semibold ml-2">
+                · Only {GENAI_ENROLLMENT.seatsLeft} seats left
+              </span>
             </span>
           </div>
 

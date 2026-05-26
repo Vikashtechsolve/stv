@@ -23,14 +23,34 @@ const faqData = [
       "Yes, all live sessions are recorded and made available for you to review anytime. The program includes both live online classes and recorded content for flexible learning.",
   },
   {
-    question: "Is a certificate included upon completion?",
+    question: "What are the payment options?",
     answer:
-      "Yes, you'll receive an industry-recognized certificate upon successfully completing the program that validates your Generative AI development skills.",
+      "You can book your seat by paying the ₹99 registration fee now and pay the ₹5,999 course fee when you join the batch. Or pay in full today at ₹5,399 (10% discount on the course fee) and confirm your registration immediately. All online payments are secured via Razorpay.",
+  },
+  {
+    question: "What is the program duration?",
+    answer:
+      "The program runs for 3 months in total: 2 months of structured training followed by 1 month of real world internship.",
+  },
+  {
+    question: "What certificates will I receive?",
+    answer:
+      "You get two industry-recognized certificates: a Course Completion certificate when you finish the program, and an Internship certificate after your real-world internship. Together they validate your Generative AI skills and hands-on experience.",
   },
   {
     question: "What tools and technologies will I learn?",
     answer:
       "You'll work with Python, OpenAI, Google Gemini, LangChain, Hugging Face, FastAPI, React, Node.js, Vector Databases, and GitHub throughout the program.",
+  },
+  {
+    question: "Is a PPO (Pre-Placement Offer) available after the course?",
+    answer:
+      "Yes. Developers who perform well during training and the internship may receive a Pre-Placement Offer (PPO) opportunity from hiring partners after completing the program.",
+  },
+  {
+    question: "Will I get an interview opportunity?",
+    answer:
+      "Yes. Every learner receives 1 interview call arranged through VTS hiring support, giving you direct recruiter exposure along with your portfolio and certificates.",
   },
 ];
 

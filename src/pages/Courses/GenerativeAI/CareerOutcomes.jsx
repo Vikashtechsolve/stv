@@ -27,7 +27,7 @@ export default function CareerOutcomes() {
         </h2>
 
         <p className="text-gray-600 mt-2">
-          Where this program can take you — roles and opportunities in the AI industry
+          Where this program can take you: roles, PPO opportunities, and interview support in the AI industry
         </p>
 
       </div>

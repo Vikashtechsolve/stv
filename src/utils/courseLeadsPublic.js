@@ -37,3 +37,34 @@ export async function submitCourseLeadRegistration(body) {
   }
   return data;
 }
+
+export async function initPaidCourseRegistration(body) {
+  const res = await fetch(courseLeadsUrl("/course-leads/register/init"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(data.message || "Could not start registration");
+  }
+  return data;
+}
+
+export async function completePaidCourseRegistration(body) {
+  const res = await fetch(courseLeadsUrl("/course-leads/register/complete"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error(data.message || "Could not confirm payment");
+    err.refunded = data.refunded;
+    err.refundId = data.refundId;
+    err.supportEmail = data.supportEmail;
+    err.paymentId = data.paymentId;
+    throw err;
+  }
+  return data;
+}
