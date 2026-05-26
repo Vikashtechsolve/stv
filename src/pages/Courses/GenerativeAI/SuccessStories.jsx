@@ -174,8 +174,10 @@ export default function SuccessStories() {
 
                 <img
                   src={story.image}
+                  alt={`${story.name}, ${story.role} at ${story.company} — VTS Generative AI graduate`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-20 h-20 sm:w-32 sm:h-32 lg:w-32 rounded-xl object-cover"
-                  alt={story.name}
                 />
 
                 <div className="text-right">
@@ -186,8 +188,10 @@ export default function SuccessStories() {
 
                   <img
                     src={story.logo}
-                    className= "h-5 md:h-28 ml-auto"
-                    alt={story.company}
+                    alt={`${story.company} logo`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-5 md:h-28 ml-auto"
                   />
 
                 </div>

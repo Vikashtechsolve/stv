@@ -28,19 +28,19 @@ const modules = [
 ];
 
 const tools = [
-  pythonIcon,
-  openaiIcon,
-  geminiIcon,
-  langchainIcon,
-  huggingfaceIcon,
-  fastapiIcon,
-  reactIcon,
-  nodeIcon,
-  githubIcon,
-  vectordbIcon,
-  numpy,
-  pandas,
-  matplotlib,
+  { src: pythonIcon, name: "Python" },
+  { src: openaiIcon, name: "OpenAI" },
+  { src: geminiIcon, name: "Google Gemini" },
+  { src: langchainIcon, name: "LangChain" },
+  { src: huggingfaceIcon, name: "Hugging Face" },
+  { src: fastapiIcon, name: "FastAPI" },
+  { src: reactIcon, name: "React" },
+  { src: nodeIcon, name: "Node.js" },
+  { src: githubIcon, name: "GitHub" },
+  { src: vectordbIcon, name: "Vector Database" },
+  { src: numpy, name: "NumPy" },
+  { src: pandas, name: "Pandas" },
+  { src: matplotlib, name: "Matplotlib" },
 ];
 
 const projects = [
@@ -110,10 +110,14 @@ const WhatYouLearn = () => {
           </h3>
 
           <div className="flex flex-wrap gap-6 items-center mb-12">
-            {tools.map((tool, i) => (
+            {tools.map((tool) => (
               <img
-                key={i}
-                src={tool}
+                key={tool.name}
+                src={tool.src}
+                alt={`${tool.name} logo`}
+                title={tool.name}
+                loading="lazy"
+                decoding="async"
                 className="h-10 object-contain"
               />
             ))}

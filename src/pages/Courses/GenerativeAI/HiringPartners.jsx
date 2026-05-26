@@ -10,14 +10,14 @@ import tcs from "../FullstackDeveloper/img/TCS.png";
 import myntra from "../FullstackDeveloper/img/myntra.png";
 
 const logos = [
-  flipkart,
-  deloitte,
-  netflix,
-  google,
-  microsoft,
-  amazon,
-  tcs,
-  myntra,
+  { src: flipkart, name: "Flipkart" },
+  { src: deloitte, name: "Deloitte" },
+  { src: netflix, name: "Netflix" },
+  { src: google, name: "Google" },
+  { src: microsoft, name: "Microsoft" },
+  { src: amazon, name: "Amazon" },
+  { src: tcs, name: "TCS" },
+  { src: myntra, name: "Myntra" },
 ];
 
 export default function HiringPartners() {
@@ -37,8 +37,11 @@ export default function HiringPartners() {
           <div className="flex animate-marquee gap-16 whitespace-nowrap">
             {[...logos, ...logos].map((logo, index) => (
               <img
-                key={index}
-                src={logo}
+                key={`${logo.name}-${index}`}
+                src={logo.src}
+                alt={`${logo.name} hiring partner of Vikash Tech Solution`}
+                loading="lazy"
+                decoding="async"
                 className="h-[72px] object-contain hover:scale-110 transition duration-300"
               />
             ))}

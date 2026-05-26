@@ -73,7 +73,9 @@ export default function ChooseProgram({ onApplyClick }) {
         <div>
           <img
             src={programImg}
-            alt="program"
+            alt="VTS Generative AI program: who should join — students, developers, professionals"
+            loading="lazy"
+            decoding="async"
             className="rounded-2xl w-full h-[250px] sm:h-[320px] lg:h-[380px] object-cover"
           />
         </div>
