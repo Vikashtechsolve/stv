@@ -29,7 +29,9 @@ const WhyVTS = () => {
 
           <img
             src={img1}
-            alt=""
+            alt="VTS student learning Generative AI in a live mentor-led session"
+            loading="lazy"
+            decoding="async"
             className="
               w-[28%] sm:w-[150px] lg:w-[160px]
               h-[240px] sm:h-[320px] lg:h-[360px]
@@ -41,7 +43,9 @@ const WhyVTS = () => {
 
           <img
             src={img2}
-            alt=""
+            alt="VTS learner building a real AI project on a laptop"
+            loading="lazy"
+            decoding="async"
             className="
               w-[28%] sm:w-[150px] lg:w-[160px]
               h-[240px] sm:h-[320px] lg:h-[360px]
@@ -55,7 +59,9 @@ const WhyVTS = () => {
 
           <img
             src={img3}
-            alt=""
+            alt="VTS student collaborating with an AI mentor"
+            loading="lazy"
+            decoding="async"
             className="
               w-[28%] sm:w-[150px] lg:w-[160px]
               h-[240px] sm:h-[320px] lg:h-[360px]

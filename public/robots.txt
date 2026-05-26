@@ -1,3 +1,9 @@
 User-agent: *
 Allow: /
+
+# Block private routes that don't need indexing
+Disallow: /login
+Disallow: /dashboard
+Disallow: /pay
+
 Sitemap: https://vikastechsolutions.com/sitemap.xml

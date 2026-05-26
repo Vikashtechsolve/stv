@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import faqImage from "../FullstackDeveloper/img/faq.png";
 
-const faqData = [
+export const faqData = [
   {
     question: "Do I need AI experience to join this program?",
     answer:
@@ -85,6 +85,9 @@ export default function FAQ() {
 
           <img
             src={faqImage}
+            alt="Frequently asked questions about the VTS Generative AI program"
+            loading="lazy"
+            decoding="async"
             className="w-40 lg:w-48 mx-auto lg:mx-0"
           />
 

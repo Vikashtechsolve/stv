@@ -58,6 +58,9 @@ const AdmissionProcess = () => {
           <div>
             <img
               src={admissionImg}
+              alt="VTS Generative AI admission process: registration, counselling and learning"
+              loading="lazy"
+              decoding="async"
               className="rounded-2xl shadow-md w-full h-[320px] object-cover"
             />
           </div>
@@ -91,7 +94,13 @@ const AdmissionProcess = () => {
                 flex-shrink-0
                 ">
 
-                  <img src={step.icon} className="w-12 h-12" />
+                  <img
+                    src={step.icon}
+                    alt={`${step.title} icon`}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-12 h-12"
+                  />
 
                 </div>
 

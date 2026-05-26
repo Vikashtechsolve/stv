@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/updateSitemap.mjs",
     "build": "vite build",
+    "postbuild": "node scripts/prerenderMeta.mjs",
     "preview": "vite preview",
+    "sitemap:stamp": "node scripts/updateSitemap.mjs",
     "lint": "eslint . --ext js,jsx --fix"
   },
   "dependencies": {

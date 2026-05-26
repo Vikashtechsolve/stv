@@ -25,6 +25,8 @@ import EnrollmentUrgency from "./EnrollmentUrgency";
 import ExclusiveBenefits from "./ExclusiveBenefits";
 import LiveAIDemo from "./LiveAIDemo";
 import AIUseCases from "./AIUseCases";
+import RelatedPrograms from "./RelatedPrograms";
+import { faqData } from "./FAQ";
 import Layout from "../../../component/Layout";
 import GenAiEnrollmentModal from "../../../component/courses/GenAiEnrollmentModal";
 import { GENAI_BROCHURE } from "../../../constants/courseBrochures";
@@ -77,7 +79,63 @@ const GenerativeAI = () => {
 
   const fullPay = genAiFullPaymentAmount();
   const pageUrl = "https://vikastechsolutions.com/generative-ai";
-  const ogImage = "https://vikastechsolutions.com/images/genai-og.png";
+  const siteUrl = "https://vikastechsolutions.com";
+  const ogImage = "https://vikastechsolutions.com/genai-og.png";
+  const logoUrl =
+    "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759848700/vks_fav_icon_2_rjzspg.svg";
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: "Vikash Tech Solution",
+    alternateName: "VTS",
+    url: siteUrl,
+    logo: logoUrl,
+    description:
+      "Vikash Tech Solution (VTS) is a tech learning platform offering industry-led programs in Generative AI, Full Stack Development, and modern software engineering.",
+    sameAs: [
+      "https://www.instagram.com/vikash_tech_solution/",
+      "https://www.linkedin.com/in/vikash-tech-solution/",
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Courses",
+        item: `${siteUrl}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Generative AI Program",
+        item: pageUrl,
+      },
+    ],
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  };
 
   const courseJsonLd = {
     "@context": "https://schema.org",
@@ -86,10 +144,13 @@ const GenerativeAI = () => {
     description:
       "3-month Generative AI program by Vikash Tech Solution: 2 months training + 1 month internship. Learn LLMs, Prompt Engineering, RAG, AI Agents and Full-Stack AI Development with OpenAI, Gemini, LangChain and Hugging Face.",
     provider: {
-      "@type": "Organization",
+      "@type": "EducationalOrganization",
       name: "Vikash Tech Solution",
-      sameAs: "https://vikastechsolutions.com",
+      url: siteUrl,
+      sameAs: siteUrl,
     },
+    image: ogImage,
+    url: pageUrl,
     educationalLevel: "Beginner to Advanced",
     inLanguage: "en",
     timeRequired: "P3M",
@@ -134,51 +195,71 @@ const GenerativeAI = () => {
   return (
     <Layout>
       <Helmet>
+        <html lang="en" />
         <title>
-          Generative AI Course Online | LLMs, RAG, AI Agents | Vikash Tech
-          Solution
+          Generative AI Course Online (3 Months) | LLMs, RAG, AI Agents | VTS
         </title>
         <meta
           name="description"
-          content="Master Generative AI in 3 months with VTS. Learn LLMs, Prompt Engineering, RAG, AI Agents and Full-Stack AI Development. 2 months training + 1 month internship. PPO opportunity + 1 interview call. Live mentor-led classes."
+          content="Join VTS Generative AI program: 3 months of live mentor-led training (2 months + 1 month internship). Build real AI apps with LLMs, Prompt Engineering, RAG, AI Agents, OpenAI, Gemini, LangChain. PPO opportunity + 1 interview call. Book your seat from ₹99."
         />
         <meta
           name="keywords"
-          content="Generative AI course, GenAI training, LLM course, RAG, AI Agents, Prompt Engineering, AI internship India, OpenAI course, Gemini, LangChain, Vikash Tech Solution, online AI bootcamp"
+          content="Generative AI course, GenAI training, LLM course, RAG, AI Agents, Prompt Engineering, AI internship India, OpenAI course, Gemini, LangChain, Hugging Face, Vikash Tech Solution, online AI bootcamp, Generative AI certification, AI developer course"
         />
+        <meta name="author" content="Vikash Tech Solution" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="theme-color" content="#B11C20" />
         <link rel="canonical" href={pageUrl} />
 
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Vikash Tech Solution" />
         <meta property="og:url" content={pageUrl} />
+        <meta property="og:locale" content="en_IN" />
         <meta
           property="og:title"
           content="Generative AI Program (3 Months) — Build Real AI Apps | VTS"
         />
         <meta
           property="og:description"
-          content="Learn LLMs, RAG, AI Agents and Full-Stack AI development. 2 months training + 1 month internship. PPO opportunity for top performers."
+          content="Learn LLMs, RAG, AI Agents and Full-Stack AI development. 2 months training + 1 month internship. PPO opportunity for top performers. Book your seat from ₹99."
         />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content="VTS Generative AI Program" />
 
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@vikashtechsol" />
         <meta
           name="twitter:title"
           content="Generative AI Program — Build Real AI Apps | VTS"
         />
         <meta
           name="twitter:description"
-          content="3-month Generative AI program: LLMs, RAG, AI Agents, Full-Stack AI. Only ₹99 to book your seat."
+          content="3-month Generative AI program: LLMs, RAG, AI Agents, Full-Stack AI. Book your seat from ₹99."
         />
         <meta name="twitter:image" content={ogImage} />
 
         <script type="application/ld+json">
+          {JSON.stringify(organizationJsonLd)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbJsonLd)}
+        </script>
+        <script type="application/ld+json">
           {JSON.stringify(courseJsonLd)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqJsonLd)}
         </script>
       </Helmet>
 
-      <section className="relative w-full bg-white overflow-hidden">
+      <article className="relative w-full bg-white overflow-hidden">
         {/* HERO SECTION */}
-        <div className="relative bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_70%,#f5f5f5_100%)] overflow-hidden">
+        <section
+          aria-label="Generative AI program overview"
+          className="relative bg-[linear-gradient(180deg,#ffffff_0%,#fafafa_70%,#f5f5f5_100%)] overflow-hidden"
+        >
           <div
             aria-hidden
             className="absolute inset-0 opacity-[0.4] pointer-events-none"
@@ -285,7 +366,11 @@ const GenerativeAI = () => {
             </div>
 
             {/* RIGHT: AI Console Preview */}
-            <div className="relative">
+            <div
+              className="relative"
+              role="img"
+              aria-label="Animated preview of Generative AI prompts a learner can build during the program"
+            >
               <div
                 aria-hidden
                 className="absolute -inset-4 rounded-3xl bg-linear-to-br from-slate-300/40 via-slate-200/30 to-[#B11C20]/10 blur-2xl opacity-60"
@@ -393,7 +478,7 @@ const GenerativeAI = () => {
               ))}
             </div>
           </div>
-        </div>
+        </section>
 
         {/* New unique GenAI sections */}
         <LiveAIDemo />
@@ -414,7 +499,8 @@ const GenerativeAI = () => {
         <HiringPartners />
         <SuccessStories />
         <FAQ />
-      </section>
+        <RelatedPrograms />
+      </article>
 
       <GenAiEnrollmentModal
         open={applyOpen}
