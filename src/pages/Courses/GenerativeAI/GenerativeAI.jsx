@@ -178,7 +178,7 @@ const GenerativeAI = () => {
       },
       {
         "@type": "Offer",
-        name: "Full payment (10% off)",
+        name: "Full payment (no registration fee)",
         price: fullPay,
         priceCurrency: "INR",
         availability: "https://schema.org/InStock",
