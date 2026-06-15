@@ -20,7 +20,6 @@ import {
 import {
   GENAI_PAYMENT_PLANS,
   VTS_SUPPORT,
-  genAiFullPaymentAmount,
   GENAI_COURSE_FEE,
   GENAI_REGISTRATION_FEE,
 } from "../../constants/genAiFees";
@@ -513,11 +512,7 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                             </div>
                           ) : (
                             <p className="text-xs text-green-700 mt-1">
-                              Full course fee covered (saved{" "}
-                              {formatInr(
-                                GENAI_COURSE_FEE - genAiFullPaymentAmount()
-                              )}
-                              )
+                              Full course fee covered — no registration fee
                             </p>
                           )}
                         </div>
@@ -594,8 +589,8 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                         </div>
                         <p className="text-[10px] text-center text-gray-400 flex items-center justify-center gap-1">
                           <Sparkles className="w-3 h-3" />
-                          Secured by Razorpay · Registration fee ₹{GENAI_REGISTRATION_FEE} or
-                          full ₹{genAiFullPaymentAmount()} with 10% off
+                          Secured by Razorpay · Registration ₹{GENAI_REGISTRATION_FEE} or
+                          full payment ₹{GENAI_COURSE_FEE} (no registration fee)
                         </p>
                       </div>
                     )}

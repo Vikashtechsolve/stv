@@ -25,7 +25,7 @@ export const faqData = [
   {
     question: "What are the payment options?",
     answer:
-      "You can book your seat by paying the ₹99 registration fee now and pay the ₹5,999 course fee when you join the batch. Or pay in full today at ₹5,399 (10% discount on the course fee) and confirm your registration immediately. All online payments are secured via Razorpay.",
+      "You can book your seat by paying the ₹99 registration fee now and pay the ₹4,999 course fee when you join the batch. Or pay the full ₹4,999 in one go with no registration fee and confirm your registration immediately. All online payments are secured via Razorpay.",
   },
   {
     question: "What is the program duration?",
