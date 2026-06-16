@@ -1,5 +1,6 @@
 import React from "react";
 import { vtsBackendApi } from "../config/env";
+import { buildRazorpayCheckoutOptions } from "../constants/razorpayConfig";
 
 const defaultApiBase =
   vtsBackendApi ||
@@ -49,23 +50,21 @@ const RazorpayPayment = ({
         return;
       }
 
-      // 2️⃣ Razorpay options
-      const options = {
+      const options = buildRazorpayCheckoutOptions({
         key: data.key,
         amount: data.amount,
         currency: data.currency,
-        name: "VTS Test Store",
+        orderId: data.orderId,
         description: "Payment",
-        order_id: data.orderId,
         prefill: {
           name: "Test User",
           email: "test@example.com",
           contact: "9999999999",
         },
-        theme: { color: "#ED0331" },
-
+        onDismiss: () => {
+          if (onFailure) onFailure({ error: "Payment popup closed by user" });
+        },
         handler: async function (response) {
-          // 3️⃣ Verify payment
           const verifyRes = await fetch(`${baseUrl}/verify`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -79,13 +78,7 @@ const RazorpayPayment = ({
             if (onFailure) onFailure({ error: "Payment verification failed" });
           }
         },
-
-        modal: {
-          ondismiss: function () {
-            if (onFailure) onFailure({ error: "Payment popup closed by user" });
-          },
-        },
-      };
+      });
 
       // 4️⃣ Open Razorpay
       const rzp = new window.Razorpay(options);

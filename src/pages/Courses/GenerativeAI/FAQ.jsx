@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import faqImage from "../FullstackDeveloper/img/faq.png";
+import {
+  GENAI_COURSE_FEE,
+  GENAI_REGISTRATION_FEE,
+  GENAI_GST_RATE_PERCENT,
+} from "../../../constants/genAiFees";
 
 export const faqData = [
   {
@@ -25,7 +30,7 @@ export const faqData = [
   {
     question: "What are the payment options?",
     answer:
-      "You can book your seat by paying the ₹99 registration fee now and pay the ₹4,999 course fee when you join the batch. Or pay the full ₹4,999 in one go with no registration fee and confirm your registration immediately. All online payments are secured via Razorpay.",
+      `You can book your seat by paying the ₹${GENAI_REGISTRATION_FEE} registration fee now and pay the ₹${GENAI_COURSE_FEE.toLocaleString("en-IN")} course fee when you join the batch. Or pay the full ₹${GENAI_COURSE_FEE.toLocaleString("en-IN")} in one go with no registration fee and confirm your registration immediately. Listed fees are inclusive of ${GENAI_GST_RATE_PERCENT}% GST. All online payments are secured via Razorpay.`,
   },
   {
     question: "What is the program duration?",
