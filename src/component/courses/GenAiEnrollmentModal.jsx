@@ -5,7 +5,6 @@ import {
   CreditCard,
   Mail,
   Phone,
-  Sparkles,
   XCircle,
 } from "lucide-react";
 import MobileNumberInput from "../common/MobileNumberInput";
@@ -20,8 +19,7 @@ import {
 import {
   GENAI_PAYMENT_PLANS,
   VTS_SUPPORT,
-  GENAI_COURSE_FEE,
-  GENAI_REGISTRATION_FEE,
+  GENAI_GST_RATE_PERCENT,
 } from "../../constants/genAiFees";
 const PAYMENT_USER_ID =
   import.meta.env.VITE_COURSE_PAYMENT_USER_ID || "6730b6d8e29f4b001f6f91d1";
@@ -256,7 +254,11 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                 </button>
               </div>
 
-              <div className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6">
+              <div
+                className={`flex-1 min-h-0 p-4 sm:p-6 ${
+                  step === 3 && !successData ? "overflow-hidden" : "overflow-y-auto"
+                }`}
+              >
                 {loadingBatch && (
                   <p className="text-sm text-gray-500 text-center py-8">Loading batch…</p>
                 )}
@@ -497,60 +499,82 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                     )}
 
                     {step === 3 && (
-                      <div className="space-y-4">
-                        <div className="rounded-xl bg-gray-50 border border-gray-200 p-4 text-sm">
-                          <div className="flex justify-between mb-1">
-                            <span className="text-gray-600">You pay now</span>
-                            <span className="font-bold text-[#B11C20]">
-                              {formatInr(selectedPlan.payNow)}
-                            </span>
-                          </div>
-                          {selectedPlan.balanceAtJoining > 0 ? (
-                            <div className="flex justify-between text-xs text-gray-500">
-                              <span>Course fee at joining</span>
-                              <span>{formatInr(selectedPlan.balanceAtJoining)}</span>
-                            </div>
-                          ) : (
-                            <p className="text-xs text-green-700 mt-1">
-                              Full course fee covered — no registration fee
+                      <div className="flex flex-col gap-3 h-full">
+                        <div className="rounded-xl border-2 border-[#B11C20]/25 bg-[linear-gradient(180deg,#FBEAEB_0%,#FFFFFF_55%)] overflow-hidden shadow-sm">
+                          <div className="px-4 pt-3.5 pb-3">
+                            <p className="text-[11px] font-semibold uppercase tracking-wide text-[#B11C20] mb-3">
+                              Payment summary
                             </p>
-                          )}
+                            <div className="flex items-baseline justify-between gap-3">
+                              <span className="text-sm font-medium text-gray-700">
+                                You pay now
+                              </span>
+                              <span className="text-xl font-bold text-[#B11C20] tabular-nums">
+                                {formatInr(selectedPlan.payNow)}
+                              </span>
+                            </div>
+                            {selectedPlan.balanceAtJoining > 0 ? (
+                              <div className="flex items-baseline justify-between gap-3 mt-2.5 pt-2.5 border-t border-red-100/80">
+                                <span className="text-sm text-gray-600">
+                                  Course fee at joining
+                                </span>
+                                <span className="text-base font-semibold text-gray-900 tabular-nums">
+                                  {formatInr(selectedPlan.balanceAtJoining)}
+                                </span>
+                              </div>
+                            ) : (
+                              <p className="text-xs font-medium text-green-700 mt-2 pt-2 border-t border-red-100/80">
+                                Full course fee — no registration fee
+                              </p>
+                            )}
+                          </div>
+                          <div className="px-4 py-2 bg-amber-50 border-t border-amber-200/80">
+                            <p className="text-[11px] sm:text-xs text-amber-950 leading-snug">
+                              <span className="font-semibold">
+                                {GENAI_GST_RATE_PERCENT}% GST included
+                              </span>{" "}
+                              in all amounts above · remitted to the Government
+                            </p>
+                          </div>
                         </div>
 
-                        <div>
-                          <label className="block text-xs font-medium text-gray-500 mb-1">
-                            City
-                          </label>
-                          <input
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                            className="w-full border-2 border-[#ECF0F3] rounded-xl px-4 py-3 text-sm bg-[#FAFBFC]"
-                            placeholder="Optional"
-                          />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          <div>
+                            <label className="block text-[11px] font-medium text-gray-500 mb-1">
+                              City
+                            </label>
+                            <input
+                              value={city}
+                              onChange={(e) => setCity(e.target.value)}
+                              className="w-full border border-[#ECF0F3] rounded-lg px-3 py-2 text-sm bg-[#FAFBFC]"
+                              placeholder="Optional"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[11px] font-medium text-gray-500 mb-1">
+                              Current status
+                            </label>
+                            <input
+                              value={currentStatus}
+                              onChange={(e) => setCurrentStatus(e.target.value)}
+                              className="w-full border border-[#ECF0F3] rounded-lg px-3 py-2 text-sm bg-[#FAFBFC]"
+                              placeholder="Student, professional…"
+                            />
+                          </div>
                         </div>
                         <div>
-                          <label className="block text-xs font-medium text-gray-500 mb-1">
-                            Current status
-                          </label>
-                          <input
-                            value={currentStatus}
-                            onChange={(e) => setCurrentStatus(e.target.value)}
-                            className="w-full border-2 border-[#ECF0F3] rounded-xl px-4 py-3 text-sm bg-[#FAFBFC]"
-                            placeholder="Student, working professional…"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-medium text-gray-500 mb-1">
+                          <label className="block text-[11px] font-medium text-gray-500 mb-1">
                             How did you hear about us?
                           </label>
                           <input
                             value={howHeard}
                             onChange={(e) => setHowHeard(e.target.value)}
-                            className="w-full border-2 border-[#ECF0F3] rounded-xl px-4 py-3 text-sm bg-[#FAFBFC]"
+                            className="w-full border border-[#ECF0F3] rounded-lg px-3 py-2 text-sm bg-[#FAFBFC]"
                             placeholder="Optional"
                           />
                         </div>
-                        <label className="flex items-start gap-2 text-sm text-gray-700 cursor-pointer">
+
+                        <label className="flex items-start gap-2 text-xs text-gray-700 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={consentMarketing}
@@ -558,7 +582,7 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                               setConsentMarketing(e.target.checked);
                               setFormError("");
                             }}
-                            className="mt-1 cursor-pointer rounded border-gray-300 shrink-0"
+                            className="mt-0.5 cursor-pointer rounded border-gray-300 shrink-0"
                           />
                           <span>
                             I agree to be contacted about this course and understand that
@@ -566,12 +590,12 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                           </span>
                         </label>
 
-                        <div className="flex flex-col-reverse sm:flex-row gap-2">
+                        <div className="flex flex-col-reverse sm:flex-row gap-2 mt-auto pt-1">
                           <button
                             type="button"
                             onClick={() => setStep(2)}
                             disabled={busy}
-                            className="cursor-pointer sm:flex-1 border-2 border-gray-200 py-3 rounded-xl font-semibold disabled:opacity-50"
+                            className="cursor-pointer sm:flex-1 border-2 border-gray-200 py-2.5 rounded-xl font-semibold text-sm disabled:opacity-50"
                           >
                             Back
                           </button>
@@ -579,18 +603,16 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                             type="button"
                             onClick={handlePayAndRegister}
                             disabled={busy}
-                            className="cursor-pointer sm:flex-1 bg-[#B11C20] text-white py-3 rounded-xl font-semibold hover:bg-red-800 disabled:opacity-60 inline-flex items-center justify-center gap-2"
+                            className="cursor-pointer sm:flex-1 bg-[#B11C20] text-white py-2.5 rounded-xl font-semibold text-sm hover:bg-red-800 disabled:opacity-60 inline-flex items-center justify-center gap-2"
                           >
-                            <CreditCard className="w-5 h-5" />
+                            <CreditCard className="w-4 h-4" />
                             {busy
                               ? "Processing…"
                               : `Pay ${formatInr(selectedPlan.payNow)}`}
                           </button>
                         </div>
-                        <p className="text-[10px] text-center text-gray-400 flex items-center justify-center gap-1">
-                          <Sparkles className="w-3 h-3" />
-                          Secured by Razorpay · Registration ₹{GENAI_REGISTRATION_FEE} or
-                          full payment ₹{GENAI_COURSE_FEE} (no registration fee)
+                        <p className="text-[10px] text-center text-gray-400">
+                          Secured by Razorpay
                         </p>
                       </div>
                     )}

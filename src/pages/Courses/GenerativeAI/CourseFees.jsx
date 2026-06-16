@@ -117,8 +117,9 @@ export default function CourseFees({ onEnrollClick }) {
         ))}
       </div>
 
-      <p className="text-center text-[11px] text-gray-500 mt-6 max-w-xl mx-auto">
-        All fees are non-refundable. Secure online payments via Razorpay.
+      <p className="text-center text-[11px] text-gray-500 mt-6 max-w-lg mx-auto leading-relaxed">
+        All prices include 18% GST remitted to the Government. Fees are non-refundable ·
+        Secure payments via Razorpay.
       </p>
     </section>
   );
