@@ -5,3 +5,10 @@ export const GENAI_ENROLLMENT = {
   totalSeats: 80,
   seatsLeft: 67,
 };
+
+/** Program highlights shown across the Gen AI page. */
+export const GENAI_PROGRAM_STATS = {
+  weeks: 8,
+  projects: 8,
+  certificates: 1,
+};

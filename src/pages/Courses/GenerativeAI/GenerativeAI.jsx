@@ -30,23 +30,23 @@ import { faqData } from "./FAQ";
 import Layout from "../../../component/Layout";
 import GenAiEnrollmentModal from "../../../component/courses/GenAiEnrollmentModal";
 import { GENAI_BROCHURE } from "../../../constants/courseBrochures";
-import { GENAI_ENROLLMENT } from "./genAiCourseConfig";
+import { GENAI_ENROLLMENT, GENAI_PROGRAM_STATS } from "./genAiCourseConfig";
 import {
   GENAI_REGISTRATION_FEE,
   genAiFullPaymentAmount,
 } from "../../../constants/genAiFees";
 
 const HERO_BULLETS = [
-  "Build 6+ production-ready AI applications",
+  `Build ${GENAI_PROGRAM_STATS.projects} production-ready AI applications`,
   "Work with OpenAI, Gemini, LangChain & RAG",
   "1 guaranteed interview call + PPO opportunity",
 ];
 
 const HERO_STATS = [
   { value: "3 Months", label: "2 mo. training + 1 mo. internship" },
-  { value: "9 Modules", label: "Beginner to advanced" },
-  { value: "6+", label: "Real AI projects" },
-  { value: "2", label: "Industry certificates" },
+  { value: `${GENAI_PROGRAM_STATS.weeks} Weeks`, label: "Structured cohort plan" },
+  { value: String(GENAI_PROGRAM_STATS.projects), label: "Real AI projects" },
+  { value: String(GENAI_PROGRAM_STATS.certificates), label: "Industry certificate" },
 ];
 
 const HERO_BADGES = [
@@ -142,7 +142,7 @@ const GenerativeAI = () => {
     "@type": "Course",
     name: "Generative AI Program",
     description:
-      "3-month Generative AI program by Vikash Tech Solution: 2 months training + 1 month internship. Learn LLMs, Prompt Engineering, RAG, AI Agents and Full-Stack AI Development with OpenAI, Gemini, LangChain and Hugging Face.",
+      "3-month Generative AI program by Vikash Tech Solution: 8 weeks live mentor-led training + 1 month internship. Build 8 portfolio projects — LLMs, Prompt Engineering, RAG, AI Agents, and Full-Stack AI with OpenAI, Gemini, LangChain and Hugging Face.",
     provider: {
       "@type": "EducationalOrganization",
       name: "Vikash Tech Solution",

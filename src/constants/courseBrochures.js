@@ -1,4 +1,6 @@
-/** Files in /public — use root-relative paths for Vite */
+/** Brochure assets — import PDFs from src/assets (Vite resolves URL in dev & build). */
+
+import genAiBrochurePdf from "../assets/VTS_GenAi_Syllabus.pdf";
 
 export const FULLSTACK_BROCHURE = {
   href: "/fullstack-brochure.pdf",
@@ -11,6 +13,6 @@ export const DATA_ANALYTICS_BROCHURE = {
 };
 
 export const GENAI_BROCHURE = {
-  href: "/genai-brochure.pdf",
+  href: genAiBrochurePdf,
   downloadAs: "VTS-Generative-AI-Brochure.pdf",
 };
