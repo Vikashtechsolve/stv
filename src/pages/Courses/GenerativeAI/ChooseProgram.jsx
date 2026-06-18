@@ -16,10 +16,10 @@ const highlights = [
   "PPO opportunity for strong developers after course completion",
   "1 guaranteed interview call through VTS hiring support",
   "Beginner friendly curriculum with no prior AI experience needed",
-  "Build 6+ real AI-powered applications",
-  "Work with OpenAI, Gemini, LangChain, and Hugging Face",
-  "Learn RAG, AI Agents, and full-stack AI development",
-  "Two industry-recognized certificates for course completion and internship",
+  "8-week structured curriculum with weekly shipped projects",
+  "Work with OpenAI, Gemini, LangChain, Hugging Face & vector DBs",
+  "Learn RAG, LLMs, AI agents, FastAPI & Streamlit deployment",
+  "One industry-recognized certificate on program completion",
   "3 months: 2 months training program and 1 month internship",
 ];
 

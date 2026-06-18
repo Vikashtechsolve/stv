@@ -27,7 +27,7 @@ const features = [
   },
   {
     title: "Industry Projects",
-    desc: "Work on production-grade AI projects including chatbots, document Q&A systems, and AI assistants that you can showcase to recruiters.",
+    desc: "Ship one portfolio project every week across 8 weeks — from CLI tools and predictors to RAG chatbots, multi-agent systems, and a production capstone.",
   },
   {
     title: "Career Guidance",
@@ -38,8 +38,8 @@ const features = [
     desc: "Build a strong portfolio of AI projects on GitHub that demonstrates your ability to design, develop, and deploy generative AI applications.",
   },
   {
-    title: "Dual Certificates",
-    desc: "Get two industry recognized certificates: one for course completion and one for your internship. Together they showcase your Generative AI skills and real-world experience.",
+    title: "Industry Certificate",
+    desc: "Earn one industry-recognized certificate on program completion that validates your Generative AI skills and hands-on project experience.",
   },
 ];
 
@@ -62,7 +62,7 @@ const WhyChooseProgram = ({ onRegisterClick }) => {
             </h2>
 
             <p className="text-gray-900 mb-6 text-sm sm:text-base leading-relaxed">
-              A 3 month career-focused Generative AI program with 2 months of training and 1 month internship, built to take you from beginner to AI-ready professional.
+              A 3-month career-focused Generative AI program — 8 weeks of live mentor-led training plus a 1-month internship — built to take you from beginner to AI-ready professional.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -91,7 +91,7 @@ const WhyChooseProgram = ({ onRegisterClick }) => {
           {/* Certificate showcase */}
           <div className="w-full lg:flex-[1.25] order-1 lg:order-2">
             <p className="text-center text-xs sm:text-sm font-medium text-[#B11C20] uppercase tracking-wide mb-3">
-              Your Certificates
+              Your Certificate
             </p>
 
             <div className="relative mx-auto w-full max-w-[min(100%,560px)] lg:max-w-none">
@@ -112,10 +112,7 @@ const WhyChooseProgram = ({ onRegisterClick }) => {
 
               <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4 sm:mt-5">
                 <span className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium bg-white text-[#B11C20] rounded-full border border-red-200 shadow-sm">
-                  Course Completion
-                </span>
-                <span className="px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-medium bg-white text-[#B11C20] rounded-full border border-red-200 shadow-sm">
-                  Internship
+                  Industry Certificate
                 </span>
               </div>
             </div>

@@ -5,6 +5,7 @@ import {
   GENAI_REGISTRATION_FEE,
   GENAI_GST_RATE_PERCENT,
 } from "../../../constants/genAiFees";
+import { GENAI_PROGRAM_STATS } from "./genAiCourseConfig";
 
 export const faqData = [
   {
@@ -15,7 +16,7 @@ export const faqData = [
   {
     question: "Are real projects included in the program?",
     answer:
-      "Yes, you'll build 6+ real AI projects including an AI Chatbot, Document Q&A Platform, AI Content Generator, AI Resume Analyzer, AI Research Assistant, and a Final Capstone Project.",
+      `Yes, you'll build ${GENAI_PROGRAM_STATS.projects} real projects across the 8-week plan — including an AI Study Assistant CLI, Student Performance Predictor, Image Compression Tool, Text Summarizer, AI Content Generator, Enterprise PDF Chatbot, Multi-Agent Research Assistant, and a Document Intelligence capstone.`,
   },
   {
     question: "Is this program beginner friendly?",
@@ -40,7 +41,7 @@ export const faqData = [
   {
     question: "What certificates will I receive?",
     answer:
-      "You get two industry-recognized certificates: a Course Completion certificate when you finish the program, and an Internship certificate after your real-world internship. Together they validate your Generative AI skills and hands-on experience.",
+      "You receive one industry-recognized certificate on successful program completion, validating your Generative AI skills and hands-on project experience.",
   },
   {
     question: "What tools and technologies will I learn?",
