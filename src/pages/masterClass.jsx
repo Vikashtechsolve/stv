@@ -23,7 +23,7 @@ const MasterClasspages = () => {
         <UpcomingEvents/>
         <PastEventsPage/>
         <WhatStudentsSay/>
-        <TestimonialsPage videoUrl={"https://youtu.be/HUD_qbwc1yA?si=kSc_Bvyl6kG312O_"} testimonialImg={testimonialImg} title={"Testimonials"} />
+        {/* <TestimonialsPage videoUrl={"https://youtu.be/HUD_qbwc1yA?si=kSc_Bvyl6kG312O_"} testimonialImg={testimonialImg} title={"Testimonials"} /> */}
         <FAQ faqData={faqData} />
         </Layout>
     )

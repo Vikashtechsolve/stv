@@ -6,7 +6,6 @@ const MENTORS = [
   {
     name: "Shreya Patel",
     title: "Full Stack Developer",
-    company: "Microsoft",
     rating: 5,
     expertise: "MERN Stack, REST APIs",
     experience: "7+ years",
@@ -17,7 +16,6 @@ const MENTORS = [
   {
     name: "Kavya Sharma",
     title: "SDE II",
-    company: "Adobe",
     rating: 5,
     expertise: "C++, Java, System Design",
     experience: "6+ years",
@@ -28,7 +26,6 @@ const MENTORS = [
   {
     name: "Arjun Mehta",
     title: "Frontend Dev (React, JS)",
-    company: null,
     rating: 5,
     expertise: "React, JavaScript",
     experience: "5+ years",
@@ -39,7 +36,6 @@ const MENTORS = [
   {
     name: "Meera Jain",
     title: "Frontend Dev (React, JS)",
-    company: null,
     rating: 5,
     expertise: "React, JavaScript",
     experience: "7+ years",
@@ -50,7 +46,6 @@ const MENTORS = [
   {
     name: "Ravi Gupta",
     title: "SDE II",
-    company: "Adobe",
     rating: 5,
     expertise: "C++, Java, System Design",
     experience: "6+ years",
@@ -61,7 +56,6 @@ const MENTORS = [
   {
     name: "Harshita Jian",
     title: "Full Stack Developer",
-    company: "Microsoft",
     rating: 5,
     expertise: "MERN Stack, REST APIs",
     experience: "5+ years",
@@ -72,7 +66,6 @@ const MENTORS = [
   {
     name: "Aditya Roy",
     title: "Frontend Dev (React, JS)",
-    company: null,
     rating: 5,
     expertise: "React, JavaScript",
     experience: "7+ years",
@@ -83,7 +76,6 @@ const MENTORS = [
   {
     name: "Priya Singh",
     title: "Full Stack Developer",
-    company: "Google",
     rating: 5,
     expertise: "MERN Stack, REST APIs",
     experience: "8+ years",
@@ -144,16 +136,6 @@ const MentorCard = ({ mentor, index, isInView }) => {
           <span className="text-xs font-bold text-gray-900">{mentor.rating}</span>
         </motion.div>
 
-        {/* Company Badge */}
-        {mentor.company && (
-          <motion.div
-            className="absolute top-2 left-2 bg-red-600/90 backdrop-blur-sm rounded-lg px-2.5 py-1 shadow-lg"
-            whileHover={{ scale: 1.05 }}
-          >
-            <span className="text-xs font-semibold text-white">{mentor.company}</span>
-          </motion.div>
-        )}
-
         {/* Students Count Badge */}
         <motion.div
           className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm rounded-lg px-2.5 py-1 shadow-lg"
@@ -173,14 +155,11 @@ const MentorCard = ({ mentor, index, isInView }) => {
           {mentor.name}
         </h3>
 
-        {/* Title with Company */}
+        {/* Title */}
         <div className="flex items-center justify-center gap-1.5 mb-2">
           <Briefcase className="w-3.5 h-3.5 text-gray-500" />
           <p className="text-xs md:text-sm font-nunito text-gray-700">
             {mentor.title}
-            {mentor.company && (
-              <span className="font-semibold text-red-600"> @ {mentor.company}</span>
-            )}
           </p>
         </div>
 

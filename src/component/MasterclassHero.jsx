@@ -6,10 +6,9 @@ import masterclassImage from "../assets/masterclasshead.png";
 import authfreemasterclass from "../assets/authfreemasterclass.png";
 
 const images = [
-  authfreemasterclass,
+  
   "https://res.cloudinary.com/dc4gqqd35/image/upload/v1763878938/Gemini_Generated_Image_ip97hhip97hhip97_yx8jfs.png",
   masterclassImage,
-  authfreemasterclass
 ];
 
 const MasterClassHero = () => {
