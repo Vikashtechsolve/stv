@@ -14,7 +14,7 @@ const About = () => {
             <div className='w-full overflow-hidden' >
                 <Empowering/>
                 <AboutVTS/>
-                <TestimonialsPage videoUrl={"https://www.w3schools.com/html/mov_bbb.mp4"} testimonialImg={thumbNail} title={""} />
+                {/* <TestimonialsPage videoUrl={"https://www.w3schools.com/html/mov_bbb.mp4"} testimonialImg={thumbNail} title={""} /> */}
                 <WhatWeBring/>
                 <OurTeam/>
                 <Milestones/>
