@@ -49,7 +49,7 @@ const testimonials = [
   },
   {
     text: "The one-on-one mentorship really changed the way I studied. Earlier, I used to get stuck for hours, but now my doubts are solved instantly through the live doubt-solving sessions. The coding contests have boosted my confidence and improved my problem-solving speed. The resume review was also super helpful — it gave my CV a professional touch that will help me in placements.",
-    name: "Swatee Kumaree",
+    name: "Bhavta Tiwari",
     role: "(B.Tech Student)",
     img: "https://media.licdn.com/dms/image/v2/D5603AQHq1odiDCvTWg/profile-displayphoto-scale_400_400/B56ZkvceZFJwAg-/0/1757437620375?e=2147483647&v=beta&t=ch1u_9BX9o3I_jx7G-lIFpgTLiF8AUOWO6k-O-Zn2M8",
   },
