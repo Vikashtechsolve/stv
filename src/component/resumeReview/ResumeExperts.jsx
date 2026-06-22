@@ -4,20 +4,8 @@ import { Sparkles, Award, CheckCircle2, Star, Quote, Building2, Users, TrendingU
 
 const experts = [
   {
-    name: "Priya Sharma",
-    title: "HR Specialist | Ex-TCS | Resume Coach",
-    image:
-      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1760115261/1000022510_oetw7k.jpg",
-    description:
-      "Reviewed 800+ resumes and helped 150+ graduates get shortlisted at top MNCs.",
-    quote:
-      "I specialize in transforming basic resumes into job-winning career stories.",
-    stats: "800+ Reviews",
-    badge: "Top Rated",
-  },
-  {
-    name: "Vijay Kapoor",
-    title: "Product Designer | Swiggy | Portfolio & Resume Mentor",
+    name: "Amol Shukla",
+    title: "Product Designer  | Portfolio & Resume Mentor",
     image:
       "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759840447/Amol_ykm4vw.jpg",
     description:
@@ -28,30 +16,7 @@ const experts = [
     badge: "Design Expert",
   },
   {
-    name: "Arjun Mehta",
-    title: "Software Engineer | Google | Resume Expert",
-    image:
-      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759840361/Vivek_m6sgzw.jpg",
-    description:
-      "Mentored 500+ students and guided them to land internships at startups & FAANG companies.",
-    quote: "A great resume doesn't just list skills — it tells your growth journey.",
-    stats: "500+ Mentored",
-    badge: "FAANG Expert",
-  },
-  {
-    name: "Jaimin Sharma",
-    title: "HR Specialist | Ex-TCS | Resume Coach",
-    image:
-      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832518/Masood_Raza_ew6k7a.png",
-    description:
-      "Reviewed 800+ resumes and helped 150+ graduates get shortlisted at top MNCs.",
-    quote:
-      "I specialize in transforming basic resumes into job-winning career stories.",
-    stats: "800+ Reviews",
-    badge: "Top Rated",
-  },
-  {
-    name: "Kishor Jain",
+    name: "kishor pawar",
     title: "Talent Acquisition Lead | Accenture | Resume Strategist",
     image:
       "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841721/Kishor_rdehwa.jpg",
@@ -63,10 +28,10 @@ const experts = [
     badge: "Recruiter Insight",
   },
   {
-    name: "Ashish Gupta",
+    name: "Mayur Srivastav",
     title: "Senior Data Analyst | Deloitte | Career Coach",
     image:
-      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832493/Ashish_ae2fxk.jpg",
+      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841574/Mayur_zez5fr.jpg",
     description:
       "Reviewed 600+ resumes focused on data & analytics roles and improved their ATS visibility.",
     quote: "Numbers matter in analytics — and in your resume too. Let's make them count.",

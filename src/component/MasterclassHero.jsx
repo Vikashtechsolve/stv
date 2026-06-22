@@ -3,11 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useNavigate, useLocation } from "react-router-dom";
 import masterclassImage from "../assets/masterclasshead.png";
-import authfreemasterclass from "../assets/authfreemasterclass.png";
+import masterhero1 from "../assets/masterhero1.png";
 
 const images = [
-  
-  "https://res.cloudinary.com/dc4gqqd35/image/upload/v1763878938/Gemini_Generated_Image_ip97hhip97hhip97_yx8jfs.png",
+  masterhero1,
   masterclassImage,
 ];
 

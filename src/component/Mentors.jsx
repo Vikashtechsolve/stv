@@ -5,47 +5,53 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 const Mentors = () => {
   const mentors = [
     {
-      name: "Venkatesh reddy",
+      name: "Venkatesh K",
       role: "Java Full Stack Developer",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832524/Venkatesh__ihttlr.jpg",
       description:
         "Passionate Java Full Stack Developer delivering end-to-end web applications with clean architecture, modern UI, and proven real-world impact.",
     },
+    
     {
-      name: "Abhinav Verma",
-      role: "Advanced DSA Trainer",
+      name: "Abhinav Aditya",
+      role: "Frontend Developer",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759831230/Abhinav_kilenc.jpg",
       description:
-        "Passionate Data Structures & Algorithms Trainer helping students master advanced concepts, optimize solutions, and crack top-tier tech interviews with confidence.",
+        "Frontend Developer specializing in React and JavaScript, focused on building modern, responsive, and user-centric web applications. Passionate about creating seamless digital experiences through scalable architectures, clean code, and industry-standard development practices.",
     },
+    
     {
-      name: "Pavan Sharma",
-      role: "Expert AI/ML developer and mentor",
+      name: "Ilapanda Pavan Kumar",
+      role: "Expert AI/ML Developer and Mentor",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832519/pavan_ooikbo.jpg",
       description:
         "Expert AI/ML developer and mentor, skilled in building intelligent solutions and guiding learners to master machine learning and AI technologies.",
     },
-     {
-      name: "Ashish Vaghamshi",
-      role: "Full Stack Developer",
+    
+    {
+      name: "Ashish Pandey",
+      role: "SDE II",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832493/Ashish_ae2fxk.jpg",
       description:
-        "Dynamic Full Stack Developer building powerful, responsive, and user-centric web applications that deliver real business value.",
+        "Specialized Software Engineer with expertise in C++, Java, and System Design. Known for solving complex engineering challenges, designing scalable software architectures, and delivering high-performance solutions aligned with modern industry standards.",
     },
-     {
+    
+    {
       name: "Masood Raza",
-      role: "Data Analyst / Data Science Trainer",
+      role: "Backend Developer (Spring Boot)",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832518/Masood_Raza_ew6k7a.png",
       description:
-        "Skilled Data Analyst proficient in Python, R, SQL, Power BI, and Linux, specializing in data visualization, analytics, and transforming raw data into actionable insights.",
+        "Backend Engineer specializing in Java, Spring Boot, and MySQL, with a strong focus on developing secure, scalable, and high-performance applications. Skilled in architecting robust backend systems and optimizing database-driven solutions for business growth.",
     },
+    
     {
-      name: "Vevek Naydo",
+      name: "Vevek Mamidi",
       role: "Mobile Application Developer",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832524/Vivek_m6sgzw.jpg",
       description:
         "Innovative Mobile App Developer passionate about crafting responsive, secure, and feature-rich mobile solutions that bring ideas to life.",
     },
+    
     {
       name: "Tanishq Gupta",
       role: "AWS Trainer & Cloud Solutions Mentor",
@@ -53,40 +59,45 @@ const Mentors = () => {
       description:
         "Experienced AWS trainer, empowering learners to master cloud computing and implement scalable, secure cloud solutions.",
     },
+    
     {
-      name: "Amol Sutar",
-      role: "Database Solutions Mentor",
+      name: "Amol Shukla",
+      role: "Product Designer | Portfolio & Resume Mentor",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832492/Amol_ykm4vw.jpg",
       description:
-        "Skilled DBMS trainer, guiding learners to design, manage, and optimize robust database systems efficiently.",
+        "Product Designer and career mentor dedicated to helping aspiring designers build impactful portfolios and compelling resumes. Known for guiding professionals to showcase their unique strengths and create personal brands that stand out in competitive creative industries.",
     },
+    
     {
-      name: "Tasin Khan",
+      name: "Mohammad Tasin",
       role: "MERN Stack Developer",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759840861/Tasin_iyd0me.jpg",
       description:
         "Proficient MERN stack developer, building dynamic web applications and mentoring learners to master full-stack development with MongoDB, Express, React, and Node.js.",
     },
+    
     {
-      name: "Mayur Kumar",
-      role: "DSA Mentor & Problem-Solving Coach",
+      name: "Mayur Srivastav",
+      role: "Senior Data Analyst | Career Coach",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841574/Mayur_zez5fr.jpg",
       description:
-        "Expert DSA mentor, helping learners master data structures and algorithms to excel in coding interviews and competitive programming.",
+        "Senior Data Analyst and career coach passionate about helping professionals advance in data and analytics careers. Expert in enhancing resume impact, improving ATS visibility, and positioning candidates for success in competitive data-driven roles.",
     },
+    
     {
-      name: "Kishor Mohite",
-      role: "Database Mentor & Trainer",
+      name: "Kishor Pawar",
+      role: "Talent Acquisition Lead | Resume Strategist",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841721/Kishor_rdehwa.jpg",
       description:
-        "Practical database mentor with real-world experience, guiding learners to design, manage, and optimize databases effectively.",
+        "Talent Acquisition Leader and resume strategist with extensive experience helping professionals secure career opportunities through recruiter-focused resume optimization. Specializes in aligning candidate profiles with industry hiring trends and ATS requirements.",
     },
-     {
-      name: "Abhishek singh",
-      role: "Advanced Excel, Power BI & SQL Mentor",
+    
+    {
+      name: "Abhishek Kumar",
+      role: "Full Stack Developer",
       img: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841930/Abhishek_mgavg9.jpg",
       description:
-        "Experienced mentor guiding learners to master Excel, Power BI, and SQL for data analysis and real-world business insights.",
+        "Full Stack Developer specializing in the MERN ecosystem and REST API development. Focused on building scalable web applications, designing efficient backend services, and delivering seamless user experiences through modern full-stack engineering practices.",
     },
   ];
 

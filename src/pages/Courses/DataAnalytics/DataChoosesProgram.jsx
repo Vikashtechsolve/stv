@@ -98,7 +98,7 @@ export default function DataChooseProgram({ onApplyClick }) {
         >
           Batch Starting on :
           <span className="text-red-600 font-medium ml-1">
-            20th January, 2026
+            1st July, 2026
           </span>
           <img
             src={designArrow}

@@ -31,10 +31,12 @@ import Layout from "../../../component/Layout";
 import GenAiEnrollmentModal from "../../../component/courses/GenAiEnrollmentModal";
 import { GENAI_BROCHURE } from "../../../constants/courseBrochures";
 import { GENAI_ENROLLMENT, GENAI_PROGRAM_STATS } from "./genAiCourseConfig";
+import { useGenAiSeats } from "./useGenAiSeats";
 import {
   GENAI_REGISTRATION_FEE,
   genAiFullPaymentAmount,
 } from "../../../constants/genAiFees";
+import { VTS_SUPPORT } from "../../../constants/vtsSupport";
 
 const HERO_BULLETS = [
   `Build ${GENAI_PROGRAM_STATS.projects} production-ready AI applications`,
@@ -61,6 +63,7 @@ const HERO_BADGES = [
 const GenerativeAI = () => {
   const [applyOpen, setApplyOpen] = useState(false);
   const [activeLine, setActiveLine] = useState(0);
+  const { seatsLeft } = useGenAiSeats();
 
   const heroLines = [
     { prompt: "Build a chatbot that knows my docs", tag: "RAG" },
@@ -95,7 +98,7 @@ const GenerativeAI = () => {
       "Vikash Tech Solution (VTS) is a tech learning platform offering industry-led programs in Generative AI, Full Stack Development, and modern software engineering.",
     sameAs: [
       "https://www.instagram.com/vikash_tech_solution/",
-      "https://www.linkedin.com/in/vikash-tech-solution/",
+      VTS_SUPPORT.linkedin,
     ],
   };
 
@@ -159,7 +162,7 @@ const GenerativeAI = () => {
       {
         "@type": "CourseInstance",
         courseMode: "Online",
-        startDate: "2026-07-01",
+        startDate: "2026-07-20",
         courseWorkload: "P3M",
         location: {
           "@type": "VirtualLocation",
@@ -290,7 +293,7 @@ const GenerativeAI = () => {
                 </span>
                 <span className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-800 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full">
                   <Flame className="w-3.5 h-3.5" />
-                  Only {GENAI_ENROLLMENT.seatsLeft} seats left
+                  Only {seatsLeft} seats left
                 </span>
               </div>
 

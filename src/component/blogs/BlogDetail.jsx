@@ -21,6 +21,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { getRelatedBlogs, incrementBlogViews, likeBlog, getAllBlogs } from "../../services/blogApi";
+import { formatBlogDate } from "../../utils/formatBlogDate";
 
 export default function BlogDetail({ blog, onBack, onSelectBlog }) {
   const navigate = useNavigate();
@@ -368,7 +369,7 @@ export default function BlogDetail({ blog, onBack, onSelectBlog }) {
               <div className="flex items-center gap-2 text-gray-600">
                 <Calendar className="w-5 h-5 text-[#ED0331]" />
                 <span className="font-medium">
-                  {blog.date || blog.createdAt ? new Date(blog.date || blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A'}
+                  {formatBlogDate(blog.date || blog.createdAt) || "N/A"}
                 </span>
               </div>
 

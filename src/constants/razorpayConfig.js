@@ -1,4 +1,4 @@
-import { VTS_SUPPORT } from "./genAiFees";
+import { VTS_SUPPORT } from "./vtsSupport";
 
 /** Display name on the Razorpay checkout modal. */
 export const RAZORPAY_COMPANY_NAME = "Vikash Tech Solution";

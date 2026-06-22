@@ -11,9 +11,9 @@ const masterClassData = {
   subTitle: "Meet Our Master Class Mentors",
 
   mentors: [
-    { name: "Vevek Sharma", role: "Data Science Mentor", image: vivek },
-    { name: "Abhinav Jadeja", role: "Web Development Lead", image: abhinav },
-    { name: "Pavan Dubey", role: "UX/UI Designer", image: pavan },
+    { name: "Vivek Mamidi", role: "Data Science Mentor", image: vivek },
+    { name: "Mohammad Tasin", role: "Web Development Lead", image: abhinav },
+    { name: "Ilapanda Pavan Kumar", role: "UX/UI Designer", image: pavan },
   ],
   points: [
     { title: "Affordable Learning", description: "Affordable Learning: High-Value Masterclasses Starting at Just ₹0" },

@@ -79,7 +79,7 @@ const DataAnalyticsProgram = () => {
                 <p className="text-sm sm:text-base">
                   Batch Starting on{" "}
                   <span className="text-[#B11C20] font-semibold">
-                    28th January, 2026
+                    1st July, 2026
                   </span>
                 </p>
 

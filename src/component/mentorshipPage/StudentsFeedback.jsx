@@ -6,50 +6,56 @@ const feedbacks = [
   {
     id: 1,
     text: "The mentor was so patient and guided me with a clear Web Development roadmap. Every minute was valuable — worth every rupee I spent!",
-    name: "Amit Kumar",
-    role: "3rd Year B.Tech Student",
+    name: "Rohan Iyer",
+    role: "3rd Year B.Tech, Bangalore",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    avatar:
+      "https://media.licdn.com/dms/image/v2/D4E03AQFtOMUGPupt_Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1702588300079?e=2147483647&v=beta&t=yAzNVJepVRYbu8fcTBEQwJzdoZZITUzseswjZu57ThE",
   },
   {
     id: 2,
     text: "I struggled with DSA for months, but after just two mentorship sessions, I finally cracked my coding interviews. The mentor explained logic in the simplest way possible!",
-    name: "Ritika Sharma",
-    role: "Placed at Amazon",
+    name: "Priya Sharma",
+    role: "Final Year CSE, Delhi",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    avatar:
+      "https://images.squarespace-cdn.com/content/v1/63bd194fcd3c0b07a92cc80a/90d78a9c-a242-4e19-9254-cfa561e36372/Priya+Sharma.png",
   },
   {
     id: 3,
     text: "Thanks to my mentor's personalized DSA roadmap, I cleared both technical and HR rounds easily. The feedback sessions were a game changer.",
     name: "Rajesh Tiwari",
-    role: "Placed at TCS",
+    role: "MCA Student, Lucknow",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/36.jpg",
+    avatar:
+      "https://media.licdn.com/dms/image/v2/C5603AQFe-4VAI8o1wg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1523877351805?e=2147483647&v=beta&t=cGsX0doXjcLgEHuyqTYs_a926PC8lSze7eyJ-rCcqUo",
   },
   {
     id: 4,
     text: "My mentor helped me understand how to structure projects professionally. I now feel confident applying for internships!",
-    name: "Sneha Patel",
-    role: "2nd Year CSE Student",
+    name: "Sneha Nair",
+    role: "2nd Year IT, Chennai",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/47.jpg",
+    avatar:
+      "https://media.licdn.com/dms/image/v2/D4E03AQGjyvrqrQFMyQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1688019139091?e=2147483647&v=beta&t=zHooq_bJZoNq4CljIOVfsmaMTsm8U800sbGAQWTYCnA",
   },
   {
     id: 5,
     text: "Before mentorship, I was lost with DSA topics. Now I solve problems daily and cleared my first coding round!",
-    name: "Arjun Verma",
-    role: "Placed at Infosys",
+    name: "Arjun Desai",
+    role: "BCA Student, Ahmedabad",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/men/40.jpg",
+    avatar:
+      "https://media.licdn.com/dms/image/v2/D5603AQEZNSbJCEAw4Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1727338848511?e=2147483647&v=beta&t=nSzl48rWTUBFKuvX8148bpk81Slasl7WhbUZAsQ3QOM",
   },
   {
     id: 6,
     text: "The roadmap and consistent feedback completely transformed my coding habits. I'm much more confident now!",
-    name: "Kavya Singh",
-    role: "Final Year Student",
+    name: "Ananya Reddy",
+    role: "Final Year MCA, Hyderabad",
     rating: 5,
-    avatar: "https://randomuser.me/api/portraits/women/52.jpg",
+    avatar:
+      "https://media.licdn.com/dms/image/v2/D5603AQHeYQemwQOEzA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1712819683917?e=2147483647&v=beta&t=whzKXi4Gn3I8dg6QPTGJIhb0Uinhm2UYz9dUmN8po8E",
   },
 ];
 
@@ -184,7 +190,7 @@ const StudentsFeedback = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            Real experiences from students who transformed their careers
+            Real experiences from Indian students who grew through 1:1 mentorship
           </motion.p>
         </motion.div>
 
@@ -269,7 +275,7 @@ const StudentsFeedback = () => {
                       <img
                         src={feedbacks[index].avatar}
                         alt={feedbacks[index].name}
-                        className="w-12 h-12 rounded-full border-2 border-[#ED0331]/20 object-cover shadow-md"
+                        className="w-12 h-12 rounded-full border-2 border-[#ED0331]/20 object-cover object-top shadow-md"
                       />
                       <motion.div
                         className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-white"
@@ -405,7 +411,7 @@ const StudentsFeedback = () => {
                       <img
                         src={fb.avatar}
                         alt={fb.name}
-                        className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-[#ED0331]/20 object-cover shadow-md"
+                        className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-[#ED0331]/20 object-cover object-top shadow-md"
                       />
                       <motion.div
                         className="absolute -bottom-0.5 -right-0.5 w-3 h-3 lg:w-3.5 lg:h-3.5 bg-green-500 rounded-full border-2 border-white"
