@@ -4,7 +4,7 @@ import { Star, Sparkles, Award, Briefcase, TrendingUp, CheckCircle2, MessageSqua
 
 const MENTORS = [
   {
-    name: "Shreya Patel",
+    name: "Abhishek Kumar",
     title: "Full Stack Developer",
     rating: 5,
     expertise: "MERN Stack, REST APIs",
@@ -14,17 +14,7 @@ const MENTORS = [
     altText: "Shreya Patel",
   },
   {
-    name: "Kavya Sharma",
-    title: "SDE II",
-    rating: 5,
-    expertise: "C++, Java, System Design",
-    experience: "6+ years",
-    students: "400+",
-    imageUrl: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841574/Mayur_zez5fr.jpg",
-    altText: "Kavya Sharma",
-  },
-  {
-    name: "Arjun Mehta",
+    name: "Abhinav Aditya",
     title: "Frontend Dev (React, JS)",
     rating: 5,
     expertise: "React, JavaScript",
@@ -33,18 +23,9 @@ const MENTORS = [
     imageUrl: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759831230/Abhinav_kilenc.jpg",
     altText: "Arjun Mehta",
   },
+  
   {
-    name: "Meera Jain",
-    title: "Frontend Dev (React, JS)",
-    rating: 5,
-    expertise: "React, JavaScript",
-    experience: "7+ years",
-    students: "450+",
-    imageUrl: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832519/pavan_ooikbo.jpg",
-    altText: "Meera Jain",
-  },
-  {
-    name: "Ravi Gupta",
+    name: "Ashish Pandey",
     title: "SDE II",
     rating: 5,
     expertise: "C++, Java, System Design",
@@ -53,36 +34,18 @@ const MENTORS = [
     imageUrl: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832493/Ashish_ae2fxk.jpg",
     altText: "Ravi Gupta",
   },
+  
   {
-    name: "Harshita Jian",
-    title: "Full Stack Developer",
+    name: "Masood Raza",
+    title: "Backend Dev (Spring Boot)",
     rating: 5,
-    expertise: "MERN Stack, REST APIs",
-    experience: "5+ years",
-    students: "300+",
-    imageUrl: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841574/Mayur_zez5fr.jpg",
-    altText: "Harshita Jian",
-  },
-  {
-    name: "Aditya Roy",
-    title: "Frontend Dev (React, JS)",
-    rating: 5,
-    expertise: "React, JavaScript",
+    expertise: "Spring Boot, Java, MySQL",
     experience: "7+ years",
     students: "420+",
     imageUrl: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832518/Masood_Raza_ew6k7a.png",
     altText: "Aditya Roy",
   },
-  {
-    name: "Priya Singh",
-    title: "Full Stack Developer",
-    rating: 5,
-    expertise: "MERN Stack, REST APIs",
-    experience: "8+ years",
-    students: "550+",
-    imageUrl: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841930/Abhishek_mgavg9.jpg",
-    altText: "Priya Singh",
-  },
+ 
 ];
 
 const StarRating = ({ rating }) => {

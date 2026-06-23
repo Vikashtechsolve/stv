@@ -1,4 +1,7 @@
 /** Gen AI pricing (must match online-course-backend/constants/genAiFees.js). */
+import { VTS_SUPPORT } from "./vtsSupport";
+
+export { VTS_SUPPORT };
 export const GENAI_REGISTRATION_FEE = 99;
 export const GENAI_COURSE_FEE = 5999;
 export const GENAI_GST_RATE_PERCENT = 18;
@@ -27,10 +30,4 @@ export const GENAI_PAYMENT_PLANS = {
     description:
       "Pay ₹5,999 in one go and confirm your registration immediately. No separate registration fee.",
   },
-};
-
-export const VTS_SUPPORT = {
-  email: "support@vikastechsolutions.com",
-  phone: "+91 98765 43210",
-  website: "https://www.vikashtechsolution.com",
 };

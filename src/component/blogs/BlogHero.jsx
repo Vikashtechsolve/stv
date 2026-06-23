@@ -3,6 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Search, Filter, Clock, User, ArrowRight, Sparkles, BookOpen, TrendingUp, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { getAllBlogs } from '../../services/blogApi';
+import { formatBlogDate } from '../../utils/formatBlogDate';
 import BlogDetail from './BlogDetail';
 
 export default function BlogHero() {
@@ -347,7 +348,7 @@ function BlogCard({ blog, index, onSelect }) {
               <div>
                 <p className="text-xs font-semibold text-gray-800">{blog.author || 'Anonymous'}</p>
                 <p className="text-xs text-gray-500">
-                  {blog.date || (blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '')}
+                  {formatBlogDate(blog.date || blog.createdAt)}
                 </p>
               </div>
             </div>

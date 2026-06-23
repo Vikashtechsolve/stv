@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { VTS_SUPPORT, vtsPhoneTel } from "../constants/vtsSupport";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Footer = () => {
             className="font-bold text-base heading-primary leading-tight tracking-wide pt-[10.67px] pb-4 uppercase"
             style={{ fontFamily: "'Nunito Sans', sans-serif" }}
           >
-            ABOUT VIKAS TECH SOLUTIONS
+            ABOUT VIKASH TECH SOLUTION
           </h3>
           <p className="text-base leading-6 font-nunito text-gray-600">
             We provide personalized mentorship, live doubt-solving, coding
@@ -122,7 +123,9 @@ const Footer = () => {
 
           <div className="flex items-center gap-3 text-base font-nunito text-gray-600">
             <FaPhoneAlt className="text-[#ED0331] text-lg shrink-0" />
-            <p>+91 98765 43210</p>
+            <a href={vtsPhoneTel()} className="hover:text-[#ED0331] transition-colors">
+              {VTS_SUPPORT.phone}
+            </a>
           </div>
         </div>
 
@@ -134,7 +137,7 @@ const Footer = () => {
             <a target="_blank" href="https://www.facebook.com/profile.php?id=61575266311355"><FaFacebookF className="hover:text-red-600 cursor-pointer" /></a>
             <a target="_blank" href="https://x.com/VikashDube9198"><FaTwitter className="hover:text-red-600 cursor-pointer" /></a>
             <a target="_blank" href="https://www.instagram.com/vikash_tech_solution/"><FaInstagram className="hover:text-red-600 cursor-pointer" /></a>
-            <a target="_blank" href="https://www.linkedin.com/in/vikash-tech-solution/"><FaLinkedinIn className="hover:text-red-600 cursor-pointer" /></a>
+            <a target="_blank" rel="noopener noreferrer" href={VTS_SUPPORT.linkedin}><FaLinkedinIn className="hover:text-red-600 cursor-pointer" /></a>
           </div>
         </div>
       </div>

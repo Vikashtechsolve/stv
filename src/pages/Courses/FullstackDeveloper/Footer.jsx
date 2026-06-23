@@ -12,6 +12,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react";
+import { VTS_SUPPORT, vtsPhoneTel } from "../../../constants/vtsSupport";
 
 
 export default function Footer() {
@@ -119,9 +120,9 @@ export default function Footer() {
             <div>
               <div className="font-semibold">Phone Number:</div>
 
-              <div className="text-gray-600">
-                +91 98765 43210
-              </div>
+              <a href={vtsPhoneTel()} className="text-gray-600 hover:text-red-700 transition-colors">
+                {VTS_SUPPORT.phone}
+              </a>
             </div>
 
           </div>
@@ -144,7 +145,14 @@ export default function Footer() {
             <Facebook className="cursor-pointer hover:text-red-700" />
             <Twitter className="cursor-pointer hover:text-red-700" />
             <Instagram className="cursor-pointer hover:text-red-700" />
-            <Linkedin className="cursor-pointer hover:text-red-700" />
+            <a
+              href={VTS_SUPPORT.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Vikash Tech Solution on LinkedIn"
+            >
+              <Linkedin className="cursor-pointer hover:text-red-700" />
+            </a>
 
           </div>
 

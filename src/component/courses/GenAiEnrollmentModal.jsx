@@ -21,6 +21,7 @@ import {
   VTS_SUPPORT,
   GENAI_GST_RATE_PERCENT,
 } from "../../constants/genAiFees";
+import { vtsPhoneTel } from "../../constants/vtsSupport";
 const PAYMENT_USER_ID =
   import.meta.env.VITE_COURSE_PAYMENT_USER_ID || "6730b6d8e29f4b001f6f91d1";
 
@@ -334,7 +335,7 @@ export default function GenAiEnrollmentModal({ open, onClose, courseTitle }) {
                         {VTS_SUPPORT.email}
                       </a>
                       <a
-                        href={`tel:${VTS_SUPPORT.phone.replace(/\s/g, "")}`}
+                        href={vtsPhoneTel()}
                         className="flex items-center gap-2 text-[#B11C20] hover:underline"
                       >
                         <Phone className="w-4 h-4" />

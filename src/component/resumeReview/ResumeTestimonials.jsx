@@ -4,30 +4,27 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Raj Sharma",
-    role: "Web Development Student",
-    image:
-      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759840361/Vivek_m6sgzw.jpg",
+    name: "Divya Mehta",
+    role: "Final Year B.Tech, Delhi",
+    image:"https://media.licdn.com/dms/image/v2/D5603AQHfCtMGfGltpQ/profile-displayphoto-scale_200_200/B56ZeMFROYGQAY-/0/1750401882827?e=2147483647&v=beta&t=dL2e6zFMYuRgWXsfL-gZ5n1BqGSkzaJxd2gMpKqkGw4",
     review:
-      "I got my resume reviewed for just ₹149 and the mentor pointed out so many small issues that made a big difference! I got shortlisted for my dream internship.",
+      "I got my resume reviewed for just ₹149 and the mentor pointed out so many small issues that made a big difference! My ATS score improved and I got shortlisted for my dream internship.",
     rating: 5,
   },
   {
-    name: "Nitin Singh",
-    role: "DSA Learner",
-    image:
-      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832493/Ashish_ae2fxk.jpg",
+    name: "Vikram Chauhan",
+    role: "MBA Student, Jaipur",
+    image:"https://media.licdn.com/dms/image/v2/D5603AQEZdHLzbyVoyg/profile-displayphoto-scale_200_200/B56Z3oAalBH4AY-/0/1777713926948?e=2147483647&v=beta&t=1JM74HNfp7tkKJKAGJUYHnsw3Rhgl2uU-UWoSUMygsA",
     review:
-      "Very affordable and valuable. The mentor helped me improve my resume layout and keywords for ATS. Totally worth it.",
+      "Very affordable and valuable. The mentor helped me improve my resume layout, action verbs, and keywords for ATS. Totally worth it for placement season.",
     rating: 5,
   },
   {
-    name: "Naman Joshi",
-    role: "Programming Languages",
-    image:
-      "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759841028/Abhinav_kilenc.jpg",
+    name: "Megha Joshi",
+    role: "BCA Graduate, Pune",
+    image:"https://media.licdn.com/dms/image/v2/C5603AQG4Onm0OO4yJg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1626909842511?e=2147483647&v=beta&t=YDrXW63GFJsBoVOjCT5IwqtvqiNqmkP7OkxlnV3EYWU",
     review:
-      "Before taking the resume review, I had no idea how to structure my experience. The expert completely transformed my resume — I got shortlisted for 3 companies within a week!",
+      "Before the resume review, I had no idea how to structure my projects and skills. The expert completely transformed my CV — I got shortlisted for three companies within a week!",
     rating: 5,
   },
 ];
@@ -96,7 +93,7 @@ const ResumeTestimonials = () => {
         >
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={index}
+              key={testimonial.name}
               variants={cardVariants}
               className="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl p-6 md:p-8 flex flex-col items-center text-center transition-all duration-300 border-2 border-transparent hover:border-red-200"
               whileHover={{ y: -8, scale: 1.02 }}
@@ -127,8 +124,10 @@ const ResumeTestimonials = () => {
               >
                 <img
                   src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-xl"
+                  alt={`${testimonial.name}, ${testimonial.role}`}
+                  className="w-24 h-24 rounded-full object-cover object-top border-4 border-white shadow-xl"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-500/20 to-red-500/0" />
               </motion.div>

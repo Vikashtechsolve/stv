@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Clock, Users, Flame } from "lucide-react";
 import { GENAI_ENROLLMENT } from "./genAiCourseConfig";
+import { useGenAiSeats } from "./useGenAiSeats";
 
 function getTimeLeft(targetIso) {
   const diff = new Date(targetIso).getTime() - Date.now();
@@ -26,8 +27,8 @@ const timeUnits = [
 ];
 
 export default function EnrollmentUrgency({ onApplyClick }) {
-  const { batchStartDisplay, countdownTarget, totalSeats, seatsLeft } =
-    GENAI_ENROLLMENT;
+  const { batchStartDisplay, countdownTarget } = GENAI_ENROLLMENT;
+  const { seatsLeft } = useGenAiSeats();
 
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(countdownTarget));
 
@@ -37,11 +38,6 @@ export default function EnrollmentUrgency({ onApplyClick }) {
     }, 1000);
     return () => clearInterval(timer);
   }, [countdownTarget]);
-
-  const seatsFilled = Math.min(
-    100,
-    Math.round(((totalSeats - seatsLeft) / totalSeats) * 100)
-  );
 
   return (
     <section className="px-4 sm:px-6 py-10 sm:py-14">
@@ -69,23 +65,11 @@ export default function EnrollmentUrgency({ onApplyClick }) {
                 <span className="text-amber-300">{seatsLeft} Seats Left</span>
               </h3>
 
-              <p className="text-white/80 text-sm sm:text-base mb-5 max-w-md">
+              <p className="text-white/80 text-sm sm:text-base max-w-md">
                 Next batch starts on{" "}
                 <span className="text-white font-semibold">{batchStartDisplay}</span>
                 . Secure your spot before the batch fills up.
               </p>
-
-              <div className="mb-2 flex justify-between text-xs sm:text-sm text-white/70">
-                <span>{totalSeats - seatsLeft} enrolled</span>
-                <span>{seatsLeft} remaining</span>
-              </div>
-
-              <div className="h-2.5 sm:h-3 rounded-full bg-white/20 overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-[linear-gradient(90deg,#fde68a,#fbbf24)] transition-all duration-700"
-                  style={{ width: `${seatsFilled}%` }}
-                />
-              </div>
             </div>
 
             {/* Countdown */}

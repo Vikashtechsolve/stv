@@ -2,6 +2,7 @@ import React from "react";
 
 import programImg from "../FullstackDeveloper/img/programImg.jpg";
 import { GENAI_ENROLLMENT } from "./genAiCourseConfig";
+import { useGenAiSeats } from "./useGenAiSeats";
 
 const audiences = [
   "Students exploring AI and technology careers",
@@ -24,6 +25,8 @@ const highlights = [
 ];
 
 export default function ChooseProgram({ onApplyClick }) {
+  const { seatsLeft } = useGenAiSeats();
+
   return (
     <section className="bg-[#fff] py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
 
@@ -51,7 +54,7 @@ export default function ChooseProgram({ onApplyClick }) {
                 {GENAI_ENROLLMENT.batchStartDisplay}
               </span>
               <span className="text-amber-700 font-semibold ml-2">
-                · Only {GENAI_ENROLLMENT.seatsLeft} seats left
+                · Only {seatsLeft} seats left
               </span>
             </span>
           </div>

@@ -4,45 +4,45 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Tamana Kapoor",
-    role: "CS Fundamentals Student",
+    name: "Isha Kulkarni",
+    role: "2nd Year CSE, Nagpur",
     text: "Operating System and DBMS topics were confusing during my college exam prep. My mentor explained with real-world examples — I finally understood how systems work!",
-    img: "https://randomuser.me/api/portraits/women/1.jpg",
+    img: "https://media.licdn.com/dms/image/v2/D5603AQGtMl06zOSREA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718881652195?e=2147483647&v=beta&t=8v2DR8ZwzZ9RS3vqv7WkXoJszkXU0FfPn5zUtJKZy78",
     rating: 5,
   },
   {
-    name: "Aarav Mehta",
-    role: "Science Student",
+    name: "Harshvardhan Rao",
+    role: "B.Tech IT, Visakhapatnam",
     text: "I couldn't understand a tricky Physics numericals chapter before my test. My mentor solved each problem step-by-step — it felt like having a personal teacher at home!",
-    img: "https://randomuser.me/api/portraits/men/3.jpg",
+    img: "https://media.licdn.com/dms/image/v2/C5603AQHCl47te3voYg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1628413231060?e=2147483647&v=beta&t=ziWPLdT3ywGDugnloOY44BGmMzEHeVfg29KV1Z_yg-U",
     rating: 5,
   },
   {
-    name: "Anika Verma",
-    role: "AI & ML Enthusiast",
+    name: "Pooja Banerjee",
+    role: "MCA Student, Kolkata",
     text: "I joined to clear one ML model doubt but ended up learning so much about optimization and deployment. The mentor's live explanation made tough topics super easy!",
-    img: "https://randomuser.me/api/portraits/women/44.jpg",
+    img: "https://media.licdn.com/dms/image/v2/D4E03AQEkVndccCKX8w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1707633790423?e=2147483647&v=beta&t=zHjBF2XR_rm-MhqtK45jYOdwZqBVeEbdBiD3rMM9D_4",
     rating: 5,
   },
   {
-    name: "Rohan Gupta",
-    role: "Data Science Student",
+    name: "Aditya Khanna",
+    role: "1st Year ECE, Chandigarh",
     text: "My mentor explained complex algorithms in such a simple way that I could finally implement them confidently in my projects.",
-    img: "https://randomuser.me/api/portraits/men/40.jpg",
+    img: "https://media.licdn.com/dms/image/v2/C4E03AQEDK6mizoHsLw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1615901752763?e=2147483647&v=beta&t=lKQSSgXSCeW9LUdoYT5-xTMY8DoqxmK1IImdGmNH8EQ",
     rating: 5,
   },
   {
-    name: "Sanya Patel",
-    role: "Engineering Student",
+    name: "Nidhi Agarwal",
+    role: "B.Sc Computer Science, Indore",
     text: "I loved how interactive the sessions were! My mentor made even the toughest topics feel approachable.",
-    img: "https://randomuser.me/api/portraits/women/68.jpg",
+    img: "https://media.licdn.com/dms/image/v2/D4E03AQF4soL9WErF8A/profile-displayphoto-scale_400_400/B4EZlv8HOvHgAg-/0/1758519655048?e=2147483647&v=beta&t=O5FIPzIkgHc1fkAp0bdJbDANb_Jj7jJ38qxY23ET5DI",
     rating: 5,
   },
   {
-    name: "Karan Singh",
-    role: "Programming Enthusiast",
+    name: "Varun Pillai",
+    role: "Diploma in CS, Thiruvananthapuram",
     text: "Thanks to my mentor, I not only understood recursion but also developed the confidence to solve new problems easily.",
-    img: "https://randomuser.me/api/portraits/men/12.jpg",
+    img: "https://media.licdn.com/dms/image/v2/D4D03AQFbEk7NuSZ_NQ/profile-displayphoto-scale_200_200/B4DZkuxGUlJcAY-/0/1757426255611?e=2147483647&v=beta&t=hq-7Y4yULFQnfgJa5lPAxlvaldyQhpUakoNHQZ09uhE",
     rating: 5,
   },
 ];
@@ -136,7 +136,7 @@ const StudentTestimonials = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Students share how Live Doubt Solving sessions helped them understand
+            Students across India share how Live Doubt Solving sessions helped them understand
             faster, build confidence, and truly learn — not just memorize.
           </motion.p>
         </motion.div>
@@ -153,13 +153,13 @@ const StudentTestimonials = () => {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="flex gap-6 justify-center flex-wrap md:flex-nowrap w-full"
               >
-                {visible.map((t, i) => (
+                {visible.map((t) => (
                   <motion.div
-                    key={`${index}-${i}`}
+                    key={t.name}
                     className="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl p-8 flex flex-col items-center w-[90%] sm:w-[45%] lg:w-[30%] mx-auto transition-all duration-500 border border-gray-200/50 overflow-hidden"
                     initial={{ opacity: 0, y: 30, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.05 }}
                     whileHover={{ y: -8, scale: 1.02 }}
                   >
                     {/* Gradient Background Overlay */}
@@ -180,8 +180,10 @@ const StudentTestimonials = () => {
                         <div className="relative inline-block">
                           <img
                             src={t.img}
-                            alt={t.name}
-                            className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
+                            alt={`${t.name}, ${t.role}`}
+                            className="w-24 h-24 rounded-full object-cover object-top border-4 border-white shadow-lg"
+                            loading="lazy"
+                            decoding="async"
                           />
                           <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-[#ED0331] to-[#87021C] rounded-full p-1">
                             <Star className="w-4 h-4 text-white fill-white" />

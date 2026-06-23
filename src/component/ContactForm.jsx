@@ -6,6 +6,7 @@ import axios from "axios";
 import formImg from "../assets/form.png";
 
 import { vtsBackendApi as baseUrl } from "../config/env";
+import { vtsWhatsAppUrl } from "../constants/vtsSupport";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -230,7 +231,7 @@ const ContactForm = () => {
               </div>
               
               <motion.a
-                href="https://wa.me/919876543210"
+                href={vtsWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 font-nunito group"

@@ -112,9 +112,9 @@ export default function OurTeam() {
 
   const team = [
     {
-      name: "VIKAS DUBEY",
+      name: "VIKASH DUBEY",
       role: "FOUNDER & TECH MENTOR",
-      description: "Vikash Dubey is the visionary behind Vikas Tech Solutions, dedicated to transforming the way students and professionals learn. With deep expertise in full-stack development and product architecture.",
+      description: "Vikash Dubey is the visionary behind Vikash Tech Solution, dedicated to transforming the way students and professionals learn. With deep expertise in full-stack development and product architecture.",
       imagePlaceholder: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1760116012/WhatsApp_Image_2025-10-10_at_21.00.46_s5xkzu.jpg"
     },
     {
@@ -124,7 +124,7 @@ export default function OurTeam() {
       imagePlaceholder: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1760116272/IMG_20231210_134514_zyphpu.jpg"
     },
     {
-      name: "SWATI SHARMA",
+      name: "SWATI MISRA",
       role: "Program Manager",
       description: "A results-driven Program Manager skilled in leading cross-functional teams and ensuring seamless project execution from start to finish. Known for aligning business goals with technology to drive measurable impact and growth.",
       imagePlaceholder: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759842668/swatee_ulkfwf.jpg"
@@ -142,7 +142,7 @@ export default function OurTeam() {
       imagePlaceholder: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1760116792/IMG_8245_vkhaxe.jpg"
     },
     {
-      name: "VIKRAM DESAI",
+      name: "Venkatesh K",
       role: "TECH MENTOR",
       description: "Provides mentorship on coding best practices, debugging techniques, and industry-ready skills, supporting students in preparing for competitive coding, interviews, and advanced projects.",
       imagePlaceholder: "https://res.cloudinary.com/dc4gqqd35/image/upload/v1759832524/Venkatesh__ihttlr.jpg"

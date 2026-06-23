@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { 
-  User, Mail, Phone, MessageSquare, Send, Sparkles, MapPin, Clock, 
+  User, Mail, Phone, MessageSquare, Send, Sparkles, 
   Linkedin, Instagram, Youtube, ArrowRight, CheckCircle2, X, PartyPopper
 } from "lucide-react";
 import axios from "axios";
@@ -12,6 +12,7 @@ import linkedinIcon from "../assets/linkedin.png";
 import instagramIcon from "../assets/instagram.svg";
 
 import { vtsBackendApi as baseUrl } from "../config/env";
+import { VTS_SUPPORT, vtsPhoneTel, vtsWhatsAppUrl } from "../constants/vtsSupport";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -80,21 +81,24 @@ const ContactUs = () => {
   ];
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: "contact@vikastechsolutions.com", link: "mailto:contact@vikastechsolutions.com" },
-    { icon: Phone, label: "Phone", value: "+91 98765 43210", link: "tel:+919876543210" },
     {
-      icon: MapPin,
-      label: "Location",
-      value: "423, 4th Floor, Samanvay Business Square, Vaikuth Four crossing, Vadodara, Gujarat",
-      link: null,
+      icon: Mail,
+      label: "Email",
+      value: VTS_SUPPORT.email,
+      link: `mailto:${VTS_SUPPORT.email}`,
     },
-    { icon: Clock, label: "Response Time", value: "Within 24 hours", link: null },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: VTS_SUPPORT.phone,
+      link: vtsPhoneTel(),
+    },
   ];
 
   const socialLinks = [
-    { icon: Linkedin, name: "LinkedIn", image: linkedinIcon, color: "from-blue-600 to-blue-700", link: "https://linkedin.com" },
-    { icon: Instagram, name: "Instagram", image: instagramIcon, color: "from-pink-500 to-purple-600", link: "https://instagram.com" },
-    { icon: Youtube, name: "YouTube", image: null, color: "from-red-600 to-red-700", link: "https://youtube.com" },
+    { icon: Linkedin, name: "LinkedIn", image: linkedinIcon, color: "from-blue-600 to-blue-700", link: VTS_SUPPORT.linkedin },
+    { icon: Instagram, name: "Instagram", image: instagramIcon, color: "from-pink-500 to-purple-600", link: "https://www.instagram.com/vikash_tech_solution/" },
+    { icon: Youtube, name: "YouTube", image: null, color: "from-red-600 to-red-700", link: "https://www.youtube.com/@fixWithvikas" },
   ];
 
   const containerVariants = {
@@ -217,11 +221,9 @@ const ContactUs = () => {
                   const IconComponent = info.icon;
                   return (
                     <motion.a
-                      key={index}
-                      href={info.link || undefined}
-                      className={`group relative bg-white rounded-xl shadow-lg hover:shadow-xl p-4 border border-gray-200/50 transition-all duration-300 ${
-                        info.link ? "cursor-pointer" : "cursor-default"
-                      }`}
+                      key={info.label}
+                      href={info.link}
+                      className="group relative bg-white rounded-xl shadow-lg hover:shadow-xl p-4 border border-gray-200/50 transition-all duration-300 cursor-pointer"
                       initial={{ opacity: 0, y: 20 }}
                       animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                       transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
@@ -259,7 +261,7 @@ const ContactUs = () => {
 
               {/* WhatsApp Button */}
               <motion.a
-                href="https://wa.me/919876543210"
+                href={vtsWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 font-nunito group w-full justify-center"

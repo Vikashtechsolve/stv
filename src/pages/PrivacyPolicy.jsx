@@ -21,7 +21,9 @@ import {
   Info,
   Key,
   Clock,
+  Phone,
 } from 'lucide-react';
+import { VTS_SUPPORT, vtsPhoneTel } from '../constants/vtsSupport';
 
 export default function PrivacyPolicy() {
   const headerRef = useRef(null);
@@ -244,6 +246,7 @@ export default function PrivacyPolicy() {
         "If you have questions about this Privacy Policy, contact us at:",
       ],
       contact: "hr@vikashtechsolution.com",
+      supportPhone: VTS_SUPPORT.phone,
     },
   ];
 
@@ -479,19 +482,32 @@ function SectionCard({ section }) {
                           variants={itemVariants}
                           className="mt-6 p-4 bg-gradient-to-r from-red-50 to-pink-50 rounded-xl border border-red-100"
                         >
-                          <div className="flex items-center gap-3">
-                            <Mail className="w-5 h-5 text-[#ED0331]" />
-                            <div>
-                              <p className="text-sm text-gray-600 font-nunito mb-1">
-                                For requests, contact us at:
-                              </p>
-                              <a
-                                href={`mailto:${section.contact}`}
-                                className="text-[#ED0331] font-semibold hover:underline font-nunito text-base md:text-lg"
-                              >
-                                {section.contact}
-                              </a>
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-3">
+                              <Mail className="w-5 h-5 text-[#ED0331] shrink-0" />
+                              <div>
+                                <p className="text-sm text-gray-600 font-nunito mb-1">
+                                  For requests, contact us at:
+                                </p>
+                                <a
+                                  href={`mailto:${section.contact}`}
+                                  className="text-[#ED0331] font-semibold hover:underline font-nunito text-base md:text-lg"
+                                >
+                                  {section.contact}
+                                </a>
+                              </div>
                             </div>
+                            {section.supportPhone && (
+                              <div className="flex items-center gap-3">
+                                <Phone className="w-5 h-5 text-[#ED0331] shrink-0" />
+                                <a
+                                  href={vtsPhoneTel(section.supportPhone)}
+                                  className="text-[#ED0331] font-semibold hover:underline font-nunito text-base md:text-lg"
+                                >
+                                  {section.supportPhone}
+                                </a>
+                              </div>
+                            )}
                           </div>
                         </motion.div>
                       )}
