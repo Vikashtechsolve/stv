@@ -95,7 +95,7 @@ function AboutVTS() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                At <span className="font-semibold text-[#ED0331]">Vikash Tech Solutions (VTS)</span>, we're on a mission to make learning simple, affordable, and impactful. We bridge the gap between traditional education and real-world skills by offering practical programs like Masterclasses, 1:1 Mentorship, Online Contests, Resume Reviews, and Live Doubt Solving Sessions.
+                At <span className="font-semibold text-[#ED0331]">Vikash Tech Solution (VTS)</span>, we're on a mission to make learning simple, affordable, and impactful. We bridge the gap between traditional education and real-world skills by offering practical programs like Masterclasses, 1:1 Mentorship, Online Contests, Resume Reviews, and Live Doubt Solving Sessions.
               </p>
             </motion.div>
 

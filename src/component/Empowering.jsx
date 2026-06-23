@@ -101,7 +101,7 @@ export const Empowering = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            At Vikash Tech Solutions, we redefine learning by bringing real-world experience into the classroom.
+            At Vikash Tech Solution, we redefine learning by bringing real-world experience into the classroom.
           </motion.p>
 
           <motion.p
