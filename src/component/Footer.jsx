@@ -45,7 +45,7 @@ const Footer = () => {
             className="font-bold text-base heading-primary leading-tight tracking-wide pt-[10.67px] pb-4 uppercase"
             style={{ fontFamily: "'Nunito Sans', sans-serif" }}
           >
-            ABOUT VIKAS TECH SOLUTIONS
+            ABOUT VIKASH TECH SOLUTION
           </h3>
           <p className="text-base leading-6 font-nunito text-gray-600">
             We provide personalized mentorship, live doubt-solving, coding

@@ -13,6 +13,12 @@ const SEO = ({
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={url} />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+    <link rel="shortcut icon" href="/favicon.svg" />
 
     {/* Open Graph Tags */}
     <meta property="og:type" content="website" />
