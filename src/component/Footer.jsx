@@ -97,7 +97,7 @@ const Footer = () => {
         <div className="mt-0 md:-mt-16">
           <h3 className="font-semibold text-base heading-primary font-playfair mb-4">CONTACT</h3>
 
-          <div className="flex items-start gap-3 text-base font-nunito text-gray-600 mb-4">
+          {/* <div className="flex items-start gap-3 text-base font-nunito text-gray-600 mb-4">
             <FaMapMarkerAlt className="text-[#ED0331] mt-1 text-lg shrink-0" />
             <p className="leading-relaxed">
               Barki Bashouli,<br />
@@ -105,7 +105,7 @@ const Footer = () => {
               Bashouli vil, Basauli,<br />
               Buxar, Bihar, 802119
             </p>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-3 text-base font-nunito text-gray-600 mb-4">
             <FaEnvelope className="text-[#ED0331] text-lg shrink-0" />
